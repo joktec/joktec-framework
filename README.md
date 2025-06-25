@@ -1,4 +1,4 @@
-<h1 align="center">JokTec Monorepo</h1>
+<h1 align="center">JokTec Framework</h1>
 
 <p align="center">
   Modular microservice architecture built on <b>NestJS</b> — designed to be scalable, organized, and developer-friendly.
@@ -6,14 +6,14 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" /></a>
-  <a href="https://deepwiki.com/joktec/joktec-monorepo"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+  <a href="https://deepwiki.com/joktec/joktec-framework"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
 
 ---
 
 ## 🧩 Overview
 
-JokTec is a monorepo that provides a clean structure for building scalable microservices. It is structured around modular packages and clearly separated concerns.
+JokTec is a framework that provides a clean structure for building scalable microservices. It is structured around modular packages and clearly separated concerns.
 
 This repo includes:
 - 🧱 **Reusable packages**: organized into adapters, brokers, databases, integrations, and tools
@@ -25,7 +25,7 @@ This repo includes:
 ## 📁 Project Structure
 
 ```
-joktec-monorepo/
+joktec-framework/
 ├── apps/                # Microservice applications (gateways, workers, etc.)
 │   ├── example-gateway/
 │   └── example-micro/
