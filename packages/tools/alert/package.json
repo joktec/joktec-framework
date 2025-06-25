@@ -1,7 +1,7 @@
 {
   "name": "@joktec/alert",
   "description": "JokTec - Alert Service",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -38,8 +38,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.6",
-    "@joktec/utils": "0.1.1",
+    "@joktec/core": "0.2.7",
+    "@joktec/utils": "0.1.2",
     "@slack/webhook": "^7.0.5",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.66.0",
