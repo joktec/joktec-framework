@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.18 (2025-07-01)
+
+
+### Bug Fixes
+
+* mongo export _id ([2855406](https://joktec.github.com/joktec/joktec-framework/commit/28554066247e1e68566185cef1af5f9096c56867))
+* mongo prop expose ([830c419](https://joktec.github.com/joktec/joktec-framework/commit/830c419ce7ea6e451e163b766efa5478f4effb0a))
+* pagination ([ea7c357](https://joktec.github.com/joktec/joktec-framework/commit/ea7c357475f99c127641464d883aaf51b77e7b93))
+* replace ua-parser-js ([f5a1afa](https://joktec.github.com/joktec/joktec-framework/commit/f5a1afa53fcd94c4fcf3ce3530887a6c0252c287))
+
+
+
+
+
 ## [0.2.17](https://github.com/joktec/joktec-monorepo/compare/@joktec/mongo@0.2.16...@joktec/mongo@0.2.17) (2025-06-25)
 
 **Note:** Version bump only for package @joktec/mongo

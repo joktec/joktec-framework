@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.8 (2025-07-01)
+
+
+### Bug Fixes
+
+* aws credential providers ([736cf2b](https://joktec.github.com/joktec/joktec-framework/commit/736cf2bfc42603d6407f219bf3266b45215749c1))
+* aws from ini ([0d0bc65](https://joktec.github.com/joktec/joktec-framework/commit/0d0bc655548ed567822a4a7ac644121583ed0929))
+* replace ua-parser-js ([f5a1afa](https://joktec.github.com/joktec/joktec-framework/commit/f5a1afa53fcd94c4fcf3ce3530887a6c0252c287))
+
+
+
+
+
 ## [0.2.7](https://github.com/joktec/joktec-monorepo/compare/@joktec/core@0.2.6...@joktec/core@0.2.7) (2025-06-25)
 
 **Note:** Version bump only for package @joktec/core

@@ -1,7 +1,7 @@
 {
   "name": "@joktec/core",
   "description": "JokTec - Core library",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -52,7 +52,7 @@
     "@bull-board/api": "^6.7.10",
     "@bull-board/express": "^6.7.10",
     "@bull-board/ui": "^6.7.10",
-    "@joktec/utils": "0.1.2",
+    "@joktec/utils": "0.1.3",
     "@nestjs/bullmq": "^11.0.2",
     "@nestjs/common": "^11.0.12",
     "@nestjs/config": "^4.0.1",

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.12 (2025-07-01)
+
+
+### Bug Fixes
+
+* redcast auto ack ([43b7acb](https://joktec.github.com/joktec/joktec-framework/commit/43b7acb874400b677248ac228e74f459f615473a))
+* redcast binding method ([7b91f48](https://joktec.github.com/joktec/joktec-framework/commit/7b91f48004b23a519cf176cb2068466cafdd6375))
+* redcast consume stream ([221699a](https://joktec.github.com/joktec/joktec-framework/commit/221699a4a62175aab3d4be72d581614eb478468a))
+* redcast process throw error ([4eebd8a](https://joktec.github.com/joktec/joktec-framework/commit/4eebd8a914e07ab5a9ac748bac1952ece8876d4a))
+* redcast remove queue when move to dlq ([8b69ed1](https://joktec.github.com/joktec/joktec-framework/commit/8b69ed1c078b1e918dee6eb59a5342fdcdba7ea0))
+
+
+
+
+
 ## [0.1.11](https://github.com/joktec/joktec-monorepo/compare/@joktec/redcast@0.1.10...@joktec/redcast@0.1.11) (2025-06-25)
 
 **Note:** Version bump only for package @joktec/redcast

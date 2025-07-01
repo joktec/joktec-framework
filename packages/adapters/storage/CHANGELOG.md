@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.10 (2025-07-01)
+
+
+### Bug Fixes
+
+* aws credential providers ([736cf2b](https://joktec.github.com/joktec/joktec-framework/commit/736cf2bfc42603d6407f219bf3266b45215749c1))
+
+
+
+
+
 ## [0.2.9](https://github.com/joktec/joktec-monorepo/compare/@joktec/storage@0.2.8...@joktec/storage@0.2.9) (2025-06-25)
 
 **Note:** Version bump only for package @joktec/storage
