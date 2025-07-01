@@ -36,7 +36,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.6",
+    "@joktec/core": "0.2.7",
     "@joktec/utils": "*",
     "openai": "^4.88.0"
   },
