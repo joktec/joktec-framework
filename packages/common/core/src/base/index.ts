@@ -10,6 +10,9 @@ export {
   Reflector,
   repl,
   ModuleRef,
+  Routes,
+  RouterModule,
+  RouteTree,
 } from '@nestjs/core';
 export {
   ClientsModule,
