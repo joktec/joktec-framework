@@ -18,13 +18,16 @@ export const Cacheable = <T = Entity>(namespace: string, cacheableOptions?: Cach
       const { method, args, services, params } = options;
       const { key, expiry = CacheTtlSeconds.ONE_MINUTE, conId = DEFAULT_CON_ID, transform } = cacheableOptions || {};
 
+      const { target, propertyKey, descriptor } = options;
+      const className = options.target?.constructor?.name ?? 'Unknown';
+      const methodName = method.name;
+
       const reflector: Reflector = services.reflector;
       const cacheService: CacheService = services.cacheService;
-      const cacheKey = generateCacheKey({ method: method.name, key, params });
+      const cacheKey = generateCacheKey({ method: methodName, key, params, className });
 
       // TODO: Researching...
       // Set metadata and switch to use Interceptor for Controller
-      const { target, propertyKey, descriptor } = options;
       const isController = reflector.get<boolean>('__controller__', target.constructor);
       if (isController) {
         const metadata = { cacheKey, namespace, expiry, conId };

@@ -10,7 +10,10 @@ export const CachePut = <T = Entity>(namespace: string, cacheableOptions?: Cache
       const { key, expiry = CacheTtlSeconds.ONE_MINUTE, conId = DEFAULT_CON_ID } = cacheableOptions || {};
       const cacheService: CacheService = services.cacheService;
 
-      const cacheKey = generateCacheKey({ method: method.name, key, params });
+      const className = options.target?.constructor?.name ?? 'Unknown';
+      const methodName = method.name;
+
+      const cacheKey = generateCacheKey({ method: methodName, key, params, className });
       const valueToCache = await method(...args);
       await cacheService.set<T>(cacheKey, valueToCache, { namespace, expiry }, conId);
 

@@ -10,7 +10,10 @@ export const CacheEvict = (namespace: string, cacheEvictOption?: CacheEvictOptio
       const { key, allEntries = false, conId = DEFAULT_CON_ID } = cacheEvictOption || {};
       const cacheService: CacheService = services.cacheService;
 
-      const cacheKey = allEntries ? '*' : generateCacheKey({ method: method.name, key, params });
+      const className = options.target?.constructor?.name ?? 'Unknown';
+      const methodName = method.name;
+
+      const cacheKey = allEntries ? '*' : generateCacheKey({ method: methodName, key, params, className });
       const res = await method(...args);
       await cacheService.del(cacheKey, { namespace }, conId);
 

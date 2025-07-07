@@ -5,11 +5,13 @@ function hashKey(data: any): string {
   return hash({ data }, { unorderedArrays: true, algorithm: 'md5' });
 }
 
-export function generateCacheKey(data: { method: string; params?: any; key?: string }): string {
-  const { key, method, params = {} } = data;
+export function generateCacheKey(data: { method: string; className?: string; params?: any; key?: string }): string {
+  const { key, method, params = {}, className = 'Unknown' } = data;
+  const prefix = `${className}:${method}`;
+
   if (isEmpty(params)) return method;
-  if (!key || !has(params, key)) return hashKey(params);
-  return hashKey(get(params, key));
+  if (!key || !has(params, key)) return `${prefix}:${hashKey(params)}`;
+  return `${prefix}:${hashKey(get(params, key))}`;
 }
 
 function regExpEscape(s: string): string {

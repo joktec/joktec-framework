@@ -9,8 +9,8 @@ export type CacheableProps = { cacheKey: string; expiry?: number; namespace?: st
 @Injectable()
 export class CacheableInterceptor<T = Entity> implements NestInterceptor<T> {
   constructor(
-    private reflector: Reflector,
-    private cacheService: CacheService,
+    private readonly reflector: Reflector,
+    private readonly cacheService: CacheService,
   ) {}
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<T>> {
