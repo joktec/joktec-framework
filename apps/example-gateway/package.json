@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@joktec/core": "0.2.9",
-    "@joktec/cacher": "0.2.9",
+    "@joktec/cacher": "0.2.10",
     "@joktec/cron": "0.2.12",
     "@joktec/http": "0.2.10",
     "@joktec/kafka": "0.2.9",
