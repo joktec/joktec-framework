@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/cacher@0.2.9...@joktec/cacher@0.2.10) (2025-07-07)
+
+
+### Bug Fixes
+
+* cacher generate key ([0feb403](https://joktec.github.com/joktec/joktec-framework/commit/0feb403ce5fe610b9344e11739933ed3e2395b42))
+
+
+
+
+
 ## [0.2.9](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/cacher@0.2.8...@joktec/cacher@0.2.9) (2025-07-03)
 
 **Note:** Version bump only for package @joktec/cacher
