@@ -69,6 +69,13 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
     indexes.push(idx);
   }
 
+  if (options?.ttl) {
+    const ttlIndexes: IIndexOptions[] = toArray(options.ttl).map(index => {
+      return { fields: { [index.field]: 1 }, options: { expires: index.expiry } };
+    });
+    indexes.push(...ttlIndexes);
+  }
+
   toArray(options?.customIndexes).map(idx => {
     idx.options = { background: true, ...idx.options };
     if (paranoid) injectParanoid(idx, paranoid);

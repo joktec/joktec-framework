@@ -17,6 +17,11 @@ export interface IIndexOptions {
   options?: IndexOptions;
 }
 
+export interface ITimeToLiveIndexOptions {
+  field: string;
+  expiry: number | string;
+}
+
 export interface ISchemaOptions {
   collection?: string;
   schemaOptions?: Omit<SchemaOptions, 'collection'>;
@@ -27,6 +32,7 @@ export interface ISchemaOptions {
   // Index
   index?: string | string[];
   unique?: string | string[];
+  ttl?: ITimeToLiveIndexOptions | ITimeToLiveIndexOptions[];
   textSearch?: string;
   geoSearch?: string;
   customIndexes?: IIndexOptions[];
