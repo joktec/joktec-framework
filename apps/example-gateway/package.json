@@ -42,7 +42,7 @@
     "@joktec/http": "0.2.10",
     "@joktec/kafka": "0.2.9",
     "@joktec/mailer": "0.2.9",
-    "@joktec/mongo": "0.2.19",
+    "@joktec/mongo": "0.2.20",
     "@joktec/mysql": "0.2.10",
     "@joktec/firebase": "0.2.9",
     "@joktec/rabbit": "0.2.9",
