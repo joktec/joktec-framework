@@ -6,11 +6,13 @@ import mongoose from 'mongoose';
 import { IIndexOptions, ISchemaOptions } from '../decorators';
 
 function injectParanoid(indexOption: IIndexOptions, paranoidKey: string = 'deletedAt') {
-  if (!indexOption.options.partialFilterExpression) {
-    indexOption.options.partialFilterExpression = {};
-  }
-  if (indexOption.options.sparse) delete indexOption.options.sparse;
-  Object.assign(indexOption.options.partialFilterExpression, { [paranoidKey]: { $type: 'null' } });
+  // if (!indexOption.options.partialFilterExpression) {
+  //   indexOption.options.partialFilterExpression = {};
+  // }
+  // if (indexOption.options.sparse) delete indexOption.options.sparse;
+  // Object.assign(indexOption.options.partialFilterExpression, { [paranoidKey]: { $type: 'null' } });
+
+  indexOption.fields[paranoidKey] = 1;
 }
 
 export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
@@ -58,7 +60,7 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
     }, {});
 
     const idx: IIndexOptions = { fields, options: { background: true } };
-    // if (options.paranoid) injectParanoid(idx, paranoid); // TODO: Fix later - This cause error when search text
+    if (options.paranoid) injectParanoid(idx, paranoid);
     indexes.push(idx);
   }
 
