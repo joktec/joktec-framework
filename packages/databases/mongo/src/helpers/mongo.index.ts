@@ -26,7 +26,7 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
       }, {});
 
       const idx: IIndexOptions = { fields, options: { background: true } };
-      if (options.paranoid) injectParanoid(idx, paranoid);
+      if (paranoid) injectParanoid(idx, paranoid);
       indexes.push(idx);
     });
   }
@@ -40,7 +40,7 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
       });
 
       const idx: IIndexOptions = { fields, options: opts };
-      if (options.paranoid) injectParanoid(idx, paranoid);
+      if (paranoid) injectParanoid(idx, paranoid);
       indexes.push(idx);
     });
   }
@@ -52,14 +52,14 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
     }, {});
 
     const idx: IIndexOptions = { fields, options: { background: true } };
-    if (options.paranoid) injectParanoid(idx, paranoid);
+    if (paranoid) injectParanoid(idx, paranoid);
     indexes.push(idx);
   }
 
   if (options?.geoSearch) {
     const fields: mongoose.IndexDefinition = { [options.geoSearch]: '2dsphere' };
     const idx: IIndexOptions = { fields, options: { background: true } };
-    if (options.paranoid) injectParanoid(idx, paranoid);
+    if (paranoid) injectParanoid(idx, paranoid);
     indexes.push(idx);
   }
 
