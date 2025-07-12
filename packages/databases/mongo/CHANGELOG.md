@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.21](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.20...@joktec/mongo@0.2.21) (2025-07-12)
+
+
+### Bug Fixes
+
+* mongo index ([1ba6192](https://joktec.github.com/joktec/joktec-framework/commit/1ba6192fb875d7fa95fb80519938d882f7e16a72))
+* mongo index ([cfe2b5c](https://joktec.github.com/joktec/joktec-framework/commit/cfe2b5c639978a574fac9a5ac5a63201b6f1e62c))
+
+
+
+
+
 ## [0.2.20](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.19...@joktec/mongo@0.2.20) (2025-07-08)
 
 **Note:** Version bump only for package @joktec/mongo
