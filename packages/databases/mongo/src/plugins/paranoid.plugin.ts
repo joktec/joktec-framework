@@ -12,6 +12,7 @@ import {
 
 export interface ParanoidOptions {
   deletedAt?: { name?: string; type?: Clazz };
+  injectIndex?: boolean;
 }
 
 export interface ParanoidQueryOptions<T = any> extends QueryOptions<T> {

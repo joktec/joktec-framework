@@ -6,18 +6,15 @@ import mongoose from 'mongoose';
 import { IIndexOptions, ISchemaOptions } from '../decorators';
 
 function injectParanoid(indexOption: IIndexOptions, paranoidKey: string = 'deletedAt') {
-  // if (!indexOption.options.partialFilterExpression) {
-  //   indexOption.options.partialFilterExpression = {};
-  // }
-  // if (indexOption.options.sparse) delete indexOption.options.sparse;
-  // Object.assign(indexOption.options.partialFilterExpression, { [paranoidKey]: { $type: 'null' } });
-
-  indexOption.fields[paranoidKey] = 1;
+  if (!(paranoidKey in indexOption.fields)) {
+    indexOption.fields[paranoidKey] = 1;
+  }
 }
 
 export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
   const deletedAt: string = get(options, 'paranoid.deletedAt.name', 'deletedAt');
-  const paranoid: string = options?.paranoid ? deletedAt : null;
+  const injectIndex: boolean = get(options, 'paranoid.injectIndex', false);
+  const paranoid: string = options?.paranoid && injectIndex ? deletedAt : null;
 
   const indexes: IIndexOptions[] = [];
 
@@ -36,19 +33,14 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
 
   if (options?.unique) {
     toArray(options.unique).map(key => {
-      const partialFilterExpression: Record<string, any> = {};
       const opts: IndexOptions = { unique: true, background: true, sparse: true };
       const fields: mongoose.IndexDefinition = {};
       key.split(',').map(field => {
         fields[field] = 1;
-        partialFilterExpression[field] = { $exists: true, $type: ['string', 'number', 'date', 'objectId'] };
       });
 
       const idx: IIndexOptions = { fields, options: opts };
-      if (options.paranoid) {
-        idx.options.partialFilterExpression = partialFilterExpression;
-        injectParanoid(idx, paranoid);
-      }
+      if (options.paranoid) injectParanoid(idx, paranoid);
       indexes.push(idx);
     });
   }
