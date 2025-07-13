@@ -13,3 +13,4 @@ export { Aggregate, QueryOptions, UpdateQuery } from 'mongoose';
 export { mongoose, Ref, pre, post, Passthrough } from '@typegoose/typegoose';
 export { VirtualOptions, RefType } from '@typegoose/typegoose/lib/types';
 export { PropType, Severity, DecoratorKeys } from '@typegoose/typegoose/lib/internal/constants';
+export * from 'mongo-dot-notation';

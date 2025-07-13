@@ -54,7 +54,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   protected transform(docs: any | any[]): T | T[] {
     if (isNil(docs)) return null;
     if (isArray(docs) && !docs.length) return [];
-    const transformDocs = plainToInstance(this.schema, toArray(docs));
+    const transformDocs = plainToInstance(this.schema, toArray(docs), { ignoreDecorators: true });
     return (isArray(docs) ? transformDocs : transformDocs[0]) as any;
   }
 

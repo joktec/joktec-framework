@@ -14410,6 +14410,11 @@ moment@^2.18.1:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
   integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
 
+mongo-dot-notation@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/mongo-dot-notation/-/mongo-dot-notation-3.1.1.tgz#062bc1844866f142d613c8d70251d3213ddb55a4"
+  integrity sha512-NKBDLx92H+aRO1bu0QgxGe0ARo76gTQsgry2caemSVwkxWUH0myyZkvR1LUFuBJfLiN1kb+Axwn6MNM5ahXjOg==
+
 mongodb-connection-string-url@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/mongodb-connection-string-url/-/mongodb-connection-string-url-2.6.0.tgz#57901bf352372abdde812c81be47b75c6b2ec5cf"
