@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.23](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.22...@joktec/mongo@0.2.23) (2025-07-13)
+
+
+### Bug Fixes
+
+* mongo transform ([3bc7189](https://joktec.github.com/joktec/joktec-framework/commit/3bc7189505e66d4ce555d6b2667aa976b85df278))
+
+
+
+
+
 ## [0.2.22](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.21...@joktec/mongo@0.2.22) (2025-07-12)
 
 
