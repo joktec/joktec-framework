@@ -10,6 +10,7 @@ import {
 import { getTimeString, sleep, toInt } from '@joktec/utils';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob, CronJobParams } from 'cron';
+import { CronExpressionParser } from 'cron-parser';
 import { isValidCron } from 'cron-validator';
 import { get, map } from 'lodash';
 import { CrontabConfig } from './crontab.config';
@@ -59,11 +60,18 @@ export abstract class CrontabScheduler implements OnModuleInit {
 
     // Save all cron into database
     for (const meta of Object.values(this.cronMeta)) {
-      const cronData = {
+      const cronData: Partial<ICrontabModel> = {
         ...meta.cron,
         timezone: meta.cron.timezone || this.config.timezone,
         expression: this.getAndValidExpression(meta.cron.expression),
       };
+
+      if (cronData.cronDate) cronData.nextExecution = cronData.cronDate;
+      if (cronData.expression) {
+        const cronParser = CronExpressionParser.parse(cronData.expression, { tz: cronData.timezone });
+        cronData.nextExecution = cronParser.next().toDate();
+      }
+
       await this.cronRepo.upsert(cronData, ['code']);
     }
 
