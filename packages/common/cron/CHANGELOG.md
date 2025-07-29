@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/cron@0.2.13...@joktec/cron@0.2.14) (2025-07-29)
+
+**Note:** Version bump only for package @joktec/cron
+
+
+
+
+
 ## [0.2.13](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/cron@0.2.12...@joktec/cron@0.2.13) (2025-07-16)
 
 **Note:** Version bump only for package @joktec/cron
