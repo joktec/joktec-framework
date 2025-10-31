@@ -1,10 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from '@joktec/utils';
 
-export enum JwtContext {
-  HTTP,
-  GQL,
-}
-
 export class JwtConfig {
   @IsString()
   @IsNotEmpty()

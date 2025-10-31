@@ -33,6 +33,7 @@
   "scripts": {
     "clean": "rimraf -rf dist",
     "purge": "rimraf -rf dist node_modules",
+    "madge": "madge src --circular --extensions ts --ts-config tsconfig.json",
     "prebuild": "rimraf -rf dist",
     "build": "nest build -p tsconfig.json",
     "prepublishOnly": "yarn build",
