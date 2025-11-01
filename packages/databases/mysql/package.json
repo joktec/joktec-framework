@@ -47,7 +47,7 @@
     "mysql": "2.18.1",
     "mysql2": "^3.14.0",
     "reflect-metadata": "0.2.2",
-    "typeorm": "^0.3.21"
+    "typeorm": "^0.3.26"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.16",
