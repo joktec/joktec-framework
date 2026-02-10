@@ -1,9 +1,9 @@
 import { AbstractClientService, Clazz, DEFAULT_CON_ID, Inject, Injectable, Retry } from '@joktec/core';
 import { getModelForClass, getModelWithString } from '@typegoose/typegoose';
-import mongoose, { ClientSession, ClientSessionOptions, Connection as Mongoose } from 'mongoose';
+import mongoose, { Connection as Mongoose } from 'mongoose';
 import { mongoDebug, QueryHelper } from './helpers';
 import { MongoSchema } from './models';
-import { MongoClient, MongoModelRegistry, MongoType } from './mongo.client';
+import { MongoClient, MongoClientSession, MongoModelRegistry, MongoSessionOptions, MongoType } from './mongo.client';
 import { MongoConfig } from './mongo.config';
 import { MODEL_REGISTRY_KEY } from './mongo.constant';
 
@@ -110,11 +110,11 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
   }
 
   public async startTransaction(
-    options: ClientSessionOptions = {},
+    options: MongoSessionOptions = {},
     conId: string = DEFAULT_CON_ID,
-  ): Promise<ClientSession> {
+  ): Promise<MongoClientSession> {
     const session = await this.getClient(conId).startSession(options);
-    session.startTransaction();
+    if (options.autoStart) session.startTransaction();
     return session;
   }
 

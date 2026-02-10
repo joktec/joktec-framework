@@ -146,6 +146,10 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   @MongoCatch
   async create(body: IMongoUpdate<T>, options: IMongoOptions<T> = {}): Promise<T> {
     const transformBody: T = this.transform(body) as T;
+    if (options.session) {
+      const docs = await this.model.create([transformBody], { session: options.session });
+      if (docs?.length) return this.findOne(docs[0]._id as ID, options);
+    }
     const doc = await this.model.create(transformBody);
     return this.findOne(doc._id as ID, options);
   }

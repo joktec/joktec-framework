@@ -16,12 +16,18 @@ export interface MongoModelRegistry {
 
 export type MongoType<T extends MongoSchema = MongoSchema> = ReturnModelType<typeof MongoSchema, QueryHelper<T>>;
 
+export interface MongoSessionOptions extends ClientSessionOptions {
+  autoStart?: boolean;
+}
+
+export type MongoClientSession = ClientSession;
+
 export interface MongoClient extends Client<MongoConfig, Connection> {
   isConnected(conId?: string): boolean;
 
   getModel<T extends MongoSchema>(schemaClass: typeof MongoSchema): MongoType<T>;
 
-  startTransaction(options?: ClientSessionOptions, conId?: string): Promise<ClientSession>;
+  startTransaction(options?: MongoSessionOptions, conId?: string): Promise<MongoClientSession>;
 }
 
 export interface IMongoRepository<T extends MongoSchema, ID extends RefType = string> extends IBaseRepository<T, ID> {

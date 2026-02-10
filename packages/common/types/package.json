@@ -35,7 +35,7 @@
     "@joktec/kafka": "^0.2.11",
     "@joktec/mailer": "^0.2.11",
     "@joktec/mongo": "^0.2.25",
-    "@joktec/mysql": "^0.2.12",
+    "@joktec/mysql": "^0.2.13",
     "@joktec/notifier": "^0.2.11",
     "@joktec/rabbit": "^0.2.11",
     "@joktec/redcast": "^0.1.15",
