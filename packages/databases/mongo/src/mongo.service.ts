@@ -18,11 +18,17 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
   @Retry(RETRY_OPTS)
   protected async init(config: MongoConfig): Promise<Mongoose> {
     let uri = this.buildUri(config);
-    if (config.params) uri += `?${config.params}`;
+
+    if (config.params) {
+      const separator = uri.includes('?') ? '&' : '?';
+      uri += `${separator}${config.params}`;
+    }
+
     const connectOptions: mongoose.ConnectOptions = {
       user: config.username,
       pass: config.password,
       dbName: config.database,
+      autoIndex: false,
       ...config.options,
     };
 
@@ -36,7 +42,8 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     }
 
     const client = mongoose.createConnection(uri, connectOptions);
-    this.logService.info('`%s` Connection to MongoDB established', config.conId, uri);
+    const maskedUri = uri.replace(/:([^:@]+)@/, ':****@');
+    this.logService.info('`%s` Connection to MongoDB established', config.conId, maskedUri);
 
     client.on('open', () => this.start(client, config.conId));
     client.on('error', async err => {
@@ -53,7 +60,7 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
 
   private buildUri(config: MongoConfig): string {
     if (config.uri) return config.uri;
-    if (config.replica) return `mongodb+srv://${config.host}/${config.database}`;
+    if (config.srvMode) return `mongodb+srv://${config.host}/${config.database}`;
     return `mongodb://${config.host}:${config.port}/${config.database}`;
   }
 

@@ -28,11 +28,7 @@ export class MongoConfig extends ClientConfig {
 
   @IsOptional()
   @IsBoolean()
-  replica?: boolean;
-
-  @IsInt()
-  @IsOptional()
-  retryTimeout?: number;
+  srvMode?: boolean;
 
   @IsString()
   @IsOptional()
@@ -55,8 +51,7 @@ export class MongoConfig extends ClientConfig {
     Object.assign(this, {
       ...props,
       port: toInt(props.port, 27017),
-      replica: toBool(props.replica, false),
-      retryTimeout: toInt(props.retryTimeout, 20000),
+      srvMode: toBool(props.srvMode, false),
       strictQuery: toBool(props.strictQuery, true),
       autoIndex: toBool(props.autoIndex, true),
       options: props.options || {},

@@ -81,7 +81,7 @@ auth:
 
 mongo:
   - conId: default
-    replica: false
+    srvMode: false
     host: localhost
     port: 27017
     username: root
