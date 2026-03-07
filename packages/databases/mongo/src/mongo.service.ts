@@ -43,7 +43,7 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
 
     const client = mongoose.createConnection(uri, connectOptions);
     const maskedUri = uri.replace(/:([^:@]+)@/, ':****@');
-    this.logService.info('`%s` Connection to MongoDB established', config.conId, maskedUri);
+    this.logService.info('`%s` Connection to MongoDB established %s', config.conId, maskedUri);
 
     client.on('open', () => this.start(client, config.conId));
     client.on('error', async err => {

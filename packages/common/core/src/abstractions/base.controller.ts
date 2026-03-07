@@ -11,6 +11,7 @@ import {
   NestInterceptor,
   OnModuleInit,
   Param,
+  Paramtype,
   PipeTransform,
   Post,
   Put,
@@ -19,6 +20,7 @@ import {
   UseGuards,
   UseInterceptors,
   UsePipes,
+  ValidationPipeOptions,
 } from '@nestjs/common';
 import { UseFilters } from '@nestjs/common/decorators/core';
 import {
@@ -80,6 +82,7 @@ export interface IControllerProps<T extends Entity> extends IEndpointProps {
   create?: IEndpointProps;
   update?: IEndpointProps;
   delete?: IEndpointProps;
+  pipeOpts?: ValidationPipeOptions & { metadataTypes?: Paramtype[] };
 }
 
 const isHideEndpoint = (opts?: IEndpointProps): boolean => {
@@ -195,7 +198,7 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
     @ApiNotAllowedEndpoint(toBool(props.create?.disable, false))
     @ApiUseBearer(props.create?.useBearer)
     @ApiUseApiKey(props.create?.useApiKey)
-    @UsePipes(new BaseValidationPipe(), ...toArray(props.create?.pipes))
+    @UsePipes(new BaseValidationPipe(props?.pipeOpts), ...toArray(props.create?.pipes))
     @UseInterceptors(...toArray(props.create?.hooks))
     @applyDecorators(...toArray(props.create?.decorators))
     async create(@Body() entity: CreateDto): Promise<T> {
@@ -211,7 +214,10 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
     @ApiNotAllowedEndpoint(toBool(props.update?.disable, false))
     @ApiUseBearer(props.update?.useBearer)
     @ApiUseApiKey(props.update?.useApiKey)
-    @UsePipes(new BaseValidationPipe({ skipMissingProperties: true }), ...toArray(props.update?.pipes))
+    @UsePipes(
+      new BaseValidationPipe({ ...props?.pipeOpts, skipMissingProperties: true }),
+      ...toArray(props.update?.pipes),
+    )
     @UseInterceptors(...toArray(props.update?.hooks))
     @applyDecorators(...toArray(props.update?.decorators))
     async update(@Param('id') id: ID, @Body() entity: UpdateDto): Promise<T> {

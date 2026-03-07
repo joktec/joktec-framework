@@ -36,7 +36,7 @@ import { RepositoryModule, SessionRepo, UserRepo } from './repositories';
       useFactory: (cfg: ConfigService) => createPinoHttp(cfg),
     }),
     GatewayModule.forRoot({ useJwt: true, metric: true, static: true }),
-    BullModule.forRoot(),
+    BullModule.forRoot({ board: { enable: true, queues: ['apify_queue'] } }),
     HttpModule,
     FirebaseModule,
     CacheModule,

@@ -13,6 +13,7 @@ export {
   Routes,
   RouterModule,
   RouteTree,
+  DiscoveryService,
 } from '@nestjs/core';
 export {
   ClientsModule,

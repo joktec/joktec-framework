@@ -62592,11 +62592,8 @@
         "database": {
           "type": "string"
         },
-        "replica": {
+        "srvMode": {
           "type": "boolean"
-        },
-        "retryTimeout": {
-          "type": "number"
         },
         "params": {
           "type": "string"

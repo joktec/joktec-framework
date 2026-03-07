@@ -1,18 +1,14 @@
 import path from 'path';
-import { createBullBoard } from '@bull-board/api';
-import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
-import { ExpressAdapter } from '@bull-board/express';
 import { HttpRequestHeader, joinUrl } from '@joktec/utils';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as bodyParser from 'body-parser';
-import { Queue } from 'bullmq';
 import csurf from 'csurf';
 import basicAuth from 'express-basic-auth';
 import helmet from 'helmet';
 import { ApplicationMiddlewareFactory, resolveMiddleware } from '../../base';
 import { SwaggerConfig, SwaggerSecurity } from '../../decorators';
-import { BullConfig, ConfigService, LogService } from '../../modules';
+import { ConfigService, LogService } from '../../modules';
 import { GatewayConfig } from './gateway.config';
 
 export class GatewayFactory {
@@ -35,7 +31,6 @@ export class GatewayFactory {
     app.useGlobalFilters(...(await resolveMiddleware(app, middlewares?.filters)));
 
     const useSwagger = GatewayFactory.setupSwagger(app);
-    const useBullBoard = GatewayFactory.setUpBullBoard(app);
     GatewayFactory.setUpViewEngine(app);
     GatewayFactory.setupSecurity(app);
 
@@ -52,12 +47,6 @@ export class GatewayFactory {
         const swagger = configService.parse(SwaggerConfig, 'gateway.swagger');
         const swaggerUrl = joinUrl(baseUrl, { paths: [contextPath, swagger.path] });
         logService.info(`📗 Access API Document at %s`, swaggerUrl);
-      }
-
-      if (useBullBoard) {
-        const bull = configService.parse(BullConfig, 'bull');
-        const bullUrl = joinUrl(baseUrl, { paths: [contextPath, bull.board.path] });
-        logService.info(`🎯 Access bull dashboard at %s. Make sure Redis is running by default`, bullUrl);
       }
     });
 
@@ -107,29 +96,6 @@ export class GatewayFactory {
         operationsSorter: 'alpha',
       },
     });
-
-    return true;
-  }
-
-  private static setUpBullBoard(app: NestExpressApplication): boolean {
-    const configService = app.get(ConfigService);
-    const bull = configService.parse(BullConfig, 'bull');
-    if (!bull || !bull?.board?.enable) return false;
-
-    const { path, queues = [], username, password } = bull.board;
-
-    const serverAdapter = new ExpressAdapter();
-    serverAdapter.setBasePath(path);
-    createBullBoard({
-      queues: queues.map(q => new BullMQAdapter(new Queue(q, { connection: { ...bull } }))),
-      serverAdapter,
-    });
-
-    const middlewares = [serverAdapter.getRouter()];
-    if (username && password) {
-      middlewares.unshift(basicAuth({ challenge: true, users: { [username]: password } }));
-    }
-    app.use(path, ...middlewares);
 
     return true;
   }
