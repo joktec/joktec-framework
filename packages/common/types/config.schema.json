@@ -260,6 +260,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -494,6 +495,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -728,6 +730,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -962,6 +965,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -1196,6 +1200,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -1430,6 +1435,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -1664,6 +1670,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -1898,6 +1905,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -2132,6 +2140,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -2366,6 +2375,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -2600,6 +2610,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -2834,6 +2845,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -3068,6 +3080,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -3302,6 +3315,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -3536,6 +3550,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -3770,6 +3785,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -4004,6 +4020,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -4238,6 +4255,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -4472,6 +4490,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -4706,6 +4725,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -4940,6 +4960,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -5174,6 +5195,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -5408,6 +5430,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -5642,6 +5665,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -5876,6 +5900,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -6110,6 +6135,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -6344,6 +6370,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -6578,6 +6605,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -6812,6 +6840,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -7046,6 +7075,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -7280,6 +7310,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -7514,6 +7545,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -7748,6 +7780,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -7982,6 +8015,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -8216,6 +8250,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -8450,6 +8485,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -8684,6 +8720,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -8918,6 +8955,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -9152,6 +9190,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -9386,6 +9425,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -9620,6 +9660,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -9854,6 +9895,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -10088,6 +10130,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -10322,6 +10365,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -10556,6 +10600,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -10790,6 +10835,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -11024,6 +11070,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -11258,6 +11305,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -11492,6 +11540,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -11726,6 +11775,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -11960,6 +12010,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -12194,6 +12245,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -12428,6 +12480,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -12662,6 +12715,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -12896,6 +12950,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -13130,6 +13185,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -13364,6 +13420,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -13598,6 +13655,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -13832,6 +13890,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -14066,6 +14125,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -14300,6 +14360,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -14534,6 +14595,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -14768,6 +14830,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -15002,6 +15065,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -15236,6 +15300,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -15470,6 +15535,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -15704,6 +15770,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -15938,6 +16005,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -16172,6 +16240,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -16406,6 +16475,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -16640,6 +16710,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -16874,6 +16945,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -17108,6 +17180,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -17342,6 +17415,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -17576,6 +17650,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -17810,6 +17885,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -18044,6 +18120,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -18278,6 +18355,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -18512,6 +18590,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -18746,6 +18825,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -18980,6 +19060,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -19214,6 +19295,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -19448,6 +19530,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -19682,6 +19765,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -19916,6 +20000,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -20150,6 +20235,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -20384,6 +20470,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -20618,6 +20705,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -20852,6 +20940,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -21086,6 +21175,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -21320,6 +21410,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -21554,6 +21645,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -21788,6 +21880,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -22022,6 +22115,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -22256,6 +22350,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -22490,6 +22585,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -22724,6 +22820,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -22958,6 +23055,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -23192,6 +23290,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -23426,6 +23525,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -23660,6 +23760,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -23894,6 +23995,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -24128,6 +24230,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -24362,6 +24465,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -24596,6 +24700,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -24830,6 +24935,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -25064,6 +25170,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -25298,6 +25405,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -25532,6 +25640,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -25766,6 +25875,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -26000,6 +26110,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -26234,6 +26345,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -26468,6 +26580,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -26702,6 +26815,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -26936,6 +27050,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -27170,6 +27285,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -27404,6 +27520,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -27638,6 +27755,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -27872,6 +27990,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -28106,6 +28225,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -28340,6 +28460,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -28574,6 +28695,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -28808,6 +28930,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -29042,6 +29165,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -29276,6 +29400,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -29510,6 +29635,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -29744,6 +29870,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -29978,6 +30105,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -30212,6 +30340,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -30446,6 +30575,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -30680,6 +30810,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -30914,6 +31045,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -31148,6 +31280,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -31382,6 +31515,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -31616,6 +31750,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -31850,6 +31985,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -32084,6 +32220,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -32318,6 +32455,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -32552,6 +32690,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -32786,6 +32925,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -33020,6 +33160,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -33254,6 +33395,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -33488,6 +33630,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -33722,6 +33865,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -33956,6 +34100,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -34190,6 +34335,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -34424,6 +34570,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -34658,6 +34805,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -34892,6 +35040,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -35126,6 +35275,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -35360,6 +35510,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -35594,6 +35745,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -35828,6 +35980,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -36062,6 +36215,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -36296,6 +36450,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -36530,6 +36685,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -36764,6 +36920,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -36998,6 +37155,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -37232,6 +37390,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -37466,6 +37625,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -37700,6 +37860,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -37934,6 +38095,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -38168,6 +38330,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -38402,6 +38565,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -38636,6 +38800,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -38870,6 +39035,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -39104,6 +39270,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -39338,6 +39505,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -39572,6 +39740,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -39806,6 +39975,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -40040,6 +40210,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -40274,6 +40445,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -40508,6 +40680,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -40742,6 +40915,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -40976,6 +41150,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -41210,6 +41385,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -41444,6 +41620,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -41678,6 +41855,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -41912,6 +42090,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -42146,6 +42325,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -42380,6 +42560,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -42614,6 +42795,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -42848,6 +43030,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -43082,6 +43265,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -43316,6 +43500,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -43550,6 +43735,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -43784,6 +43970,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -44018,6 +44205,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -44252,6 +44440,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -44486,6 +44675,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -44720,6 +44910,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -44954,6 +45145,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -45188,6 +45380,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -45422,6 +45615,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -45656,6 +45850,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -45890,6 +46085,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -46124,6 +46320,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -46358,6 +46555,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -46592,6 +46790,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -46826,6 +47025,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -47060,6 +47260,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -47294,6 +47495,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -47528,6 +47730,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -47762,6 +47965,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -47996,6 +48200,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -48230,6 +48435,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -48464,6 +48670,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -48698,6 +48905,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -48932,6 +49140,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -49166,6 +49375,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -49400,6 +49610,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -49634,6 +49845,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -49868,6 +50080,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -50102,6 +50315,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -50336,6 +50550,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -50570,6 +50785,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -50804,6 +51020,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -51038,6 +51255,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -51272,6 +51490,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -51506,6 +51725,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -51740,6 +51960,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -51974,6 +52195,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -52208,6 +52430,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -52442,6 +52665,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -52676,6 +52900,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -52910,6 +53135,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -53144,6 +53370,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -53378,6 +53605,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -53612,6 +53840,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -53846,6 +54075,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -54080,6 +54310,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -54314,6 +54545,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -54548,6 +54780,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -54782,6 +55015,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -55016,6 +55250,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -55250,6 +55485,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -55484,6 +55720,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -55718,6 +55955,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -55952,6 +56190,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -56186,6 +56425,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -56420,6 +56660,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -56654,6 +56895,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -56888,6 +57130,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -57122,6 +57365,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -57356,6 +57600,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -57590,6 +57835,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -57824,6 +58070,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -58058,6 +58305,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -58292,6 +58540,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -58526,6 +58775,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -58760,6 +59010,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -58994,6 +59245,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -59228,6 +59480,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -59462,6 +59715,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -59696,6 +59950,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
@@ -59930,6 +60185,7 @@
                           "enum": [
                             "same-origin",
                             "same-origin-allow-popups",
+                            "noopener-allow-popups",
                             "unsafe-none"
                           ]
                         }
