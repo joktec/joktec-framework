@@ -1,0 +1,5000 @@
+{
+  "projectRoot": "/Users/user/Project/joktec/joktec-framework",
+  "files": [
+    {
+      "path": ".commitlintrc.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".cursorignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".dockerignore",
+      "language": "unknown",
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".eslintignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".husky/commit-msg",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".husky/pre-commit",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".npmignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".npmrc",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".nvmrc",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".prettierignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "apps/example-gateway/.eslintignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/.prettierignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/config.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/nest-cli.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/app.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/app.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/app.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/decorators/api-device-header.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/decorators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/decorators/instance.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/exception.code.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/filters/custom-exception.filter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/filters/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/guards/auth.guard.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/guards/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/guards/role.guard.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/interceptors/custom-express.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/interceptors/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/common/success.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/en/article.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/en/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/en/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/en/email.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/en/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/ko/article.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/ko/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/ko/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/ko/email.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/i18n/ko/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-gateway/src/main.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/address.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/base.entity.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/base.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/gravatar.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/i18n-text.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/common/location.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/admin.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/app.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/article.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/artist.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/asset.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/auth.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/block.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/category.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/comment.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/credential.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/cron.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/data-log.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/emotion.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/inquiry.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/log.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/notification.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/otp.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/post.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/proxy.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/report.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/session.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/setting.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/snippet.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/tag.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/constants/user.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/entities/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/entities/product.entity.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/amazon.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/auth.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/facebook.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/google.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/kakao.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/interfaces/navar.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/admin-config.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/article-element.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/article-file.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/article-summary.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/data-log-request.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/log-request.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/session-device.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-address.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-business.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-config-notify.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-config.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-keyword.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-profile.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-provider.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-rank.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/objects/user-wallet.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/admin.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/artist.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/asset.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/block.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/category.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/comment.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/connection.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/content.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/cron-history.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/cron.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/data-log.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/emotion.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/inquiry.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/notification.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/otp.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/post.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/report.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/session.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/setting.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/tag.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/models/schemas/user.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/article.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/article.handler.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/article.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/article.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/hooks/exist-article.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/hooks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/models/article-filter.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/models/article-response.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/models/article.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/articles/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/artists/artist.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/artists/artist.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/artists/artist.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/artists/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/asset.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/asset.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/asset.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/models/asset.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/models/asset.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/assets/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/auth.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/auth.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/auth.provider.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/auth.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/configs/auth-jwt.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/configs/auth-provider.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/configs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/models/auth.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/auth/models/token.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/block.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/block.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/block.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/models/block.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/blocks/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/category.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/category.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/category.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/models/category-filter.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/models/category-response.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/categories/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/comment.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/comment.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/comment.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/models/comment-response.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/models/comment.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/comments/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/connection.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/connection.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/connection.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/models/connection.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/connections/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/contents/content.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/contents/content.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/contents/content.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/contents/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/emotions/emotion.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/emotions/emotion.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/emotions/emotion.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/emotions/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/inquiries/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/inquiries/inquiry.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/inquiries/inquiry.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/inquiries/inquiry.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/inquiries/models/inquiry.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/main.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/hooks/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/models/notification.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/notification.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/notification.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/notifications/notification.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/otpLogs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/otpLogs/otp.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/otpLogs/otp.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/posts/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/posts/post.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/posts/post.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/posts/post.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/products/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/products/product.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/products/product.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/products/product.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/models/profile-response.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/models/profile.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/profile.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/profile.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/profile/profile.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/models/report.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/report.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/report.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/reports/report.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/sessions/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/sessions/session.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/sessions/session.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/sessions/session.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/settings/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/settings/setting.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/settings/setting.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/settings/setting.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/models/tag-response.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/models/tag.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/tag.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/tag.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/tags/tag.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/users/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/users/user.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/users/user.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/modules/users/user.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/admin.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/article.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/artist.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/asset.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/block.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/category.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/comment.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/connection.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/content.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/cron-history.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/cron.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/data-log.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/emotion.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/inquiry.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/notification.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/otp.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/post.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/product.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/report.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/session.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/setting.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/tag.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/common/user.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/repositories/repository.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/src/utils/validator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-gateway/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/.eslintignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/.prettierignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/config.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/nest-cli.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/public/templates/email-verify.hbs",
+      "language": "hbs",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/public/templates/email-verify.hbs.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/public/templates/forgot-password.hbs",
+      "language": "hbs",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/public/templates/forgot-password.hbs.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/app.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/app.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/app.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/common/exception.code.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/common/filters/custom-exception.filter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/common/filters/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/common/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/common/success.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/en/article.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/en/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/en/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/en/email.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/en/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/ko/article.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/ko/auth.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/ko/common.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/ko/email.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/i18n/ko/user.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "apps/example-micro/src/main.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/address.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/base.entity.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/base.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/gravatar.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/i18n-text.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/common/location.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/admin.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/app.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/article.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/artist.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/asset.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/auth.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/block.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/category.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/comment.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/credential.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/cron.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/data-log.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/emotion.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/inquiry.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/log.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/notification.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/otp.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/post.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/proxy.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/report.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/session.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/setting.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/snippet.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/tag.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/constants/user.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/entities/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/entities/product.entity.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/amazon.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/auth.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/facebook.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/google.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/kakao.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/interfaces/navar.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/admin-config.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/article-element.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/article-file.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/article-summary.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/data-log-request.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/log-request.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/session-device.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-address.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-business.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-config-notify.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-config.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-keyword.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-profile.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-provider.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-rank.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/objects/user-wallet.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/admin.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/article.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/artist.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/asset.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/block.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/category.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/comment.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/connection.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/content.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/cron-history.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/cron.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/data-log.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/emotion.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/inquiry.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/notification.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/otp.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/post.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/report.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/session.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/setting.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/tag.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/models/schemas/user.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/article.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/article.cronner.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/article.handler.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/article.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/article.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/models/article.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/articles/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/artists/artist.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/artists/artist.cronner.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/artists/artist.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/artists/artist.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/artists/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/asset.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/asset.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/asset.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/models/asset.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/models/asset.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/assets/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/crons/cron.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/crons/cron.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/crons/cron.scheduler.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/crons/cron.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/crons/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/main.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/notifications/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/notifications/notification.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/notifications/notification.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/notifications/notification.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/notifications/notification.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/otpLogs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/otpLogs/otp.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/otpLogs/otp.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/otpLogs/otp.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/users/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/users/user.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/users/user.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/modules/users/user.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/admin.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/article.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/artist.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/asset.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/block.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/category.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/comment.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/connection.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/content.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/cron-history.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/cron.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/data-log.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/emotion.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/inquiry.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/notification.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/otp.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/post.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/report.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/session.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/setting.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/tag.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/common/user.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/repositories/repository.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/shared/shared.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/src/utils/validator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "apps/example-micro/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "bin/jenkin-ci.sh",
+      "language": "shell",
+      "fileCategory": "script"
+    },
+    {
+      "path": "docs/agents/ARCHITECTURE.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/CONTRACTS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/DECISIONS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/decisions/0001-monorepo-framework-boundaries.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/decisions/0002-config-driven-client-lifecycle.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/decisions/0003-generated-crud-contracts.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/DOCUMENT_SYNC.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/GLOSSARY.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/PROJECT_CONTEXT.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/REPO_MAP.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/RULES.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/RUNTIME.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/SEARCH_HINTS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/agents/tasks/001-in-progress-technical-debt.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "lerna.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "nx.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/cacher/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/cacher/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/cacher/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/cache.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/decorators/cache-evict.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/decorators/cache-put.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/decorators/cacheable.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/decorators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/interceptors/cacheable.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/interceptors/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/models/cache.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/stores/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/stores/local.store.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/stores/memcached.store.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/src/stores/redis.store.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/cacher/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/mailer/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/mailer/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/mailer/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/mailer/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/mailer.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/models/mailer.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/models/mailer.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/stores/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/src/stores/template.option.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/mailer/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/notifier/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/notifier/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/notifier/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/adm.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/apn.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/fcm.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/gcm.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/mpns.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/configs/wns.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/models/notifier.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/models/notifier.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/notifier.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/notifier.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/notifier.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/src/notifier.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/notifier/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/storage/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/storage/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/adapters/storage/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/adapters/storage/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/models/storage.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/models/storage.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/src/storage.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/adapters/storage/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/kafka/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/kafka/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/kafka/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/kafka/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/kafka.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/kafka.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/kafka.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/kafka.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/kafka.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/loaders/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/loaders/kafka.consumer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/loaders/kafka.producer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/models/kafka-consumer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/src/models/kafka-producer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/kafka/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/rabbit/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/rabbit/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/rabbit/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/loaders/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/loaders/rabbit.consumer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/loaders/rabbit.producer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/loaders/rabbit.publisher.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/rabbit-base.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/rabbit-consumer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/rabbit-module.options.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/rabbit-producer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/models/rabbit-publisher.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/rabbit.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/rabbit.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/rabbit.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/rabbit.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/src/rabbit.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/rabbit/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/redcast/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/redcast/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/redcast/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/redcast/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/loaders/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/loaders/redcast.consumer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/loaders/redcast.producer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/loaders/redcast.publisher.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/loaders/redcast.subscriber.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/redcast-base.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/redcast-consumer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/redcast-producer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/redcast-publisher.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/models/redcast-subscriber.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/redcast.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/redcast.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/redcast.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/redcast.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/src/redcast.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/redcast/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/sqs/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/sqs/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/brokers/sqs/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/brokers/sqs/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/loaders/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/loaders/sqs.consumer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/loaders/sqs.producer.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/loaders/sqs.publisher.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/sqs-base.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/sqs-consumer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/sqs-module.options.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/sqs-producer.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/models/sqs-publisher.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/sqs.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/sqs.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/sqs.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/sqs.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/src/sqs.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/brokers/sqs/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/core/bin/client-generator.sh",
+      "language": "shell",
+      "fileCategory": "script"
+    },
+    {
+      "path": "packages/common/core/bin/publish-docker.sh",
+      "language": "shell",
+      "fileCategory": "script"
+    },
+    {
+      "path": "packages/common/core/bin/publish-helm.sh",
+      "language": "shell",
+      "fileCategory": "script"
+    },
+    {
+      "path": "packages/common/core/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/core/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra"
+    },
+    {
+      "path": "packages/common/core/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/core/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/base.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/base.dataloader.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/base.resolver.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/base.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/client.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/client.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/abstractions/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/base/app.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/base/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/client/abstract-client.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/client/client.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/client/client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/client/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/applyCustomDecorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/base-class.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/base-method.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/breaker/breaker.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/breaker/breaker.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/breaker/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/retry/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/retry/retry.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/retry/retry.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/swagger/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/swagger/swagger.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/swagger/swagger.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/decorators/swagger/swagger.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/bad-request.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/client.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/forbidden.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/internal.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/method-not-allowed.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/not-found.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/not-implemented.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/request-timeout.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/service-unavaiable.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/too-many-requests.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/unauthorized.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/common/unprocessable-entity.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/exception-message.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/filters/gateway-exception.filter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/filters/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/filters/micro-exception.filter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/micro-rpc.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/runtime.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/exceptions/validation.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.middleware.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/gateway.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/gateway/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.middleware.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/infras/micro/micro.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/interceptors/express.interceptor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/interceptors/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/__fixtures__/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.dto.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.express.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.mapper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/base.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/cqrs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/cqrs/query.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/base.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/grpc.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/kafka.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/mqtt.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/nats.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/redis.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/rmq.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/transporters/tcp.transport.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/utils/geo-ip.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/models/utils/user-agent.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/aws/aws.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/aws/aws.helper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/aws/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/bull/bull.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/bull/bull.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/bull/bull.provider.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/bull/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/config/config.factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/config/config.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/config/config.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/config/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/__tests__/jwt.config.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/__tests__/jwt.service.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/jwt.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/jwt.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/jwt.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/jwt/jwt.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/log-socket.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/log-transport.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/log.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/log.enum.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/logger/log.factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/metric/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/metric/metric.controller.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/metric/metric.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/metric/metric.provider.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/statics/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/statics/static.factory.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/modules/statics/static.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/pipes/__tests__/file.pipe.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/pipes/__tests__/validator.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/pipes/file.pipe.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/pipes/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/pipes/validation.pipe.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/utils/generator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/utils/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/src/utils/validator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/core/templates/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/core/tsconfig.doc.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/core/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/cron/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/cron/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/cron/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/crontab.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/crontab.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/crontab.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/crontab.scheduler.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/models/crontab.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/models/crontab.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/models/crontab.timezone.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/crontabs/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.queue.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.worker.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/job.worker.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/processors/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/processors/job.batch.processor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/processors/job.processor.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/src/jobs/processors/job.processor.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/cron/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/types/.eslintignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/.prettierignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/config.schema.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/types/config.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/types/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/types/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/types/src/joktec.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/src/main.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/src/my-constructor-parser.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/src/my-function-formatter.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/types/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/utils/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/utils/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/common/utils/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/common/utils/src/constants/http.header.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/constants/http.method.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/constants/http.status.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/constants/http.type.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/constants/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/__tests__/convert.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/__tests__/generator.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/__tests__/helper.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/__tests__/validator.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/convert.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/encrypter.helper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/generator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/helper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/helpers/validator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/validators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/validators/is-2d-array.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/src/validators/is-type.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/common/utils/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/arango/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/arango/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/arango/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/arango/src/arango.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/arango.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/arango.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/arango.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/models/arango-document.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/models/arango-query.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/models/arango-query.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/arango/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/bigquery/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/bigquery/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/bigquery/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/bigquery/src/bigquery.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/bigquery.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/bigquery.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/bigquery.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/bigquery.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/models/bigquery.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/bigquery/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/elastic/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/elastic/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/elastic/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/elastic/src/elastic.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/elastic.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/elastic.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/elastic.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/models/elastic.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/models/elastic.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/elastic/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/mongo/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/mongo/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/mongo/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/mongo/src/__tests__/mongo.helper.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/__tests__/mongo.pipeline.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/prop.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/array.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/bool.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/date.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/enum.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/number.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/props/string.prop.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/decorators/scheme.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.helper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.method.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.option.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.pipeline.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.plugin.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/helpers/mongo.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/models/mongo.option.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/models/mongo.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/models/mongo.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/models/mongo.schema.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.constant.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/mongo.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/plugins/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/plugins/paranoid.plugin.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/plugins/strict-reference.plugin.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/src/plugins/transform.plugin.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mongo/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/mysql/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/mysql/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/mysql/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/databases/mysql/src/decorators/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/decorators/table.decorator.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/helpers/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/helpers/mysql.finder.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/helpers/mysql.helper.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/helpers/mysql.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/models/mysql.model.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/models/mysql.option.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/models/mysql.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/models/mysql.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.repo.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/mysql.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/services/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/services/mysql.benchmark.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/src/services/mysql.strategy.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/databases/mysql/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/databases/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/integrations/firebase/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/integrations/firebase/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/integrations/firebase/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/integrations/firebase/src/firebase.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/src/firebase.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/src/firebase.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/src/firebase.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/firebase/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/integrations/gpt/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/integrations/gpt/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/integrations/gpt/src/gpt.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/gpt.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/gpt.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/gpt.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/gpt.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/models/gpt.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/models/gpt.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/integrations/gpt/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/integrations/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/alert/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/alert/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/alert/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/alert/src/alert.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/alert.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/alert.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/alert.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/alert.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/models/alert.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/models/alert.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/alert/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/file/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/file/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/file/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/file/src/file.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/file.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/file.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/file.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/file.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/file.utils.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/file/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/http/CHANGELOG.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/http/package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/http/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "packages/tools/http/src/http.client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/http.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/http.exception.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/http.metric.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/http.module.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/http.service.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/models/http.interface.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/models/http.request.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/models/http.response.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/src/models/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/tools/http/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/tools/README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tsconfig.doc.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    }
+  ]
+}

@@ -1,0 +1,2718 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 999,
+    "filesWithImports": 463,
+    "totalEdges": 1246
+  },
+  "importMap": {
+    ".commitlintrc.json": [],
+    ".cursorignore": [],
+    ".dockerignore": [],
+    ".eslintignore": [],
+    ".husky/commit-msg": [],
+    ".husky/pre-commit": [],
+    ".npmignore": [],
+    ".npmrc": [],
+    ".nvmrc": [],
+    ".prettierignore": [],
+    ".understand-anything/.understandignore": [],
+    "AGENTS.md": [],
+    "apps/example-gateway/.eslintignore": [],
+    "apps/example-gateway/.prettierignore": [],
+    "apps/example-gateway/config.yml": [],
+    "apps/example-gateway/nest-cli.json": [],
+    "apps/example-gateway/package.json": [],
+    "apps/example-gateway/src/app.config.ts": [],
+    "apps/example-gateway/src/app.constant.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/app.module.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/modules/main.module.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/common/decorators/api-device-header.decorator.ts": [
+      "apps/example-gateway/src/app.constant.ts"
+    ],
+    "apps/example-gateway/src/common/decorators/index.ts": [],
+    "apps/example-gateway/src/common/decorators/instance.decorator.ts": [
+      "apps/example-gateway/src/app.constant.ts"
+    ],
+    "apps/example-gateway/src/common/exception.code.ts": [],
+    "apps/example-gateway/src/common/filters/custom-exception.filter.ts": [],
+    "apps/example-gateway/src/common/filters/index.ts": [],
+    "apps/example-gateway/src/common/guards/auth.guard.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/common/guards/index.ts": [],
+    "apps/example-gateway/src/common/guards/role.guard.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/common/index.ts": [],
+    "apps/example-gateway/src/common/interceptors/custom-express.interceptor.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts"
+    ],
+    "apps/example-gateway/src/common/interceptors/index.ts": [],
+    "apps/example-gateway/src/common/success.response.ts": [],
+    "apps/example-gateway/src/i18n/en/article.json": [],
+    "apps/example-gateway/src/i18n/en/auth.json": [],
+    "apps/example-gateway/src/i18n/en/common.json": [],
+    "apps/example-gateway/src/i18n/en/email.json": [],
+    "apps/example-gateway/src/i18n/en/user.json": [],
+    "apps/example-gateway/src/i18n/ko/article.json": [],
+    "apps/example-gateway/src/i18n/ko/auth.json": [],
+    "apps/example-gateway/src/i18n/ko/common.json": [],
+    "apps/example-gateway/src/i18n/ko/email.json": [],
+    "apps/example-gateway/src/i18n/ko/user.json": [],
+    "apps/example-gateway/src/main.ts": [
+      "apps/example-gateway/src/app.module.ts"
+    ],
+    "apps/example-gateway/src/models/common/address.schema.ts": [],
+    "apps/example-gateway/src/models/common/base.entity.ts": [],
+    "apps/example-gateway/src/models/common/base.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts"
+    ],
+    "apps/example-gateway/src/models/common/gravatar.ts": [],
+    "apps/example-gateway/src/models/common/i18n-text.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts"
+    ],
+    "apps/example-gateway/src/models/common/index.ts": [],
+    "apps/example-gateway/src/models/common/location.schema.ts": [],
+    "apps/example-gateway/src/models/constants/admin.enum.ts": [],
+    "apps/example-gateway/src/models/constants/app.enum.ts": [],
+    "apps/example-gateway/src/models/constants/article.enum.ts": [],
+    "apps/example-gateway/src/models/constants/artist.enum.ts": [],
+    "apps/example-gateway/src/models/constants/asset.enum.ts": [],
+    "apps/example-gateway/src/models/constants/auth.enum.ts": [],
+    "apps/example-gateway/src/models/constants/block.enum.ts": [],
+    "apps/example-gateway/src/models/constants/category.enum.ts": [],
+    "apps/example-gateway/src/models/constants/comment.enum.ts": [],
+    "apps/example-gateway/src/models/constants/credential.enum.ts": [],
+    "apps/example-gateway/src/models/constants/cron.enum.ts": [],
+    "apps/example-gateway/src/models/constants/data-log.enum.ts": [],
+    "apps/example-gateway/src/models/constants/emotion.enum.ts": [],
+    "apps/example-gateway/src/models/constants/index.ts": [],
+    "apps/example-gateway/src/models/constants/inquiry.enum.ts": [],
+    "apps/example-gateway/src/models/constants/log.enum.ts": [],
+    "apps/example-gateway/src/models/constants/notification.enum.ts": [],
+    "apps/example-gateway/src/models/constants/otp.enum.ts": [],
+    "apps/example-gateway/src/models/constants/post.enum.ts": [],
+    "apps/example-gateway/src/models/constants/proxy.enum.ts": [],
+    "apps/example-gateway/src/models/constants/report.enum.ts": [],
+    "apps/example-gateway/src/models/constants/session.enum.ts": [],
+    "apps/example-gateway/src/models/constants/setting.enum.ts": [],
+    "apps/example-gateway/src/models/constants/snippet.enum.ts": [],
+    "apps/example-gateway/src/models/constants/tag.enum.ts": [],
+    "apps/example-gateway/src/models/constants/user.enum.ts": [],
+    "apps/example-gateway/src/models/entities/index.ts": [
+      "apps/example-gateway/src/models/entities/product.entity.ts"
+    ],
+    "apps/example-gateway/src/models/entities/product.entity.ts": [
+      "apps/example-gateway/src/models/common/index.ts"
+    ],
+    "apps/example-gateway/src/models/interfaces/amazon.interface.ts": [],
+    "apps/example-gateway/src/models/interfaces/auth.interface.ts": [
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/interfaces/facebook.interface.ts": [],
+    "apps/example-gateway/src/models/interfaces/google.interface.ts": [],
+    "apps/example-gateway/src/models/interfaces/index.ts": [],
+    "apps/example-gateway/src/models/interfaces/kakao.interface.ts": [],
+    "apps/example-gateway/src/models/interfaces/navar.interface.ts": [],
+    "apps/example-gateway/src/models/objects/admin-config.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts"
+    ],
+    "apps/example-gateway/src/models/objects/article-element.schema.ts": [
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/article-file.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/article-element.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/article-summary.schema.ts": [],
+    "apps/example-gateway/src/models/objects/data-log-request.schema.ts": [],
+    "apps/example-gateway/src/models/objects/index.ts": [],
+    "apps/example-gateway/src/models/objects/log-request.schema.ts": [],
+    "apps/example-gateway/src/models/objects/session-device.schema.ts": [],
+    "apps/example-gateway/src/models/objects/user-address.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-business.schema.ts": [
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-config-notify.schema.ts": [
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-config.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/objects/user-config-notify.schema.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-keyword.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-profile.schema.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-provider.schema.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/objects/user-rank.schema.ts": [],
+    "apps/example-gateway/src/models/objects/user-wallet.schema.ts": [],
+    "apps/example-gateway/src/models/schemas/admin.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/article.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/models/schemas/artist.schema.ts",
+      "apps/example-gateway/src/models/schemas/tag.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/artist.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/category.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/asset.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/block.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/setting.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/category.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/artist.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/comment.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/connection.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/content.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/cron-history.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/schemas/cron.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/cron.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/schemas/cron-history.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/data-log.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/emotion.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/comment.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/index.ts": [
+      "apps/example-gateway/src/models/schemas/admin.schema.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/artist.schema.ts",
+      "apps/example-gateway/src/models/schemas/asset.schema.ts",
+      "apps/example-gateway/src/models/schemas/block.schema.ts",
+      "apps/example-gateway/src/models/schemas/category.schema.ts",
+      "apps/example-gateway/src/models/schemas/comment.schema.ts",
+      "apps/example-gateway/src/models/schemas/connection.schema.ts",
+      "apps/example-gateway/src/models/schemas/content.schema.ts",
+      "apps/example-gateway/src/models/schemas/cron-history.schema.ts",
+      "apps/example-gateway/src/models/schemas/cron.schema.ts",
+      "apps/example-gateway/src/models/schemas/emotion.schema.ts",
+      "apps/example-gateway/src/models/schemas/inquiry.schema.ts",
+      "apps/example-gateway/src/models/schemas/notification.schema.ts",
+      "apps/example-gateway/src/models/schemas/otp.schema.ts",
+      "apps/example-gateway/src/models/schemas/post.schema.ts",
+      "apps/example-gateway/src/models/schemas/report.schema.ts",
+      "apps/example-gateway/src/models/schemas/session.schema.ts",
+      "apps/example-gateway/src/models/schemas/setting.schema.ts",
+      "apps/example-gateway/src/models/schemas/tag.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/inquiry.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/setting.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/notification.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/otp.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/post.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/report.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/article.schema.ts",
+      "apps/example-gateway/src/models/schemas/comment.schema.ts",
+      "apps/example-gateway/src/models/schemas/setting.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/session.schema.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/models/schemas/admin.schema.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/setting.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/tag.schema.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-gateway/src/models/schemas/user.schema.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/models/schemas/artist.schema.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/article.controller.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/articles/article.service.ts",
+      "apps/example-gateway/src/modules/articles/hooks/index.ts",
+      "apps/example-gateway/src/modules/articles/models/article-filter.dto.ts",
+      "apps/example-gateway/src/modules/articles/models/article-response.dto.ts",
+      "apps/example-gateway/src/modules/articles/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/article.handler.ts": [
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/article.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/articles/article.controller.ts",
+      "apps/example-gateway/src/modules/articles/article.handler.ts",
+      "apps/example-gateway/src/modules/articles/article.service.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/article.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/articles/models/article-filter.dto.ts",
+      "apps/example-gateway/src/modules/articles/models/article-response.dto.ts",
+      "apps/example-gateway/src/modules/articles/models/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/hooks/exist-article.interceptor.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/hooks/index.ts": [],
+    "apps/example-gateway/src/modules/articles/index.ts": [],
+    "apps/example-gateway/src/modules/articles/models/article-filter.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/models/article-response.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/models/article.dto.ts": [
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/articles/models/index.ts": [],
+    "apps/example-gateway/src/modules/artists/artist.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/artists/artist.service.ts"
+    ],
+    "apps/example-gateway/src/modules/artists/artist.module.ts": [
+      "apps/example-gateway/src/modules/artists/artist.controller.ts",
+      "apps/example-gateway/src/modules/artists/artist.service.ts"
+    ],
+    "apps/example-gateway/src/modules/artists/artist.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/artists/index.ts": [],
+    "apps/example-gateway/src/modules/assets/asset.controller.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/assets/asset.service.ts",
+      "apps/example-gateway/src/modules/assets/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/assets/asset.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/assets/asset.controller.ts",
+      "apps/example-gateway/src/modules/assets/asset.service.ts"
+    ],
+    "apps/example-gateway/src/modules/assets/asset.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/assets/models/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/assets/index.ts": [],
+    "apps/example-gateway/src/modules/assets/models/asset.constant.ts": [],
+    "apps/example-gateway/src/modules/assets/models/asset.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/assets/models/index.ts": [],
+    "apps/example-gateway/src/modules/auth/auth.controller.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/auth/auth.service.ts",
+      "apps/example-gateway/src/modules/auth/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/auth/auth.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/auth/auth.controller.ts",
+      "apps/example-gateway/src/modules/auth/auth.provider.ts",
+      "apps/example-gateway/src/modules/auth/auth.service.ts",
+      "apps/example-gateway/src/modules/otpLogs/index.ts",
+      "apps/example-gateway/src/modules/sessions/index.ts",
+      "apps/example-gateway/src/modules/users/index.ts"
+    ],
+    "apps/example-gateway/src/modules/auth/auth.provider.ts": [
+      "apps/example-gateway/src/models/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/interfaces/index.ts",
+      "apps/example-gateway/src/modules/auth/configs/index.ts"
+    ],
+    "apps/example-gateway/src/modules/auth/auth.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/interfaces/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/auth/auth.provider.ts",
+      "apps/example-gateway/src/modules/auth/configs/index.ts",
+      "apps/example-gateway/src/modules/auth/models/index.ts",
+      "apps/example-gateway/src/modules/otpLogs/index.ts",
+      "apps/example-gateway/src/modules/sessions/index.ts",
+      "apps/example-gateway/src/modules/users/index.ts"
+    ],
+    "apps/example-gateway/src/modules/auth/configs/auth-jwt.config.ts": [],
+    "apps/example-gateway/src/modules/auth/configs/auth-provider.config.ts": [],
+    "apps/example-gateway/src/modules/auth/configs/index.ts": [],
+    "apps/example-gateway/src/modules/auth/index.ts": [],
+    "apps/example-gateway/src/modules/auth/models/auth.dto.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/modules/auth/models/index.ts": [],
+    "apps/example-gateway/src/modules/auth/models/token.dto.ts": [
+      "apps/example-gateway/src/modules/profile/index.ts"
+    ],
+    "apps/example-gateway/src/modules/blocks/block.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/blocks/block.service.ts",
+      "apps/example-gateway/src/modules/blocks/models/block.dto.ts"
+    ],
+    "apps/example-gateway/src/modules/blocks/block.module.ts": [
+      "apps/example-gateway/src/modules/blocks/block.controller.ts",
+      "apps/example-gateway/src/modules/blocks/block.service.ts"
+    ],
+    "apps/example-gateway/src/modules/blocks/block.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/blocks/index.ts": [],
+    "apps/example-gateway/src/modules/blocks/models/block.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/blocks/models/index.ts": [],
+    "apps/example-gateway/src/modules/categories/category.controller.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/categories/category.service.ts",
+      "apps/example-gateway/src/modules/categories/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/categories/category.module.ts": [
+      "apps/example-gateway/src/modules/categories/category.controller.ts",
+      "apps/example-gateway/src/modules/categories/category.service.ts"
+    ],
+    "apps/example-gateway/src/modules/categories/category.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/categories/models/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/categories/index.ts": [],
+    "apps/example-gateway/src/modules/categories/models/category-filter.dto.ts": [],
+    "apps/example-gateway/src/modules/categories/models/category-response.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/categories/models/index.ts": [],
+    "apps/example-gateway/src/modules/comments/comment.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/comments/comment.service.ts",
+      "apps/example-gateway/src/modules/comments/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/comments/comment.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/comments/comment.controller.ts",
+      "apps/example-gateway/src/modules/comments/comment.service.ts"
+    ],
+    "apps/example-gateway/src/modules/comments/comment.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/comments/models/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/comments/index.ts": [],
+    "apps/example-gateway/src/modules/comments/models/comment-response.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/comments/models/comment.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/comments/models/index.ts": [],
+    "apps/example-gateway/src/modules/connections/connection.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/connections/connection.service.ts",
+      "apps/example-gateway/src/modules/connections/models/index.ts"
+    ],
+    "apps/example-gateway/src/modules/connections/connection.module.ts": [
+      "apps/example-gateway/src/modules/connections/connection.controller.ts",
+      "apps/example-gateway/src/modules/connections/connection.service.ts"
+    ],
+    "apps/example-gateway/src/modules/connections/connection.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/connections/index.ts": [],
+    "apps/example-gateway/src/modules/connections/models/connection.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/connections/models/index.ts": [],
+    "apps/example-gateway/src/modules/contents/content.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/contents/content.service.ts"
+    ],
+    "apps/example-gateway/src/modules/contents/content.module.ts": [
+      "apps/example-gateway/src/modules/contents/content.controller.ts",
+      "apps/example-gateway/src/modules/contents/content.service.ts"
+    ],
+    "apps/example-gateway/src/modules/contents/content.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/contents/index.ts": [],
+    "apps/example-gateway/src/modules/emotions/emotion.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/emotions/emotion.service.ts"
+    ],
+    "apps/example-gateway/src/modules/emotions/emotion.module.ts": [
+      "apps/example-gateway/src/modules/emotions/emotion.controller.ts",
+      "apps/example-gateway/src/modules/emotions/emotion.service.ts"
+    ],
+    "apps/example-gateway/src/modules/emotions/emotion.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/emotions/index.ts": [],
+    "apps/example-gateway/src/modules/inquiries/index.ts": [],
+    "apps/example-gateway/src/modules/inquiries/inquiry.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/inquiries/inquiry.service.ts",
+      "apps/example-gateway/src/modules/inquiries/models/inquiry.dto.ts"
+    ],
+    "apps/example-gateway/src/modules/inquiries/inquiry.module.ts": [
+      "apps/example-gateway/src/modules/inquiries/inquiry.controller.ts",
+      "apps/example-gateway/src/modules/inquiries/inquiry.service.ts"
+    ],
+    "apps/example-gateway/src/modules/inquiries/inquiry.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/inquiries/models/inquiry.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/main.module.ts": [
+      "apps/example-gateway/src/modules/articles/index.ts",
+      "apps/example-gateway/src/modules/artists/index.ts",
+      "apps/example-gateway/src/modules/assets/index.ts",
+      "apps/example-gateway/src/modules/auth/index.ts",
+      "apps/example-gateway/src/modules/blocks/index.ts",
+      "apps/example-gateway/src/modules/categories/index.ts",
+      "apps/example-gateway/src/modules/comments/index.ts",
+      "apps/example-gateway/src/modules/connections/index.ts",
+      "apps/example-gateway/src/modules/contents/index.ts",
+      "apps/example-gateway/src/modules/emotions/index.ts",
+      "apps/example-gateway/src/modules/inquiries/index.ts",
+      "apps/example-gateway/src/modules/notifications/index.ts",
+      "apps/example-gateway/src/modules/otpLogs/index.ts",
+      "apps/example-gateway/src/modules/posts/index.ts",
+      "apps/example-gateway/src/modules/products/index.ts",
+      "apps/example-gateway/src/modules/profile/index.ts",
+      "apps/example-gateway/src/modules/reports/index.ts",
+      "apps/example-gateway/src/modules/sessions/index.ts",
+      "apps/example-gateway/src/modules/settings/index.ts",
+      "apps/example-gateway/src/modules/tags/index.ts",
+      "apps/example-gateway/src/modules/users/index.ts"
+    ],
+    "apps/example-gateway/src/modules/notifications/hooks/index.ts": [],
+    "apps/example-gateway/src/modules/notifications/index.ts": [],
+    "apps/example-gateway/src/modules/notifications/models/index.ts": [],
+    "apps/example-gateway/src/modules/notifications/models/notification.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/notifications/notification.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/notifications/models/index.ts",
+      "apps/example-gateway/src/modules/notifications/notification.service.ts"
+    ],
+    "apps/example-gateway/src/modules/notifications/notification.module.ts": [
+      "apps/example-gateway/src/modules/notifications/notification.controller.ts",
+      "apps/example-gateway/src/modules/notifications/notification.service.ts"
+    ],
+    "apps/example-gateway/src/modules/notifications/notification.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/notifications/models/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/otpLogs/index.ts": [],
+    "apps/example-gateway/src/modules/otpLogs/otp.module.ts": [
+      "apps/example-gateway/src/modules/otpLogs/otp.service.ts"
+    ],
+    "apps/example-gateway/src/modules/otpLogs/otp.service.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/posts/index.ts": [],
+    "apps/example-gateway/src/modules/posts/post.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/posts/post.service.ts"
+    ],
+    "apps/example-gateway/src/modules/posts/post.module.ts": [
+      "apps/example-gateway/src/modules/posts/post.controller.ts",
+      "apps/example-gateway/src/modules/posts/post.service.ts"
+    ],
+    "apps/example-gateway/src/modules/posts/post.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/products/index.ts": [],
+    "apps/example-gateway/src/modules/products/product.controller.ts": [
+      "apps/example-gateway/src/models/entities/index.ts",
+      "apps/example-gateway/src/modules/products/product.service.ts"
+    ],
+    "apps/example-gateway/src/modules/products/product.module.ts": [
+      "apps/example-gateway/src/modules/products/product.controller.ts",
+      "apps/example-gateway/src/modules/products/product.service.ts"
+    ],
+    "apps/example-gateway/src/modules/products/product.service.ts": [
+      "apps/example-gateway/src/models/entities/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/profile/index.ts": [],
+    "apps/example-gateway/src/modules/profile/models/index.ts": [],
+    "apps/example-gateway/src/modules/profile/models/profile-response.dto.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/profile/models/profile.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/utils/index.ts"
+    ],
+    "apps/example-gateway/src/modules/profile/profile.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/modules/profile/models/index.ts",
+      "apps/example-gateway/src/modules/profile/profile.service.ts"
+    ],
+    "apps/example-gateway/src/modules/profile/profile.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/otpLogs/index.ts",
+      "apps/example-gateway/src/modules/profile/profile.controller.ts",
+      "apps/example-gateway/src/modules/profile/profile.service.ts",
+      "apps/example-gateway/src/modules/sessions/index.ts",
+      "apps/example-gateway/src/modules/users/index.ts"
+    ],
+    "apps/example-gateway/src/modules/profile/profile.service.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/modules/profile/models/index.ts",
+      "apps/example-gateway/src/modules/sessions/index.ts",
+      "apps/example-gateway/src/modules/users/index.ts"
+    ],
+    "apps/example-gateway/src/modules/reports/index.ts": [],
+    "apps/example-gateway/src/modules/reports/models/index.ts": [],
+    "apps/example-gateway/src/modules/reports/models/report.dto.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/modules/reports/report.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/reports/models/index.ts",
+      "apps/example-gateway/src/modules/reports/report.service.ts"
+    ],
+    "apps/example-gateway/src/modules/reports/report.module.ts": [
+      "apps/example-gateway/src/modules/reports/report.controller.ts",
+      "apps/example-gateway/src/modules/reports/report.service.ts"
+    ],
+    "apps/example-gateway/src/modules/reports/report.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/sessions/index.ts": [],
+    "apps/example-gateway/src/modules/sessions/session.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/sessions/session.service.ts"
+    ],
+    "apps/example-gateway/src/modules/sessions/session.module.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/modules/sessions/session.controller.ts",
+      "apps/example-gateway/src/modules/sessions/session.service.ts"
+    ],
+    "apps/example-gateway/src/modules/sessions/session.service.ts": [
+      "apps/example-gateway/src/app.config.ts",
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/settings/index.ts": [],
+    "apps/example-gateway/src/modules/settings/setting.controller.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/settings/setting.service.ts"
+    ],
+    "apps/example-gateway/src/modules/settings/setting.module.ts": [
+      "apps/example-gateway/src/modules/settings/setting.controller.ts",
+      "apps/example-gateway/src/modules/settings/setting.service.ts"
+    ],
+    "apps/example-gateway/src/modules/settings/setting.service.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/tags/index.ts": [],
+    "apps/example-gateway/src/modules/tags/models/index.ts": [],
+    "apps/example-gateway/src/modules/tags/models/tag-response.dto.ts": [
+      "apps/example-gateway/src/models/objects/index.ts"
+    ],
+    "apps/example-gateway/src/modules/tags/models/tag.dto.ts": [
+      "apps/example-gateway/src/models/constants/index.ts"
+    ],
+    "apps/example-gateway/src/modules/tags/tag.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/tags/models/index.ts",
+      "apps/example-gateway/src/modules/tags/models/tag-response.dto.ts",
+      "apps/example-gateway/src/modules/tags/tag.service.ts"
+    ],
+    "apps/example-gateway/src/modules/tags/tag.module.ts": [
+      "apps/example-gateway/src/modules/tags/tag.controller.ts",
+      "apps/example-gateway/src/modules/tags/tag.service.ts"
+    ],
+    "apps/example-gateway/src/modules/tags/tag.service.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/tags/models/index.ts",
+      "apps/example-gateway/src/modules/tags/models/tag-response.dto.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/modules/users/index.ts": [],
+    "apps/example-gateway/src/modules/users/user.controller.ts": [
+      "apps/example-gateway/src/common/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/users/user.service.ts"
+    ],
+    "apps/example-gateway/src/modules/users/user.module.ts": [
+      "apps/example-gateway/src/modules/users/user.controller.ts",
+      "apps/example-gateway/src/modules/users/user.service.ts"
+    ],
+    "apps/example-gateway/src/modules/users/user.service.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/interfaces/index.ts",
+      "apps/example-gateway/src/models/objects/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/admin.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/article.repo.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/artist.repo.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/asset.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/block.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/category.repo.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/modules/categories/models/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/comment.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/connection.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/content.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/cron-history.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/cron.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/data-log.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/emotion.repo.ts": [
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/inquiry.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/notification.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/otp.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/post.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/product.repo.ts": [
+      "apps/example-gateway/src/models/entities/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/report.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/session.repo.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/setting.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/tag.repo.ts": [
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/common/user.repo.ts": [
+      "apps/example-gateway/src/app.constant.ts",
+      "apps/example-gateway/src/models/constants/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts"
+    ],
+    "apps/example-gateway/src/repositories/index.ts": [
+      "apps/example-gateway/src/repositories/common/admin.repo.ts",
+      "apps/example-gateway/src/repositories/common/article.repo.ts",
+      "apps/example-gateway/src/repositories/common/artist.repo.ts",
+      "apps/example-gateway/src/repositories/common/asset.repo.ts",
+      "apps/example-gateway/src/repositories/common/block.repo.ts",
+      "apps/example-gateway/src/repositories/common/category.repo.ts",
+      "apps/example-gateway/src/repositories/common/comment.repo.ts",
+      "apps/example-gateway/src/repositories/common/connection.repo.ts",
+      "apps/example-gateway/src/repositories/common/content.repo.ts",
+      "apps/example-gateway/src/repositories/common/cron-history.repo.ts",
+      "apps/example-gateway/src/repositories/common/cron.repo.ts",
+      "apps/example-gateway/src/repositories/common/data-log.repo.ts",
+      "apps/example-gateway/src/repositories/common/emotion.repo.ts",
+      "apps/example-gateway/src/repositories/common/inquiry.repo.ts",
+      "apps/example-gateway/src/repositories/common/notification.repo.ts",
+      "apps/example-gateway/src/repositories/common/otp.repo.ts",
+      "apps/example-gateway/src/repositories/common/post.repo.ts",
+      "apps/example-gateway/src/repositories/common/product.repo.ts",
+      "apps/example-gateway/src/repositories/common/report.repo.ts",
+      "apps/example-gateway/src/repositories/common/session.repo.ts",
+      "apps/example-gateway/src/repositories/common/setting.repo.ts",
+      "apps/example-gateway/src/repositories/common/tag.repo.ts",
+      "apps/example-gateway/src/repositories/common/user.repo.ts"
+    ],
+    "apps/example-gateway/src/repositories/repository.module.ts": [
+      "apps/example-gateway/src/models/entities/index.ts",
+      "apps/example-gateway/src/models/schemas/index.ts",
+      "apps/example-gateway/src/repositories/index.ts"
+    ],
+    "apps/example-gateway/src/utils/index.ts": [],
+    "apps/example-gateway/src/utils/validator.ts": [
+      "apps/example-gateway/src/app.config.ts"
+    ],
+    "apps/example-gateway/tsconfig.json": [],
+    "apps/example-micro/.eslintignore": [],
+    "apps/example-micro/.prettierignore": [],
+    "apps/example-micro/config.yml": [],
+    "apps/example-micro/nest-cli.json": [],
+    "apps/example-micro/package.json": [],
+    "apps/example-micro/public/templates/email-verify.hbs": [],
+    "apps/example-micro/public/templates/email-verify.hbs.json": [],
+    "apps/example-micro/public/templates/forgot-password.hbs": [],
+    "apps/example-micro/public/templates/forgot-password.hbs.json": [],
+    "apps/example-micro/src/app.config.ts": [],
+    "apps/example-micro/src/app.constant.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/app.module.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/modules/main.module.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/common/exception.code.ts": [],
+    "apps/example-micro/src/common/filters/custom-exception.filter.ts": [],
+    "apps/example-micro/src/common/filters/index.ts": [],
+    "apps/example-micro/src/common/index.ts": [],
+    "apps/example-micro/src/common/success.response.ts": [],
+    "apps/example-micro/src/i18n/en/article.json": [],
+    "apps/example-micro/src/i18n/en/auth.json": [],
+    "apps/example-micro/src/i18n/en/common.json": [],
+    "apps/example-micro/src/i18n/en/email.json": [],
+    "apps/example-micro/src/i18n/en/user.json": [],
+    "apps/example-micro/src/i18n/ko/article.json": [],
+    "apps/example-micro/src/i18n/ko/auth.json": [],
+    "apps/example-micro/src/i18n/ko/common.json": [],
+    "apps/example-micro/src/i18n/ko/email.json": [],
+    "apps/example-micro/src/i18n/ko/user.json": [],
+    "apps/example-micro/src/main.ts": [
+      "apps/example-micro/src/app.module.ts"
+    ],
+    "apps/example-micro/src/models/common/address.schema.ts": [],
+    "apps/example-micro/src/models/common/base.entity.ts": [],
+    "apps/example-micro/src/models/common/base.schema.ts": [
+      "apps/example-micro/src/app.constant.ts"
+    ],
+    "apps/example-micro/src/models/common/gravatar.ts": [],
+    "apps/example-micro/src/models/common/i18n-text.schema.ts": [
+      "apps/example-micro/src/app.constant.ts"
+    ],
+    "apps/example-micro/src/models/common/index.ts": [],
+    "apps/example-micro/src/models/common/location.schema.ts": [],
+    "apps/example-micro/src/models/constants/admin.enum.ts": [],
+    "apps/example-micro/src/models/constants/app.enum.ts": [],
+    "apps/example-micro/src/models/constants/article.enum.ts": [],
+    "apps/example-micro/src/models/constants/artist.enum.ts": [],
+    "apps/example-micro/src/models/constants/asset.enum.ts": [],
+    "apps/example-micro/src/models/constants/auth.enum.ts": [],
+    "apps/example-micro/src/models/constants/block.enum.ts": [],
+    "apps/example-micro/src/models/constants/category.enum.ts": [],
+    "apps/example-micro/src/models/constants/comment.enum.ts": [],
+    "apps/example-micro/src/models/constants/credential.enum.ts": [],
+    "apps/example-micro/src/models/constants/cron.enum.ts": [],
+    "apps/example-micro/src/models/constants/data-log.enum.ts": [],
+    "apps/example-micro/src/models/constants/emotion.enum.ts": [],
+    "apps/example-micro/src/models/constants/index.ts": [],
+    "apps/example-micro/src/models/constants/inquiry.enum.ts": [],
+    "apps/example-micro/src/models/constants/log.enum.ts": [],
+    "apps/example-micro/src/models/constants/notification.enum.ts": [],
+    "apps/example-micro/src/models/constants/otp.enum.ts": [],
+    "apps/example-micro/src/models/constants/post.enum.ts": [],
+    "apps/example-micro/src/models/constants/proxy.enum.ts": [],
+    "apps/example-micro/src/models/constants/report.enum.ts": [],
+    "apps/example-micro/src/models/constants/session.enum.ts": [],
+    "apps/example-micro/src/models/constants/setting.enum.ts": [],
+    "apps/example-micro/src/models/constants/snippet.enum.ts": [],
+    "apps/example-micro/src/models/constants/tag.enum.ts": [],
+    "apps/example-micro/src/models/constants/user.enum.ts": [],
+    "apps/example-micro/src/models/entities/index.ts": [
+      "apps/example-micro/src/models/entities/product.entity.ts"
+    ],
+    "apps/example-micro/src/models/entities/product.entity.ts": [
+      "apps/example-micro/src/models/common/index.ts"
+    ],
+    "apps/example-micro/src/models/interfaces/amazon.interface.ts": [],
+    "apps/example-micro/src/models/interfaces/auth.interface.ts": [
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/interfaces/facebook.interface.ts": [],
+    "apps/example-micro/src/models/interfaces/google.interface.ts": [],
+    "apps/example-micro/src/models/interfaces/index.ts": [],
+    "apps/example-micro/src/models/interfaces/kakao.interface.ts": [],
+    "apps/example-micro/src/models/interfaces/navar.interface.ts": [],
+    "apps/example-micro/src/models/objects/admin-config.schema.ts": [
+      "apps/example-micro/src/app.constant.ts"
+    ],
+    "apps/example-micro/src/models/objects/article-element.schema.ts": [
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/article-file.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/article-element.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/article-summary.schema.ts": [],
+    "apps/example-micro/src/models/objects/data-log-request.schema.ts": [],
+    "apps/example-micro/src/models/objects/index.ts": [],
+    "apps/example-micro/src/models/objects/log-request.schema.ts": [],
+    "apps/example-micro/src/models/objects/session-device.schema.ts": [],
+    "apps/example-micro/src/models/objects/user-address.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-business.schema.ts": [
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-config-notify.schema.ts": [
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-config.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/objects/user-config-notify.schema.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-keyword.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-profile.schema.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-provider.schema.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/objects/user-rank.schema.ts": [],
+    "apps/example-micro/src/models/objects/user-wallet.schema.ts": [],
+    "apps/example-micro/src/models/schemas/admin.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/article.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/models/schemas/artist.schema.ts",
+      "apps/example-micro/src/models/schemas/tag.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/artist.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/category.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/asset.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/block.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/setting.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/category.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/artist.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/comment.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/connection.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/content.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/cron-history.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/schemas/cron.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/cron.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/schemas/cron-history.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/data-log.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/emotion.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/comment.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/index.ts": [
+      "apps/example-micro/src/models/schemas/admin.schema.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/artist.schema.ts",
+      "apps/example-micro/src/models/schemas/asset.schema.ts",
+      "apps/example-micro/src/models/schemas/block.schema.ts",
+      "apps/example-micro/src/models/schemas/category.schema.ts",
+      "apps/example-micro/src/models/schemas/comment.schema.ts",
+      "apps/example-micro/src/models/schemas/connection.schema.ts",
+      "apps/example-micro/src/models/schemas/content.schema.ts",
+      "apps/example-micro/src/models/schemas/cron-history.schema.ts",
+      "apps/example-micro/src/models/schemas/cron.schema.ts",
+      "apps/example-micro/src/models/schemas/emotion.schema.ts",
+      "apps/example-micro/src/models/schemas/inquiry.schema.ts",
+      "apps/example-micro/src/models/schemas/notification.schema.ts",
+      "apps/example-micro/src/models/schemas/otp.schema.ts",
+      "apps/example-micro/src/models/schemas/post.schema.ts",
+      "apps/example-micro/src/models/schemas/report.schema.ts",
+      "apps/example-micro/src/models/schemas/session.schema.ts",
+      "apps/example-micro/src/models/schemas/setting.schema.ts",
+      "apps/example-micro/src/models/schemas/tag.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/inquiry.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/setting.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/notification.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/otp.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/post.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/report.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/article.schema.ts",
+      "apps/example-micro/src/models/schemas/comment.schema.ts",
+      "apps/example-micro/src/models/schemas/setting.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/session.schema.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/models/schemas/admin.schema.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/setting.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts"
+    ],
+    "apps/example-micro/src/models/schemas/tag.schema.ts": [
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/user.schema.ts"
+    ],
+    "apps/example-micro/src/models/schemas/user.schema.ts": [
+      "apps/example-micro/src/app.config.ts",
+      "apps/example-micro/src/models/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/models/schemas/artist.schema.ts",
+      "apps/example-micro/src/utils/index.ts"
+    ],
+    "apps/example-micro/src/modules/articles/article.controller.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/articles/article.service.ts",
+      "apps/example-micro/src/modules/articles/models/index.ts"
+    ],
+    "apps/example-micro/src/modules/articles/article.cronner.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/articles/article.handler.ts": [],
+    "apps/example-micro/src/modules/articles/article.module.ts": [
+      "apps/example-micro/src/modules/articles/article.controller.ts",
+      "apps/example-micro/src/modules/articles/article.cronner.ts",
+      "apps/example-micro/src/modules/articles/article.handler.ts",
+      "apps/example-micro/src/modules/articles/article.service.ts"
+    ],
+    "apps/example-micro/src/modules/articles/article.service.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/articles/models/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/articles/index.ts": [],
+    "apps/example-micro/src/modules/articles/models/article.dto.ts": [],
+    "apps/example-micro/src/modules/articles/models/index.ts": [],
+    "apps/example-micro/src/modules/artists/artist.controller.ts": [
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/artists/artist.service.ts"
+    ],
+    "apps/example-micro/src/modules/artists/artist.cronner.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/artists/artist.module.ts": [
+      "apps/example-micro/src/modules/artists/artist.controller.ts",
+      "apps/example-micro/src/modules/artists/artist.cronner.ts",
+      "apps/example-micro/src/modules/artists/artist.service.ts"
+    ],
+    "apps/example-micro/src/modules/artists/artist.service.ts": [
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/artists/index.ts": [],
+    "apps/example-micro/src/modules/assets/asset.controller.ts": [
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/assets/asset.service.ts",
+      "apps/example-micro/src/modules/assets/models/index.ts"
+    ],
+    "apps/example-micro/src/modules/assets/asset.module.ts": [
+      "apps/example-micro/src/modules/assets/asset.controller.ts",
+      "apps/example-micro/src/modules/assets/asset.service.ts"
+    ],
+    "apps/example-micro/src/modules/assets/asset.service.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/assets/models/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/assets/index.ts": [],
+    "apps/example-micro/src/modules/assets/models/asset.constant.ts": [],
+    "apps/example-micro/src/modules/assets/models/asset.dto.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/modules/assets/models/index.ts": [],
+    "apps/example-micro/src/modules/crons/cron.controller.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/crons/cron.service.ts"
+    ],
+    "apps/example-micro/src/modules/crons/cron.module.ts": [
+      "apps/example-micro/src/modules/crons/cron.controller.ts",
+      "apps/example-micro/src/modules/crons/cron.scheduler.ts",
+      "apps/example-micro/src/modules/crons/cron.service.ts"
+    ],
+    "apps/example-micro/src/modules/crons/cron.scheduler.ts": [
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/crons/cron.service.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/crons/cron.scheduler.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/crons/index.ts": [],
+    "apps/example-micro/src/modules/main.module.ts": [
+      "apps/example-micro/src/modules/articles/index.ts",
+      "apps/example-micro/src/modules/artists/index.ts",
+      "apps/example-micro/src/modules/assets/index.ts",
+      "apps/example-micro/src/modules/crons/index.ts",
+      "apps/example-micro/src/modules/notifications/index.ts",
+      "apps/example-micro/src/modules/otpLogs/index.ts",
+      "apps/example-micro/src/modules/users/index.ts",
+      "apps/example-micro/src/shared/shared.module.ts"
+    ],
+    "apps/example-micro/src/modules/notifications/index.ts": [],
+    "apps/example-micro/src/modules/notifications/notification.controller.ts": [
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/notifications/notification.service.ts"
+    ],
+    "apps/example-micro/src/modules/notifications/notification.module.ts": [
+      "apps/example-micro/src/modules/notifications/notification.controller.ts",
+      "apps/example-micro/src/modules/notifications/notification.service.ts",
+      "apps/example-micro/src/modules/notifications/notification.utils.ts"
+    ],
+    "apps/example-micro/src/modules/notifications/notification.service.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/notifications/notification.utils.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/notifications/notification.utils.ts": [],
+    "apps/example-micro/src/modules/otpLogs/index.ts": [],
+    "apps/example-micro/src/modules/otpLogs/otp.controller.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/otpLogs/otp.service.ts"
+    ],
+    "apps/example-micro/src/modules/otpLogs/otp.module.ts": [
+      "apps/example-micro/src/modules/otpLogs/otp.controller.ts",
+      "apps/example-micro/src/modules/otpLogs/otp.service.ts"
+    ],
+    "apps/example-micro/src/modules/otpLogs/otp.service.ts": [
+      "apps/example-micro/src/app.constant.ts",
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/modules/users/index.ts": [],
+    "apps/example-micro/src/modules/users/user.controller.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/modules/users/user.service.ts"
+    ],
+    "apps/example-micro/src/modules/users/user.module.ts": [
+      "apps/example-micro/src/modules/users/user.controller.ts",
+      "apps/example-micro/src/modules/users/user.service.ts"
+    ],
+    "apps/example-micro/src/modules/users/user.service.ts": [
+      "apps/example-micro/src/common/index.ts",
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/admin.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/article.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/artist.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/asset.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/block.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/category.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/comment.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/connection.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/content.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/cron-history.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/cron.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/data-log.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/emotion.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/inquiry.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/notification.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/otp.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/post.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/report.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/session.repo.ts": [
+      "apps/example-micro/src/models/constants/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/setting.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/tag.repo.ts": [
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/common/user.repo.ts": [
+      "apps/example-micro/src/models/objects/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts"
+    ],
+    "apps/example-micro/src/repositories/index.ts": [
+      "apps/example-micro/src/repositories/common/admin.repo.ts",
+      "apps/example-micro/src/repositories/common/article.repo.ts",
+      "apps/example-micro/src/repositories/common/artist.repo.ts",
+      "apps/example-micro/src/repositories/common/asset.repo.ts",
+      "apps/example-micro/src/repositories/common/block.repo.ts",
+      "apps/example-micro/src/repositories/common/category.repo.ts",
+      "apps/example-micro/src/repositories/common/comment.repo.ts",
+      "apps/example-micro/src/repositories/common/connection.repo.ts",
+      "apps/example-micro/src/repositories/common/content.repo.ts",
+      "apps/example-micro/src/repositories/common/cron-history.repo.ts",
+      "apps/example-micro/src/repositories/common/cron.repo.ts",
+      "apps/example-micro/src/repositories/common/data-log.repo.ts",
+      "apps/example-micro/src/repositories/common/emotion.repo.ts",
+      "apps/example-micro/src/repositories/common/inquiry.repo.ts",
+      "apps/example-micro/src/repositories/common/notification.repo.ts",
+      "apps/example-micro/src/repositories/common/otp.repo.ts",
+      "apps/example-micro/src/repositories/common/post.repo.ts",
+      "apps/example-micro/src/repositories/common/report.repo.ts",
+      "apps/example-micro/src/repositories/common/session.repo.ts",
+      "apps/example-micro/src/repositories/common/setting.repo.ts",
+      "apps/example-micro/src/repositories/common/tag.repo.ts",
+      "apps/example-micro/src/repositories/common/user.repo.ts"
+    ],
+    "apps/example-micro/src/repositories/repository.module.ts": [
+      "apps/example-micro/src/models/entities/index.ts",
+      "apps/example-micro/src/models/schemas/index.ts",
+      "apps/example-micro/src/repositories/index.ts"
+    ],
+    "apps/example-micro/src/shared/shared.module.ts": [],
+    "apps/example-micro/src/utils/index.ts": [],
+    "apps/example-micro/src/utils/validator.ts": [
+      "apps/example-micro/src/app.config.ts"
+    ],
+    "apps/example-micro/tsconfig.json": [],
+    "bin/jenkin-ci.sh": [],
+    "docs/agents/ARCHITECTURE.md": [],
+    "docs/agents/CHANGELOG.md": [],
+    "docs/agents/CONTRACTS.md": [],
+    "docs/agents/DECISIONS.md": [],
+    "docs/agents/decisions/0001-monorepo-framework-boundaries.md": [],
+    "docs/agents/decisions/0002-config-driven-client-lifecycle.md": [],
+    "docs/agents/decisions/0003-generated-crud-contracts.md": [],
+    "docs/agents/DOCUMENT_SYNC.md": [],
+    "docs/agents/GLOSSARY.md": [],
+    "docs/agents/PROJECT_CONTEXT.md": [],
+    "docs/agents/REPO_MAP.md": [],
+    "docs/agents/RULES.md": [],
+    "docs/agents/RUNTIME.md": [],
+    "docs/agents/SEARCH_HINTS.md": [],
+    "docs/agents/tasks/001-in-progress-technical-debt.md": [],
+    "lerna.json": [],
+    "nx.json": [],
+    "package.json": [],
+    "packages/adapters/cacher/CHANGELOG.md": [],
+    "packages/adapters/cacher/package.json": [],
+    "packages/adapters/cacher/README.md": [],
+    "packages/adapters/cacher/src/cache.client.ts": [
+      "packages/adapters/cacher/src/cache.config.ts"
+    ],
+    "packages/adapters/cacher/src/cache.config.ts": [],
+    "packages/adapters/cacher/src/cache.metric.ts": [],
+    "packages/adapters/cacher/src/cache.module.ts": [
+      "packages/adapters/cacher/src/cache.metric.ts",
+      "packages/adapters/cacher/src/cache.service.ts"
+    ],
+    "packages/adapters/cacher/src/cache.service.ts": [
+      "packages/adapters/cacher/src/cache.client.ts",
+      "packages/adapters/cacher/src/cache.config.ts",
+      "packages/adapters/cacher/src/cache.metric.ts",
+      "packages/adapters/cacher/src/models/index.ts",
+      "packages/adapters/cacher/src/stores/index.ts"
+    ],
+    "packages/adapters/cacher/src/cache.utils.ts": [],
+    "packages/adapters/cacher/src/decorators/cache-evict.decorator.ts": [
+      "packages/adapters/cacher/src/cache.service.ts",
+      "packages/adapters/cacher/src/cache.utils.ts",
+      "packages/adapters/cacher/src/models/index.ts"
+    ],
+    "packages/adapters/cacher/src/decorators/cache-put.decorator.ts": [
+      "packages/adapters/cacher/src/cache.service.ts",
+      "packages/adapters/cacher/src/cache.utils.ts",
+      "packages/adapters/cacher/src/models/index.ts"
+    ],
+    "packages/adapters/cacher/src/decorators/cacheable.decorator.ts": [
+      "packages/adapters/cacher/src/cache.service.ts",
+      "packages/adapters/cacher/src/cache.utils.ts",
+      "packages/adapters/cacher/src/interceptors/index.ts",
+      "packages/adapters/cacher/src/models/index.ts"
+    ],
+    "packages/adapters/cacher/src/decorators/index.ts": [],
+    "packages/adapters/cacher/src/index.ts": [],
+    "packages/adapters/cacher/src/interceptors/cacheable.interceptor.ts": [
+      "packages/adapters/cacher/src/cache.service.ts",
+      "packages/adapters/cacher/src/models/index.ts"
+    ],
+    "packages/adapters/cacher/src/interceptors/index.ts": [],
+    "packages/adapters/cacher/src/models/cache.model.ts": [],
+    "packages/adapters/cacher/src/models/index.ts": [],
+    "packages/adapters/cacher/src/stores/index.ts": [],
+    "packages/adapters/cacher/src/stores/local.store.ts": [
+      "packages/adapters/cacher/src/cache.client.ts",
+      "packages/adapters/cacher/src/cache.config.ts",
+      "packages/adapters/cacher/src/cache.utils.ts"
+    ],
+    "packages/adapters/cacher/src/stores/memcached.store.ts": [
+      "packages/adapters/cacher/src/cache.client.ts",
+      "packages/adapters/cacher/src/cache.config.ts"
+    ],
+    "packages/adapters/cacher/src/stores/redis.store.ts": [
+      "packages/adapters/cacher/src/cache.client.ts",
+      "packages/adapters/cacher/src/cache.config.ts"
+    ],
+    "packages/adapters/cacher/tsconfig.json": [],
+    "packages/adapters/mailer/CHANGELOG.md": [],
+    "packages/adapters/mailer/package.json": [],
+    "packages/adapters/mailer/README.md": [],
+    "packages/adapters/mailer/src/index.ts": [],
+    "packages/adapters/mailer/src/mailer.client.ts": [
+      "packages/adapters/mailer/src/mailer.config.ts",
+      "packages/adapters/mailer/src/models/index.ts"
+    ],
+    "packages/adapters/mailer/src/mailer.config.ts": [
+      "packages/adapters/mailer/src/stores/index.ts"
+    ],
+    "packages/adapters/mailer/src/mailer.exception.ts": [],
+    "packages/adapters/mailer/src/mailer.metric.ts": [
+      "packages/adapters/mailer/src/models/index.ts"
+    ],
+    "packages/adapters/mailer/src/mailer.module.ts": [
+      "packages/adapters/mailer/src/mailer.metric.ts",
+      "packages/adapters/mailer/src/mailer.service.ts"
+    ],
+    "packages/adapters/mailer/src/mailer.service.ts": [
+      "packages/adapters/mailer/src/mailer.client.ts",
+      "packages/adapters/mailer/src/mailer.config.ts",
+      "packages/adapters/mailer/src/mailer.exception.ts",
+      "packages/adapters/mailer/src/mailer.metric.ts",
+      "packages/adapters/mailer/src/models/index.ts"
+    ],
+    "packages/adapters/mailer/src/models/index.ts": [],
+    "packages/adapters/mailer/src/models/mailer.request.ts": [
+      "packages/adapters/mailer/src/mailer.config.ts",
+      "packages/adapters/mailer/src/stores/index.ts"
+    ],
+    "packages/adapters/mailer/src/models/mailer.response.ts": [],
+    "packages/adapters/mailer/src/stores/index.ts": [],
+    "packages/adapters/mailer/src/stores/template.option.ts": [
+      "packages/adapters/mailer/src/mailer.config.ts"
+    ],
+    "packages/adapters/mailer/tsconfig.json": [],
+    "packages/adapters/notifier/CHANGELOG.md": [],
+    "packages/adapters/notifier/package.json": [],
+    "packages/adapters/notifier/README.md": [],
+    "packages/adapters/notifier/src/configs/adm.config.ts": [],
+    "packages/adapters/notifier/src/configs/apn.config.ts": [],
+    "packages/adapters/notifier/src/configs/fcm.config.ts": [],
+    "packages/adapters/notifier/src/configs/gcm.config.ts": [],
+    "packages/adapters/notifier/src/configs/index.ts": [],
+    "packages/adapters/notifier/src/configs/mpns.config.ts": [],
+    "packages/adapters/notifier/src/configs/wns.config.ts": [],
+    "packages/adapters/notifier/src/index.ts": [],
+    "packages/adapters/notifier/src/models/index.ts": [],
+    "packages/adapters/notifier/src/models/notifier.request.ts": [],
+    "packages/adapters/notifier/src/models/notifier.response.ts": [],
+    "packages/adapters/notifier/src/notifier.client.ts": [
+      "packages/adapters/notifier/src/models/index.ts",
+      "packages/adapters/notifier/src/notifier.config.ts"
+    ],
+    "packages/adapters/notifier/src/notifier.config.ts": [
+      "packages/adapters/notifier/src/configs/index.ts"
+    ],
+    "packages/adapters/notifier/src/notifier.module.ts": [
+      "packages/adapters/notifier/src/notifier.service.ts"
+    ],
+    "packages/adapters/notifier/src/notifier.service.ts": [
+      "packages/adapters/notifier/src/models/index.ts",
+      "packages/adapters/notifier/src/notifier.client.ts",
+      "packages/adapters/notifier/src/notifier.config.ts"
+    ],
+    "packages/adapters/notifier/tsconfig.json": [],
+    "packages/adapters/README.md": [],
+    "packages/adapters/storage/CHANGELOG.md": [],
+    "packages/adapters/storage/package.json": [],
+    "packages/adapters/storage/README.md": [],
+    "packages/adapters/storage/src/index.ts": [],
+    "packages/adapters/storage/src/models/index.ts": [],
+    "packages/adapters/storage/src/models/storage.request.ts": [],
+    "packages/adapters/storage/src/models/storage.response.ts": [],
+    "packages/adapters/storage/src/storage.client.ts": [
+      "packages/adapters/storage/src/models/index.ts",
+      "packages/adapters/storage/src/storage.config.ts"
+    ],
+    "packages/adapters/storage/src/storage.config.ts": [
+      "packages/adapters/storage/src/models/index.ts"
+    ],
+    "packages/adapters/storage/src/storage.constant.ts": [],
+    "packages/adapters/storage/src/storage.metric.ts": [
+      "packages/adapters/storage/src/storage.config.ts"
+    ],
+    "packages/adapters/storage/src/storage.module.ts": [
+      "packages/adapters/storage/src/storage.metric.ts",
+      "packages/adapters/storage/src/storage.service.ts"
+    ],
+    "packages/adapters/storage/src/storage.service.ts": [
+      "packages/adapters/storage/src/models/index.ts",
+      "packages/adapters/storage/src/storage.client.ts",
+      "packages/adapters/storage/src/storage.config.ts",
+      "packages/adapters/storage/src/storage.metric.ts",
+      "packages/adapters/storage/src/storage.utils.ts"
+    ],
+    "packages/adapters/storage/src/storage.utils.ts": [
+      "packages/adapters/storage/src/storage.constant.ts"
+    ],
+    "packages/adapters/storage/tsconfig.json": [],
+    "packages/brokers/kafka/CHANGELOG.md": [],
+    "packages/brokers/kafka/package.json": [],
+    "packages/brokers/kafka/README.md": [],
+    "packages/brokers/kafka/src/index.ts": [],
+    "packages/brokers/kafka/src/kafka.client.ts": [
+      "packages/brokers/kafka/src/kafka.config.ts",
+      "packages/brokers/kafka/src/models/index.ts"
+    ],
+    "packages/brokers/kafka/src/kafka.config.ts": [],
+    "packages/brokers/kafka/src/kafka.metric.ts": [],
+    "packages/brokers/kafka/src/kafka.module.ts": [
+      "packages/brokers/kafka/src/kafka.metric.ts",
+      "packages/brokers/kafka/src/kafka.service.ts",
+      "packages/brokers/kafka/src/loaders/index.ts"
+    ],
+    "packages/brokers/kafka/src/kafka.service.ts": [
+      "packages/brokers/kafka/src/kafka.client.ts",
+      "packages/brokers/kafka/src/kafka.config.ts",
+      "packages/brokers/kafka/src/kafka.metric.ts",
+      "packages/brokers/kafka/src/models/index.ts"
+    ],
+    "packages/brokers/kafka/src/loaders/index.ts": [],
+    "packages/brokers/kafka/src/loaders/kafka.consumer.ts": [
+      "packages/brokers/kafka/src/kafka.service.ts",
+      "packages/brokers/kafka/src/models/index.ts"
+    ],
+    "packages/brokers/kafka/src/loaders/kafka.producer.ts": [
+      "packages/brokers/kafka/src/kafka.service.ts",
+      "packages/brokers/kafka/src/models/index.ts"
+    ],
+    "packages/brokers/kafka/src/models/index.ts": [],
+    "packages/brokers/kafka/src/models/kafka-consumer.model.ts": [],
+    "packages/brokers/kafka/src/models/kafka-producer.model.ts": [],
+    "packages/brokers/kafka/tsconfig.json": [],
+    "packages/brokers/rabbit/CHANGELOG.md": [],
+    "packages/brokers/rabbit/package.json": [],
+    "packages/brokers/rabbit/README.md": [],
+    "packages/brokers/rabbit/src/index.ts": [],
+    "packages/brokers/rabbit/src/loaders/index.ts": [],
+    "packages/brokers/rabbit/src/loaders/rabbit.consumer.ts": [
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.service.ts"
+    ],
+    "packages/brokers/rabbit/src/loaders/rabbit.producer.ts": [
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.service.ts"
+    ],
+    "packages/brokers/rabbit/src/loaders/rabbit.publisher.ts": [
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.service.ts"
+    ],
+    "packages/brokers/rabbit/src/models/index.ts": [],
+    "packages/brokers/rabbit/src/models/rabbit-base.model.ts": [],
+    "packages/brokers/rabbit/src/models/rabbit-consumer.model.ts": [],
+    "packages/brokers/rabbit/src/models/rabbit-module.options.ts": [
+      "packages/brokers/rabbit/src/models/rabbit-base.model.ts"
+    ],
+    "packages/brokers/rabbit/src/models/rabbit-producer.model.ts": [],
+    "packages/brokers/rabbit/src/models/rabbit-publisher.model.ts": [],
+    "packages/brokers/rabbit/src/rabbit.client.ts": [
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.config.ts"
+    ],
+    "packages/brokers/rabbit/src/rabbit.config.ts": [],
+    "packages/brokers/rabbit/src/rabbit.metric.ts": [],
+    "packages/brokers/rabbit/src/rabbit.module.ts": [
+      "packages/brokers/rabbit/src/loaders/index.ts",
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.metric.ts",
+      "packages/brokers/rabbit/src/rabbit.service.ts"
+    ],
+    "packages/brokers/rabbit/src/rabbit.service.ts": [
+      "packages/brokers/rabbit/src/models/index.ts",
+      "packages/brokers/rabbit/src/rabbit.client.ts",
+      "packages/brokers/rabbit/src/rabbit.config.ts",
+      "packages/brokers/rabbit/src/rabbit.metric.ts"
+    ],
+    "packages/brokers/rabbit/tsconfig.json": [],
+    "packages/brokers/README.md": [],
+    "packages/brokers/redcast/CHANGELOG.md": [],
+    "packages/brokers/redcast/package.json": [],
+    "packages/brokers/redcast/README.md": [],
+    "packages/brokers/redcast/src/index.ts": [],
+    "packages/brokers/redcast/src/loaders/index.ts": [],
+    "packages/brokers/redcast/src/loaders/redcast.consumer.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.service.ts"
+    ],
+    "packages/brokers/redcast/src/loaders/redcast.producer.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.service.ts"
+    ],
+    "packages/brokers/redcast/src/loaders/redcast.publisher.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.service.ts"
+    ],
+    "packages/brokers/redcast/src/loaders/redcast.subscriber.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.service.ts"
+    ],
+    "packages/brokers/redcast/src/models/index.ts": [],
+    "packages/brokers/redcast/src/models/redcast-base.model.ts": [],
+    "packages/brokers/redcast/src/models/redcast-consumer.model.ts": [],
+    "packages/brokers/redcast/src/models/redcast-producer.model.ts": [],
+    "packages/brokers/redcast/src/models/redcast-publisher.model.ts": [],
+    "packages/brokers/redcast/src/models/redcast-subscriber.model.ts": [],
+    "packages/brokers/redcast/src/redcast.client.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.config.ts"
+    ],
+    "packages/brokers/redcast/src/redcast.config.ts": [],
+    "packages/brokers/redcast/src/redcast.metric.ts": [],
+    "packages/brokers/redcast/src/redcast.module.ts": [
+      "packages/brokers/redcast/src/loaders/index.ts",
+      "packages/brokers/redcast/src/redcast.metric.ts",
+      "packages/brokers/redcast/src/redcast.service.ts"
+    ],
+    "packages/brokers/redcast/src/redcast.service.ts": [
+      "packages/brokers/redcast/src/models/index.ts",
+      "packages/brokers/redcast/src/redcast.client.ts",
+      "packages/brokers/redcast/src/redcast.config.ts",
+      "packages/brokers/redcast/src/redcast.metric.ts"
+    ],
+    "packages/brokers/redcast/tsconfig.json": [],
+    "packages/brokers/sqs/CHANGELOG.md": [],
+    "packages/brokers/sqs/package.json": [],
+    "packages/brokers/sqs/README.md": [],
+    "packages/brokers/sqs/src/index.ts": [],
+    "packages/brokers/sqs/src/loaders/index.ts": [],
+    "packages/brokers/sqs/src/loaders/sqs.consumer.ts": [
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.service.ts"
+    ],
+    "packages/brokers/sqs/src/loaders/sqs.producer.ts": [
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.service.ts"
+    ],
+    "packages/brokers/sqs/src/loaders/sqs.publisher.ts": [
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.service.ts"
+    ],
+    "packages/brokers/sqs/src/models/index.ts": [],
+    "packages/brokers/sqs/src/models/sqs-base.model.ts": [],
+    "packages/brokers/sqs/src/models/sqs-consumer.model.ts": [
+      "packages/brokers/sqs/src/models/sqs-base.model.ts"
+    ],
+    "packages/brokers/sqs/src/models/sqs-module.options.ts": [
+      "packages/brokers/sqs/src/models/sqs-base.model.ts"
+    ],
+    "packages/brokers/sqs/src/models/sqs-producer.model.ts": [
+      "packages/brokers/sqs/src/models/sqs-base.model.ts"
+    ],
+    "packages/brokers/sqs/src/models/sqs-publisher.model.ts": [
+      "packages/brokers/sqs/src/models/sqs-base.model.ts"
+    ],
+    "packages/brokers/sqs/src/sqs.client.ts": [
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.config.ts"
+    ],
+    "packages/brokers/sqs/src/sqs.config.ts": [],
+    "packages/brokers/sqs/src/sqs.metric.ts": [],
+    "packages/brokers/sqs/src/sqs.module.ts": [
+      "packages/brokers/sqs/src/loaders/index.ts",
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.metric.ts",
+      "packages/brokers/sqs/src/sqs.service.ts"
+    ],
+    "packages/brokers/sqs/src/sqs.service.ts": [
+      "packages/brokers/sqs/src/models/index.ts",
+      "packages/brokers/sqs/src/sqs.client.ts",
+      "packages/brokers/sqs/src/sqs.config.ts",
+      "packages/brokers/sqs/src/sqs.metric.ts"
+    ],
+    "packages/brokers/sqs/tsconfig.json": [],
+    "packages/common/core/bin/client-generator.sh": [],
+    "packages/common/core/bin/publish-docker.sh": [],
+    "packages/common/core/bin/publish-helm.sh": [],
+    "packages/common/core/CHANGELOG.md": [],
+    "packages/common/core/Dockerfile": [],
+    "packages/common/core/package.json": [],
+    "packages/common/core/README.md": [],
+    "packages/common/core/src/abstractions/base.controller.ts": [
+      "packages/common/core/src/abstractions/base.service.ts",
+      "packages/common/core/src/decorators/index.ts",
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts",
+      "packages/common/core/src/pipes/index.ts"
+    ],
+    "packages/common/core/src/abstractions/base.dataloader.ts": [
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/abstractions/base.resolver.ts": [
+      "packages/common/core/src/abstractions/base.service.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/abstractions/base.service.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts",
+      "packages/common/core/src/utils/index.ts"
+    ],
+    "packages/common/core/src/abstractions/client.controller.ts": [
+      "packages/common/core/src/abstractions/base.service.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts",
+      "packages/common/core/src/pipes/index.ts"
+    ],
+    "packages/common/core/src/abstractions/client.service.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/abstractions/index.ts": [],
+    "packages/common/core/src/base/app.ts": [
+      "packages/common/core/src/infras/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/base/index.ts": [],
+    "packages/common/core/src/client/abstract-client.service.ts": [
+      "packages/common/core/src/client/client.config.ts",
+      "packages/common/core/src/client/client.ts",
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/client/client.config.ts": [
+      "packages/common/core/src/decorators/index.ts",
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/utils/index.ts"
+    ],
+    "packages/common/core/src/client/client.ts": [
+      "packages/common/core/src/client/client.config.ts"
+    ],
+    "packages/common/core/src/client/index.ts": [],
+    "packages/common/core/src/decorators/applyCustomDecorator.ts": [],
+    "packages/common/core/src/decorators/base-class.decorator.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/decorators/base-method.decorator.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/decorators/breaker/breaker.config.ts": [],
+    "packages/common/core/src/decorators/breaker/breaker.decorator.ts": [
+      "packages/common/core/src/decorators/breaker/breaker.config.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/decorators/breaker/index.ts": [],
+    "packages/common/core/src/decorators/index.ts": [],
+    "packages/common/core/src/decorators/retry/index.ts": [],
+    "packages/common/core/src/decorators/retry/retry.config.ts": [],
+    "packages/common/core/src/decorators/retry/retry.decorator.ts": [
+      "packages/common/core/src/decorators/index.ts",
+      "packages/common/core/src/decorators/retry/retry.config.ts"
+    ],
+    "packages/common/core/src/decorators/swagger/index.ts": [],
+    "packages/common/core/src/decorators/swagger/swagger.config.ts": [],
+    "packages/common/core/src/decorators/swagger/swagger.decorator.ts": [
+      "packages/common/core/src/decorators/swagger/swagger.interface.ts",
+      "packages/common/core/src/exceptions/index.ts"
+    ],
+    "packages/common/core/src/decorators/swagger/swagger.interface.ts": [
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/exceptions/common/bad-request.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/client.exception.ts": [
+      "packages/common/core/src/exceptions/common/internal.exception.ts",
+      "packages/common/core/src/exceptions/exception-message.ts"
+    ],
+    "packages/common/core/src/exceptions/common/forbidden.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/index.ts": [],
+    "packages/common/core/src/exceptions/common/internal.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/method-not-allowed.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/not-found.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/not-implemented.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/request-timeout.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/service-unavaiable.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/too-many-requests.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/unauthorized.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/common/unprocessable-entity.exception.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/runtime.exception.ts"
+    ],
+    "packages/common/core/src/exceptions/exception-message.ts": [],
+    "packages/common/core/src/exceptions/exception.ts": [],
+    "packages/common/core/src/exceptions/filters/gateway-exception.filter.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/exceptions/filters/index.ts": [],
+    "packages/common/core/src/exceptions/filters/micro-exception.filter.ts": [
+      "packages/common/core/src/exceptions/exception-message.ts",
+      "packages/common/core/src/exceptions/exception.ts",
+      "packages/common/core/src/exceptions/micro-rpc.exception.ts",
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/exceptions/index.ts": [],
+    "packages/common/core/src/exceptions/micro-rpc.exception.ts": [
+      "packages/common/core/src/exceptions/exception.ts"
+    ],
+    "packages/common/core/src/exceptions/runtime.exception.ts": [
+      "packages/common/core/src/exceptions/exception.ts"
+    ],
+    "packages/common/core/src/exceptions/validation.exception.ts": [
+      "packages/common/core/src/exceptions/index.ts"
+    ],
+    "packages/common/core/src/index.ts": [],
+    "packages/common/core/src/infras/gateway/gateway.config.ts": [
+      "packages/common/core/src/decorators/index.ts"
+    ],
+    "packages/common/core/src/infras/gateway/gateway.controller.ts": [],
+    "packages/common/core/src/infras/gateway/gateway.decorator.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/gateway/gateway.factory.ts": [
+      "packages/common/core/src/base/index.ts",
+      "packages/common/core/src/decorators/index.ts",
+      "packages/common/core/src/infras/gateway/gateway.config.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/gateway/gateway.interceptor.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/infras/gateway/gateway.metric.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/gateway/gateway.metric.ts": [],
+    "packages/common/core/src/infras/gateway/gateway.middleware.ts": [
+      "packages/common/core/src/infras/gateway/gateway.metric.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/gateway/gateway.module.ts": [
+      "packages/common/core/src/infras/gateway/gateway.controller.ts",
+      "packages/common/core/src/infras/gateway/gateway.interceptor.ts",
+      "packages/common/core/src/infras/gateway/gateway.metric.ts",
+      "packages/common/core/src/modules/index.ts",
+      "packages/common/core/src/modules/statics/static.factory.ts"
+    ],
+    "packages/common/core/src/infras/gateway/index.ts": [],
+    "packages/common/core/src/infras/index.ts": [],
+    "packages/common/core/src/infras/micro/index.ts": [],
+    "packages/common/core/src/infras/micro/micro.config.ts": [
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/infras/micro/micro.controller.ts": [
+      "packages/common/core/src/exceptions/index.ts"
+    ],
+    "packages/common/core/src/infras/micro/micro.decorator.ts": [],
+    "packages/common/core/src/infras/micro/micro.factory.ts": [
+      "packages/common/core/src/base/index.ts",
+      "packages/common/core/src/infras/micro/micro.config.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/micro/micro.interceptor.ts": [
+      "packages/common/core/src/infras/micro/micro.metric.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/micro/micro.metric.ts": [],
+    "packages/common/core/src/infras/micro/micro.middleware.ts": [
+      "packages/common/core/src/infras/micro/micro.metric.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/infras/micro/micro.module.ts": [
+      "packages/common/core/src/infras/micro/micro.controller.ts",
+      "packages/common/core/src/infras/micro/micro.interceptor.ts",
+      "packages/common/core/src/infras/micro/micro.metric.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/interceptors/express.interceptor.ts": [
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/interceptors/index.ts": [],
+    "packages/common/core/src/models/__fixtures__/index.ts": [
+      "packages/common/core/src/models/base.request.ts"
+    ],
+    "packages/common/core/src/models/base.dto.ts": [],
+    "packages/common/core/src/models/base.express.ts": [
+      "packages/common/core/src/models/base.dto.ts",
+      "packages/common/core/src/models/base.request.ts",
+      "packages/common/core/src/models/utils/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/models/base.interface.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/models/base.mapper.ts": [
+      "packages/common/core/src/models/base.dto.ts"
+    ],
+    "packages/common/core/src/models/base.request.ts": [
+      "packages/common/core/src/models/base.dto.ts"
+    ],
+    "packages/common/core/src/models/base.response.ts": [
+      "packages/common/core/src/models/base.dto.ts"
+    ],
+    "packages/common/core/src/models/cqrs/index.ts": [],
+    "packages/common/core/src/models/cqrs/query.ts": [],
+    "packages/common/core/src/models/index.ts": [],
+    "packages/common/core/src/models/transporters/base.transport.ts": [],
+    "packages/common/core/src/models/transporters/grpc.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/index.ts": [
+      "packages/common/core/src/models/base.dto.ts",
+      "packages/common/core/src/models/transporters/base.transport.ts",
+      "packages/common/core/src/models/transporters/grpc.transport.ts",
+      "packages/common/core/src/models/transporters/kafka.transport.ts",
+      "packages/common/core/src/models/transporters/mqtt.transport.ts",
+      "packages/common/core/src/models/transporters/nats.transport.ts",
+      "packages/common/core/src/models/transporters/redis.transport.ts",
+      "packages/common/core/src/models/transporters/rmq.transport.ts",
+      "packages/common/core/src/models/transporters/tcp.transport.ts",
+      "packages/common/core/src/modules/index.ts"
+    ],
+    "packages/common/core/src/models/transporters/kafka.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/mqtt.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/nats.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/redis.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/rmq.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/transporters/tcp.transport.ts": [
+      "packages/common/core/src/models/transporters/base.transport.ts"
+    ],
+    "packages/common/core/src/models/utils/geo-ip.model.ts": [],
+    "packages/common/core/src/models/utils/index.ts": [],
+    "packages/common/core/src/models/utils/user-agent.model.ts": [],
+    "packages/common/core/src/modules/aws/aws.config.ts": [
+      "packages/common/core/src/client/client.config.ts"
+    ],
+    "packages/common/core/src/modules/aws/aws.helper.ts": [
+      "packages/common/core/src/client/client.config.ts",
+      "packages/common/core/src/modules/aws/aws.config.ts"
+    ],
+    "packages/common/core/src/modules/aws/index.ts": [],
+    "packages/common/core/src/modules/bull/bull.config.ts": [],
+    "packages/common/core/src/modules/bull/bull.module.ts": [
+      "packages/common/core/src/modules/bull/bull.config.ts",
+      "packages/common/core/src/modules/bull/bull.provider.ts",
+      "packages/common/core/src/modules/config/index.ts",
+      "packages/common/core/src/modules/logger/index.ts"
+    ],
+    "packages/common/core/src/modules/bull/bull.provider.ts": [
+      "packages/common/core/src/modules/bull/bull.config.ts"
+    ],
+    "packages/common/core/src/modules/bull/index.ts": [],
+    "packages/common/core/src/modules/config/config.factory.ts": [],
+    "packages/common/core/src/modules/config/config.module.ts": [
+      "packages/common/core/src/modules/config/config.service.ts"
+    ],
+    "packages/common/core/src/modules/config/config.service.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/config/config.factory.ts",
+      "packages/common/core/src/utils/index.ts"
+    ],
+    "packages/common/core/src/modules/config/index.ts": [],
+    "packages/common/core/src/modules/index.ts": [],
+    "packages/common/core/src/modules/jwt/__tests__/jwt.config.spec.ts": [
+      "packages/common/core/src/modules/config/index.ts",
+      "packages/common/core/src/modules/jwt/jwt.config.ts"
+    ],
+    "packages/common/core/src/modules/jwt/__tests__/jwt.service.spec.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/modules/config/index.ts",
+      "packages/common/core/src/modules/jwt/jwt.config.ts",
+      "packages/common/core/src/modules/jwt/jwt.model.ts",
+      "packages/common/core/src/modules/jwt/jwt.service.ts"
+    ],
+    "packages/common/core/src/modules/jwt/index.ts": [],
+    "packages/common/core/src/modules/jwt/jwt.config.ts": [],
+    "packages/common/core/src/modules/jwt/jwt.model.ts": [],
+    "packages/common/core/src/modules/jwt/jwt.module.ts": [
+      "packages/common/core/src/modules/jwt/jwt.service.ts"
+    ],
+    "packages/common/core/src/modules/jwt/jwt.service.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/modules/config/index.ts",
+      "packages/common/core/src/modules/jwt/jwt.config.ts",
+      "packages/common/core/src/modules/jwt/jwt.model.ts"
+    ],
+    "packages/common/core/src/modules/logger/index.ts": [],
+    "packages/common/core/src/modules/logger/log-socket.config.ts": [
+      "packages/common/core/src/modules/logger/log.enum.ts"
+    ],
+    "packages/common/core/src/modules/logger/log-transport.config.ts": [
+      "packages/common/core/src/modules/logger/log.enum.ts"
+    ],
+    "packages/common/core/src/modules/logger/log.config.ts": [
+      "packages/common/core/src/modules/logger/log-socket.config.ts",
+      "packages/common/core/src/modules/logger/log-transport.config.ts",
+      "packages/common/core/src/modules/logger/log.enum.ts"
+    ],
+    "packages/common/core/src/modules/logger/log.enum.ts": [],
+    "packages/common/core/src/modules/logger/log.factory.ts": [
+      "packages/common/core/src/modules/config/index.ts",
+      "packages/common/core/src/modules/logger/log-socket.config.ts",
+      "packages/common/core/src/modules/logger/log-transport.config.ts",
+      "packages/common/core/src/modules/logger/log.config.ts",
+      "packages/common/core/src/modules/logger/log.enum.ts"
+    ],
+    "packages/common/core/src/modules/metric/index.ts": [],
+    "packages/common/core/src/modules/metric/metric.controller.ts": [],
+    "packages/common/core/src/modules/metric/metric.module.ts": [
+      "packages/common/core/src/modules/metric/metric.controller.ts"
+    ],
+    "packages/common/core/src/modules/metric/metric.provider.ts": [],
+    "packages/common/core/src/modules/statics/index.ts": [],
+    "packages/common/core/src/modules/statics/static.factory.ts": [
+      "packages/common/core/src/infras/index.ts",
+      "packages/common/core/src/modules/bull/index.ts",
+      "packages/common/core/src/modules/config/index.ts"
+    ],
+    "packages/common/core/src/modules/statics/static.module.ts": [],
+    "packages/common/core/src/pipes/__tests__/file.pipe.spec.ts": [
+      "packages/common/core/src/models/index.ts",
+      "packages/common/core/src/pipes/file.pipe.ts"
+    ],
+    "packages/common/core/src/pipes/__tests__/validator.spec.ts": [
+      "packages/common/core/src/utils/index.ts"
+    ],
+    "packages/common/core/src/pipes/file.pipe.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/pipes/index.ts": [],
+    "packages/common/core/src/pipes/validation.pipe.ts": [
+      "packages/common/core/src/exceptions/index.ts",
+      "packages/common/core/src/utils/index.ts"
+    ],
+    "packages/common/core/src/utils/generator.ts": [
+      "packages/common/core/src/models/index.ts"
+    ],
+    "packages/common/core/src/utils/index.ts": [],
+    "packages/common/core/src/utils/validator.ts": [
+      "packages/common/core/src/exceptions/index.ts"
+    ],
+    "packages/common/core/templates/tsconfig.json": [],
+    "packages/common/core/tsconfig.doc.json": [],
+    "packages/common/core/tsconfig.json": [],
+    "packages/common/cron/CHANGELOG.md": [],
+    "packages/common/cron/package.json": [],
+    "packages/common/cron/README.md": [],
+    "packages/common/cron/src/crontabs/crontab.config.ts": [],
+    "packages/common/cron/src/crontabs/crontab.decorator.ts": [
+      "packages/common/cron/src/crontabs/models/index.ts"
+    ],
+    "packages/common/cron/src/crontabs/crontab.repo.ts": [
+      "packages/common/cron/src/crontabs/models/index.ts"
+    ],
+    "packages/common/cron/src/crontabs/crontab.scheduler.ts": [
+      "packages/common/cron/src/crontabs/crontab.config.ts",
+      "packages/common/cron/src/crontabs/crontab.repo.ts",
+      "packages/common/cron/src/crontabs/models/index.ts"
+    ],
+    "packages/common/cron/src/crontabs/index.ts": [],
+    "packages/common/cron/src/crontabs/models/crontab.constant.ts": [],
+    "packages/common/cron/src/crontabs/models/crontab.model.ts": [
+      "packages/common/cron/src/crontabs/models/crontab.constant.ts"
+    ],
+    "packages/common/cron/src/crontabs/models/crontab.timezone.ts": [],
+    "packages/common/cron/src/crontabs/models/index.ts": [],
+    "packages/common/cron/src/index.ts": [],
+    "packages/common/cron/src/jobs/index.ts": [],
+    "packages/common/cron/src/jobs/job.constant.ts": [],
+    "packages/common/cron/src/jobs/job.model.ts": [],
+    "packages/common/cron/src/jobs/job.queue.ts": [],
+    "packages/common/cron/src/jobs/job.repo.ts": [
+      "packages/common/cron/src/jobs/job.model.ts"
+    ],
+    "packages/common/cron/src/jobs/job.worker.config.ts": [
+      "packages/common/cron/src/jobs/job.constant.ts"
+    ],
+    "packages/common/cron/src/jobs/job.worker.ts": [
+      "packages/common/cron/src/jobs/job.model.ts",
+      "packages/common/cron/src/jobs/job.queue.ts",
+      "packages/common/cron/src/jobs/job.repo.ts",
+      "packages/common/cron/src/jobs/job.worker.config.ts"
+    ],
+    "packages/common/cron/src/jobs/processors/index.ts": [],
+    "packages/common/cron/src/jobs/processors/job.batch.processor.ts": [
+      "packages/common/cron/src/jobs/job.model.ts",
+      "packages/common/cron/src/jobs/job.queue.ts",
+      "packages/common/cron/src/jobs/processors/job.processor.ts"
+    ],
+    "packages/common/cron/src/jobs/processors/job.processor.config.ts": [],
+    "packages/common/cron/src/jobs/processors/job.processor.ts": [
+      "packages/common/cron/src/jobs/job.model.ts",
+      "packages/common/cron/src/jobs/processors/job.processor.config.ts"
+    ],
+    "packages/common/cron/tsconfig.json": [],
+    "packages/common/README.md": [],
+    "packages/common/types/.eslintignore": [],
+    "packages/common/types/.prettierignore": [],
+    "packages/common/types/config.schema.json": [],
+    "packages/common/types/config.yml": [],
+    "packages/common/types/package.json": [],
+    "packages/common/types/README.md": [],
+    "packages/common/types/src/joktec.config.ts": [],
+    "packages/common/types/src/main.ts": [
+      "packages/common/types/src/my-constructor-parser.ts",
+      "packages/common/types/src/my-function-formatter.ts"
+    ],
+    "packages/common/types/src/my-constructor-parser.ts": [],
+    "packages/common/types/src/my-function-formatter.ts": [],
+    "packages/common/types/tsconfig.json": [],
+    "packages/common/utils/CHANGELOG.md": [],
+    "packages/common/utils/package.json": [],
+    "packages/common/utils/README.md": [],
+    "packages/common/utils/src/constants/http.header.ts": [],
+    "packages/common/utils/src/constants/http.method.ts": [],
+    "packages/common/utils/src/constants/http.status.ts": [],
+    "packages/common/utils/src/constants/http.type.ts": [],
+    "packages/common/utils/src/constants/index.ts": [],
+    "packages/common/utils/src/helpers/__tests__/convert.spec.ts": [
+      "packages/common/utils/src/helpers/convert.ts"
+    ],
+    "packages/common/utils/src/helpers/__tests__/generator.spec.ts": [
+      "packages/common/utils/src/helpers/generator.ts"
+    ],
+    "packages/common/utils/src/helpers/__tests__/helper.spec.ts": [
+      "packages/common/utils/src/helpers/helper.ts"
+    ],
+    "packages/common/utils/src/helpers/__tests__/validator.spec.ts": [
+      "packages/common/utils/src/helpers/validator.ts"
+    ],
+    "packages/common/utils/src/helpers/convert.ts": [],
+    "packages/common/utils/src/helpers/encrypter.helper.ts": [],
+    "packages/common/utils/src/helpers/generator.ts": [],
+    "packages/common/utils/src/helpers/helper.ts": [],
+    "packages/common/utils/src/helpers/index.ts": [],
+    "packages/common/utils/src/helpers/validator.ts": [],
+    "packages/common/utils/src/index.ts": [],
+    "packages/common/utils/src/validators/index.ts": [],
+    "packages/common/utils/src/validators/is-2d-array.decorator.ts": [],
+    "packages/common/utils/src/validators/is-type.decorator.ts": [
+      "packages/common/utils/src/helpers/index.ts"
+    ],
+    "packages/common/utils/tsconfig.json": [],
+    "packages/databases/arango/CHANGELOG.md": [],
+    "packages/databases/arango/package.json": [],
+    "packages/databases/arango/README.md": [],
+    "packages/databases/arango/src/arango.client.ts": [
+      "packages/databases/arango/src/arango.config.ts",
+      "packages/databases/arango/src/models/index.ts"
+    ],
+    "packages/databases/arango/src/arango.config.ts": [],
+    "packages/databases/arango/src/arango.module.ts": [
+      "packages/databases/arango/src/arango.service.ts"
+    ],
+    "packages/databases/arango/src/arango.service.ts": [
+      "packages/databases/arango/src/arango.client.ts",
+      "packages/databases/arango/src/arango.config.ts",
+      "packages/databases/arango/src/models/index.ts"
+    ],
+    "packages/databases/arango/src/index.ts": [],
+    "packages/databases/arango/src/models/arango-document.ts": [],
+    "packages/databases/arango/src/models/arango-query.request.ts": [],
+    "packages/databases/arango/src/models/arango-query.response.ts": [],
+    "packages/databases/arango/src/models/index.ts": [],
+    "packages/databases/arango/tsconfig.json": [],
+    "packages/databases/bigquery/CHANGELOG.md": [],
+    "packages/databases/bigquery/package.json": [],
+    "packages/databases/bigquery/README.md": [],
+    "packages/databases/bigquery/src/bigquery.client.ts": [
+      "packages/databases/bigquery/src/bigquery.config.ts",
+      "packages/databases/bigquery/src/models/index.ts"
+    ],
+    "packages/databases/bigquery/src/bigquery.config.ts": [],
+    "packages/databases/bigquery/src/bigquery.module.ts": [
+      "packages/databases/bigquery/src/bigquery.service.ts"
+    ],
+    "packages/databases/bigquery/src/bigquery.service.ts": [
+      "packages/databases/bigquery/src/bigquery.client.ts",
+      "packages/databases/bigquery/src/bigquery.config.ts",
+      "packages/databases/bigquery/src/bigquery.utils.ts",
+      "packages/databases/bigquery/src/models/index.ts"
+    ],
+    "packages/databases/bigquery/src/bigquery.utils.ts": [
+      "packages/databases/bigquery/src/models/index.ts"
+    ],
+    "packages/databases/bigquery/src/index.ts": [],
+    "packages/databases/bigquery/src/models/bigquery.request.ts": [],
+    "packages/databases/bigquery/src/models/index.ts": [],
+    "packages/databases/bigquery/tsconfig.json": [],
+    "packages/databases/elastic/CHANGELOG.md": [],
+    "packages/databases/elastic/package.json": [],
+    "packages/databases/elastic/README.md": [],
+    "packages/databases/elastic/src/elastic.client.ts": [
+      "packages/databases/elastic/src/elastic.config.ts",
+      "packages/databases/elastic/src/models/index.ts"
+    ],
+    "packages/databases/elastic/src/elastic.config.ts": [],
+    "packages/databases/elastic/src/elastic.module.ts": [
+      "packages/databases/elastic/src/elastic.service.ts"
+    ],
+    "packages/databases/elastic/src/elastic.service.ts": [
+      "packages/databases/elastic/src/elastic.client.ts",
+      "packages/databases/elastic/src/elastic.config.ts",
+      "packages/databases/elastic/src/models/index.ts"
+    ],
+    "packages/databases/elastic/src/index.ts": [],
+    "packages/databases/elastic/src/models/elastic.request.ts": [],
+    "packages/databases/elastic/src/models/elastic.response.ts": [],
+    "packages/databases/elastic/src/models/index.ts": [],
+    "packages/databases/elastic/tsconfig.json": [],
+    "packages/databases/mongo/CHANGELOG.md": [],
+    "packages/databases/mongo/package.json": [],
+    "packages/databases/mongo/README.md": [],
+    "packages/databases/mongo/src/__tests__/mongo.helper.spec.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/models/index.ts"
+    ],
+    "packages/databases/mongo/src/__tests__/mongo.pipeline.spec.ts": [
+      "packages/databases/mongo/src/helpers/index.ts"
+    ],
+    "packages/databases/mongo/src/decorators/index.ts": [],
+    "packages/databases/mongo/src/decorators/prop.decorator.ts": [
+      "packages/databases/mongo/src/decorators/props/index.ts",
+      "packages/databases/mongo/src/models/index.ts",
+      "packages/databases/mongo/src/mongo.constant.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/array.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/bool.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/date.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/enum.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/index.ts": [],
+    "packages/databases/mongo/src/decorators/props/number.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/props/string.prop.ts": [
+      "packages/databases/mongo/src/decorators/prop.decorator.ts"
+    ],
+    "packages/databases/mongo/src/decorators/scheme.decorator.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/plugins/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/index.ts": [],
+    "packages/databases/mongo/src/helpers/mongo.helper.ts": [
+      "packages/databases/mongo/src/models/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/mongo.index.ts": [
+      "packages/databases/mongo/src/decorators/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/mongo.method.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/plugins/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/mongo.option.ts": [],
+    "packages/databases/mongo/src/helpers/mongo.pipeline.ts": [
+      "packages/databases/mongo/src/helpers/mongo.helper.ts",
+      "packages/databases/mongo/src/helpers/mongo.method.ts",
+      "packages/databases/mongo/src/models/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/mongo.plugin.ts": [
+      "packages/databases/mongo/src/decorators/index.ts",
+      "packages/databases/mongo/src/plugins/index.ts"
+    ],
+    "packages/databases/mongo/src/helpers/mongo.utils.ts": [],
+    "packages/databases/mongo/src/index.ts": [],
+    "packages/databases/mongo/src/models/index.ts": [],
+    "packages/databases/mongo/src/models/mongo.option.ts": [],
+    "packages/databases/mongo/src/models/mongo.request.ts": [
+      "packages/databases/mongo/src/models/mongo.schema.ts"
+    ],
+    "packages/databases/mongo/src/models/mongo.response.ts": [
+      "packages/databases/mongo/src/models/mongo.schema.ts"
+    ],
+    "packages/databases/mongo/src/models/mongo.schema.ts": [
+      "packages/databases/mongo/src/decorators/index.ts",
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/plugins/index.ts"
+    ],
+    "packages/databases/mongo/src/mongo.client.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/models/index.ts",
+      "packages/databases/mongo/src/mongo.config.ts"
+    ],
+    "packages/databases/mongo/src/mongo.config.ts": [],
+    "packages/databases/mongo/src/mongo.constant.ts": [],
+    "packages/databases/mongo/src/mongo.exception.ts": [],
+    "packages/databases/mongo/src/mongo.module.ts": [
+      "packages/databases/mongo/src/mongo.client.ts",
+      "packages/databases/mongo/src/mongo.constant.ts",
+      "packages/databases/mongo/src/mongo.service.ts"
+    ],
+    "packages/databases/mongo/src/mongo.repo.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/models/index.ts",
+      "packages/databases/mongo/src/mongo.client.ts",
+      "packages/databases/mongo/src/mongo.exception.ts",
+      "packages/databases/mongo/src/mongo.service.ts"
+    ],
+    "packages/databases/mongo/src/mongo.service.ts": [
+      "packages/databases/mongo/src/helpers/index.ts",
+      "packages/databases/mongo/src/models/index.ts",
+      "packages/databases/mongo/src/mongo.client.ts",
+      "packages/databases/mongo/src/mongo.config.ts",
+      "packages/databases/mongo/src/mongo.constant.ts"
+    ],
+    "packages/databases/mongo/src/plugins/index.ts": [],
+    "packages/databases/mongo/src/plugins/paranoid.plugin.ts": [
+      "packages/databases/mongo/src/models/index.ts"
+    ],
+    "packages/databases/mongo/src/plugins/strict-reference.plugin.ts": [],
+    "packages/databases/mongo/src/plugins/transform.plugin.ts": [
+      "packages/databases/mongo/src/helpers/index.ts"
+    ],
+    "packages/databases/mongo/tsconfig.json": [],
+    "packages/databases/mysql/CHANGELOG.md": [],
+    "packages/databases/mysql/package.json": [],
+    "packages/databases/mysql/README.md": [],
+    "packages/databases/mysql/src/decorators/index.ts": [],
+    "packages/databases/mysql/src/decorators/table.decorator.ts": [
+      "packages/databases/mysql/src/models/index.ts"
+    ],
+    "packages/databases/mysql/src/helpers/index.ts": [],
+    "packages/databases/mysql/src/helpers/mysql.finder.ts": [
+      "packages/databases/mysql/src/models/index.ts",
+      "packages/databases/mysql/src/mysql.exception.ts"
+    ],
+    "packages/databases/mysql/src/helpers/mysql.helper.ts": [
+      "packages/databases/mysql/src/models/index.ts"
+    ],
+    "packages/databases/mysql/src/helpers/mysql.utils.ts": [],
+    "packages/databases/mysql/src/index.ts": [],
+    "packages/databases/mysql/src/models/index.ts": [],
+    "packages/databases/mysql/src/models/mysql.model.ts": [],
+    "packages/databases/mysql/src/models/mysql.option.ts": [],
+    "packages/databases/mysql/src/models/mysql.request.ts": [
+      "packages/databases/mysql/src/models/mysql.model.ts"
+    ],
+    "packages/databases/mysql/src/models/mysql.response.ts": [],
+    "packages/databases/mysql/src/mysql.client.ts": [
+      "packages/databases/mysql/src/models/index.ts",
+      "packages/databases/mysql/src/mysql.config.ts"
+    ],
+    "packages/databases/mysql/src/mysql.config.ts": [],
+    "packages/databases/mysql/src/mysql.exception.ts": [],
+    "packages/databases/mysql/src/mysql.module.ts": [
+      "packages/databases/mysql/src/mysql.client.ts",
+      "packages/databases/mysql/src/mysql.service.ts"
+    ],
+    "packages/databases/mysql/src/mysql.repo.ts": [
+      "packages/databases/mysql/src/helpers/index.ts",
+      "packages/databases/mysql/src/models/index.ts",
+      "packages/databases/mysql/src/mysql.client.ts",
+      "packages/databases/mysql/src/mysql.exception.ts",
+      "packages/databases/mysql/src/mysql.service.ts"
+    ],
+    "packages/databases/mysql/src/mysql.service.ts": [
+      "packages/databases/mysql/src/models/index.ts",
+      "packages/databases/mysql/src/mysql.client.ts",
+      "packages/databases/mysql/src/mysql.config.ts",
+      "packages/databases/mysql/src/services/index.ts"
+    ],
+    "packages/databases/mysql/src/services/index.ts": [],
+    "packages/databases/mysql/src/services/mysql.benchmark.ts": [
+      "packages/databases/mysql/src/helpers/index.ts",
+      "packages/databases/mysql/src/mysql.config.ts",
+      "packages/databases/mysql/src/mysql.exception.ts"
+    ],
+    "packages/databases/mysql/src/services/mysql.strategy.ts": [],
+    "packages/databases/mysql/tsconfig.json": [],
+    "packages/databases/README.md": [],
+    "packages/integrations/firebase/CHANGELOG.md": [],
+    "packages/integrations/firebase/package.json": [],
+    "packages/integrations/firebase/README.md": [],
+    "packages/integrations/firebase/src/firebase.client.ts": [
+      "packages/integrations/firebase/src/firebase.config.ts",
+      "packages/integrations/firebase/src/models/index.ts"
+    ],
+    "packages/integrations/firebase/src/firebase.config.ts": [],
+    "packages/integrations/firebase/src/firebase.module.ts": [
+      "packages/integrations/firebase/src/firebase.service.ts"
+    ],
+    "packages/integrations/firebase/src/firebase.service.ts": [
+      "packages/integrations/firebase/src/firebase.client.ts",
+      "packages/integrations/firebase/src/firebase.config.ts",
+      "packages/integrations/firebase/src/models/index.ts"
+    ],
+    "packages/integrations/firebase/src/index.ts": [],
+    "packages/integrations/firebase/src/models/index.ts": [],
+    "packages/integrations/firebase/tsconfig.json": [],
+    "packages/integrations/gpt/package.json": [],
+    "packages/integrations/gpt/README.md": [],
+    "packages/integrations/gpt/src/gpt.client.ts": [
+      "packages/integrations/gpt/src/gpt.config.ts",
+      "packages/integrations/gpt/src/models/index.ts"
+    ],
+    "packages/integrations/gpt/src/gpt.config.ts": [],
+    "packages/integrations/gpt/src/gpt.exception.ts": [],
+    "packages/integrations/gpt/src/gpt.module.ts": [
+      "packages/integrations/gpt/src/gpt.service.ts"
+    ],
+    "packages/integrations/gpt/src/gpt.service.ts": [
+      "packages/integrations/gpt/src/gpt.client.ts",
+      "packages/integrations/gpt/src/gpt.config.ts",
+      "packages/integrations/gpt/src/models/index.ts"
+    ],
+    "packages/integrations/gpt/src/index.ts": [],
+    "packages/integrations/gpt/src/models/gpt.request.ts": [],
+    "packages/integrations/gpt/src/models/gpt.response.ts": [],
+    "packages/integrations/gpt/src/models/index.ts": [],
+    "packages/integrations/gpt/tsconfig.json": [],
+    "packages/integrations/README.md": [],
+    "packages/README.md": [],
+    "packages/tools/alert/CHANGELOG.md": [],
+    "packages/tools/alert/package.json": [],
+    "packages/tools/alert/README.md": [],
+    "packages/tools/alert/src/alert.client.ts": [
+      "packages/tools/alert/src/alert.config.ts",
+      "packages/tools/alert/src/models/index.ts"
+    ],
+    "packages/tools/alert/src/alert.config.ts": [],
+    "packages/tools/alert/src/alert.module.ts": [
+      "packages/tools/alert/src/alert.service.ts"
+    ],
+    "packages/tools/alert/src/alert.service.ts": [
+      "packages/tools/alert/src/alert.client.ts",
+      "packages/tools/alert/src/alert.config.ts",
+      "packages/tools/alert/src/alert.utils.ts",
+      "packages/tools/alert/src/models/index.ts"
+    ],
+    "packages/tools/alert/src/alert.utils.ts": [
+      "packages/tools/alert/src/models/index.ts"
+    ],
+    "packages/tools/alert/src/index.ts": [],
+    "packages/tools/alert/src/models/alert.request.ts": [],
+    "packages/tools/alert/src/models/alert.response.ts": [],
+    "packages/tools/alert/src/models/index.ts": [],
+    "packages/tools/alert/tsconfig.json": [],
+    "packages/tools/file/CHANGELOG.md": [],
+    "packages/tools/file/package.json": [],
+    "packages/tools/file/README.md": [],
+    "packages/tools/file/src/file.client.ts": [
+      "packages/tools/file/src/file.config.ts"
+    ],
+    "packages/tools/file/src/file.config.ts": [],
+    "packages/tools/file/src/file.metric.ts": [],
+    "packages/tools/file/src/file.module.ts": [
+      "packages/tools/file/src/file.metric.ts",
+      "packages/tools/file/src/file.service.ts"
+    ],
+    "packages/tools/file/src/file.service.ts": [
+      "packages/tools/file/src/file.client.ts",
+      "packages/tools/file/src/file.config.ts",
+      "packages/tools/file/src/file.metric.ts",
+      "packages/tools/file/src/file.utils.ts"
+    ],
+    "packages/tools/file/src/file.utils.ts": [],
+    "packages/tools/file/src/index.ts": [],
+    "packages/tools/file/tsconfig.json": [],
+    "packages/tools/http/CHANGELOG.md": [],
+    "packages/tools/http/package.json": [],
+    "packages/tools/http/README.md": [],
+    "packages/tools/http/src/http.client.ts": [
+      "packages/tools/http/src/http.config.ts",
+      "packages/tools/http/src/models/index.ts"
+    ],
+    "packages/tools/http/src/http.config.ts": [
+      "packages/tools/http/src/models/index.ts"
+    ],
+    "packages/tools/http/src/http.exception.ts": [],
+    "packages/tools/http/src/http.metric.ts": [
+      "packages/tools/http/src/http.config.ts",
+      "packages/tools/http/src/http.exception.ts"
+    ],
+    "packages/tools/http/src/http.module.ts": [
+      "packages/tools/http/src/http.metric.ts",
+      "packages/tools/http/src/http.service.ts"
+    ],
+    "packages/tools/http/src/http.service.ts": [
+      "packages/tools/http/src/http.client.ts",
+      "packages/tools/http/src/http.config.ts",
+      "packages/tools/http/src/http.metric.ts",
+      "packages/tools/http/src/models/index.ts"
+    ],
+    "packages/tools/http/src/index.ts": [],
+    "packages/tools/http/src/models/http.interface.ts": [],
+    "packages/tools/http/src/models/http.request.ts": [
+      "packages/tools/http/src/http.config.ts",
+      "packages/tools/http/src/models/http.response.ts"
+    ],
+    "packages/tools/http/src/models/http.response.ts": [],
+    "packages/tools/http/src/models/index.ts": [],
+    "packages/tools/http/tsconfig.json": [],
+    "packages/tools/README.md": [],
+    "README.md": [],
+    "tsconfig.doc.json": [],
+    "tsconfig.json": []
+  }
+}

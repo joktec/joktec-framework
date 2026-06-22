@@ -1,0 +1,106 @@
+# Contracts
+
+Baseline: current stable implementation.
+
+## REST Controller Contract Pattern
+
+`BaseController` creates standard REST endpoints for a DTO:
+
+- `GET /`: paginate/list
+- `POST /search`: search when `paginate.search` is enabled
+- `GET /:id`: detail
+- `POST /`: create
+- `PUT /:id`: update
+- `DELETE /:id`: delete
+
+Endpoint visibility and behavior are controlled through `IControllerProps`: `hidden`, `disable`, `guards`, `pipes`, `hooks`, `filters`, `decorators`, `useBearer`, and `useApiKey`.
+
+Create uses `BaseValidationPipe()`. Update uses `BaseValidationPipe({ skipMissingProperties: true })`.
+
+## Microservice Controller Contract Pattern
+
+`ClientController` creates message handlers:
+
+- `{ cmd: "Entity.paginate" }`
+- `{ cmd: "Entity.detail" }`
+- `{ cmd: "Entity.create" }`
+- `{ cmd: "Entity.update" }`
+- `{ cmd: "Entity.delete" }`
+
+Transport defaults to TCP unless set in `IMicroControllerProps`.
+
+## Gateway Implemented API Areas
+
+The gateway app implements feature controllers under:
+
+- `articles`
+- `artists`
+- `assets`
+- `auth`
+- `blocks`
+- `categories`
+- `comments`
+- `connections`
+- `contents`
+- `emotions`
+- `inquiries`
+- `notifications`
+- `otpLogs`
+- `posts`
+- `products`
+- `profile`
+- `reports`
+- `sessions`
+- `settings`
+- `tags`
+- `users`
+
+Many controllers extend `BaseController` and add custom routes.
+
+## Micro Implemented Message Areas
+
+The micro app implements controllers under:
+
+- `articles`
+- `artists`
+- `assets`
+- `crons`
+- `notifications`
+- `otpLogs`
+- `users`
+
+Article micro handlers include Redis `EventPattern` handlers for `Article.summary` and `Article.view`.
+
+## Repository Contract
+
+`IBaseRepository` defines:
+
+- `paginate`
+- `find`
+- `count`
+- `findOne`
+- `create`
+- `update`
+- `delete`
+- `restore`
+- `upsert`
+- `bulkUpsert`
+
+Mongo and MySQL repositories implement this shape with database-specific query parsing.
+
+## Client Contract
+
+`Client<Config, NativeClient>` exposes:
+
+- `getConfig(conId)`
+- `getClient(conId)`
+
+`AbstractClientService` adds lifecycle semantics but concrete packages own provider-specific methods.
+
+## Config Contract
+
+Config classes use validation decorators and are parsed through `ConfigService`. External client packages generally read config by service key, such as `mongo`, `mysql`, `http`, `kafka`, `rabbit`, `cacher`, and `bull`.
+
+## Generated Schema Contract
+
+`packages/common/types/config.schema.json` is a generated schema artifact. It must reflect the stable implementation only.
