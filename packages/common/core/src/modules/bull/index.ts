@@ -44,3 +44,4 @@ export {
 } from 'bullmq';
 export * from './bull.config';
 export * from './bull.module';
+export * from './bull.provider';

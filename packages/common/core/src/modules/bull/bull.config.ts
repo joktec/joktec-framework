@@ -23,10 +23,7 @@ export class BullBoardConfig {
   password?: string;
 
   constructor(props?: Partial<BullBoardConfig>) {
-    Object.assign(this, {
-      ...props,
-      queues: toArray<string>(props?.queues, { split: ',' }),
-    });
+    Object.assign(this, { ...props, queues: toArray<string>(props?.queues, { split: ',' }) });
     if (!this.path.startsWith('/')) this.path = `/${this.path}`;
   }
 }

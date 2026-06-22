@@ -2697,11 +2697,6 @@
     ejs "^3.1.10"
     express "^5.2.1"
 
-"@bull-board/nestjs@^6.19.0":
-  version "6.19.0"
-  resolved "https://registry.yarnpkg.com/@bull-board/nestjs/-/nestjs-6.19.0.tgz#84a281e6c702c5beb83fc9f28dca822ed4033b51"
-  integrity sha512-AL/wy89872rDoRUnCRSUSuOKk6/gBUkJSfT9ZgD0Y2ph9kpRSakvMvM6eJ0Lrlo1GV3ZWKdMSp1taiaYNnuF7w==
-
 "@bull-board/ui@6.19.0", "@bull-board/ui@^6.19.0":
   version "6.19.0"
   resolved "https://registry.yarnpkg.com/@bull-board/ui/-/ui-6.19.0.tgz#7d242ec7b2774a4f3e44cebf46e44b7e51549817"
