@@ -33,7 +33,8 @@ Most concrete packages depend only on `@joktec/core` and `@joktec/utils`. `@jokt
 ## Core Abstractions
 
 - `Application.bootstrap`: creates the Nest app and selects gateway or micro bootstrap from config.
-- `GatewayModule` / `GatewayFactory`: HTTP server, Swagger, static views, security middleware, and Bull Board.
+- `GatewayModule` / `GatewayFactory`: HTTP server, Swagger, static views, and security middleware.
+- `BullModule` / `BullBoardBootstrap`: BullMQ root configuration, queue registration delegates, and Bull Board dashboard mounting.
 - `MicroModule` / `MicroFactory`: microservice transport binding and optional HTTP listener.
 - `AbstractClientService`: common lifecycle for external clients with config validation, multi-connection `conId`, start/stop hooks, retry support.
 - `ClientConfig`: base config with `conId`, `inherit`, `initTimeout`, `retry`, and `debug`.

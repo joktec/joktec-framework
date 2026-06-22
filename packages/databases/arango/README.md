@@ -1,36 +1,35 @@
-<div align="center">
-  <h1>joktec-arango</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/arango
 
-## Installation
+ArangoDB database package for JokTec applications.
 
-Use the package manager to install @joktec/arango (if you have been published to npm registry)
+## What It Provides
+
+- `ArangoModule` global Nest module.
+- `ArangoService` built on `AbstractClientService`.
+- ArangoDB client interface, config, and models.
+
+## Install
 
 ```bash
 yarn add @joktec/arango
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/arango` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/arango/dist/utils';
+```ts
+import { ArangoModule, ArangoService } from '@joktec/arango';
 
-isDev();
+@Module({
+  imports: [ArangoModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `arango` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/arango
+yarn test --scope @joktec/arango
+```

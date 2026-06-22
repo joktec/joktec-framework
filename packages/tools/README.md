@@ -1,9 +1,25 @@
 # Tools
 
-This directory contains internal tools and utilities that support development and runtime functionality. These packages do not abstract external services, but rather offer helpful internal capabilities.
+Tools provide reusable utility services shared by apps and packages.
 
 ## Packages
 
-- `@joktec/alert`: Utility for sending alerts (Slack, Telegram, etc.) – currently in early development.
-- `@joktec/file`: Local file system utilities for reading, writing, deleting, and manipulating files.
-- `@joktec/http`: HTTP client wrapper built on top of Axios for making RESTful API calls.
+- `@joktec/alert`: Slack-compatible alert webhook client.
+- `@joktec/file`: file classification and local file helper service.
+- `@joktec/http`: Axios-backed HTTP client wrapper with retry, proxy, upload, and metric support.
+
+## Usage Pattern
+
+Tool packages expose global Nest modules and injectable services.
+
+```ts
+import { HttpModule, HttpService } from '@joktec/http';
+```
+
+## Development
+
+```bash
+yarn build --scope @joktec/alert
+yarn build --scope @joktec/file
+yarn build --scope @joktec/http
+```

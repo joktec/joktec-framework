@@ -1,36 +1,36 @@
-<div align="center">
-  <h1>joktec-file</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/file
 
-## Installation
+File utility package for JokTec applications.
 
-Use the package manager to install @joktec/file (if you have been published to npm registry)
+## What It Provides
+
+- `FileModule` global Nest module.
+- `FileService` built on `AbstractClientService`.
+- Magika-backed file classification config.
+- File client interface and metrics.
+
+## Install
 
 ```bash
 yarn add @joktec/file
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/file` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/file/dist/utils';
+```ts
+import { FileModule, FileService } from '@joktec/file';
 
-isDev();
+@Module({
+  imports: [FileModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `file` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/file
+yarn test --scope @joktec/file
+```

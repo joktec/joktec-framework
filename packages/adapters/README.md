@@ -1,10 +1,29 @@
 # Adapters
 
-This directory contains adapter-based packages that abstract communication with underlying protocols or systems. These adapters provide a unified interface while supporting multiple backends or clients.
+Adapters provide reusable wrappers around external capabilities that are not tied to one application domain.
 
 ## Packages
 
-- `@joktec/cacher`: Unified cache adapter supporting Redis, Memcached, and in-memory cache clients.
-- `@joktec/mailer`: Email sending abstraction using SMTP-compatible clients like Nodemailer.
-- `@joktec/notifier`: Notification delivery adapter supporting FCM, APN, and other push services.
-- `@joktec/storage`: Object storage adapter based on S3 protocol, compatible with AWS S3, MinIO, DigitalOcean Spaces, etc.
+- `@joktec/cacher`: cache service with local, Redis, and Memcached stores.
+- `@joktec/mailer`: SMTP/Nodemailer-based mail delivery.
+- `@joktec/notifier`: push notification delivery through supported notification providers.
+- `@joktec/storage`: S3-compatible object storage operations and metadata helpers.
+
+## Usage Pattern
+
+Adapter modules are global Nest modules. Import the module in the application and inject the matching service where needed.
+
+```ts
+import { CacheModule, CacheService } from '@joktec/cacher';
+```
+
+Most adapter services follow the `AbstractClientService` lifecycle from `@joktec/core`, including config parsing and `conId`-based multi-connection support.
+
+## Development
+
+```bash
+yarn build --scope @joktec/cacher
+yarn build --scope @joktec/mailer
+yarn build --scope @joktec/notifier
+yarn build --scope @joktec/storage
+```

@@ -39,7 +39,7 @@ log:
     enable: true
     target: pino-mongodb
     options:
-      uri: mongodb://localhost:27017/dispatch_log?authSource=admin
+      uri: mongodb://localhost:27017/dispatch_log?authSource=admin&replicaSet=rs0&directConnection=true&connectTimeoutMS=20000
       collection: logs
       mongoOptions:
         auth:
@@ -86,10 +86,19 @@ mongo:
     port: 27017
     username: root
     password: root
-    database: dispatch
-    autoIndex: true
-    params: authSource=admin&directConnection=true&connectTimeoutMS=20000
+    database: dispatch_db
     debug: false
+    autoIndex: true
+    # params: authSource=admin&replicaSet=rs0&directConnection=true&connectTimeoutMS=20000
+    options:
+      authSource: admin
+      replicaSet: rs0
+      directConnection: true
+      connectTimeoutMS: 30000
+      serverSelectionTimeoutMS: 5000
+      socketTimeoutMS: 45000
+      heartbeatFrequencyMS: 10000
+      retryWrites: true
   - conId: logConnection
     database: dispatch_log
 
@@ -98,8 +107,10 @@ mysql:
   port: 3306
   username: root
   password: root
-  database: dispatch
+  database: dispatch_db
   sync: true
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
   benchmark:
     enable: false
     all: true
@@ -128,7 +139,7 @@ http:
     statusCodesToRetry: [ [ 100, 199 ], [ 200, 201 ] ]
 
 firebase:
-  credential: './credentials/dispatch-d581a.json'
+  credential: './_credentials/firebase-cert-example.json'
 
 kafka:
   brokers: [ localhost:9092 ]

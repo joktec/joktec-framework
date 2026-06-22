@@ -15,7 +15,7 @@ Baseline: current stable implementation.
 - Entity: TypeORM model class used by MySQL repositories.
 - Crontab: Decorated scheduled method persisted and controlled by the cron scheduler.
 - JobWorker: Repository-backed batch worker abstraction.
-- Bull Board: Queue dashboard mounted by `GatewayFactory` when `bull.board.enable` is configured.
+- Bull Board: Queue dashboard mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and `bull.board.enable` is configured.
 - BaseController: Factory that creates standard REST CRUD endpoints.
 - ClientController: Factory that creates standard microservice CRUD message handlers.
 - BaseService: Generic service implementing CRUD methods over a repository.

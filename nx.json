@@ -55,5 +55,6 @@
         "format"
       ]
     }
-  }
+  },
+  "analytics": true
 }

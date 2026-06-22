@@ -1,36 +1,36 @@
-<div align="center">
-  <h1>joktec-elastic</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/elastic
 
-## Installation
+Elasticsearch-compatible database package for JokTec applications.
 
-Use the package manager to install @joktec/elastic (if you have been published to npm registry)
+## What It Provides
+
+- `ElasticModule` global Nest module.
+- `ElasticService` built on `AbstractClientService`.
+- `ElasticConfig`, client interface, and models.
+- HTTP-backed Elasticsearch request helpers through `@joktec/http`.
+
+## Install
 
 ```bash
 yarn add @joktec/elastic
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/elastic` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/elastic/dist/utils';
+```ts
+import { ElasticModule, ElasticService } from '@joktec/elastic';
 
-isDev();
+@Module({
+  imports: [ElasticModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `elastic` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/elastic
+yarn test --scope @joktec/elastic
+```

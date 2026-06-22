@@ -1,36 +1,35 @@
-<div align="center">
-  <h1>joktec-alert</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/alert
 
-## Installation
+Alert utility package for JokTec applications.
 
-Use the package manager to install @joktec/alert (if you have been published to npm registry)
+## What It Provides
+
+- `AlertModule` global Nest module.
+- `AlertService` built on `AbstractClientService`.
+- Slack-compatible webhook config, client interface, models, and alert utilities.
+
+## Install
 
 ```bash
 yarn add @joktec/alert
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/alert` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/alert/dist/utils';
+```ts
+import { AlertModule, AlertService } from '@joktec/alert';
 
-isDev();
+@Module({
+  imports: [AlertModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `alert` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/alert
+yarn test --scope @joktec/alert
+```

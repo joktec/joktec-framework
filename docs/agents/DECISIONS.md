@@ -14,7 +14,7 @@ Baseline: current stable implementation.
 - Keep database-specific repositories inside database packages.
 - Keep app-specific repository queries inside apps.
 - Use decorators and loaders for broker ergonomics.
-- Bull Board setup belongs to gateway bootstrap, not `BullModule`.
+- Bull root configuration and Bull Board setup belong to `BullModule`; gateway runtime remains responsible for HTTP bootstrap.
 
 ## Decision Records
 

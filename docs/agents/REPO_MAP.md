@@ -13,10 +13,14 @@ Baseline: current stable implementation.
 
 ## Apps
 
+`apps/AGENTS.md`
+- Shared agent guidance for runnable applications.
+
 `apps/example-gateway`
 - HTTP gateway example.
 - Entry: `src/main.ts`.
 - Composition: `src/app.module.ts`.
+- Local agent guide: `apps/example-gateway/AGENTS.md`.
 - Feature modules: `src/modules/*`.
 - Repositories: `src/repositories/*`.
 - Models: `src/models/*`.
@@ -26,14 +30,25 @@ Baseline: current stable implementation.
 - Microservice/worker example.
 - Entry: `src/main.ts`.
 - Composition: `src/app.module.ts`.
+- Local agent guide: `apps/example-micro/AGENTS.md`.
 - Feature modules: `src/modules/*`.
 - Shared module: `src/shared/shared.module.ts`.
 - Repositories and models mirror the gateway example.
 
 ## Packages
 
+Package-family agent guides:
+
+- `packages/common/AGENTS.md`
+- `packages/adapters/AGENTS.md`
+- `packages/brokers/AGENTS.md`
+- `packages/databases/AGENTS.md`
+- `packages/integrations/AGENTS.md`
+- `packages/tools/AGENTS.md`
+
 `packages/common/core`
 - Framework core: bootstrap, abstractions, config, logger, metrics, exceptions, transports, Bull, JWT, static assets.
+- Local agent guide: `packages/common/core/AGENTS.md`.
 
 `packages/common/utils`
 - Conversion helpers, generators, validators, class-validator/class-transformer exports.
@@ -43,6 +58,7 @@ Baseline: current stable implementation.
 
 `packages/common/types`
 - Type/config schema generation package.
+- Local agent guide: `packages/common/types/AGENTS.md`.
 
 `packages/adapters/cacher`
 - Cache service with local, Redis, and Memcached stores.

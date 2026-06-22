@@ -1,36 +1,35 @@
-<div align="center">
-  <h1>joktec-redis</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/cron
 
-## Installation
+Cron and worker primitives for JokTec microservices.
 
-Use the package manager to install @joktec/redis (if you have been published to npm registry)
+## What It Provides
 
-```bash
-yarn add @joktec/redis
-```
+- `Crontab` decorator for declaring cron metadata.
+- `CrontabScheduler` for loading, starting, stopping, refreshing, triggering, and recording cron jobs through app repositories.
+- Cron repository interfaces and cron history models.
+- `JobWorker` and job processor helpers.
+- Re-exports from `@nestjs/schedule` and `cron`.
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
+## Install
 
 ```bash
-  cd joktec-core
-  yarn link
+yarn add @joktec/cron
 ```
-
-Use `yarn link @joktec/redis` to link another package that you’d like to test into your current project.
 
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/redis/dist/utils';
+```ts
+import { CronExpression, Crontab, CrontabScheduler, CrontabTz } from '@joktec/cron';
 
-isDev();
+export class ArtistCronner {
+  @Crontab(CronExpression.EVERY_DAY_AT_MIDNIGHT, { timezone: CrontabTz['Asia/Seoul'] })
+  async syncArtists() {}
+}
 ```
 
-## Contributing
+## Development
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/cron
+yarn test --scope @joktec/cron
+```

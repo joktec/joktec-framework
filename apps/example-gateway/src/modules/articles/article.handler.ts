@@ -15,7 +15,12 @@ export class ArticleHandler {
     this.logService.setContext(ArticleHandler.name);
   }
 
-  @KafkaConsume('kafka.topics.testTopic', 'joktec', { useEnv: true }, DEFAULT_CON_ID)
+  @KafkaConsume(
+    'kafka.topics.testTopic',
+    'joktec',
+    { useEnv: true, config: { allowAutoTopicCreation: true } },
+    DEFAULT_CON_ID,
+  )
   async testKafka(msg: KafkaEachMessage) {
     this.logService.info('testKafka data: %j', { ...msg, message: msg.message.value.toString() });
     await this.userRepo.find({});

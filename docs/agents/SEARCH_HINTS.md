@@ -15,6 +15,7 @@ rg -n "BaseController|ClientController|BaseService" packages/common/core/src
 ```bash
 rg -n "from '@joktec/" apps packages
 rg --files packages | rg '/src/index.ts$|package.json$'
+rg --files apps packages | rg 'AGENTS.md$'
 ```
 
 ## Runtime

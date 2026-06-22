@@ -23,12 +23,11 @@ Process signal, uncaught exception, and unhandled rejection handlers are registe
 - installs JSON and URL-encoded body parsers with `50mb` limits
 - installs configured global guards, pipes, interceptors, and filters
 - sets up Swagger when enabled
-- sets up Bull Board when `bull.board.enable` is true
 - sets static assets and HBS view engine when static config exists
 - applies CSRF, CORS, and Helmet when configured
 - listens on `gateway.port`
 
-Bull Board is mounted manually in `GatewayFactory` using `@bull-board/api`, `@bull-board/express`, and BullMQ `Queue`.
+Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and `bull.board.enable` is true.
 
 ## Microservice Runtime
 
@@ -85,4 +84,4 @@ Loaders resolve decorated service instances through Nest `ModuleRef` after modul
 - External clients require valid config sections.
 - Multiple connections use `conId`.
 - Gateway and micro modes are selected by config presence.
-- Stable docs must not assume in-progress BullModule changes are present.
+- Bull queues need `BullModule.forRoot(...)` before queue registration when the app expects configured Redis connection options to be used.

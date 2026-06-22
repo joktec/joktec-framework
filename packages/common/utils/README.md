@@ -1,36 +1,28 @@
-<div align="center">
-  <h1>joktec-utils</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/utils
 
-## Installation
+Low-level utility package used across JokTec packages.
 
-Use the package manager to install @joktec/utils (if you have been published to npm registry)
+## What It Provides
+
+- Shared constants.
+- Helper functions for values, classes, objects, strings, URLs, arrays, files, and runtime checks.
+- Validation decorators and validator helpers used by package config classes.
+
+## Install
 
 ```bash
 yarn add @joktec/utils
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/utils` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/utils/dist/utils';
-
-isDev();
+```ts
+import { isEmpty, joinUrl, toArray } from '@joktec/utils';
 ```
 
-## Contributing
+## Development
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/utils
+yarn test --scope @joktec/utils
+```

@@ -1,11 +1,30 @@
 # Databases
 
-This directory contains database-specific packages that encapsulate connection, schema, and query logic for different types of databases.
+Database packages provide reusable client, config, repository, decorator, and helper layers.
 
 ## Packages
 
-- `@joktec/arango`: ArangoDB database wrapper and helper utilities.
-- `@joktec/bigquery`: Google BigQuery integration and query handling.
-- `@joktec/elastic`: Elasticsearch client and index management.
-- `@joktec/mongo`: MongoDB (Mongoose/Typegoose) schema and model helpers.
-- `@joktec/mysql`: MySQL integration using TypeORM or Sequelize with extra decorators and repository helpers.
+- `@joktec/mongo`: MongoDB/Mongoose/Typegoose client and repository helpers.
+- `@joktec/mysql`: TypeORM-based SQL client and repository helpers.
+- `@joktec/arango`: ArangoDB client wrapper.
+- `@joktec/bigquery`: Google BigQuery client wrapper and helpers.
+- `@joktec/elastic`: Elasticsearch-compatible HTTP client wrapper.
+
+## Usage Pattern
+
+Apps register their own models or entities in app repository modules. Database packages provide reusable clients and base repositories, but do not own application schemas.
+
+```ts
+import { MongoModule, MongoRepo } from '@joktec/mongo';
+import { MysqlModule, MysqlRepo } from '@joktec/mysql';
+```
+
+## Development
+
+```bash
+yarn build --scope @joktec/mongo
+yarn build --scope @joktec/mysql
+yarn build --scope @joktec/arango
+yarn build --scope @joktec/bigquery
+yarn build --scope @joktec/elastic
+```

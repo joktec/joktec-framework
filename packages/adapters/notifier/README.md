@@ -1,36 +1,36 @@
-<div align="center">
-  <h1>joktec-storage</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/notifier
 
-## Installation
+Push notification adapter package for JokTec applications.
 
-Use the package manager to install @joktec/storage (if you have been published to npm registry)
+## What It Provides
 
-```bash
-yarn add @joktec/storage
-```
+- `NotifierModule` global Nest module.
+- `NotifierService` built on `AbstractClientService`.
+- Notification provider config for FCM, GCM, APN, ADM, WNS, and MPNS.
+- Notification payload and provider models.
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
+## Install
 
 ```bash
-  cd joktec-core
-  yarn link
+yarn add @joktec/notifier
 ```
-
-Use `yarn link @joktec/storage` to link another package that you’d like to test into your current project.
 
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/storage/dist/utils';
+```ts
+import { NotifierModule, NotifierService } from '@joktec/notifier';
 
-isDev();
+@Module({
+  imports: [NotifierModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `notifier` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/notifier
+yarn test --scope @joktec/notifier
+```

@@ -102,13 +102,13 @@ mailer:
       strict: true
 
 firebase:
-  credential: './credentials/dispatch-d581a.json'
+  credential: './_credentials/firebase-cert-example.json'
 
 notifier:
   isAlwaysUseFCM: true
   fcm:
     appName: dispatch-19582
-    credential: './credentials/dispatch-d581a.json'
+    credential: './_credentials/firebase-cert-example.json'
 
 kafka:
   brokers: [ localhost:9092 ]

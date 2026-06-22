@@ -1,36 +1,36 @@
-<div align="center">
-  <h1>joktec-storage</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/storage
 
-## Installation
+S3-compatible object storage adapter package for JokTec applications.
 
-Use the package manager to install @joktec/storage (if you have been published to npm registry)
+## What It Provides
+
+- `StorageModule` global Nest module.
+- `StorageService` built on `AbstractClientService`.
+- AWS/S3-compatible config, assume-role support, constants, utilities, and metrics.
+- Storage client interface and file metadata models.
+
+## Install
 
 ```bash
 yarn add @joktec/storage
 ```
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
-
-```bash
-  cd joktec-core
-  yarn link
-```
-
-Use `yarn link @joktec/storage` to link another package that you’d like to test into your current project.
-
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/storage/dist/utils';
+```ts
+import { StorageModule, StorageService } from '@joktec/storage';
 
-isDev();
+@Module({
+  imports: [StorageModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `storage` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/storage
+yarn test --scope @joktec/storage
+```

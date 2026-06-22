@@ -1,36 +1,36 @@
-<div align="center">
-  <h1>joktec-redis</h1>
-  <p>Core Libraries such as type definitions, api clients and utils serving for backend services and frontend services</p>
-</div>
+# @joktec/cacher
 
-## Installation
+Cache adapter package for JokTec applications.
 
-Use the package manager to install @joktec/redis (if you have been published to npm registry)
+## What It Provides
 
-```bash
-yarn add @joktec/redis
-```
+- `CacheModule` global Nest module.
+- `CacheService` built on `AbstractClientService`.
+- Config models for local, Redis, and Memcached cache stores.
+- Cache decorators, interceptors, utilities, and metrics.
 
-## Local Development
-For development, a package can be linked into another project. This is often useful to test out new features
+## Install
 
 ```bash
-  cd joktec-core
-  yarn link
+yarn add @joktec/cacher
 ```
-
-Use `yarn link @joktec/redis` to link another package that you’d like to test into your current project.
 
 ## Usage
 
-```javascript
-import { isDev } from '@joktec/redis/dist/utils';
+```ts
+import { CacheModule, CacheService } from '@joktec/cacher';
 
-isDev();
+@Module({
+  imports: [CacheModule],
+})
+export class AppModule {}
 ```
 
-## Contributing
+Configure the `cache` section in the application config. Multiple connections are selected with `conId`.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Development
 
-Please make sure to update tests as appropriate.
+```bash
+yarn build --scope @joktec/cacher
+yarn test --scope @joktec/cacher
+```
