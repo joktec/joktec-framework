@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { JwtConfig } from '../jwt.config';
 import { ConfigService } from '../../config';
 
@@ -16,12 +16,20 @@ describe('JwtConfig class', () => {
       expect(jwtConfig.expired).toEqual(props.expired);
     });
 
-    it('should create a new instance with values from ConfigService', () => {
+    it('should create a new instance with values parsed from ConfigService', () => {
+      const props = {
+        secretKey: 'parsed_secret_key',
+        refreshKey: 'parsed_refresh_key',
+        expired: '30 days',
+      };
       const configService = new ConfigService();
-      const jwtConfig = configService.parse(JwtConfig, 'guard');
-      expect(jwtConfig.secretKey).toEqual('$ecr3t_4ey');
-      expect(jwtConfig.refreshKey).toEqual('r3fre$h_4ey');
-      expect(jwtConfig.expired).toEqual('30 days');
+      jest.spyOn(configService, 'get').mockReturnValue(props);
+
+      const jwtConfig = configService.parse(JwtConfig, 'jwt');
+
+      expect(jwtConfig.secretKey).toEqual(props.secretKey);
+      expect(jwtConfig.refreshKey).toEqual(props.refreshKey);
+      expect(jwtConfig.expired).toEqual(props.expired);
     });
   });
 });

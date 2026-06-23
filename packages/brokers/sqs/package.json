@@ -68,6 +68,12 @@
       "**/*.{ts,js}",
       "!**/index.ts",
       "!**/*.{d,enum}.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@aws-sdk/client-sns$": "<rootDir>/__mocks__/@aws-sdk-client-sns.ts",
+      "^@aws-sdk/client-sqs$": "<rootDir>/__mocks__/@aws-sdk-client-sqs.ts",
+      "^slug$": "<rootDir>/../../../common/utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../../common/utils/src/__mocks__/uuid.ts"
+    }
   }
 }

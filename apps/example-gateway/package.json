@@ -30,6 +30,7 @@
     "dep:upgrade": "ncu -p yarn -f /^@joktec*/ -u",
     "deploy": "publish-helm --chart-dir ./k8s/chart",
     "test": "echo 'Test done.'",
+    "test:consumer": "cd ../.. && yarn test:consumer:db",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",

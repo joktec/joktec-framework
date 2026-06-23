@@ -1648,6 +1648,11 @@
   resolved "https://registry.yarnpkg.com/@gar/promise-retry/-/promise-retry-1.0.3.tgz#65e726428e794bc4453948e0a41e6de4215ce8b0"
   integrity sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA==
 
+"@golevelup/ts-jest@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@golevelup/ts-jest/-/ts-jest-3.0.0.tgz#3e25efad2cdd5b29f3ab10bbcb5f76d9cfc9f024"
+  integrity sha512-ei0cvUKrVv8cJBW6df54yeod8PyzR2LTYG6wJ1xm+213p7HnThw5ShQcRH0/hhhnXnJCLrpmJM7e6fkRjHUF1g==
+
 "@google-cloud/bigquery@^8.3.1":
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/@google-cloud/bigquery/-/bigquery-8.3.1.tgz#d32709faf7c4797d3b0b29a740c48a03d27efe5b"

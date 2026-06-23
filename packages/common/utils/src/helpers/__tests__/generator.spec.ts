@@ -23,8 +23,11 @@ describe('generateOTP function', () => {
     expect(otp).toMatch(/^[0-9]+$/);
   });
 
-  it('should throw error if length is negative', () => {
-    expect(() => generateOTP(-1)).toThrow();
+  it('should return a digit-only OTP using absolute length if length is negative', () => {
+    const otp = generateOTP(-1);
+
+    expect(otp).toHaveLength(1);
+    expect(otp).toMatch(/^[0-9]+$/);
   });
 });
 

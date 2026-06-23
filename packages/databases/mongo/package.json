@@ -68,6 +68,10 @@
     "transform": {
       "^.+\\.(t|s)s$": "ts-jest"
     },
+    "moduleNameMapper": {
+      "^slug$": "<rootDir>/../../../common/utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../../common/utils/src/__mocks__/uuid.ts"
+    },
     "coverageDirectory": "<rootDir>/../coverage/",
     "collectCoverageFrom": [
       "**/*.{ts,js}",

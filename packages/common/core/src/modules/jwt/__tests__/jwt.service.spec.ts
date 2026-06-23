@@ -1,6 +1,5 @@
-import { beforeEach, describe, expect, it } from '@jest/globals';
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { sleep } from '@joktec/utils';
-import { Test } from '@nestjs/testing';
 import { JwtService } from '../jwt.service';
 import { ConfigService } from '../../config';
 import { JwtPayload, JwtToken } from '../jwt.model';
@@ -13,14 +12,17 @@ describe('JwtService class', () => {
   let jwtService: JwtService;
   let jwtConfig: JwtConfig;
 
-  beforeEach(async () => {
-    const moduleRef = await Test.createTestingModule({
-      providers: [JwtService, ConfigService],
-    }).compile();
+  beforeEach(() => {
+    jwtConfig = new JwtConfig({
+      secretKey: 'unit_secret_key',
+      refreshKey: 'unit_refresh_key',
+      expired: '30 days',
+    });
+    configService = {
+      parseOrThrow: jest.fn().mockReturnValue(jwtConfig),
+    } as unknown as ConfigService;
 
-    configService = moduleRef.get<ConfigService>(ConfigService);
-    jwtService = moduleRef.get<JwtService>(JwtService);
-    jwtConfig = new JwtConfig(configService.get('guard'));
+    jwtService = new JwtService(configService);
   });
 
   describe('extractToken method', () => {

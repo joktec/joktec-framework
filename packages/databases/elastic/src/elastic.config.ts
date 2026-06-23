@@ -24,7 +24,7 @@ export class ElasticConfig extends HttpConfig {
       port: toInt(props?.port, 9200),
     });
     if (!this.baseURL) {
-      this.baseURL = `${props.protocol}://${props.host}:${props.port}`;
+      this.baseURL = `${this.protocol}://${this.host}:${this.port}`;
     }
   }
 }

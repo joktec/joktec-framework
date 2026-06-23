@@ -39,18 +39,18 @@ describe('FileFilter function', () => {
 
     FileFilter(options)(req, file, callback);
 
-    expect(callback).toHaveBeenCalledWith(new Error('INVALID_FILE_TYPE'), false);
+    expect(callback).toHaveBeenCalledWith(expect.objectContaining({ message: 'common.INVALID_FILE_TYPE' }), false);
   });
 
   it('should call the callback with an error if the file size exceeds the maximum allowed', () => {
-    const options = { maxSize: 1024 };
+    const options = { fileTypes: [HttpType.JPEG], maxSize: 1024 };
     const req = {} as ExpressRequest;
     const file = { mimetype: HttpType.JPEG, size: 2048 } as Express.Multer.File;
     const callback = jest.fn();
 
     FileFilter(options)(req, file, callback);
 
-    expect(callback).toHaveBeenCalledWith(new Error('INVALID_FILE_SIZE'), false);
+    expect(callback).toHaveBeenCalledWith(expect.objectContaining({ message: 'common.INVALID_FILE_SIZE' }), false);
   });
 
   it('should call the callback with no error if the file type and size are allowed', () => {

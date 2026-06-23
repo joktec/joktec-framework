@@ -3,11 +3,13 @@ import {
   flattenKeys,
   joinUrl,
   linkTransform,
-  nullKeysToObject,
   objectToQueryString,
+  nullKeysToObject,
   toArray,
   toBool,
+  toFloat,
   toInt,
+  toRoute,
   toSlugify,
 } from '../convert';
 
@@ -105,6 +107,21 @@ describe('toInt function', () => {
 
   it('should return the default value when no input value is provided', () => {
     expect(toInt(undefined, 42)).toEqual(42);
+  });
+});
+
+describe('toFloat function', () => {
+  it('should convert a decimal string to a float', () => {
+    expect(toFloat('10.75')).toEqual(10.75);
+  });
+
+  it('should convert boolean values to float values', () => {
+    expect(toFloat(true)).toEqual(1.0);
+    expect(toFloat(false)).toEqual(0.0);
+  });
+
+  it('should return the default value for invalid numeric strings', () => {
+    expect(toFloat('invalid', 9.5)).toEqual(9.5);
   });
 });
 
@@ -276,7 +293,38 @@ describe('joinUrl function', () => {
   });
 });
 
+describe('toRoute function', () => {
+  it('should return root route for empty path', () => {
+    expect(toRoute('')).toEqual('/');
+  });
+
+  it('should keep absolute and already-rooted paths unchanged', () => {
+    expect(toRoute('/articles')).toEqual('/articles');
+    expect(toRoute('https://example.com/articles')).toEqual('https://example.com/articles');
+  });
+
+  it('should prefix relative paths with slash', () => {
+    expect(toRoute('articles')).toEqual('/articles');
+  });
+});
+
 describe('nullKeysToObject function', () => {
+  it('should parse JSON strings before converting null values', () => {
+    const result = nullKeysToObject({
+      condition: '{"deletedAt":"null","status":"active"}',
+    });
+
+    expect(result).toEqual({
+      condition: { deletedAt: null, status: 'active' },
+    });
+  });
+
+  it('should omit string undefined values', () => {
+    const result = nullKeysToObject({ name: 'article', slug: 'undefined' });
+
+    expect(result).toEqual({ name: 'article' });
+  });
+
   it("should convert a nested object with 'null' values to null", () => {
     const obj = { b: 1, c: { d: 'null' } };
     const expected = { b: 1, c: { d: null } };

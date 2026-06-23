@@ -78,7 +78,14 @@
       "**/*.{ts,js}",
       "!**/index.ts",
       "!**/*.{d,enum}.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^axios-curlirize$": "<rootDir>/__mocks__/axios-curlirize.ts",
+      "^http-proxy-agent$": "<rootDir>/__mocks__/http-proxy-agent.ts",
+      "^https-proxy-agent$": "<rootDir>/__mocks__/https-proxy-agent.ts",
+      "^slug$": "<rootDir>/../../../common/utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../../common/utils/src/__mocks__/uuid.ts"
+    }
   },
   "gitHead": "5c13d4ee8ca290e9f0f98482f014c818faf98e42"
 }

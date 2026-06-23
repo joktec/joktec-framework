@@ -80,7 +80,11 @@
       "**/*.{ts,js}",
       "!**/index.ts",
       "!**/*.{d,enum}.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^slug$": "<rootDir>/../../utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../utils/src/__mocks__/uuid.ts"
+    }
   },
   "gitHead": "9fa0b61c10e5d0637d59214c05a11ae6c29a1ff5"
 }

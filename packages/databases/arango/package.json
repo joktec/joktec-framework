@@ -65,7 +65,12 @@
       "**/*.{ts,js}",
       "!**/index.ts",
       "!**/*.{d,enum}.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^arangojs$": "<rootDir>/__mocks__/arangojs.ts",
+      "^slug$": "<rootDir>/../../../common/utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../../common/utils/src/__mocks__/uuid.ts"
+    }
   },
   "gitHead": "5c13d4ee8ca290e9f0f98482f014c818faf98e42"
 }

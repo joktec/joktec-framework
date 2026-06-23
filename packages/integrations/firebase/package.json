@@ -66,7 +66,18 @@
       "**/*.{ts,js}",
       "!**/index.ts",
       "!**/*.{d,enum}.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^firebase-admin/app$": "<rootDir>/__mocks__/firebase-admin-app.ts",
+      "^firebase-admin/app-check$": "<rootDir>/__mocks__/firebase-admin-app-check.ts",
+      "^firebase-admin/auth$": "<rootDir>/__mocks__/firebase-admin-auth.ts",
+      "^firebase-admin/database$": "<rootDir>/__mocks__/firebase-admin-database.ts",
+      "^firebase-admin/firestore$": "<rootDir>/__mocks__/firebase-admin-firestore.ts",
+      "^firebase-admin/messaging$": "<rootDir>/__mocks__/firebase-admin-messaging.ts",
+      "^firebase-admin/storage$": "<rootDir>/__mocks__/firebase-admin-storage.ts",
+      "^slug$": "<rootDir>/../../../common/utils/src/__mocks__/slug.ts",
+      "^uuid$": "<rootDir>/../../../common/utils/src/__mocks__/uuid.ts"
+    }
   },
   "gitHead": "5c13d4ee8ca290e9f0f98482f014c818faf98e42"
 }

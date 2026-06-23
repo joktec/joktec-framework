@@ -241,8 +241,7 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
   async delete(cond: ID | ICondition<T>, opts: IMysqlOption<T> & { force?: boolean } = {}): Promise<T> {
     const entity = await this.findOne(cond, opts);
     if (!entity) return null;
-    const func: Function = opts?.force ? this.repository.remove : this.repository.softRemove;
-    const doc = await func(entity);
+    const doc = opts?.force ? await this.repository.remove(entity) : await this.repository.softRemove(entity);
     return this.transform(doc) as T;
   }
 
