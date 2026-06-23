@@ -18,6 +18,12 @@ yarn add -D @joktec/types
 
 The package is built as a tooling package. Its source reads `joktec.config.{js|ts}` with the local TypeScript config and generates a JSON schema for `JoktecConfig`.
 
+## Schema Generation Notes
+
+- The generator entrypoint uses `CompletedConfig` with `DEFAULT_CONFIG`.
+- Custom parser code should import `ts` from `ts-json-schema-generator` to avoid mismatched TypeScript node types.
+- `config.schema.json` is generated output. Schema diffs can reflect generator improvements such as clearer enums, union handling, or regex-format detection.
+
 ## Development
 
 ```bash

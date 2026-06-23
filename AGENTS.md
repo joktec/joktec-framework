@@ -35,3 +35,5 @@ Do not document unfinished, experimental, or unpublished work as implemented beh
 ## Document Sync
 
 Only run Document Sync when explicitly requested. During Document Sync, read `docs/agents/DOCUMENT_SYNC.md`, inspect code first, and update docs only when implementation truth changed.
+
+Keep `docs/agents/CHANGELOG.md` and package `CHANGELOG.md` files separate by audience and impact.

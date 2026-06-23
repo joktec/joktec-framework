@@ -11,10 +11,7 @@
   "main": "dist/index",
   "types": "dist/index",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "templates"
-  ],
+  "files": ["dist", "templates"],
   "bin": {
     "client-generator": "bin/client-generator.sh",
     "publish-docker": "bin/publish-docker.sh",
@@ -24,12 +21,7 @@
     "access": "public",
     "provenance": false
   },
-  "keywords": [
-    "nestjs",
-    "restful",
-    "graphql",
-    "core"
-  ],
+  "keywords": ["nestjs", "restful", "graphql", "core"],
   "scripts": {
     "clean": "rimraf -rf dist",
     "purge": "rimraf -rf dist node_modules",
@@ -80,7 +72,7 @@
     "express-basic-auth": "^1.2.1",
     "geoip-lite": "^1.4.10",
     "glob": "^13.0.6",
-    "graphql": "^17.0.1",
+    "graphql": "^16.14.2",
     "hbs": "^4.2.1",
     "helmet": "^8.2.0",
     "js-yaml": "5.1.0",
@@ -103,7 +95,6 @@
     "useragent": "^2.3.0"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.2.1",
     "@types/async-retry": "^1.4.9",
     "@types/csurf": "^1.11.5",
     "@types/express": "^5.0.6",
@@ -119,10 +110,7 @@
     "@types/useragent": "^2.3.4"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write --ignore-path ./.prettierignore",
-      "eslint --fix"
-    ]
+    "*.ts": ["prettier --write --ignore-path ./.prettierignore", "eslint --fix"]
   },
   "config": {
     "commitizen": {
@@ -137,11 +125,7 @@
       "^.+\\.(t|s)s$": "ts-jest"
     },
     "coverageDirectory": "<rootDir>/../coverage/",
-    "collectCoverageFrom": [
-      "**/*.{ts,js}",
-      "!**/index.ts",
-      "!**/*.{d,enum}.ts"
-    ]
+    "collectCoverageFrom": ["**/*.{ts,js}", "!**/index.ts", "!**/*.{d,enum}.ts"]
   },
   "compodoc": {
     "name": "JokTec - Core library",

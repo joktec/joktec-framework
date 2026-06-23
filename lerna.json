@@ -1,8 +1,5 @@
 {
-  "packages": [
-    "packages/*/*",
-    "apps/*"
-  ],
+  "packages": ["packages/*/*", "apps/*"],
   "command": {
     "publish": {
       "ignoreChanges": [
@@ -17,21 +14,69 @@
       "message": "ci(release): publish",
       "registry": "https://registry.npmjs.org/",
       "conventionalCommits": true,
-      "version": {
-        "allowBranch": [
-          "main",
-          "master",
-          "staging",
-          "develop",
-          "hotfix/*"
+      "changelogPreset": {
+        "name": "conventionalcommits",
+        "types": [
+          { "type": "feat", "section": "Features" },
+          { "type": "fix", "section": "Bug Fixes" },
+          { "type": "perf", "section": "Performance" },
+          { "type": "refactor", "section": "Refactoring" },
+          { "type": "build", "section": "Dependencies and Build" },
+          { "type": "chore", "section": "Maintenance" },
+          { "type": "revert", "section": "Reverts" },
+          { "type": "ci", "hidden": true },
+          { "type": "docs", "hidden": true },
+          { "type": "impl", "hidden": true },
+          { "type": "style", "hidden": true },
+          { "type": "test", "hidden": true }
         ]
+      },
+      "version": {
+        "allowBranch": ["main", "master", "staging", "develop", "hotfix/*"],
+        "changelogPreset": {
+          "name": "conventionalcommits",
+          "types": [
+            { "type": "feat", "section": "Features" },
+            { "type": "fix", "section": "Bug Fixes" },
+            { "type": "perf", "section": "Performance" },
+            { "type": "refactor", "section": "Refactoring" },
+            { "type": "build", "section": "Dependencies and Build" },
+            { "type": "chore", "section": "Maintenance" },
+            { "type": "revert", "section": "Reverts" },
+            { "type": "ci", "hidden": true },
+            { "type": "docs", "hidden": true },
+            { "type": "impl", "hidden": true },
+            { "type": "style", "hidden": true },
+            { "type": "test", "hidden": true }
+          ]
+        },
+        "conventionalCommits": true
       }
+    },
+    "version": {
+      "allowBranch": ["main", "master", "staging", "develop", "hotfix/*"],
+      "changelogPreset": {
+        "name": "conventionalcommits",
+        "types": [
+          { "type": "feat", "section": "Features" },
+          { "type": "fix", "section": "Bug Fixes" },
+          { "type": "perf", "section": "Performance" },
+          { "type": "refactor", "section": "Refactoring" },
+          { "type": "build", "section": "Dependencies and Build" },
+          { "type": "chore", "section": "Maintenance" },
+          { "type": "revert", "section": "Reverts" },
+          { "type": "ci", "hidden": true },
+          { "type": "docs", "hidden": true },
+          { "type": "impl", "hidden": true },
+          { "type": "style", "hidden": true },
+          { "type": "test", "hidden": true }
+        ]
+      },
+      "conventionalCommits": true
     },
     "bootstrap": {
       "ignore": "component-*",
-      "npmClientArgs": [
-        "--no-package-lock"
-      ]
+      "npmClientArgs": ["--no-package-lock"]
     }
   },
   "version": "independent",

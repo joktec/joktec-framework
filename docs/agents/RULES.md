@@ -40,3 +40,16 @@ Use the package scripts already present in the repository:
 - `yarn madge` where circular dependency checks are relevant
 
 For commits, follow the repository's commit convention and do not bypass hooks.
+
+## Commit And Changelog Rules
+
+- Use `yarn commit` for the `cz-git` conventional commit prompt.
+- Manual commits must still pass commitlint through the Husky `commit-msg` hook.
+- Husky hooks use the v9+ direct-command format; do not re-add the deprecated `husky.sh` shim.
+- Use package, package-family, app, or repo scopes from the approved commitlint scope list.
+- `feat`, `fix`, `perf`, `refactor`, `impl`, and `build` commits must include a scope.
+- Avoid generic subjects such as `update`, `upgrade package`, `fix bug`, or `impl: update`.
+- Split unrelated scopes into separate commits and use partial staging when one file contains unrelated hunks.
+- Package changelogs are generated from conventional commits during Lerna release.
+- `docs/agents/CHANGELOG.md` is manually curated for meaningful agent-facing framework, policy, and documentation impact.
+- Do not manually edit package `CHANGELOG.md` during normal coding or Document Sync unless correcting release documentation before publish.

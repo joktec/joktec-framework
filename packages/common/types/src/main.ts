@@ -1,9 +1,17 @@
 import fs from 'fs';
-import { Config, createFormatter, createParser, createProgram, SchemaGenerator } from 'ts-json-schema-generator';
+import {
+  CompletedConfig,
+  createFormatter,
+  createParser,
+  createProgram,
+  DEFAULT_CONFIG,
+  SchemaGenerator,
+} from 'ts-json-schema-generator';
 import { MyConstructorParser } from './my-constructor-parser';
 import { MyFunctionTypeFormatter } from './my-function-formatter';
 
-const config: Config = {
+const config: CompletedConfig = {
+  ...DEFAULT_CONFIG,
   path: 'joktec.config.{js|ts}',
   tsconfig: './tsconfig.json',
   type: 'JoktecConfig',

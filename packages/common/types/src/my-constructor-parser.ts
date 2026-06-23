@@ -1,5 +1,4 @@
-import { BaseType, Context, ReferenceType, StringType, SubNodeParser } from 'ts-json-schema-generator';
-import ts from 'typescript';
+import { BaseType, Context, ReferenceType, StringType, SubNodeParser, ts } from 'ts-json-schema-generator';
 
 export class MyConstructorParser implements SubNodeParser {
   supportsNode(node: ts.Node): boolean {

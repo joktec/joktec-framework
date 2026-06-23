@@ -8,19 +8,11 @@
   "engines": {
     "node": ">=14"
   },
-  "workspaces": [
-    "packages/*/*",
-    "apps/*"
-  ],
+  "workspaces": ["packages/*/*", "apps/*"],
   "publishConfig": {
     "provenance": false
   },
-  "keywords": [
-    "microservices",
-    "monorepo",
-    "lerna",
-    "nx"
-  ],
+  "keywords": ["microservices", "monorepo", "lerna", "nx"],
   "scripts": {
     "postinstall": "husky",
     "ls": "lerna ls -la && nx print-affected",
@@ -38,6 +30,7 @@
     "purge": "lerna run purge && rimraf -rf ./node_modules",
     "dep:upgrade": "lerna run dep:upgrade",
     "graph": "nx affected:graph",
+    "commit": "czg",
     "release": "lerna version",
     "publish:patch": "lerna publish patch --exact --no-private --yes",
     "publish:minor": "lerna publish minor --exact --no-private --yes",
@@ -57,7 +50,8 @@
     "@types/node": "^26.0.0",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
-    "cz-conventional-changelog": "^3.3.0",
+    "cz-git": "^1.13.1",
+    "czg": "^1.13.1",
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
@@ -80,11 +74,11 @@
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.3"
   },
   "config": {
     "commitizen": {
-      "path": "**/node_modules/cz-conventional-changelog"
+      "path": "node_modules/cz-git"
     }
   }
 }

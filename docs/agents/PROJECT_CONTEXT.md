@@ -29,4 +29,4 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 
 ## Current Documentation Version
 
-This is the first version of the Agent Documentation system. `CHANGELOG.md` records only the documented stable baseline.
+Agent Docs use `docs/agents/CHANGELOG.md` for meaningful agent-facing history. Package release history belongs in each package `CHANGELOG.md`.

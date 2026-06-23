@@ -60438,7 +60438,15 @@
             {
               "type": "array",
               "items": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "string",
+                    "format": "regex"
+                  }
+                ]
               }
             },
             {
@@ -62351,22 +62359,18 @@
             "mechanism",
             "oauthBearerProvider"
           ]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "mechanism": {
-              "$ref": "#/definitions/SASLMechanism"
-            }
-          },
-          "required": [
-            "mechanism"
-          ]
         }
       ]
     },
     "SASLMechanism": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "plain",
+        "scram-sha-256",
+        "scram-sha-512",
+        "aws",
+        "oauthbearer"
+      ]
     },
     "logLevel": {
       "type": "number",
