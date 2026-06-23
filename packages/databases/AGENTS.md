@@ -25,6 +25,7 @@ Database packages expose client modules, services, config classes, repositories,
 - Services extend `AbstractClientService`.
 - Mongo and MySQL provide repository base classes.
 - Mongo and MySQL modules expose `forRoot(...)` to register app models/entities.
+- Mongo and MySQL execute cursor pagination as storage-specific keyset pagination while reusing `@joktec/core` request and response contracts.
 - Config classes define the accepted runtime config shape.
 
 ## Verification

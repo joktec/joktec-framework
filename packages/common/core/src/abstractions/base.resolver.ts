@@ -2,7 +2,14 @@ import { toPlural, toSingular } from '@joktec/utils';
 import { Inject, OnModuleInit, Type } from '@nestjs/common';
 import { Args, Mutation, ObjectType, Query } from '@nestjs/graphql';
 import { startCase } from 'lodash';
-import { Constructor, Entity, IBaseController, IBaseRequest, PagePaginationResponse } from '../models';
+import {
+  Constructor,
+  Entity,
+  IBaseController,
+  IBaseRequest,
+  IPaginationResponse,
+  PagePaginationResponse,
+} from '../models';
 import { ConfigService, LogService } from '../modules';
 import { BaseService } from './base.service';
 
@@ -35,7 +42,7 @@ export const BaseResolver = <T extends Entity, ID>(props: IBaseResolverProps<T>)
     @Query(() => PaginationDto, { name: `list${namePlural}` })
     async paginate(
       @Args('query', { type: () => PaginationDto, nullable: true, defaultValue: {} }) req: IBaseRequest<T>,
-    ): Promise<PaginationDto> {
+    ): Promise<IPaginationResponse<T>> {
       return this.service.paginate(req);
     }
 

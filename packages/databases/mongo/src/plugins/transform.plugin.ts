@@ -31,11 +31,10 @@ function cleanUpDocument(doc: any, paths: string[]) {
 export const TransformPlugin = (schema: Schema) => {
   const schemaAny = schema as any;
 
-  schemaAny.pre('save', function (next) {
+  schemaAny.pre('save', function () {
     ['_id', '__v', 'createdAt', 'updatedAt', '__t'].map(path => {
       if (this[path]) delete this[path];
     });
-    next();
   });
 
   schemaAny.pre(
@@ -52,7 +51,7 @@ export const TransformPlugin = (schema: Schema) => {
       'deleteMany',
     ],
     { document: false, query: true },
-    function (next) {
+    function () {
       // Intercept options
       if (this.getOptions()) {
         const options = this.getOptions();
@@ -85,12 +84,11 @@ export const TransformPlugin = (schema: Schema) => {
           this.populate(populates);
         });
       }
-      next();
     },
   );
 
-  schemaAny.pre('aggregate', function (next, opts) {
-    const version = opts?.version || this.options?.version || '5.0.0';
+  schemaAny.pre('aggregate', function () {
+    const version = this.options?.version || '5.0.0';
     const mongoVersion = version.split('.').map(Number);
 
     const pipelines: PipelineStage[] = [];
@@ -117,13 +115,11 @@ export const TransformPlugin = (schema: Schema) => {
       }
       this.pipeline().push(pipeline);
     });
-    next();
   });
 
-  schemaAny.post(/^find/, function (res, next) {
+  schemaAny.post(/^find/, function () {
     // const paths = Object.keys(this.model.schema.paths);
     // if (isArray(res)) res.map(doc => cleanUpDocument(doc, paths));
     // else cleanUpDocument(res, paths);
-    next();
   });
 };

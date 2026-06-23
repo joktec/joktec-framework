@@ -51,7 +51,10 @@ import {
   IBaseController,
   IBaseRequest,
   IPaginationResponse,
+  OffsetPaginationResponse,
+  PaginationMode,
   PagePaginationResponse,
+  CursorPaginationResponse,
 } from '../models';
 import { ConfigService, LogService } from '../modules';
 import { BaseValidationPipe } from '../pipes';
@@ -78,6 +81,7 @@ export interface IControllerProps<T extends Entity> extends IEndpointProps {
     updatedDto?: Constructor<DeepPartial<T>> | Clazz;
     paginationDto?: Constructor<IPaginationResponse<T>>;
   };
+  paginationMode?: PaginationMode;
   tag?: string;
   paginate?: IEndpointProps & { search?: boolean } & IApiFilterQueryOptions;
   detail?: IEndpointProps;
@@ -107,10 +111,26 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
   @ApiSchema({ name: `${nameSingular}QueryDto` })
   class QueryDto extends queryDto {}
 
-  @ApiSchema({ name: `${nameSingular}Pagination` })
-  class DefaultPaginationDto extends PagePaginationResponse<T>(props.dto) {}
+  const paginationMode = props.paginationMode || 'page';
+  const createDefaultPaginationDto = (mode: PaginationMode): Constructor<IPaginationResponse<T>> => {
+    if (mode === 'offset') {
+      @ApiSchema({ name: `${nameSingular}Pagination` })
+      class DefaultPaginationDto extends OffsetPaginationResponse<T>(props.dto) {}
+      return DefaultPaginationDto;
+    }
 
-  const PaginationDto: Constructor<IPaginationResponse<T>> = props.customDto?.paginationDto || DefaultPaginationDto;
+    if (mode === 'cursor') {
+      @ApiSchema({ name: `${nameSingular}Pagination` })
+      class DefaultPaginationDto extends CursorPaginationResponse<T>(props.dto) {}
+      return DefaultPaginationDto;
+    }
+
+    @ApiSchema({ name: `${nameSingular}Pagination` })
+    class DefaultPaginationDto extends PagePaginationResponse<T>(props.dto) {}
+    return DefaultPaginationDto;
+  };
+  const PaginationDto: Constructor<IPaginationResponse<T>> =
+    props.customDto?.paginationDto || createDefaultPaginationDto(paginationMode);
 
   @ApiSchema({ name: `${nameSingular}CreateDto` })
   class CreateDto extends createDto {}
@@ -145,7 +165,7 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
 
     @Get('/')
     @ApiOperation({ summary: `List ${namePlural}` })
-    @ApiFilterQuery({ ...props.paginate })
+    @ApiFilterQuery({ ...props.paginate, paginationMode })
     @ApiOkResponse({ type: PaginationDto })
     @ApiExcludeEndpoint(isHideEndpoint(props.paginate))
     @ApiNotAllowedEndpoint(toBool(props.paginate?.disable, false))

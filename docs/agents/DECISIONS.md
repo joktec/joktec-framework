@@ -11,6 +11,8 @@ Baseline: current stable implementation.
 - Use config-driven runtime behavior.
 - Use `conId` for multi-connection clients.
 - Use factory-generated CRUD controllers and microservice controllers for standard resource patterns.
+- Use a shared page/offset/cursor pagination contract in `@joktec/core`.
+- Keep cursor pagination storage execution inside database repositories.
 - Keep database-specific repositories inside database packages.
 - Keep app-specific repository queries inside apps.
 - Use decorators and loaders for broker ergonomics.
@@ -24,3 +26,4 @@ Baseline: current stable implementation.
 - `docs/agents/decisions/0002-config-driven-client-lifecycle.md`
 - `docs/agents/decisions/0003-generated-crud-contracts.md`
 - `docs/agents/decisions/0004-release-changelog-document-sync-policy.md`
+- `docs/agents/decisions/0005-pagination-contracts-and-cursor-keyset.md`

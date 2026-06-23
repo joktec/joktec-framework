@@ -1,4 +1,4 @@
-import { Entity, IDateType, IPrimaryType, IZeroType, KeyOf } from './base.dto';
+import { Entity, IDateType, IPrimaryType, IZeroType, KeyOf, Listable } from './base.dto';
 
 /** A union of primitive data types that are allowed in a MongoDB query. */
 export type IDataType = IZeroType | IPrimaryType | IDateType;
@@ -68,6 +68,8 @@ export interface IBaseRequest<T extends Entity = {}> {
   page?: number;
   limit?: number;
   offset?: number;
+  cursor?: string;
+  cursorKey?: Listable<KeyOf<T>>;
   sort?: ISort<T>;
   near?: INear<T>;
   populate?: IPopulate<T>;

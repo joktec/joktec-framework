@@ -41,7 +41,19 @@ export const ApiTextSearch = (fieldName: string = 'keyword'): MethodDecorator =>
   };
 };
 
-export const ApiPagination = (mode: 'page' | 'offset'): MethodDecorator => {
+export const ApiPagination = (mode: NonNullable<IApiFilterQueryOptions['paginationMode']>): MethodDecorator => {
+  if (mode === 'cursor') {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+      ApiQuery({ name: 'cursor', required: false, type: String, example: 'xxxx' })(target, propertyKey, descriptor);
+      ApiQuery({ name: 'cursorKey', required: false, type: String, example: 'createdAt,id' })(
+        target,
+        propertyKey,
+        descriptor,
+      );
+      ApiQuery({ name: 'limit', required: false, type: Number, example: 10 })(target, propertyKey, descriptor);
+    };
+  }
+
   if (mode === 'offset') {
     return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       ApiQuery({ name: 'limit', required: false, type: Number, example: 10 })(target, propertyKey, descriptor);

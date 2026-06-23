@@ -37,6 +37,8 @@ rg -n "ConsumerLoader|Producer|Publisher" packages/brokers
 ```bash
 rg -n "MongoRepo|MysqlRepo|IBaseRepository" apps packages
 rg -n "MongoModule.forRoot|MysqlModule.forRoot" apps packages
+rg -n "CursorPagination|cursorKey|paginateByCursor|paginationMode" packages apps
+rg -n "PagePaginationResponse|OffsetPaginationResponse|CursorPaginationResponse" packages/common/core/src
 ```
 
 ## Gateway API

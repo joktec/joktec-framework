@@ -11,6 +11,7 @@ import {
   Get,
   IControllerProps,
   Inject,
+  IPaginationResponse,
   LoggedUser,
   Patch,
   Post,
@@ -27,11 +28,12 @@ import { ArticleService } from './article.service';
 import { ExistArticleInterceptor } from './hooks';
 import { ArticleCreateDto, ArticleShareDto, ArticleViewDto } from './models';
 import { ArticleFilterCardDto } from './models/article-filter.dto';
-import { ArticlePaginationDto, UserLikedPaginationDto } from './models/article-response.dto';
+import { ArticlePaginationDto, UserLiked, UserLikedPaginationDto } from './models/article-response.dto';
 
 const props: IControllerProps<Article> = {
   dto: Article,
   customDto: { paginationDto: ArticlePaginationDto },
+  paginationMode: 'offset',
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
   create: { disable: true },
@@ -53,7 +55,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
   async homeFeed(
     @QueryParam() query: IMongoRequest<Article>,
     @LoggedUser() loggedUser: User,
-  ): Promise<ArticlePaginationDto> {
+  ): Promise<IPaginationResponse<Article>> {
     const res = await this.articleService.homeFeed(query, loggedUser, true);
     if (query.keyword && query.page === 1) {
       const eventData = { userId: loggedUser._id, keyword: query.keyword, type: ArticleType.FEED };
@@ -68,7 +70,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
   async photoCard(
     @QueryParam() query: ArticleFilterCardDto,
     @LoggedUser() loggedUser: User,
-  ): Promise<ArticlePaginationDto> {
+  ): Promise<IPaginationResponse<Article>> {
     const res = await this.articleService.photoCard(query);
     if (query.keyword && query.page === 1) {
       const eventData = { userId: loggedUser._id, keyword: query.keyword, type: ArticleType.CARD };
@@ -80,7 +82,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
   @Get('/recommend')
   @ApiOperation({ summary: `List Recommend` })
   @ApiOkResponse({ type: ArticlePaginationDto })
-  async recommend(@LoggedUser() loggedUser: User): Promise<ArticlePaginationDto> {
+  async recommend(@LoggedUser() loggedUser: User): Promise<IPaginationResponse<Article>> {
     return this.articleService.recommend(loggedUser);
   }
 
@@ -90,7 +92,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
   async myArticles(
     @QueryParam() query: IMongoRequest<Article>,
     @LoggedUser() loggedUser: User,
-  ): Promise<ArticlePaginationDto> {
+  ): Promise<IPaginationResponse<Article>> {
     return this.articleService.myArticles(query, loggedUser);
   }
 
@@ -98,7 +100,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
   @ApiOperation({ summary: `My liked articles` })
   @ApiOkResponse({ type: ArticlePaginationDto })
   @UseInterceptors(ExistArticleInterceptor)
-  async myLikeArticles(@QueryParam() query: IMongoRequest<Article>): Promise<ArticlePaginationDto> {
+  async myLikeArticles(@QueryParam() query: IMongoRequest<Article>): Promise<IPaginationResponse<Article>> {
     return this.articleService.myLikeArticles(query);
   }
 
@@ -111,7 +113,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
     @QueryParam() query: IMongoRequest<User>,
     @Instances() instances: any[],
     @LoggedUser() loggedUser: User,
-  ): Promise<UserLikedPaginationDto> {
+  ): Promise<IPaginationResponse<UserLiked>> {
     if (query.condition['id']) delete query.condition['id'];
     return this.articleService.getLikedUsers(query, instances[0], loggedUser);
   }

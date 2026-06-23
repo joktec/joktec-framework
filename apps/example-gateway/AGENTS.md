@@ -1,6 +1,6 @@
 # Example Gateway Agent Guide
 
-This app is the HTTP gateway reference implementation.
+This app is the public HTTP gateway reference for a fictional social-network project. The domain is intentionally realistic for framework testing, but it is not a real product.
 
 ## Read First
 
@@ -17,6 +17,8 @@ This app is the HTTP gateway reference implementation.
 - Most repositories extend `MongoRepo`; `ProductRepo` extends `MysqlRepo`.
 - Shared app guards, filters, interceptors, decorators, and response types live under `src/common`.
 - Broker consumer examples are in `src/modules/articles/article.handler.ts`.
+- `articles` and `comments` model mobile load-more APIs with offset pagination.
+- `dataLogs` exposes read-only pino Mongo logs with cursor pagination.
 
 ## Package Composition
 

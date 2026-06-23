@@ -40,6 +40,7 @@ Most concrete packages depend only on `@joktec/core` and `@joktec/utils`. `@jokt
 - `ClientConfig`: base config with `conId`, `inherit`, `initTimeout`, `retry`, and `debug`.
 - `BaseService`: generic CRUD service over `IBaseRepository`.
 - `BaseController`: generated REST CRUD controller factory.
+- Pagination contracts: page, offset, and cursor response factories plus cursor token utilities under `packages/common/core/src/models/paginations`.
 - `ClientController`: generated microservice message-pattern CRUD controller factory.
 - `ClientService`: generated client-side microservice proxy service.
 - `TransportProxyFactory`: creates Nest `ClientProxy` instances from named transport config.
@@ -52,7 +53,7 @@ Adapters wrap external capabilities such as cache, mail, notification, and stora
 
 Brokers wrap messaging clients and decorator-driven producer/consumer registration. Broker packages do not own app message semantics.
 
-Database packages own client connections and repository abstractions. App repositories extend database repositories and add app-specific queries.
+Database packages own client connections and repository abstractions. App repositories extend database repositories and add app-specific queries. Mongo and MySQL repositories implement storage-specific cursor pagination through keyset conditions while keeping the shared request and response contract in `@joktec/core`.
 
 Apps compose packages, define schemas/entities, repositories, controllers, services, guards, interceptors, and feature modules.
 
@@ -61,6 +62,14 @@ Apps compose packages, define schemas/entities, repositories, controllers, servi
 Gateway controllers call services and repositories directly for HTTP behavior. Gateway services also emit microservice events through injected `ClientProxy` instances.
 
 Microservice controllers use `EventPattern` and `MessagePattern` handlers. Broker packages additionally provide decorators such as `KafkaSend`, `RabbitSend`, `RedcastSend`, and `SqsSend`.
+
+## Pagination Architecture
+
+`IBaseRequest` accepts page, offset, and cursor query fields. Runtime precedence is cursor first, then offset, then page. If none is provided, `BaseService` defaults to page pagination.
+
+`BaseController` exposes a `paginationMode` option for Swagger and response DTO selection. The mode defaults to `page`. `offset` and `cursor` select one representative OpenAPI response shape. A custom `customDto.paginationDto` still overrides the generated shape.
+
+Cursor pagination is backed by opaque base64url cursor tokens that store ordered key values. Mongo defaults to `_id` and appends `_id` as a tie-breaker for custom keys. MySQL defaults to `createdAt` plus primary key columns and validates cursor keys against TypeORM metadata.
 
 ## Technical Debt Boundary
 

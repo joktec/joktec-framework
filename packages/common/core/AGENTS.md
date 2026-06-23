@@ -9,6 +9,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - `src/infras/gateway/*`: HTTP gateway runtime.
 - `src/infras/micro/*`: microservice runtime.
 - `src/abstractions/*`: base services/controllers/resolvers and client factories.
+- `src/models/paginations/*`: page, offset, and cursor pagination contracts.
 - `src/client/abstract-client.service.ts`: external client lifecycle.
 - `src/modules/*`: config, logger, metrics, JWT, Bull, static assets.
 
@@ -18,6 +19,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - Keep core primitives reusable and framework-level.
 - Preserve NestJS compatibility and existing re-export patterns.
 - Preserve `conId`, config parsing, lifecycle, and retry behavior in client abstractions.
+- Preserve pagination request/response compatibility when changing base CRUD contracts.
 - Export public symbols through `src/index.ts` and family index files.
 
 ## Runtime Rules
@@ -26,6 +28,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - Gateway runtime remains in `GatewayFactory` and `GatewayModule`.
 - Micro runtime remains in `MicroFactory` and `MicroModule`.
 - Bull root configuration and Bull Board bootstrap live under `src/modules/bull`.
+- `BaseController.paginationMode` controls Swagger response shape; runtime selection remains request-driven.
 - Global middleware, interceptors, filters, and metrics must stay config-aware.
 
 ## Verification

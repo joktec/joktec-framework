@@ -1,5 +1,5 @@
 micro:
-  port: 9013
+  port: 9012
   httpEnable: true
   transports:
     - name: RedisTransport
@@ -29,7 +29,7 @@ log:
     enable: true
     target: pino-mongodb
     options:
-      uri: mongodb://localhost:27017/dispatch?authSource=admin
+      uri: mongodb://localhost:27017/dispatch_log?authSource=admin&replicaSet=rs0&directConnection=true&connectTimeoutMS=20000
       collection: logs
       mongoOptions:
         auth:
@@ -42,15 +42,23 @@ misc:
 
 mongo:
   - conId: default
-    replica: false
+    srvMode: false
     host: localhost
     port: 27017
     username: root
     password: root
-    database: dispatch
-    autoIndex: true
-    params: authSource=admin&directConnection=true&connectTimeoutMS=20000
+    database: dispatch_db
     debug: false
+    autoIndex: true
+    options:
+      authSource: admin
+      replicaSet: rs0
+      directConnection: true
+      connectTimeoutMS: 30000
+      serverSelectionTimeoutMS: 5000
+      socketTimeoutMS: 45000
+      heartbeatFrequencyMS: 10000
+      retryWrites: true
   - conId: logConnection
     database: dispatch_log
 
@@ -59,8 +67,10 @@ mysql:
   port: 3306
   username: root
   password: root
-  database: dispatch
+  database: dispatch_db
   sync: true
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
   benchmark:
     enable: false
     all: true
@@ -102,13 +112,13 @@ mailer:
       strict: true
 
 firebase:
-  credential: './_credentials/firebase-cert-example.json'
+  credential: './credentials/firebase-cert-example.json'
 
 notifier:
   isAlwaysUseFCM: true
   fcm:
     appName: dispatch-19582
-    credential: './_credentials/firebase-cert-example.json'
+    credential: './credentials/firebase-cert-example.json'
 
 kafka:
   brokers: [ localhost:9092 ]

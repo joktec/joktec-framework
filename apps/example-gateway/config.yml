@@ -88,7 +88,7 @@ mongo:
     password: root
     database: dispatch_db
     debug: false
-    autoIndex: true
+    autoIndex: false
     # params: authSource=admin&replicaSet=rs0&directConnection=true&connectTimeoutMS=20000
     options:
       authSource: admin
@@ -108,7 +108,7 @@ mysql:
   username: root
   password: root
   database: dispatch_db
-  sync: true
+  sync: false
   charset: utf8mb4
   collation: utf8mb4_unicode_ci
   benchmark:
@@ -139,7 +139,7 @@ http:
     statusCodesToRetry: [ [ 100, 199 ], [ 200, 201 ] ]
 
 firebase:
-  credential: './_credentials/firebase-cert-example.json'
+  credential: './credentials/firebase-cert-example.json'
 
 kafka:
   brokers: [ localhost:9092 ]

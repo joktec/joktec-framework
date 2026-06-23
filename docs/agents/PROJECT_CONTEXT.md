@@ -20,8 +20,9 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 - BullMQ root configuration and Bull Board support through `BullModule`.
 - Microservice bootstrap with configurable Nest transports.
 - Shared config, logging, metrics, exceptions, validation, and base CRUD abstractions.
+- Standard page, offset, and cursor pagination contracts in `@joktec/core`.
 - Client lifecycle abstraction for external systems.
-- Mongo and MySQL repository implementations.
+- Mongo and MySQL repository implementations with page/offset pagination and cursor-based keyset pagination.
 - Broker packages for Kafka, RabbitMQ, Redcast, and SQS.
 - Adapter packages for cache, mailer, notifier, and storage.
 - Cron and job worker abstractions.

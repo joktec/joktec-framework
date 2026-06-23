@@ -2,7 +2,7 @@ import { QueryOptions } from 'mongoose';
 
 export const UPDATE_OPTIONS: QueryOptions = {
   runValidators: true,
-  new: true,
+  returnDocument: 'after',
 };
 
 export const DELETE_OPTIONS: QueryOptions = {
@@ -11,19 +11,19 @@ export const DELETE_OPTIONS: QueryOptions = {
 
 export const UPSERT_OPTIONS: QueryOptions = {
   upsert: true,
-  new: true,
+  returnDocument: 'after',
   runValidators: true,
   setDefaultsOnInsert: true,
 };
 
 export const PARANOID_OPTIONS: QueryOptions = {
   runValidators: true,
-  new: true,
+  returnDocument: 'after',
   paranoid: true,
 };
 
 export const RESTORE_OPTIONS: QueryOptions = {
   runValidators: true,
-  new: true,
+  returnDocument: 'after',
   paranoid: false,
 };

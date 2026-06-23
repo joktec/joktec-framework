@@ -1,6 +1,6 @@
 # Example Microservice Agent Guide
 
-This app is the microservice and worker reference implementation.
+This app is the private microservice and worker reference for the same fictional social-network project as the gateway. It models background jobs, broker handlers, and private service APIs, not a real product.
 
 ## Read First
 
@@ -18,6 +18,7 @@ This app is the microservice and worker reference implementation.
 - Repositories extend `MongoRepo`.
 - Cron examples live in `src/modules/crons` and `src/modules/artists/artist.cronner.ts`.
 - Broker producer examples are in `src/modules/articles/article.handler.ts`.
+- Use this app to understand private/admin-style flows, scheduled processing, and centralized outbound integrations such as mail or notifications.
 
 ## Package Composition
 

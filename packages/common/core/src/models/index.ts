@@ -4,6 +4,7 @@ export * from './base.interface';
 export * from './base.mapper';
 export * from './base.request';
 export * from './base.response';
+export * from './paginations';
 export * from './cqrs';
 export * from './utils';
 export {

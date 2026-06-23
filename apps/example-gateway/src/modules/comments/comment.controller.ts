@@ -5,6 +5,7 @@ import {
   Controller,
   Get,
   IControllerProps,
+  IPaginationResponse,
   QueryParam,
 } from '@joktec/core';
 import { IMongoRequest } from '@joktec/mongo';
@@ -16,6 +17,7 @@ import { CommentCreateDto, CommentPaginationDto, CommentUpdateDto } from './mode
 const props: IControllerProps<Comment> = {
   dto: Comment,
   customDto: { createDto: CommentCreateDto, updatedDto: CommentUpdateDto, paginationDto: CommentPaginationDto },
+  paginationMode: 'offset',
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
 };
@@ -29,7 +31,7 @@ export class CommentController extends BaseController<Comment, string>(props) {
   @Get('/my')
   @ApiOperation({ summary: `My list comments` })
   @ApiOkResponse({ type: CommentPaginationDto })
-  async myComments(@QueryParam() query: IMongoRequest<Comment>): Promise<CommentPaginationDto> {
+  async myComments(@QueryParam() query: IMongoRequest<Comment>): Promise<IPaginationResponse<Comment>> {
     return this.commentService.myComments(query);
   }
 }

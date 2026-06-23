@@ -1,6 +1,14 @@
 import { Inject, OnModuleInit } from '@nestjs/common';
 import { isNil } from 'lodash';
-import { DeepPartial, Entity, IBaseRepository, IBaseRequest, IBaseService, IPaginationResponse } from '../models';
+import {
+  CursorPagination,
+  DeepPartial,
+  Entity,
+  IBaseRepository,
+  IBaseRequest,
+  IBaseService,
+  IPaginationResponse,
+} from '../models';
 import { ConfigService, LogService } from '../modules';
 import { cloneInstance } from '../utils';
 
@@ -20,6 +28,15 @@ export abstract class BaseService<T extends Entity, ID = string, REQ extends IBa
   protected afterModuleInit() {}
 
   public transformPaginate<T>(items: T[], total: number, query: REQ): IPaginationResponse<T> {
+    if (CursorPagination.isCursorRequest(query)) {
+      return {
+        items,
+        total,
+        hasNextPage: !!query['hasNextPage'],
+        nextCursor: query['nextCursor'] || null,
+      };
+    }
+
     if (isNil(query.page) && isNil(query.offset)) {
       query.page = 1;
     }
@@ -45,6 +62,15 @@ export abstract class BaseService<T extends Entity, ID = string, REQ extends IBa
 
   async paginate(query: REQ): Promise<IPaginationResponse<T>> {
     const responseDto = await this.repository.paginate(query);
+    if (CursorPagination.isCursorRequest(query)) {
+      return {
+        items: responseDto.items,
+        total: responseDto.total,
+        hasNextPage: !!responseDto.hasNextPage,
+        nextCursor: responseDto.nextCursor || null,
+      };
+    }
+
     const { items, total } = responseDto;
     return this.transformPaginate(items, total, query);
   }

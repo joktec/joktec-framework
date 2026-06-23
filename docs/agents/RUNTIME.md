@@ -29,6 +29,8 @@ Process signal, uncaught exception, and unhandled rejection handlers are registe
 
 Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and `bull.board.enable` is true.
 
+Gateway examples keep database auto schema/index behavior disabled so the gateway can run as the HTTP-facing process without owning database mutation concerns.
+
 ## Microservice Runtime
 
 `MicroFactory`:
@@ -41,6 +43,8 @@ Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is 
 - optionally starts an HTTP listener when `micro.httpEnable` is true
 
 Transport models include TCP, gRPC, RMQ, Redis, MQTT, NATS, and Kafka.
+
+Micro examples own database auto index/sync behavior and can expose HTTP only when `micro.httpEnable` is enabled. This keeps schema/index initialization in one runtime process while the gateway remains focused on request handling.
 
 ## Client Lifecycle
 
@@ -66,6 +70,16 @@ Lifecycle:
 - `Crontab` decorator storing global cron metadata.
 - `CrontabScheduler` that persists cron definitions, starts enabled jobs, triggers jobs manually, and records history.
 - `JobWorker` for repository-backed batch job processing with retry/delay and dependency checks.
+
+## Pagination Runtime
+
+List requests use a shared request model. Runtime precedence is:
+
+1. cursor pagination when `cursor` or `cursorKey` is present
+2. offset pagination when `offset` is present
+3. page pagination as the default fallback
+
+Cursor pagination uses `limit + 1` fetching to determine `hasNextPage` and generates `nextCursor` from the last displayed item. Mongo builds lexicographic `$or` cursor conditions. MySQL builds lexicographic SQL conditions through TypeORM query builders.
 
 ## Broker Runtime
 

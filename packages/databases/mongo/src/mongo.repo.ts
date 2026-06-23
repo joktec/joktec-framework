@@ -1,5 +1,6 @@
 import {
   ConfigService,
+  CursorPagination,
   DEFAULT_CON_ID,
   ICondition,
   Inject,
@@ -11,7 +12,7 @@ import {
 } from '@joktec/core';
 import { plainToInstance, toArray, toInt } from '@joktec/utils';
 import { Ref } from '@typegoose/typegoose';
-import { chunk, isArray, isNil, omit, pick } from 'lodash';
+import { chunk, isArray, isEmpty, isNil, omit, pick } from 'lodash';
 import { Aggregate, RefType } from 'mongoose';
 import { MongoHelper, MongoPipeline, UPDATE_OPTIONS, UPSERT_OPTIONS } from './helpers';
 import {
@@ -112,10 +113,77 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
 
   @MongoCatch
   async paginate(query: IMongoRequest<T>, options: IMongoOptions<T> = {}): Promise<IMongoPaginationResponse<T>> {
+    if (CursorPagination.isCursorRequest(query)) return this.paginateByCursor(query, options);
+
     const findQuery: IMongoRequest<T> = { ...query };
-    const countQuery: IMongoRequest<T> = omit(query, ['select', 'page', 'limit', 'offset', 'sort']);
+    const countQuery: IMongoRequest<T> = omit(query, [
+      'select',
+      'page',
+      'limit',
+      'offset',
+      'cursor',
+      'cursorKey',
+      'sort',
+    ]);
     const [items, total] = await Promise.all([this.find(findQuery, options), this.count(countQuery, options)]);
     return { items, total };
+  }
+
+  private async paginateByCursor(
+    query: IMongoRequest<T>,
+    options: IMongoOptions<T> = {},
+  ): Promise<IMongoPaginationResponse<T>> {
+    const limit = CursorPagination.getLimit(query.limit);
+    const cursor = CursorPagination.resolve<T>({
+      cursor: query.cursor,
+      cursorKey: query.cursorKey,
+      defaultKeys: ['_id'],
+      tieBreakerKeys: query.cursorKey ? ['_id'] : [],
+      sort: query.sort,
+    });
+    const condition = this.mergeCursorCondition(query.condition || {}, cursor.keys, cursor.directions, cursor.values);
+    const findQuery: IMongoRequest<T> = {
+      ...omit(query, ['page', 'offset', 'cursor', 'cursorKey']),
+      condition,
+      limit: limit + 1,
+      sort: CursorPagination.toSort<T>(cursor.keys, cursor.directions),
+    };
+    const countQuery: IMongoRequest<T> = omit(query, [
+      'select',
+      'page',
+      'limit',
+      'offset',
+      'cursor',
+      'cursorKey',
+      'sort',
+    ]);
+    const [rawItems, total] = await Promise.all([this.find(findQuery, options), this.count(countQuery, options)]);
+    const { items, hasNextPage, nextCursor } = CursorPagination.slice(rawItems, limit, cursor.keys, cursor.directions);
+    return { items, total, hasNextPage, nextCursor };
+  }
+
+  private mergeCursorCondition(
+    condition: ICondition<T>,
+    keys: string[],
+    directions: Array<'asc' | 'desc'>,
+    values?: unknown[],
+  ): ICondition<T> {
+    if (!values?.length) return condition;
+
+    const cursorCondition: ICondition<T> = {
+      $or: keys.map((key, index) => {
+        const itemCondition = keys.slice(0, index).reduce((acc, equalityKey, equalityIndex) => {
+          acc[equalityKey] = { $eq: values[equalityIndex] };
+          return acc;
+        }, {});
+        const operator = directions[index] === 'asc' ? '$gt' : '$lt';
+        itemCondition[key] = { [operator]: values[index] };
+        return itemCondition;
+      }),
+    } as ICondition<T>;
+
+    if (isEmpty(condition)) return cursorCondition;
+    return { $and: [condition, cursorCondition] } as ICondition<T>;
   }
 
   @MongoCatch

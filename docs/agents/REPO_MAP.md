@@ -48,6 +48,7 @@ Package-family agent guides:
 
 `packages/common/core`
 - Framework core: bootstrap, abstractions, config, logger, metrics, exceptions, transports, Bull, JWT, static assets.
+- Pagination contracts and cursor helpers: `src/models/paginations/*`.
 - Local agent guide: `packages/common/core/AGENTS.md`.
 
 `packages/common/utils`
@@ -85,10 +86,10 @@ Package-family agent guides:
 - AWS SQS/SNS queue and topic wrapper.
 
 `packages/databases/mongo`
-- Mongoose/Typegoose config, service, decorators, repository, helpers, plugins.
+- Mongoose/Typegoose config, service, decorators, repository, helpers, plugins, and cursor pagination implementation.
 
 `packages/databases/mysql`
-- TypeORM config, service, repository, naming strategy, helpers.
+- TypeORM config, service, repository, naming strategy, helpers, and cursor pagination implementation.
 
 `packages/databases/arango`, `bigquery`, `elastic`
 - Client packages for additional data systems.

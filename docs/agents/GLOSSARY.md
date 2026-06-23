@@ -20,4 +20,10 @@ Baseline: current stable implementation.
 - ClientController: Factory that creates standard microservice CRUD message handlers.
 - BaseService: Generic service implementing CRUD methods over a repository.
 - AbstractClientService: Lifecycle base for external clients.
+- Page Pagination: Pagination mode using `page` and `limit`, returning page metadata.
+- Offset Pagination: Pagination mode using `offset` and `limit`, returning offset metadata.
+- Cursor Pagination: Pagination mode using an opaque cursor token and `limit`, returning `hasNextPage` and `nextCursor`.
+- Cursor Key: Sort key or keys used to build cursor tokens and keyset conditions.
+- Keyset Pagination: Database pagination strategy that uses ordered key comparisons instead of offset skipping.
+- Pagination Mode: `BaseController` option that selects the representative Swagger response shape for list/search endpoints.
 - Technical Debt: Known incomplete, experimental, or future-review work not implemented in the stable code.

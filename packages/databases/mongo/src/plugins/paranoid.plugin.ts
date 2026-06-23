@@ -103,24 +103,22 @@ export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
       'findOneAndDelete',
       'deleteMany',
     ],
-    function (next) {
+    function () {
       const options = this.getOptions();
 
       // Intercept filter
       const filter = this.getFilter();
       injectFilter(filter, deletedAtKey, options?.paranoid);
       this.setQuery(filter);
-
-      next();
     },
   );
 
   // Aggregate
-  schemaAny.pre('aggregate', function (next, options: ParanoidQueryOptions) {
+  schemaAny.pre('aggregate', function () {
+    const options = this.options as ParanoidQueryOptions;
     const paranoid = toBool(options?.paranoid, true);
     const pipelines: IMongoPipeline[] = injectMatchPipeline(this.pipeline(), deletedAtKey, paranoid);
     while (this.pipeline().length) this.pipeline().shift();
     while (pipelines.length) this.pipeline().push(pipelines.shift());
-    next();
   });
 };

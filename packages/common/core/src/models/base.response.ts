@@ -1,98 +1,28 @@
 import { Type } from '@joktec/utils';
 import { Type as NestType } from '@nestjs/common';
 import { Field } from '@nestjs/graphql';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Constructor, Entity } from './base.dto';
 
-export interface IPaginationResponse<T extends Entity> {
+export interface IBasePaginationResponse<T extends Entity> {
   items: T[];
   total: number;
-
-  // Page-based Pagination
-  prevPage?: number;
-  currPage?: number;
-  nextPage?: number;
-  lastPage?: number;
-
-  // Offset-based Pagination
-  prevOffset?: number;
-  currOffset?: number;
-  nextOffset?: number;
-  lastOffset?: number;
-
-  // Cursor-based Pagination
-  hasNextPage?: boolean;
-  nextCursor?: string | null;
 }
 
-export const PagePaginationResponse = <T extends Entity>(dto: Constructor<T>): NestType<IPaginationResponse<T>> => {
-  class BaseListResponseClazz implements IPaginationResponse<T> {
+export const BasePaginationResponse = <T extends Entity>(dto: Constructor<T>): NestType<IBasePaginationResponse<T>> => {
+  class BaseListResponseClazz implements IBasePaginationResponse<T> {
     @Field(() => [dto], { defaultValue: [] })
     @ApiProperty({ type: [dto], default: [], example: () => [new dto()] })
     @Type(() => dto)
-    items: T[];
+    items!: T[];
 
     @Field({ defaultValue: 0 })
     @ApiProperty({ default: 0 })
     @Type(() => Number)
-    total: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 1 })
-    @Type(() => Number)
-    prevPage?: number;
-
-    @Field({ nullable: true, defaultValue: 1 })
-    @ApiPropertyOptional({ example: 2 })
-    @Type(() => Number)
-    currPage?: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 3 })
-    @Type(() => Number)
-    nextPage?: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 10 })
-    @Type(() => Number)
-    lastPage?: number;
+    total!: number;
   }
 
   return BaseListResponseClazz;
 };
 
-export const OffsetPaginationResponse = <T extends Entity>(dto: Constructor<T>): NestType<IPaginationResponse<T>> => {
-  class BaseListResponseClazz implements IPaginationResponse<T> {
-    @Field(() => [dto], { defaultValue: [] })
-    @ApiProperty({ type: [dto], default: [], example: () => [new dto()] })
-    @Type(() => dto)
-    items: T[];
-
-    @Field({ defaultValue: 0 })
-    @ApiProperty({ default: 0 })
-    @Type(() => Number)
-    total: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 0 })
-    @Type(() => Number)
-    prevOffset?: number;
-
-    @Field({ nullable: true, defaultValue: 1 })
-    @ApiPropertyOptional({ example: 10 })
-    @Type(() => Number)
-    currOffset?: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 20 })
-    @Type(() => Number)
-    nextOffset?: number;
-
-    @Field({ nullable: true, defaultValue: null })
-    @ApiPropertyOptional({ example: 100 })
-    @Type(() => Number)
-    lastOffset?: number;
-  }
-
-  return BaseListResponseClazz;
-};
+export * from './paginations';

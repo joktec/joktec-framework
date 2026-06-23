@@ -6,6 +6,7 @@ import {
   IBaseRequest,
   Inject,
   Injectable,
+  IPaginationResponse,
   NotFoundException,
   REQUEST,
 } from '@joktec/core';
@@ -13,7 +14,7 @@ import { IMongoRequest, ObjectId } from '@joktec/mongo';
 import { IRequest, TRANSPORT } from '../../app.constant';
 import { Comment, User } from '../../models/schemas';
 import { ArticleRepo, BlockRepo, CommentRepo } from '../../repositories';
-import { CommentCreateDto, CommentPaginationDto } from './models';
+import { CommentCreateDto } from './models';
 
 @Injectable()
 export class CommentService extends BaseService<Comment, string> {
@@ -27,7 +28,7 @@ export class CommentService extends BaseService<Comment, string> {
     super(commentRepo);
   }
 
-  async paginate(query: IBaseRequest<Comment>): Promise<CommentPaginationDto> {
+  async paginate(query: IBaseRequest<Comment>): Promise<IPaginationResponse<Comment>> {
     const loggedUser = this.request.loggedUser;
     const blocks = await this.blockRepo.find({ condition: { authorId: loggedUser._id, target: User.name } });
     return super.paginate({
@@ -73,7 +74,7 @@ export class CommentService extends BaseService<Comment, string> {
     return comment;
   }
 
-  async myComments(query: IMongoRequest<Comment>): Promise<CommentPaginationDto> {
+  async myComments(query: IMongoRequest<Comment>): Promise<IPaginationResponse<Comment>> {
     const loggedUser = this.request.loggedUser;
     const { items, total } = await this.commentRepo.myComments(query, loggedUser._id);
     return this.transformPaginate(items, total, query);

@@ -22,6 +22,7 @@ This guide applies to `packages/common/*`.
 - `Application.bootstrap` selects gateway or micro runtime from config.
 - `GatewayModule`, `MicroModule`, `BullModule`, `LoggerModule`, `ConfigModule`, and metrics live in `core`.
 - Client-style packages share `AbstractClientService` and `ClientConfig`.
+- Page, offset, and cursor pagination contracts live in `core`; database packages execute storage-specific pagination.
 - Cron runtime persists and schedules jobs through app-provided repositories.
 
 ## Local Guides

@@ -1,6 +1,7 @@
 import {
   ConfigService,
   Constructor,
+  CursorPagination,
   DEFAULT_CON_ID,
   ICondition,
   Inject,
@@ -99,10 +100,91 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
 
   @MysqlCatch
   async paginate(query: IMysqlRequest<T>, opts: IMysqlOption<T> = {}): Promise<IMysqlResponse<T>> {
+    if (CursorPagination.isCursorRequest(query)) return this.paginateByCursor(query, opts);
+
     const findQuery: IMysqlRequest<T> = { ...query };
-    const countQuery: IMysqlRequest<T> = omit(query, ['select', 'page', 'limit', 'offset', 'sort']);
+    const countQuery: IMysqlRequest<T> = omit(query, [
+      'select',
+      'page',
+      'limit',
+      'offset',
+      'cursor',
+      'cursorKey',
+      'sort',
+    ]);
     const [items, total] = await Promise.all([this.find(findQuery, opts), this.count(countQuery, opts)]);
     return { items, total };
+  }
+
+  private async paginateByCursor(query: IMysqlRequest<T>, opts: IMysqlOption<T> = {}): Promise<IMysqlResponse<T>> {
+    const limit = CursorPagination.getLimit(query.limit);
+    const primaryKeys = this.repository.metadata.primaryColumns.map(pk => pk.propertyName);
+    const defaultKeys = primaryKeys.length ? ['createdAt', ...primaryKeys] : ['createdAt'];
+    const cursor = CursorPagination.resolve<T>({
+      cursor: query.cursor,
+      cursorKey: query.cursorKey,
+      defaultKeys,
+      tieBreakerKeys: primaryKeys,
+      sort: query.sort,
+    });
+    this.assertCursorColumns(cursor.keys);
+    const findQuery: IMysqlRequest<T> = omit(query, ['page', 'limit', 'offset', 'cursor', 'cursorKey', 'sort']);
+    const qb = this.qb(findQuery, opts);
+    this.applyCursorCondition(qb, cursor.keys, cursor.directions, cursor.values);
+    cursor.keys.forEach((key, index) => {
+      qb.addOrderBy(`${qb.alias}.${key}`, cursor.directions[index] === 'asc' ? 'ASC' : 'DESC');
+    });
+    qb.take(limit + 1);
+
+    const countQuery: IMysqlRequest<T> = omit(query, [
+      'select',
+      'page',
+      'limit',
+      'offset',
+      'cursor',
+      'cursorKey',
+      'sort',
+    ]);
+    const [rawItems, total] = await Promise.all([qb.getMany(), this.count(countQuery, opts)]);
+    const transformedItems = this.transform(rawItems) as T[];
+    const { items, hasNextPage, nextCursor } = CursorPagination.slice(
+      transformedItems,
+      limit,
+      cursor.keys,
+      cursor.directions,
+    );
+    return { items, total, hasNextPage, nextCursor };
+  }
+
+  private assertCursorColumns(keys: string[]): void {
+    const columnPaths = new Set(
+      this.repository.metadata.columns.map(column => column.propertyPath || column.propertyName),
+    );
+    const invalidKey = keys.find(key => !columnPaths.has(key));
+    if (invalidKey) throw new Error(`Invalid cursor key "${invalidKey}" for ${this.model.name}`);
+  }
+
+  private applyCursorCondition(
+    qb: SelectQueryBuilder<T>,
+    keys: string[],
+    directions: Array<'asc' | 'desc'>,
+    values?: unknown[],
+  ): void {
+    if (!values?.length) return;
+
+    const clauses = keys.map((key, index) => {
+      const equality = keys.slice(0, index).map((equalityKey, equalityIndex) => {
+        const param = `cursor_${equalityIndex}_eq`;
+        qb.setParameter(param, values[equalityIndex]);
+        return `${qb.alias}.${equalityKey} = :${param}`;
+      });
+      const operator = directions[index] === 'asc' ? '>' : '<';
+      const param = `cursor_${index}`;
+      qb.setParameter(param, values[index]);
+      return [...equality, `${qb.alias}.${key} ${operator} :${param}`].join(' AND ');
+    });
+
+    qb.andWhere(`(${clauses.map(clause => `(${clause})`).join(' OR ')})`);
   }
 
   @MysqlCatch

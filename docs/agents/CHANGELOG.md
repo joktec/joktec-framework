@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-23 - Pagination Contract and Cursor Runtime Sync
+
+- Documented shared page, offset, and cursor pagination contracts in `@joktec/core`.
+- Recorded `BaseController.paginationMode` as the Swagger response-shape selector with custom DTO override behavior.
+- Recorded runtime pagination precedence: cursor, then offset, then page.
+- Documented Mongo and MySQL cursor pagination as database-level keyset implementations.
+- Clarified gateway/micro database ownership in runtime docs.
+
 ## 2026-06-23 - Document Sync and Changelog Governance
 
 - Documented framework-level, package-family-level, package-level, and no-doc-impact routing for Document Sync.

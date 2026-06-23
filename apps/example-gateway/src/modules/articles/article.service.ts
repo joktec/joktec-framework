@@ -20,7 +20,7 @@ import { Article, User } from '../../models/schemas';
 import { ArticleRepo, BlockRepo, EmotionRepo, UserRepo } from '../../repositories';
 import { ArticleCreateDto, ArticleShareDto, ArticleViewDto } from './models';
 import { ArticleFilterCardDto, PopularType } from './models/article-filter.dto';
-import { ArticlePaginationDto, UserLiked, UserLikedPaginationDto } from './models/article-response.dto';
+import { UserLiked } from './models/article-response.dto';
 
 @Injectable()
 export class ArticleService extends BaseService<Article, string> {
@@ -39,7 +39,11 @@ export class ArticleService extends BaseService<Article, string> {
     return super.paginate(query);
   }
 
-  async homeFeed(query: IMongoRequest<Article>, loggedUser: User, viewed: boolean): Promise<ArticlePaginationDto> {
+  async homeFeed(
+    query: IMongoRequest<Article>,
+    loggedUser: User,
+    viewed: boolean,
+  ): Promise<IPaginationResponse<Article>> {
     const [bizUsers, blocks] = await Promise.all([
       this.userRepo.findBizUsers(),
       this.blockRepo.findArticleBlock(loggedUser._id),
@@ -90,7 +94,7 @@ export class ArticleService extends BaseService<Article, string> {
     };
   }
 
-  async photoCard(query: ArticleFilterCardDto): Promise<ArticlePaginationDto> {
+  async photoCard(query: ArticleFilterCardDto): Promise<IPaginationResponse<Article>> {
     const bizUsers = await this.userRepo.findBizUsers();
     const select = ['_id', 'title', 'description', 'createdAt', 'type', 'postedAt', 'summary', 'authorId'];
     const fileSelect = ['files._id', 'files.type', 'files.url', 'files.preview', 'files.ratio'];
@@ -140,7 +144,7 @@ export class ArticleService extends BaseService<Article, string> {
     return super.paginate(processQuery);
   }
 
-  async recommend(loggedUser: User): Promise<ArticlePaginationDto> {
+  async recommend(loggedUser: User): Promise<IPaginationResponse<Article>> {
     const [user, bizUsers, blocks] = await Promise.all([
       this.userRepo.preload(loggedUser),
       this.userRepo.findBizUsers(),
@@ -166,7 +170,7 @@ export class ArticleService extends BaseService<Article, string> {
     return super.paginate(processQuery);
   }
 
-  async myArticles(query: IMongoRequest<Article>, loggedUser: User): Promise<ArticlePaginationDto> {
+  async myArticles(query: IMongoRequest<Article>, loggedUser: User): Promise<IPaginationResponse<Article>> {
     const select = ['_id', 'title', 'description', 'createdAt', 'type', 'postedAt', 'summary', 'authorId'];
     const fileSelect = ['files._id', 'files.type', 'files.url', 'files.preview', 'files.ratio'];
     const processQuery: IMongoRequest<Article> = {
@@ -179,7 +183,7 @@ export class ArticleService extends BaseService<Article, string> {
     return super.paginate(processQuery);
   }
 
-  async myLikeArticles(query: IMongoRequest<Article>): Promise<ArticlePaginationDto> {
+  async myLikeArticles(query: IMongoRequest<Article>): Promise<IPaginationResponse<Article>> {
     const loggedUser = this.request.loggedUser;
     const { items, total } = await this.emotionRepo.myLikeArticles(query, loggedUser._id);
     const res = this.transformPaginate(items, total, query);
@@ -189,7 +193,11 @@ export class ArticleService extends BaseService<Article, string> {
     };
   }
 
-  async getLikedUsers(query: IMongoRequest<User>, article: Article, loggedUser: User): Promise<UserLikedPaginationDto> {
+  async getLikedUsers(
+    query: IMongoRequest<User>,
+    article: Article,
+    loggedUser: User,
+  ): Promise<IPaginationResponse<UserLiked>> {
     const [bannedUsers, blocks] = await Promise.all([
       this.userRepo.find({ select: '_id', condition: { status: { $ne: UserStatus.ACTIVATED } } }),
       this.blockRepo.findUserBlock(loggedUser._id),

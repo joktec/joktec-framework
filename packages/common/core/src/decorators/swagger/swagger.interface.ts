@@ -1,9 +1,9 @@
-import { Constructor, Wrapper } from '../../models';
+import { Constructor, PaginationMode, Wrapper } from '../../models';
 
 export interface IApiFilterQueryOptions {
   textSearch?: boolean;
   geoSearch?: boolean;
-  paginationMode?: 'page' | 'offset';
+  paginationMode?: PaginationMode;
   relation?: boolean;
 }
 

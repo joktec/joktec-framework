@@ -17,6 +17,27 @@ Endpoint visibility and behavior are controlled through `IControllerProps`: `hid
 
 Create uses `BaseValidationPipe()`. Update uses `BaseValidationPipe({ skipMissingProperties: true })`.
 
+`IControllerProps.paginationMode` controls the generated pagination response shape for Swagger. Supported modes are `page`, `offset`, and `cursor`; the default is `page`. If `customDto.paginationDto` is provided, that custom DTO remains the response contract for the generated list/search endpoints.
+
+Swagger intentionally exposes one representative pagination shape per controller. It does not use `oneOf` for page/offset/cursor responses.
+
+## Pagination Request and Response Contracts
+
+`IBaseRequest` supports shared query fields:
+
+- `page`, `limit`
+- `offset`, `limit`
+- `cursor`, `cursorKey`, `limit`
+- `select`, `keyword`, `condition`, `language`, `sort`, `near`, `populate`
+
+Runtime pagination priority is cursor, then offset, then page. Cursor mode is selected when `cursor` or `cursorKey` is present.
+
+Pagination responses share `items` and `total`, then add mode-specific metadata:
+
+- page: `prevPage`, `currPage`, `nextPage`, `lastPage`
+- offset: `prevOffset`, `currOffset`, `nextOffset`, `lastOffset`
+- cursor: `hasNextPage`, `nextCursor`
+
 ## Microservice Controller Contract Pattern
 
 `ClientController` creates message handlers:
@@ -42,6 +63,7 @@ The gateway app implements feature controllers under:
 - `comments`
 - `connections`
 - `contents`
+- `data-logs`
 - `emotions`
 - `inquiries`
 - `notifications`
@@ -87,6 +109,10 @@ Article micro handlers include Redis `EventPattern` handlers for `Article.summar
 - `bulkUpsert`
 
 Mongo and MySQL repositories implement this shape with database-specific query parsing.
+
+Mongo cursor pagination defaults to `_id` and adds `_id` as a tie-breaker when a custom `cursorKey` is used.
+
+MySQL cursor pagination defaults to `createdAt` plus primary key columns and validates cursor keys against TypeORM column metadata.
 
 ## Client Contract
 

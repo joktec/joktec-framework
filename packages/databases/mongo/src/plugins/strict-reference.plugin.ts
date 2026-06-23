@@ -42,9 +42,9 @@ function getVirtualPath(schema: Schema) {
 export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: string }) => {
   const schemaAny = schema as any;
 
-  schemaAny.pre('save', async function (next) {
+  schemaAny.pre('save', async function () {
     const refPaths = getRefPath(schema);
-    if (!refPaths.length) return next();
+    if (!refPaths.length) return;
 
     const validation = new Error.ValidationError();
     for (const refPath of refPaths) {
@@ -66,21 +66,17 @@ export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: str
       }
     }
 
-    if (!isEmpty(validation.errors)) {
-      return next(validation);
-    }
-
-    next();
+    if (!isEmpty(validation.errors)) throw validation;
   });
 
-  schemaAny.pre(['findOneAndUpdate', 'findOneAndReplace', 'updateOne', 'updateMany'], async function (next) {
+  schemaAny.pre(['findOneAndUpdate', 'findOneAndReplace', 'updateOne', 'updateMany'], async function () {
     const paranoidKey = opts?.paranoidKey;
     if (paranoidKey && this.get(paranoidKey)) {
-      return next();
+      return;
     }
 
     const refPaths = getRefPath(schema);
-    if (!refPaths.length) return next();
+    if (!refPaths.length) return;
 
     const validation = new Error.ValidationError();
     for (const refPath of refPaths) {
@@ -102,28 +98,24 @@ export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: str
       }
     }
 
-    if (!isEmpty(validation.errors)) {
-      return next(validation);
-    }
-
-    next();
+    if (!isEmpty(validation.errors)) throw validation;
   });
 
   schemaAny.pre(
     ['findOneAndUpdate', 'updateMany', 'updateOne', 'findOneAndDelete', 'deleteMany', 'deleteOne'],
-    async function (next) {
+    async function () {
       const paranoidKey = opts?.paranoidKey;
       if (paranoidKey && this.get(paranoidKey)) {
-        return next();
+        return;
       }
 
       const virtualPath = getVirtualPath(schema);
-      if (isEmpty(virtualPath)) return next();
+      if (isEmpty(virtualPath)) return;
 
       const items = await getModelWithString(this.model.modelName)
         .find(this.getFilter(), '_id', this.getOptions())
         .exec();
-      if (!items.length) return next();
+      if (!items.length) return;
 
       const validation = new Error.ValidationError();
       for (const [path, virtual] of Object.entries(virtualPath)) {
@@ -142,11 +134,7 @@ export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: str
         }
       }
 
-      if (!isEmpty(validation.errors)) {
-        return next(validation);
-      }
-
-      next();
+      if (!isEmpty(validation.errors)) throw validation;
     },
   );
 };
