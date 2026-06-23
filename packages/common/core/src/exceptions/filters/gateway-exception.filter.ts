@@ -2,7 +2,7 @@ import { HttpStatus } from '@joktec/utils';
 import { ArgumentsHost, Catch, HttpException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { BaseExceptionFilter } from '@nestjs/core';
-import { GraphQLException } from '@nestjs/graphql/dist/exceptions';
+import { GraphQLException } from '@nestjs/graphql/dist/exceptions/graphql-exception.js';
 import { RpcException } from '@nestjs/microservices';
 import { get, has, isEmpty, isString } from 'lodash';
 import { PinoLogger } from 'nestjs-pino';

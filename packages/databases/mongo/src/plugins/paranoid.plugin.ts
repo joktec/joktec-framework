@@ -77,6 +77,7 @@ function injectMatchPipeline(pipelines: IMongoPipeline[], key: string, paranoid:
 }
 
 export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
+  const schemaAny = schema as any;
   const deletedAtKey = opts?.deletedAt?.name || 'deletedAt';
 
   // Add deletedAt field
@@ -89,7 +90,7 @@ export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
     },
   });
 
-  schema.pre(
+  schemaAny.pre(
     [
       'find',
       'findOne',
@@ -115,7 +116,7 @@ export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
   );
 
   // Aggregate
-  schema.pre('aggregate', function (next, options: ParanoidQueryOptions) {
+  schemaAny.pre('aggregate', function (next, options: ParanoidQueryOptions) {
     const paranoid = toBool(options?.paranoid, true);
     const pipelines: IMongoPipeline[] = injectMatchPipeline(this.pipeline(), deletedAtKey, paranoid);
     while (this.pipeline().length) this.pipeline().shift();

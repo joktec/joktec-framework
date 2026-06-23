@@ -1,7 +1,0 @@
-**/*.d.ts
-**/*.js
-**/*.generated.ts
-
-build/
-dist/
-node_modules/

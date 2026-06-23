@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { ClientConfig, InternalServerException } from '@joktec/core';
 import { IsNotEmpty, IsObject, IsOptional, IsString, IsTypes } from '@joktec/utils';
-import { ServiceAccount } from 'firebase-admin/lib/app/credential';
+import { ServiceAccount } from 'firebase-admin/app';
 import { isString } from 'lodash';
 
 export class FirebaseCredential implements ServiceAccount {

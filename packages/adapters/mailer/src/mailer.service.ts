@@ -40,7 +40,7 @@ export class MailerService extends AbstractClientService<MailerConfig, Mailer> i
 
       if (config.template.preview) {
         transport.use('stream', (mail, callback) => {
-          return previewEmail(mail.data, config.template.preview as object)
+          return previewEmail(mail.data as Parameters<typeof previewEmail>[0], config.template.preview as object)
             .then(() => callback())
             .catch(callback);
         });

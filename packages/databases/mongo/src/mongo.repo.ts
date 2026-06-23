@@ -12,7 +12,7 @@ import {
 import { plainToInstance, toArray, toInt } from '@joktec/utils';
 import { Ref } from '@typegoose/typegoose';
 import { chunk, isArray, isNil, omit, pick } from 'lodash';
-import { Aggregate, AnyBulkWriteOperation, RefType } from 'mongoose';
+import { Aggregate, RefType } from 'mongoose';
 import { MongoHelper, MongoPipeline, UPDATE_OPTIONS, UPSERT_OPTIONS } from './helpers';
 import {
   IMongoAggregateOptions,
@@ -170,7 +170,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   async updateMany(condition: ICondition<T>, body: IMongoUpdate<T>, options: IMongoOptions<T> = {}): Promise<T[]> {
     const transformBody: T = this.transform(body) as T;
     const _options = Object.assign({}, UPDATE_OPTIONS, options);
-    await this.qb({ condition }, _options).updateMany(transformBody).exec();
+    await (this.qb({ condition }, _options) as any).updateMany(transformBody).exec();
     return this.find({ condition });
   }
 
@@ -215,7 +215,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     const results: T[][] = [];
 
     for (const chunkItem of chunkItems) {
-      const bulkDocs: AnyBulkWriteOperation[] = chunkItem.map((doc: T) => {
+      const bulkDocs = chunkItem.map((doc: T) => {
         const updateDoc: IMongoUpdate<any> = {};
         Object.keys(doc).forEach(key => {
           if (!key.startsWith('$')) {
@@ -225,7 +225,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
         });
         return { updateOne: { filter: pick(doc, fields), update: updateDoc, upsert: true } };
       });
-      const result = await this.model.bulkWrite(bulkDocs, options);
+      const result = await this.model.bulkWrite(bulkDocs as any, options as any);
       const newIds = [...Object.values(result.upsertedIds), ...Object.values(result.insertedIds)];
       const newItems = await this.find({ condition: { _id: { $in: newIds } } as any });
       results.push(newItems);

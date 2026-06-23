@@ -8,8 +8,13 @@ import { GeoIp, UserAgent } from './utils';
 
 export interface ExpressResponse<T extends Entity = any> extends Response<DeepPartial<T> | Dictionary, Dictionary> {}
 
-export interface ExpressRequest<T extends Entity = any, U = any>
-  extends Request<Dictionary, ExpressResponse<T>, DeepPartial<T> & Dictionary, IBaseRequest<T>, Dictionary> {
+export interface ExpressRequest<T extends Entity = any, U = any> extends Request<
+  Dictionary,
+  ExpressResponse<T>,
+  DeepPartial<T> & Dictionary,
+  IBaseRequest<T>,
+  Dictionary
+> {
   payload?: JwtPayload;
   loggedUser?: U;
   userAgent?: UserAgent;

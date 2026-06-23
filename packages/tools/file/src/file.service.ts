@@ -1,31 +1,29 @@
 import { AbstractClientService, DEFAULT_CON_ID, Injectable } from '@joktec/core';
 import fs from 'fs-extra';
-import { Magika } from 'magika';
 import { FileClient } from './file.client';
 import { FileConfig } from './file.config';
 import { FileMetric } from './file.metric';
 import { calculateSize, removePath } from './file.utils';
+import { MagikaNode } from './magika-node';
 
 @Injectable()
-export class FileService extends AbstractClientService<FileConfig, Magika> implements FileClient {
+export class FileService extends AbstractClientService<FileConfig, MagikaNode> implements FileClient {
   constructor() {
     super('file', FileConfig);
   }
 
-  async init(config: FileConfig): Promise<Magika> {
-    const magika = new Magika();
-    await magika.load(config.magika);
-    return magika;
+  async init(config: FileConfig): Promise<MagikaNode> {
+    return MagikaNode.create(config.magika?.toOptions());
   }
 
-  async start(client: Magika, conId: string = DEFAULT_CON_ID): Promise<void> {
+  async start(client: MagikaNode, conId: string = DEFAULT_CON_ID): Promise<void> {
     const { directory } = this.getConfig(conId);
     if (!fs.existsSync(directory)) {
       fs.mkdirSync(directory, { recursive: true });
     }
   }
 
-  async stop(client: Magika): Promise<void> {
+  async stop(client: MagikaNode): Promise<void> {
     // Do nothing
   }
 

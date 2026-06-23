@@ -166,7 +166,7 @@ export class AuthService {
 
   async loginSso(input: LoginSsoDto): Promise<TokeResponseDto> {
     const { providerType, providerToken } = input;
-    let providerProfile: AuthProviderProfile = null;
+    let providerProfile: AuthProviderProfile;
     switch (providerType) {
       case AuthProviderType.KAKAO:
         providerProfile = await this.authProvider.getKaKaoProfile(providerToken);

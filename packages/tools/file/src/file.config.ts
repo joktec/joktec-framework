@@ -1,6 +1,12 @@
 import { ClientConfig } from '@joktec/core';
 import { IsNotEmpty, IsOptional, IsString, IsTypes } from '@joktec/utils';
-import { MagikaOptions } from 'magika/src/magikaOptions';
+
+export interface MagikaOptions {
+  modelURL?: string;
+  modelPath?: string;
+  modelConfigURL?: string;
+  modelConfigPath?: string;
+}
 
 export class MagikaConfig implements MagikaOptions {
   @IsString()
@@ -13,6 +19,14 @@ export class MagikaConfig implements MagikaOptions {
 
   @IsString()
   @IsOptional()
+  modelConfigURL?: string;
+
+  @IsString()
+  @IsOptional()
+  modelConfigPath?: string;
+
+  @IsString()
+  @IsOptional()
   configURL?: string;
 
   @IsString()
@@ -21,6 +35,15 @@ export class MagikaConfig implements MagikaOptions {
 
   constructor(props?: Partial<MagikaConfig>) {
     Object.assign(this, props);
+  }
+
+  toOptions(): MagikaOptions {
+    return {
+      modelURL: this.modelURL,
+      modelPath: this.modelPath,
+      modelConfigURL: this.modelConfigURL ?? this.configURL,
+      modelConfigPath: this.modelConfigPath ?? this.configPath,
+    };
   }
 }
 

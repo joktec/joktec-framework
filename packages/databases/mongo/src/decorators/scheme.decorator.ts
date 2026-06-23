@@ -61,7 +61,7 @@ export const Schema = (options: ISchemaOptions = {}): ClassDecorator => {
       [
         SetMetadata<string, ISchemaOptions>(className, opts),
         modelOptions({
-          schemaOptions: { ...opts.schemaOptions, collection: opts.collection },
+          schemaOptions: { ...opts.schemaOptions, collection: opts.collection } as any,
           options: { ...opts.customOptions },
         }),
       ],

@@ -61945,6 +61945,12 @@
         "modelPath": {
           "type": "string"
         },
+        "modelConfigURL": {
+          "type": "string"
+        },
+        "modelConfigPath": {
+          "type": "string"
+        },
         "configURL": {
           "type": "string"
         },

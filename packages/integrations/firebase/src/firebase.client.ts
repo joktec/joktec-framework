@@ -1,9 +1,9 @@
 import { Client } from '@joktec/core';
-import admin from 'firebase-admin';
+import { App } from 'firebase-admin/app';
 import { FirebaseConfig } from './firebase.config';
 import { FirebaseAuth, FirebaseDatabase, FirebaseFirestore, FirebaseMessaging, FirebaseStorage } from './models';
 
-export type FirebaseInstance = admin.app.App;
+export type FirebaseInstance = App;
 
 export interface FirebaseClient extends Client<FirebaseConfig, FirebaseInstance> {
   auth(conId?: string): FirebaseAuth;

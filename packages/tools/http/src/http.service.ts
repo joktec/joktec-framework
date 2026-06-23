@@ -82,8 +82,15 @@ export class HttpService extends AbstractClientService<HttpConfig, AxiosInstance
 
     const { keepAlive = true, timeout, maxSockets } = proxy;
     const options = Object.assign({ keepAlive, timeout, maxSockets }, opts);
+    const proxyOptions = {
+      ...options,
+      protocol: url.protocol,
+      host: url.hostname,
+      port: url.port,
+      auth: url.username ? `${decodeURIComponent(url.username)}:${decodeURIComponent(url.password)}` : undefined,
+    };
     return {
-      httpAgent: new HttpProxyAgent(url, options),
+      httpAgent: new HttpProxyAgent(proxyOptions),
       httpsAgent: new HttpsProxyAgent(url, options),
     };
   }

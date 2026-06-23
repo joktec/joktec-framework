@@ -50,6 +50,7 @@ import {
   Entity,
   IBaseController,
   IBaseRequest,
+  IPaginationResponse,
   PagePaginationResponse,
 } from '../models';
 import { ConfigService, LogService } from '../modules';
@@ -75,6 +76,7 @@ export interface IControllerProps<T extends Entity> extends IEndpointProps {
     queryDto?: Constructor<IBaseRequest<T>> | Clazz;
     createDto?: Constructor<DeepPartial<T>> | Clazz;
     updatedDto?: Constructor<DeepPartial<T>> | Clazz;
+    paginationDto?: Constructor<IPaginationResponse<T>>;
   };
   tag?: string;
   paginate?: IEndpointProps & { search?: boolean } & IApiFilterQueryOptions;
@@ -106,7 +108,9 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
   class QueryDto extends queryDto {}
 
   @ApiSchema({ name: `${nameSingular}Pagination` })
-  class PaginationDto extends PagePaginationResponse<T>(props.dto) {}
+  class DefaultPaginationDto extends PagePaginationResponse<T>(props.dto) {}
+
+  const PaginationDto: Constructor<IPaginationResponse<T>> = props.customDto?.paginationDto || DefaultPaginationDto;
 
   @ApiSchema({ name: `${nameSingular}CreateDto` })
   class CreateDto extends createDto {}
@@ -152,7 +156,7 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
     @UsePipes(...toArray(props.paginate?.pipes))
     @UseFilters(...toArray(props.paginate?.filters))
     @applyDecorators(...toArray(props.paginate?.decorators))
-    async paginate(@Query() query: QueryDto): Promise<PaginationDto> {
+    async paginate(@Query() query: QueryDto): Promise<IPaginationResponse<T>> {
       return this.service.paginate(query);
     }
 
@@ -169,7 +173,7 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
     @UseFilters(...toArray(props.paginate?.filters))
     @applyDecorators(...toArray(props.paginate?.decorators))
     @HttpCode(HttpStatus.OK)
-    async search(@Body() query: QueryDto): Promise<PaginationDto> {
+    async search(@Body() query: QueryDto): Promise<IPaginationResponse<T>> {
       return this.service.paginate(query);
     }
 

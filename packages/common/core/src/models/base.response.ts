@@ -8,15 +8,21 @@ export interface IPaginationResponse<T extends Entity> {
   items: T[];
   total: number;
 
+  // Page-based Pagination
   prevPage?: number;
   currPage?: number;
   nextPage?: number;
   lastPage?: number;
 
+  // Offset-based Pagination
   prevOffset?: number;
   currOffset?: number;
   nextOffset?: number;
   lastOffset?: number;
+
+  // Cursor-based Pagination
+  hasNextPage?: boolean;
+  nextCursor?: string | null;
 }
 
 export const PagePaginationResponse = <T extends Entity>(dto: Constructor<T>): NestType<IPaginationResponse<T>> => {

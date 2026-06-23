@@ -31,6 +31,7 @@ import { ArticlePaginationDto, UserLikedPaginationDto } from './models/article-r
 
 const props: IControllerProps<Article> = {
   dto: Article,
+  customDto: { paginationDto: ArticlePaginationDto },
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
   create: { disable: true },

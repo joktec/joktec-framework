@@ -11,8 +11,7 @@ export abstract class JobWorker<
   JOB extends IJobModel<DATA>,
   DATA extends object = Record<string, any>,
   CONFIG extends JobWorkerConfig = JobWorkerConfig,
-> implements OnModuleInit
-{
+> implements OnModuleInit {
   @Inject() protected logService: LogService;
   @Inject() protected configService: ConfigService;
 

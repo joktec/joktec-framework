@@ -8,22 +8,24 @@ type IRefPath = { path: string; ref: string };
 
 function getRefPath(schema: Schema): IRefPath[] {
   const refPath: IRefPath[] = [];
-  Object.values(schema.paths).map(schemaType => {
+  (Object.values(schema.paths) as any[]).map(schemaType => {
+    const schemaTypeAny = schemaType as any;
+    const caster = schemaTypeAny.caster;
     const isRefObject =
-      schemaType instanceof mongoose.Schema.Types.ObjectId &&
-      schemaType.options.ref &&
-      schemaType.options.strictRef === true;
+      schemaTypeAny instanceof mongoose.Schema.Types.ObjectId &&
+      schemaTypeAny.options.ref &&
+      schemaTypeAny.options.strictRef === true;
     if (isRefObject) {
-      refPath.push({ path: schemaType.path, ref: schemaType.options.ref });
+      refPath.push({ path: schemaTypeAny.path, ref: schemaTypeAny.options.ref });
     }
 
     const isArrayRef =
-      schemaType instanceof mongoose.Schema.Types.Array &&
-      schemaType.caster &&
-      schemaType.caster?.options?.ref &&
-      schemaType.options.strictRef === true;
+      schemaTypeAny instanceof mongoose.Schema.Types.Array &&
+      caster &&
+      caster?.options?.ref &&
+      schemaTypeAny.options.strictRef === true;
     if (isArrayRef) {
-      refPath.push({ path: schemaType.path, ref: schemaType.caster?.options?.ref });
+      refPath.push({ path: schemaTypeAny.path, ref: caster?.options?.ref });
     }
   });
   return refPath;
@@ -38,7 +40,9 @@ function getVirtualPath(schema: Schema) {
 }
 
 export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: string }) => {
-  schema.pre('save', async function (next) {
+  const schemaAny = schema as any;
+
+  schemaAny.pre('save', async function (next) {
     const refPaths = getRefPath(schema);
     if (!refPaths.length) return next();
 
@@ -69,7 +73,7 @@ export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: str
     next();
   });
 
-  schema.pre(['findOneAndUpdate', 'findOneAndReplace', 'updateOne', 'updateMany'], async function (next) {
+  schemaAny.pre(['findOneAndUpdate', 'findOneAndReplace', 'updateOne', 'updateMany'], async function (next) {
     const paranoidKey = opts?.paranoidKey;
     if (paranoidKey && this.get(paranoidKey)) {
       return next();
@@ -105,7 +109,7 @@ export const StrictReferencePlugin = (schema: Schema, opts?: { paranoidKey?: str
     next();
   });
 
-  schema.pre(
+  schemaAny.pre(
     ['findOneAndUpdate', 'updateMany', 'updateOne', 'findOneAndDelete', 'deleteMany', 'deleteOne'],
     async function (next) {
       const paranoidKey = opts?.paranoidKey;

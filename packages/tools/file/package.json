@@ -43,7 +43,7 @@
     "fs": "^0.0.1-security",
     "fs-extra": "^11.3.5",
     "lodash": "^4.18.1",
-    "magika": "^0.2.13",
+    "magika": "^1.0.0",
     "rxjs": "^7.8.2",
     "seedrandom": "^3.0.5"
   },

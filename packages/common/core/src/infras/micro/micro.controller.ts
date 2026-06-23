@@ -22,7 +22,7 @@ export class MicroController {
     @Param('method') method: string,
     @Body() req: object,
   ): Promise<Object> {
-    let serviceInstance = null;
+    let serviceInstance;
     try {
       serviceInstance = await this.moduleRef.get(service, { strict: false });
     } catch (ex) {

@@ -29,14 +29,16 @@ function cleanUpDocument(doc: any, paths: string[]) {
 }
 
 export const TransformPlugin = (schema: Schema) => {
-  schema.pre('save', function (next) {
+  const schemaAny = schema as any;
+
+  schemaAny.pre('save', function (next) {
     ['_id', '__v', 'createdAt', 'updatedAt', '__t'].map(path => {
       if (this[path]) delete this[path];
     });
     next();
   });
 
-  schema.pre(
+  schemaAny.pre(
     [
       'find',
       'findOne',
@@ -87,7 +89,7 @@ export const TransformPlugin = (schema: Schema) => {
     },
   );
 
-  schema.pre('aggregate', function (next, opts) {
+  schemaAny.pre('aggregate', function (next, opts) {
     const version = opts?.version || this.options?.version || '5.0.0';
     const mongoVersion = version.split('.').map(Number);
 
@@ -118,7 +120,7 @@ export const TransformPlugin = (schema: Schema) => {
     next();
   });
 
-  schema.post(/^find/, function (res, next) {
+  schemaAny.post(/^find/, function (res, next) {
     // const paths = Object.keys(this.model.schema.paths);
     // if (isArray(res)) res.map(doc => cleanUpDocument(doc, paths));
     // else cleanUpDocument(res, paths);

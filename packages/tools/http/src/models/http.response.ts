@@ -1,6 +1,5 @@
-import { Agent } from 'http';
-import { AxiosResponse } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface HttpResponse<DATA = any, CONFIG = any> extends AxiosResponse<DATA, CONFIG> {}
 
-export type HttpAgent = { httpAgent?: Agent; httpsAgent?: Agent };
+export type HttpAgent = Pick<AxiosRequestConfig, 'httpAgent' | 'httpsAgent'>;

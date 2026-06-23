@@ -215,7 +215,7 @@ export abstract class CrontabScheduler implements OnModuleInit {
     if (!jobExist) return;
 
     const job = this.schedulerRegistry.getCronJob(cronName);
-    if (job.running) job.stop();
+    if (job.isActive) job.stop();
     this.schedulerRegistry.deleteCronJob(cronName);
     this.logService.info(`Job %s stopped`, cron.code);
   }

@@ -2,8 +2,7 @@ import { SendMessageCommandInput, SendMessageCommandOutput } from '@aws-sdk/clie
 import { SqsAssertOptions } from './sqs-base.model';
 
 export interface SqsProduceOptions
-  extends SqsAssertOptions,
-    Omit<SendMessageCommandInput, 'QueueUrl' | 'MessageBody'> {}
+  extends SqsAssertOptions, Omit<SendMessageCommandInput, 'QueueUrl' | 'MessageBody'> {}
 
 export interface SqsProduceResult extends SendMessageCommandOutput {}
 

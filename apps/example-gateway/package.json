@@ -49,13 +49,13 @@
     "@joktec/redcast": "0.1.15",
     "@joktec/storage": "0.2.13",
     "@joktec/sqs": "^0.1.14",
-    "apple-signin-auth": "^1.7.6",
+    "apple-signin-auth": "^2.0.0",
     "dayjs": "^1.11.21",
     "nestjs-i18n": "^10.8.4",
     "gravatar": "^1.8.2",
     "lodash": "^4.18.1",
     "rxjs": "^7.8.2",
-    "pino-mongodb": "^4.3.0"
+    "pino-mongodb": "^5.0.0"
   },
   "devDependencies": {
     "@types/gravatar": "^1.8.6",

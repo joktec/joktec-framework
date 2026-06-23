@@ -44,13 +44,13 @@ function destroyOne<T>(
   filter?: ICondition<T>,
   options?: ParanoidQueryOptions<T>,
 ): QueryWithHelpers<T, T> {
-  const paths = this.model.schema.paths;
-  const isParanoid = Object.values(paths).some(schema => !!schema.options.deletedAt);
+  const paths = Object.values(this.model.schema.paths) as any[];
+  const isParanoid = paths.some(schema => !!schema.options.deletedAt);
   if (!isParanoid || options?.force) {
     return this.findOneAndDelete(filter, { ...DELETE_OPTIONS, ...options });
   }
 
-  const bodyUpdate = Object.values(paths).reduce((body, schema) => {
+  const bodyUpdate = paths.reduce((body, schema) => {
     if (schema.options.deletedAt) body[schema.options.deletedAt] = new Date();
     return body;
   }, {});
@@ -62,13 +62,13 @@ function destroyMany<T>(
   filter?: ICondition<T>,
   options?: ParanoidQueryOptions<T>,
 ): QueryWithHelpers<{ acknowledged: boolean; deletedCount: number } | UpdateWriteOpResult, any> {
-  const paths = this.model.schema.paths;
-  const isParanoid = Object.values(paths).some(schema => !!schema.options.deletedAt);
+  const paths = Object.values(this.model.schema.paths) as any[];
+  const isParanoid = paths.some(schema => !!schema.options.deletedAt);
   if (!isParanoid || options?.force) {
     return this.deleteMany(filter, { ...options, ...DELETE_OPTIONS });
   }
 
-  const bodyUpdate = Object.values(paths).reduce((body, schema) => {
+  const bodyUpdate = paths.reduce((body, schema) => {
     if (schema.options.deletedAt) body[schema.options.deletedAt] = new Date();
     return body;
   }, {});
@@ -80,11 +80,11 @@ function restore<T>(
   filter?: ICondition<T>,
   options?: ParanoidQueryOptions<T>,
 ): QueryWithHelpers<T, T> {
-  const paths = this.model.schema.paths;
-  const bodyUpdate: DeepPartial<T> = Object.values(paths).reduce((body, schema) => {
+  const paths = Object.values(this.model.schema.paths) as any[];
+  const bodyUpdate: DeepPartial<T> = paths.reduce((body, schema) => {
     if (schema.options.deletedAt) body[schema.options.deletedAt] = null;
     return body;
-  }, {});
+  }, {} as DeepPartial<T>);
   return this.findOneAndUpdate(filter, { $set: bodyUpdate }, { ...RESTORE_OPTIONS, ...options });
 }
 
