@@ -63,3 +63,37 @@ To inspect a specific revision without switching working state:
 git show <revision>:path/to/file.ts
 git diff --name-status <revision>..HEAD
 ```
+
+## Tests And Reports
+
+```bash
+rg --files packages apps test | rg '__tests__|__mocks__|\\.scenario\\.ts$'
+rg -n "moduleNameMapper|test:consumer|jest.consumer" package.json packages apps test
+rg -n "createMock|jest\\.fn|mock.*Instances|preflightDependencies" packages test
+```
+
+Package-scoped verification:
+
+```bash
+yarn test --scope @joktec/<package>
+yarn lint --scope @joktec/<package>
+yarn build --scope @joktec/<package>
+```
+
+Broad local report capture:
+
+```bash
+mkdir -p reports
+yarn lint 2>&1 | tee reports/lint.log
+yarn build 2>&1 | tee reports/build.log
+yarn test:cov 2>&1 | tee reports/unit-coverage.log
+```
+
+Consumer harness commands:
+
+```bash
+yarn test:consumer:smoke
+yarn test:consumer:db
+yarn test:consumer:transport
+yarn test:consumer:broker
+```

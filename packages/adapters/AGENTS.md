@@ -31,6 +31,10 @@ Adapters expose pluggable external capability wrappers:
 Use package-scoped commands:
 
 ```bash
+yarn test --scope @joktec/cacher
+yarn test --scope @joktec/mailer
+yarn test --scope @joktec/notifier
+yarn test --scope @joktec/storage
 yarn build --scope @joktec/cacher
 yarn build --scope @joktec/mailer
 yarn build --scope @joktec/notifier

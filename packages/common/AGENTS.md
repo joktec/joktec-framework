@@ -29,3 +29,16 @@ This guide applies to `packages/common/*`.
 
 - `packages/common/core/AGENTS.md`
 - `packages/common/types/AGENTS.md`
+
+## Verification
+
+Use package-scoped commands:
+
+```bash
+yarn test --scope @joktec/core
+yarn test --scope @joktec/utils
+yarn test --scope @joktec/cron
+yarn build --scope @joktec/core
+yarn build --scope @joktec/utils
+yarn build --scope @joktec/cron
+```

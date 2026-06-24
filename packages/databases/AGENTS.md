@@ -31,6 +31,11 @@ Database packages expose client modules, services, config classes, repositories,
 ## Verification
 
 ```bash
+yarn test --scope @joktec/mongo
+yarn test --scope @joktec/mysql
+yarn test --scope @joktec/arango
+yarn test --scope @joktec/bigquery
+yarn test --scope @joktec/elastic
 yarn build --scope @joktec/mongo
 yarn build --scope @joktec/mysql
 yarn build --scope @joktec/arango

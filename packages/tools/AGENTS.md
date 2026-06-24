@@ -26,6 +26,9 @@ Tools expose reusable utility services:
 ## Verification
 
 ```bash
+yarn test --scope @joktec/alert
+yarn test --scope @joktec/file
+yarn test --scope @joktec/http
 yarn build --scope @joktec/alert
 yarn build --scope @joktec/file
 yarn build --scope @joktec/http

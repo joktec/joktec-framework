@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-24 - Package Testing Coverage and Consumer Harness Sync
+
+- Recorded package-level Jest coverage as an implemented framework verification surface across common, adapters, brokers, databases, integrations, and tools.
+- Documented `test/consumer/` as the example application scenario harness for smoke, database, Redis transport, and broker checks.
+- Clarified that package tests mock external SDK clients and that live runtime stack checks belong to the consumer harness.
+- Added agent search hints and local report-capture commands for broad lint, build, coverage, and consumer scenario runs.
+
 ## 2026-06-23 - Pagination Contract and Cursor Runtime Sync
 
 - Documented shared page, offset, and cursor pagination contracts in `@joktec/core`.

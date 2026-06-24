@@ -10,6 +10,7 @@ Baseline: current stable implementation.
 - `yarn.lock`: dependency lockfile.
 - `apps/`: runnable example applications.
 - `packages/`: reusable JokTec packages.
+- `test/consumer/`: Jest scenario harness for example app smoke, database, transport, and broker checks against a developer-provided runtime stack.
 
 ## Apps
 
@@ -99,3 +100,9 @@ Package-family agent guides:
 
 `packages/tools/http`, `file`, `alert`
 - Shared utility services.
+
+## Testing Layout
+
+Package-level tests live near package source under `src/__tests__/`. Local SDK mocks live under `src/__mocks__/` and are wired through each package Jest `moduleNameMapper` when a dependency needs CommonJS-safe or network-free behavior.
+
+Consumer integration scenarios live under `test/consumer/` and are intentionally separate from package unit/integration tests. They preflight required TCP dependencies, may start `apps/example-gateway` and `apps/example-micro`, and should be run selectively with the root `test:consumer:*` scripts.

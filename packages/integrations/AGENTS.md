@@ -26,6 +26,8 @@ Integrations wrap third-party service SDKs:
 ## Verification
 
 ```bash
+yarn test --scope @joktec/firebase
+yarn test --scope @joktec/gpt
 yarn build --scope @joktec/firebase
 yarn build --scope @joktec/gpt
 ```

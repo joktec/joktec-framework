@@ -26,6 +26,8 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 - Broker packages for Kafka, RabbitMQ, Redcast, and SQS.
 - Adapter packages for cache, mailer, notifier, and storage.
 - Cron and job worker abstractions.
+- Package-level Jest coverage for core framework primitives, utilities, cron, adapters, brokers, databases, integrations, and tools.
+- Consumer integration harness under `test/consumer/` for example-gateway/example-micro smoke, database, Redis transport, and broker scenarios.
 - Example application modules using repositories, controllers, services, guards, interceptors, i18n, and message events.
 
 ## Current Documentation Version

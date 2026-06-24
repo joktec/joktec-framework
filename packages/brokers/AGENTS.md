@@ -31,6 +31,10 @@ Brokers expose messaging clients and decorator-driven producer/consumer registra
 Use package-scoped commands:
 
 ```bash
+yarn test --scope @joktec/kafka
+yarn test --scope @joktec/rabbit
+yarn test --scope @joktec/redcast
+yarn test --scope @joktec/sqs
 yarn build --scope @joktec/kafka
 yarn build --scope @joktec/rabbit
 yarn build --scope @joktec/redcast

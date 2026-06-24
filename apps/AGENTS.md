@@ -26,6 +26,7 @@ These apps are implementation examples and runtime verification surfaces for fra
 ## Verification
 
 - Build one app with `yarn build --scope @joktec/gateway` or `yarn build --scope @joktec/micro`.
+- Use `yarn test:consumer:*` from the repository root for example application smoke, database, Redis transport, and broker scenarios when the required local stack is running.
 - Run development mode with the existing package scripts only when the required local infrastructure is available.
 - Stop local app processes after runtime verification so ports are not held open.
 

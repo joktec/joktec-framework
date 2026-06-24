@@ -36,8 +36,14 @@ Use the package scripts already present in the repository:
 - `yarn build`
 - `yarn lint`
 - `yarn test`
+- `yarn test:cov`
+- `yarn test:consumer:*` only when the required local runtime stack is already running
 - package-level `yarn build`, `yarn lint`, `yarn test`
 - `yarn madge` where circular dependency checks are relevant
+
+Package-level tests should mock external SDK clients and avoid live network, queue, database, or cloud calls unless the test is explicitly part of the consumer integration harness.
+
+For broad local reports, capture command output under a local `reports/` directory with shell redirection or `tee`; do not commit generated local reports unless a release or CI workflow explicitly requires them.
 
 For commits, follow the repository's commit convention and do not bypass hooks.
 
