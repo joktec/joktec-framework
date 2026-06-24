@@ -7,6 +7,9 @@ export interface IMysqlModel {
   deletedAt?: Date;
 }
 
+/**
+ * Base relational entity fields shared by repositories and pagination contracts.
+ */
 export class MysqlModel implements IMysqlModel {
   @CreateDateColumn()
   @ApiProperty({ type: Date })

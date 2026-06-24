@@ -20,6 +20,9 @@ import { MysqlService } from './mysql.service';
   exports: [MysqlService],
 })
 export class MysqlModule {
+  /**
+   * Registers entity and subscriber classes by connection id for MysqlService.
+   */
   static forRoot(...opts: MysqlModuleOptions[]): DynamicModule {
     const modelProviders: MysqlModelRegistry = toArray(opts).reduce((curr: object, acc: MysqlModuleOptions) => {
       curr[acc.conId || DEFAULT_CON_ID] = toArray(acc.models);

@@ -8,4 +8,5 @@ export * from './decorators';
 export * from './helpers';
 export * from './models';
 export * from 'typeorm';
+export { Column, PrimaryColumn, PrimaryGeneratedColumn } from './decorators';
 export { UpsertOptions } from 'typeorm/repository/UpsertOptions';

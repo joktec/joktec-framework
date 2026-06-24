@@ -13,15 +13,20 @@ import {
 } from '@joktec/core';
 import { plainToInstance, toArray, toInt } from '@joktec/utils';
 import { chunk, isArray, isNil, isObject, omit } from 'lodash';
-import { DeepPartial, EntityManager, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
+import { DeepPartial, EntityManager, FindManyOptions, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { UpsertOptions } from 'typeorm/repository/UpsertOptions';
 import { MysqlFinder, MysqlHelper } from './helpers';
 import { IMysqlOption, IMysqlRequest, IMysqlResponse, MysqlId, MysqlModel } from './models';
 import { IMysqlRepository } from './mysql.client';
-import { MysqlCatch } from './mysql.exception';
+import { Dialect } from './mysql.config';
+import { MysqlCatch, MysqlException } from './mysql.exception';
 import { MysqlService } from './mysql.service';
 
+/**
+ * Base repository for relational entities. It centralizes TypeORM query building,
+ * pagination, transaction-aware repository selection, and entity transformation.
+ */
 @Injectable()
 export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = MysqlId>
   implements IMysqlRepository<T, ID>, OnModuleInit, OnApplicationBootstrap
@@ -49,6 +54,19 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     return this.mysqlService.getRepository(this.model, this.conId);
   }
 
+  private get dialect(): Dialect {
+    return this.mysqlService.getConfig(this.conId).dialect || Dialect.MYSQL;
+  }
+
+  private getRepository(opts: IMysqlOption<T> = {}): Repository<T> {
+    const manager = opts.queryRunner?.manager || opts.manager;
+    if (manager) return manager.getRepository(this.model as any);
+    return this.repository;
+  }
+
+  /**
+   * Converts raw TypeORM entities into the configured model class.
+   */
   protected transform(docs: any | any[]): T | T[] {
     if (isNil(docs)) return null;
     if (isArray(docs) && !docs.length) return [];
@@ -56,16 +74,19 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     return (isArray(docs) ? transformDocs : transformDocs[0]) as any;
   }
 
+  /**
+   * Builds the canonical query builder from the shared request contract.
+   */
   public qb(query: IMysqlRequest<T> = {}, opts: IMysqlOption<T> = {}): SelectQueryBuilder<T> {
-    const metadata = Reflect.getMetadata('searchableKeywords', this.model);
-
-    const qb = this.repository.createQueryBuilder(this.model.name);
-    if (query.condition) MysqlHelper.applyCondition(qb, query.condition);
-    if (query.select) MysqlHelper.applyProjection(qb, query.select);
-    if (query.sort) MysqlHelper.applyOrder(qb, query.sort);
+    const repository = this.getRepository(opts);
+    const context = { metadata: repository.metadata, dialect: this.dialect };
+    const qb = repository.createQueryBuilder(this.model.name);
+    if (query.condition) MysqlHelper.applyCondition(qb, query.condition, context);
+    if (query.select) MysqlHelper.applyProjection(qb, query.select, context);
+    if (query.sort) MysqlHelper.applyOrder(qb, query.sort, context);
     MysqlHelper.applyPagination(qb, query);
-    if (query.populate) MysqlHelper.applyRelations(qb, query.populate);
-    if (opts.withDeleted) qb.withDeleted();
+    if (query.populate) MysqlHelper.applyRelations(qb, query.populate, context);
+    if (query.withDeleted || opts.withDeleted) qb.withDeleted();
     if (opts.comment) qb.comment(opts.comment);
     if (opts.cache) qb.cache(opts.cache);
     if (opts.lock) {
@@ -75,6 +96,10 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     return qb;
   }
 
+  /**
+   * @deprecated Use qb(), find(), count(), or paginate() instead. MysqlFinder uses TypeORM FindOptions and does not
+   * provide the same metadata-aware query safety guarantees as MysqlHelper.
+   */
   public finder(query: IMysqlRequest<T> = {}, opts: IMysqlOption<T> = {}): FindManyOptions<T> {
     const options: FindManyOptions<T> = MysqlFinder.parseFilter(query);
     const { limit, offset } = MysqlFinder.parsePagination(query);
@@ -92,10 +117,13 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
 
   private whereById(pkValue: ID): FindManyOptions<T>['where'] {
     const primaryColumns = this.repository.metadata.primaryColumns.map(pk => pk.propertyName);
-    return primaryColumns.reduce((curr, acc) => {
-      curr[acc] = pkValue;
-      return curr;
-    }, {});
+    if (primaryColumns.length !== 1) {
+      throw new MysqlException('MYSQL_COMPOSITE_PRIMARY_KEY_REQUIRES_CONDITION', {
+        model: this.model.name,
+        primaryColumns,
+      });
+    }
+    return { [primaryColumns[0]]: pkValue } as FindManyOptions<T>['where'];
   }
 
   @MysqlCatch
@@ -116,23 +144,32 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     return { items, total };
   }
 
+  /**
+   * Executes keyset pagination using createdAt and primary key columns as stable defaults.
+   */
   private async paginateByCursor(query: IMysqlRequest<T>, opts: IMysqlOption<T> = {}): Promise<IMysqlResponse<T>> {
     const limit = CursorPagination.getLimit(query.limit);
     const primaryKeys = this.repository.metadata.primaryColumns.map(pk => pk.propertyName);
     const defaultKeys = primaryKeys.length ? ['createdAt', ...primaryKeys] : ['createdAt'];
-    const cursor = CursorPagination.resolve<T>({
-      cursor: query.cursor,
-      cursorKey: query.cursorKey,
-      defaultKeys,
-      tieBreakerKeys: primaryKeys,
-      sort: query.sort,
-    });
-    this.assertCursorColumns(cursor.keys);
+    let cursor: ReturnType<typeof CursorPagination.resolve<T>>;
+    try {
+      cursor = CursorPagination.resolve<T>({
+        cursor: query.cursor,
+        cursorKey: query.cursorKey,
+        defaultKeys,
+        tieBreakerKeys: primaryKeys,
+        sort: query.sort,
+      });
+    } catch (err) {
+      throw new MysqlException('MYSQL_INVALID_CURSOR', err);
+    }
+    this.assertCursorColumns(cursor.keys, opts);
     const findQuery: IMysqlRequest<T> = omit(query, ['page', 'limit', 'offset', 'cursor', 'cursorKey', 'sort']);
     const qb = this.qb(findQuery, opts);
-    this.applyCursorCondition(qb, cursor.keys, cursor.directions, cursor.values);
+    const cursorContext = { metadata: this.getRepository(opts).metadata, dialect: this.dialect };
+    this.applyCursorCondition(qb, cursor.keys, cursor.directions, cursor.values, opts);
     cursor.keys.forEach((key, index) => {
-      qb.addOrderBy(`${qb.alias}.${key}`, cursor.directions[index] === 'asc' ? 'ASC' : 'DESC');
+      qb.addOrderBy(MysqlHelper.column(qb, key, cursorContext), cursor.directions[index] === 'asc' ? 'ASC' : 'DESC');
     });
     qb.take(limit + 1);
 
@@ -156,32 +193,38 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     return { items, total, hasNextPage, nextCursor };
   }
 
-  private assertCursorColumns(keys: string[]): void {
-    const columnPaths = new Set(
-      this.repository.metadata.columns.map(column => column.propertyPath || column.propertyName),
-    );
+  private assertCursorColumns(keys: string[], opts: IMysqlOption<T> = {}): void {
+    const repository = this.getRepository(opts);
+    const columnPaths = new Set(repository.metadata.columns.map(column => column.propertyPath || column.propertyName));
     const invalidKey = keys.find(key => !columnPaths.has(key));
-    if (invalidKey) throw new Error(`Invalid cursor key "${invalidKey}" for ${this.model.name}`);
+    if (invalidKey) throw new MysqlException('MYSQL_UNKNOWN_COLUMN', { key: invalidKey, model: this.model.name });
   }
 
+  /**
+   * Appends lexicographic cursor predicates for multi-column keyset pagination.
+   */
   private applyCursorCondition(
     qb: SelectQueryBuilder<T>,
     keys: string[],
     directions: Array<'asc' | 'desc'>,
     values?: unknown[],
+    opts: IMysqlOption<T> = {},
   ): void {
     if (!values?.length) return;
 
-    const clauses = keys.map((key, index) => {
+    const context = { metadata: this.getRepository(opts).metadata, dialect: this.dialect };
+    const columns = keys.map(key => MysqlHelper.column(qb, key, context));
+
+    const clauses = columns.map((column, index) => {
       const equality = keys.slice(0, index).map((equalityKey, equalityIndex) => {
         const param = `cursor_${equalityIndex}_eq`;
         qb.setParameter(param, values[equalityIndex]);
-        return `${qb.alias}.${equalityKey} = :${param}`;
+        return `${MysqlHelper.column(qb, equalityKey, context)} = :${param}`;
       });
       const operator = directions[index] === 'asc' ? '>' : '<';
       const param = `cursor_${index}`;
       qb.setParameter(param, values[index]);
-      return [...equality, `${qb.alias}.${key} ${operator} :${param}`].join(' AND ');
+      return [...equality, `${column} ${operator} :${param}`].join(' AND ');
     });
 
     qb.andWhere(`(${clauses.map(clause => `(${clause})`).join(' OR ')})`);
@@ -189,15 +232,22 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
 
   @MysqlCatch
   async find(query: IMysqlRequest<T>, opts: IMysqlOption<T> = {}): Promise<T[]> {
-    const options: FindManyOptions<T> = this.finder(query, opts);
-    const docs = await this.repository.find(options);
+    const docs = await this.qb(query, opts).getMany();
     return this.transform(docs) as T[];
   }
 
   @MysqlCatch
   async count(query: IMysqlRequest<T>, opts: IMysqlOption<T> = {}): Promise<number> {
-    const options: FindManyOptions<T> = this.finder(query, opts);
-    return this.repository.count(options);
+    const countQuery: IMysqlRequest<T> = omit(query, [
+      'select',
+      'page',
+      'limit',
+      'offset',
+      'cursor',
+      'cursorKey',
+      'sort',
+    ]);
+    return this.qb(countQuery, opts).getCount();
   }
 
   @MysqlCatch
@@ -211,16 +261,16 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     else Object.assign(condition, cond);
 
     const mergeQuery: IMysqlRequest<T> = Object.assign({}, query, { condition });
-    const options: FindOneOptions<T> = this.finder(mergeQuery, opts);
-    const doc = await this.repository.findOne(options);
+    const doc = await this.qb({ ...mergeQuery, limit: 1 }, opts).getOne();
     return this.transform(doc) as T;
   }
 
   @MysqlCatch
   async create(body: DeepPartial<T>, opts: IMysqlOption<T> = {}): Promise<T> {
     const transformBody: T = this.transform(body) as T;
-    const entity = this.repository.create(transformBody);
-    return this.repository.save(entity, opts);
+    const repository = this.getRepository(opts);
+    const entity = repository.create(transformBody);
+    return repository.save(entity, opts);
   }
 
   @MysqlCatch
@@ -229,27 +279,31 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     if (!isObject(cond)) Object.assign(condition, { ...this.whereById(cond) });
     else Object.assign(condition, cond);
 
-    const entity = await this.findOne(condition, options);
+    const entity = await this.findOne(condition, {}, options);
     if (!entity) return null;
 
     const transformBody: T = this.transform({ ...entity, ...body }) as T;
-    const doc = await this.repository.save(transformBody, options);
+    const doc = await this.getRepository(options).save(transformBody, options);
     return this.transform(doc) as T;
   }
 
   @MysqlCatch
   async delete(cond: ID | ICondition<T>, opts: IMysqlOption<T> & { force?: boolean } = {}): Promise<T> {
-    const entity = await this.findOne(cond, opts);
+    const entity = await this.findOne(cond, { withDeleted: opts.withDeleted }, opts);
     if (!entity) return null;
-    const doc = opts?.force ? await this.repository.remove(entity) : await this.repository.softRemove(entity);
+    const repository = this.getRepository(opts);
+    const doc =
+      opts?.force || !repository.metadata.deleteDateColumn
+        ? await repository.remove(entity, opts)
+        : await repository.softRemove(entity, opts);
     return this.transform(doc) as T;
   }
 
   @MysqlCatch
   async restore(cond: ID | ICondition<T>, opts: IMysqlOption<T> & { reload?: false } = {}): Promise<T> {
-    const entity = await this.findOne(cond, opts);
+    const entity = await this.findOne(cond, { withDeleted: true }, opts);
     if (!entity) return null;
-    const doc = await this.repository.recover(entity);
+    const doc = await this.getRepository(opts).recover(entity, opts);
     return this.transform(doc) as T;
   }
 
@@ -259,9 +313,10 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     onConflicts: KeyOf<T>[],
     opts: IMysqlOption<T> & Omit<UpsertOptions<T>, 'conflictPaths'> = {},
   ): Promise<T> {
-    const transformBody: any = this.repository.create(body);
-    const result = await this.repository.upsert(transformBody, { ...opts, conflictPaths: onConflicts });
-    return this.transform(result.generatedMaps[0]) as T;
+    const repository = this.getRepository(opts);
+    const transformBody: any = repository.create(body);
+    const result = await repository.upsert(transformBody, { ...opts, conflictPaths: onConflicts });
+    return this.reloadUpsertResult(transformBody, result.generatedMaps?.[0], onConflicts, opts);
   }
 
   @MysqlCatch
@@ -273,12 +328,60 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
     const chunkSize = toInt(opts?.chunkSize, 1000);
     const chunkItems = chunk(body, chunkSize);
     const results: T[][] = [];
+    const repository = this.getRepository(opts);
     for (const chunkItem of chunkItems) {
-      const transformBody: any[] = this.repository.create(chunkItem);
-      const result = await this.repository.upsert(transformBody, { ...opts, conflictPaths: onConflicts });
-      const transformResult = this.transform(result.generatedMaps) as T[];
+      const transformBody: any[] = repository.create(chunkItem);
+      const result = await repository.upsert(transformBody, { ...opts, conflictPaths: onConflicts });
+      const transformResult = await Promise.all(
+        transformBody.map((item, index) =>
+          this.reloadUpsertResult(item, result.generatedMaps?.[index], onConflicts, opts),
+        ),
+      );
       results.push(transformResult);
     }
     return results.flat();
+  }
+
+  private async reloadUpsertResult(
+    body: DeepPartial<T>,
+    generatedMap: object,
+    onConflicts: KeyOf<T>[],
+    opts: IMysqlOption<T>,
+  ): Promise<T> {
+    if (opts.reload === false && generatedMap) return this.transform(generatedMap) as T;
+
+    const condition = this.resolveReloadCondition(body, generatedMap, onConflicts);
+    if (!condition) {
+      if (generatedMap) return this.transform(generatedMap) as T;
+      throw new MysqlException('MYSQL_UPSERT_RELOAD_FAILED', { model: this.model.name, onConflicts });
+    }
+
+    const doc = await this.findOne(condition as ICondition<T>, {}, opts);
+    if (!doc) throw new MysqlException('MYSQL_UPSERT_RELOAD_FAILED', { model: this.model.name, condition });
+    return doc;
+  }
+
+  private resolveReloadCondition(
+    body: DeepPartial<T>,
+    generatedMap: object,
+    onConflicts: KeyOf<T>[],
+  ): Partial<Record<KeyOf<T>, unknown>> | null {
+    const source = { ...(body as object), ...(generatedMap || {}) };
+    const primaryKeys = this.repository.metadata.primaryColumns.map(column => column.propertyName as KeyOf<T>);
+    const primaryCondition = this.pickDefined(source, primaryKeys);
+    if (primaryCondition) return primaryCondition;
+    return this.pickDefined(source, onConflicts);
+  }
+
+  private pickDefined(source: object, keys: KeyOf<T>[]): Partial<Record<KeyOf<T>, unknown>> | null {
+    const entries = keys.map(key => [key, source[key as string]] as const);
+    if (!entries.length || entries.some(([, value]) => isNil(value))) return null;
+    return entries.reduce(
+      (acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      },
+      {} as Partial<Record<KeyOf<T>, unknown>>,
+    );
   }
 }

@@ -18,28 +18,37 @@ export interface ITableOptions<T extends MysqlModel = any> extends EntityOptions
   customIndexes?: IIndexOptions<T>[];
 }
 
+/**
+ * Entity wrapper that keeps table metadata, indexes, and searchable fields close to the entity class.
+ */
 export const Tables = <T extends MysqlModel = any>(options: ITableOptions<T> = {}): ClassDecorator => {
   return (target: any) => {
     const className = target.name;
+    const { index, unique, textSearch, customIndexes, keywords: _keywords, ...entityOptions } = options;
 
-    const decorators: ClassDecorator[] = [SetMetadata<string, ITableOptions>(className, options), Entity(options)];
+    const decorators: ClassDecorator[] = [
+      SetMetadata<string, ITableOptions<T>>(className, { ...options }),
+      Entity(entityOptions),
+    ];
 
-    if (options.index?.length) {
-      decorators.push(Index(options.index, { background: true }));
+    if (index?.length) {
+      decorators.push(Index(index.map(String)));
     }
 
-    if (options.unique?.length) {
-      decorators.push(Index(options.unique, { unique: true, background: true }));
+    if (unique?.length) {
+      decorators.push(Index(unique.map(String), { unique: true }));
     }
 
-    if (options.textSearch?.length) {
-      decorators.push(Index(options.textSearch.map(String), { fulltext: true, background: true }));
+    if (textSearch?.length) {
+      decorators.push(Index(textSearch.map(String), { fulltext: true }));
     }
 
-    if (options.customIndexes?.length) {
-      options.customIndexes.map((idxOpts: IIndexOptions) => {
-        if (idxOpts.name) decorators.push(Index(idxOpts.name, idxOpts.fields, idxOpts));
-        else decorators.push(Index(idxOpts.fields, idxOpts));
+    if (customIndexes?.length) {
+      customIndexes.map((idxOpts: IIndexOptions) => {
+        const { fields, ...indexOptions } = idxOpts;
+        const safeFields = fields.map(String);
+        if (indexOptions.name) decorators.push(Index(indexOptions.name, safeFields, indexOptions));
+        else decorators.push(Index(safeFields, indexOptions));
       });
     }
 

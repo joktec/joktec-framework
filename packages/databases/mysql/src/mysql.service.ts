@@ -11,10 +11,13 @@ import {
   SUBSCRIBER_REGISTRY_KEY,
 } from './mysql.client';
 import { MysqlConfig } from './mysql.config';
-import { MysqlBenchmark, MysqlNamingStrategy } from './services';
+import { assertFirstClassDialect, MysqlBenchmark, MysqlNamingStrategy } from './services';
 
 const RETRY_OPTS = 'mysql.retry';
 
+/**
+ * Owns TypeORM DataSource lifecycle and resolves repositories by connection id.
+ */
 @Injectable()
 export class MysqlService extends AbstractClientService<MysqlConfig, DataSource> implements MysqlClient {
   constructor(
@@ -26,6 +29,7 @@ export class MysqlService extends AbstractClientService<MysqlConfig, DataSource>
 
   @Retry(RETRY_OPTS)
   protected async init(config: MysqlConfig): Promise<DataSource> {
+    assertFirstClassDialect(config.dialect);
     const connection = pick(config, ['host', 'port', 'username', 'password', 'database']);
     const options = {
       ...config,
@@ -42,15 +46,18 @@ export class MysqlService extends AbstractClientService<MysqlConfig, DataSource>
     }
 
     const AppDataSource = new DataSource(options);
-    this.logService.info('`%s` Connection to MySQL established on host %s', config.conId, config.host);
+    this.logService.info('`%s` MySQL datasource created on host %s', config.conId, config.host);
     return AppDataSource;
   }
 
+  /**
+   * Initializes the DataSource and optionally synchronizes schema for controlled environments.
+   */
   async start(client: DataSource, conId: string = DEFAULT_CON_ID): Promise<void> {
     const config = this.getConfig(conId);
 
     try {
-      await client.initialize();
+      if (!client.isInitialized) await client.initialize();
       this.logService.info('`%s` Connected to MySQL successfully', conId);
 
       if (this.modelRegistry[conId]) {
@@ -61,15 +68,18 @@ export class MysqlService extends AbstractClientService<MysqlConfig, DataSource>
       }
     } catch (err) {
       this.logService.error(err, '`%s` Error when connecting to MySQL', conId);
+      throw err;
     }
   }
 
   async stop(client: DataSource, conId: string = DEFAULT_CON_ID): Promise<void> {
     try {
+      if (!client.isInitialized) return;
       await client.destroy();
       this.logService.warn('`%s` Close connection to MySQL successfully', conId);
     } catch (err) {
       this.logService.error(err, '`%s` Error when close connection to MySQL', conId);
+      throw err;
     }
   }
 
@@ -81,6 +91,9 @@ export class MysqlService extends AbstractClientService<MysqlConfig, DataSource>
     return this.getClient(conId).createEntityManager();
   }
 
+  /**
+   * Returns the TypeORM repository registered on the requested connection id.
+   */
   public getRepository<T extends MysqlModel>(
     entityClass: Constructor<T>,
     conId: string = DEFAULT_CON_ID,

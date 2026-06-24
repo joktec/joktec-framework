@@ -31,23 +31,7 @@ export class MysqlSlaveConfig {
 export enum Dialect {
   MYSQL = 'mysql',
   POSTGRES = 'postgres',
-  COCKROACHDB = 'cockroachdb',
-  SAP = 'sap',
   MARIADB = 'mariadb',
-  SQLITE = 'sqlite',
-  CORDOVA = 'cordova',
-  REACT_NATIVE = 'react-native',
-  NATIVESCRIPT = 'nativescript',
-  SQLJS = 'sqljs',
-  ORACLE = 'oracle',
-  MSSQL = 'mssql',
-  MONGODB = 'mongodb',
-  AURORA_MYSQL = 'aurora-mysql',
-  AURORA_POSTGRES = 'aurora-postgres',
-  EXPO = 'expo',
-  BETTER_SQLITE3 = 'better-sqlite3',
-  CAPACITOR = 'capacitor',
-  SPANNER = 'spanner',
 }
 
 export enum MysqlLogLevel {
@@ -123,7 +107,7 @@ export class MysqlConfig extends ClientConfig {
 
   @IsOptional()
   @IsBoolean()
-  sync?: boolean = true;
+  sync?: boolean = false;
 
   @IsOptional()
   @IsTypes(MysqlBenchmarkConfig)

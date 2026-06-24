@@ -17,6 +17,11 @@ import {
 import { IMysqlRequest, MysqlModel } from '../models';
 import { MysqlException } from '../mysql.exception';
 
+/**
+ * @deprecated Prefer MysqlHelper-backed query builders through MysqlRepo.qb(), find(), count(), and paginate().
+ * MysqlFinder keeps legacy FindOptions parsing for compatibility only and does not provide the same field
+ * whitelist, dialect, and logical grouping guarantees.
+ */
 export class MysqlFinder {
   static parsePagination<T>(query: IMysqlRequest<T> = {}): { limit?: number; offset?: number } {
     const limit = typeof query.limit === 'number' && query.limit > 0 ? query.limit : undefined;
