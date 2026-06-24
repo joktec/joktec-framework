@@ -3,6 +3,14 @@ import bcrypt from 'bcryptjs';
 import { range, snakeCase } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
+export type UUIDVersion = 4 | 7 | 'v4' | 'v7';
+
+export interface GenerateUUIDOptions {
+  prefix?: string;
+  empty?: boolean;
+  version?: UUIDVersion;
+}
+
 /**
  * Create a random number between min and max
  * @param {number} min
@@ -24,14 +32,31 @@ export const generateOTP = (otpLength: number = 6): string => {
   return length > 0 ? otp.join('') : otp.reverse().join('');
 };
 
+const uuidFromBytes = (bytes: Buffer): string => {
+  const hex = bytes.toString('hex');
+  return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join('-');
+};
+
+export const uuidv7 = (): string => {
+  const bytes = crypto.randomBytes(16);
+  bytes.writeUIntBE(Date.now(), 0, 6);
+  bytes[6] = (bytes[6] & 0x0f) | 0x70;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  return uuidFromBytes(bytes);
+};
+
+const resolveUUID = (version: UUIDVersion = 4): string => {
+  return version === 7 || version === 'v7' ? uuidv7() : uuidv4();
+};
+
 /**
- * Generate a UUID with prefix
+ * Generate a UUID with prefix.
  * @param {object} opts
  * @returns {string} UUID
  */
-export function generateUUID(opts?: { prefix?: string; empty?: boolean }): string {
+export function generateUUID(opts?: GenerateUUIDOptions): string {
   if (opts?.empty) return '00000000-0000-0000-0000-000000000000';
-  let result: string = uuidv4();
+  let result: string = resolveUUID(opts?.version);
   if (opts?.prefix) {
     const prefix = snakeCase(opts.prefix).toUpperCase();
     result = `${prefix}-${result}`;

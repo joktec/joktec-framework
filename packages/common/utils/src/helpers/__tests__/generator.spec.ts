@@ -67,6 +67,18 @@ describe('generateUUID function', () => {
     expect(typeof uuid).toBe('string');
     expect(uuid).toMatch(/^TEST_CASE-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
   });
+
+  test('should return a uuid v7 when requested', () => {
+    const uuid = generateUUID({ version: 7 });
+    expect(typeof uuid).toBe('string');
+    expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  });
+
+  test('should return a prefixed uuid v7', () => {
+    const uuid = generateUUID({ prefix: 'test', version: 'v7' });
+    expect(typeof uuid).toBe('string');
+    expect(uuid).toMatch(/^TEST-[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  });
 });
 
 describe('hashString function', () => {
