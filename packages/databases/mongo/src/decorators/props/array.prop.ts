@@ -33,7 +33,7 @@ export function ArrayProps(opts: IPropOptions, swagger: ApiPropertyOptions): Pro
   }
 
   if (opts.uniqItems) {
-    decorators.push(Transform(({ value }) => (!value ? [] : uniq(toArray(value)))));
+    decorators.push(Transform(({ value }) => (isNil(value) ? value : uniq(toArray(value)))));
   }
 
   return decorators;

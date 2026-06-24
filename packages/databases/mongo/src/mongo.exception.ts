@@ -1,8 +1,11 @@
 import {
+  BadRequestException,
   BaseMethodDecorator,
   CallbackMethodOptions,
   Exception,
   InternalServerException,
+  RequestTimeoutException,
+  ServiceUnavailableException,
   ValidatorBuilder,
 } from '@joktec/core';
 import { has, upperCase } from 'lodash';
@@ -14,6 +17,9 @@ export class MongoException extends InternalServerException {
   }
 }
 
+/**
+ * Normalizes mongoose and driver errors into framework exceptions.
+ */
 export const MongoCatch = BaseMethodDecorator(async (options: CallbackMethodOptions): Promise<any> => {
   const { method, args } = options;
   try {
@@ -33,6 +39,16 @@ export const MongoCatch = BaseMethodDecorator(async (options: CallbackMethodOpti
       validationBuilder.throw();
     }
 
+    if (err instanceof Error.CastError) {
+      const validationBuilder = ValidatorBuilder.init(MongoException.name);
+      validationBuilder.add(err.path, `${err.path}_INVALID`.toUpperCase(), err.value);
+      validationBuilder.throw();
+    }
+
+    if (err instanceof Error.DocumentNotFoundError) {
+      throw new BadRequestException('MONGO_DOCUMENT_NOT_FOUND', err);
+    }
+
     // Handle unique error
     if ((err?.code === 11000 || err?.code === 11001) && has(err, 'keyValue')) {
       const validationBuilder = ValidatorBuilder.init(MongoException.name);
@@ -41,6 +57,18 @@ export const MongoCatch = BaseMethodDecorator(async (options: CallbackMethodOpti
         validationBuilder.add(path, msg, value);
       });
       validationBuilder.throw();
+    }
+
+    if (err?.name === 'MongoServerSelectionError' || err?.name === 'MongooseServerSelectionError') {
+      throw new ServiceUnavailableException('MONGO_SERVICE_UNAVAILABLE', err);
+    }
+
+    if (err?.name === 'MongoNetworkTimeoutError' || err?.name === 'MongoTimeoutError') {
+      throw new RequestTimeoutException('MONGO_REQUEST_TIMEOUT', err);
+    }
+
+    if (err?.hasErrorLabel?.('TransientTransactionError') || err?.hasErrorLabel?.('UnknownTransactionCommitResult')) {
+      throw new MongoException('MONGO_TRANSACTION_TRANSIENT_ERROR', err);
     }
 
     throw new MongoException(err.message, err);

@@ -54,6 +54,8 @@ export class RepositoryModule {}
 
 Use `conId` when the application config contains multiple Mongo connections.
 
+`MongoService` keeps model resolution connection-aware. Repository instances receive a `conId` and resolve models through that connection instead of relying on the global mongoose registry.
+
 ## Repository Usage
 
 Extend `MongoRepo` for each application schema:
@@ -135,6 +137,14 @@ For multi-process deployments, prefer enabling `autoIndex` in one owner process 
 
 Supported repository operations include `paginate`, `find`, `count`, `findOne`, `create`, `update`, `delete`, `restore`, `upsert`, and `bulkUpsert`.
 
+Query parsing is intentionally conservative:
+
+- `id` is treated as an API alias for root `_id` in query conditions.
+- ObjectId casting is schema-aware and limited to `_id`, schema ObjectId paths, or explicitly configured ObjectId paths.
+- String fields that happen to contain 24 hex characters are not cast to ObjectId unless the schema path requires it.
+- `$like`, `$begin`, and `$end` escape regex input by default to avoid accidental raw regex behavior.
+- Legacy casting and regex behavior are available only through explicit parser options for migration compatibility.
+
 ## Pagination
 
 `MongoRepo.paginate` supports page, offset, and cursor pagination through the shared `@joktec/core` response contracts.
@@ -176,6 +186,50 @@ const nextPage = await articleRepo.paginate({
 ## Schema Notes
 
 Use package decorators and base schema contracts for Mongo models. Keep app-specific query behavior inside app repositories or services, not inside `@joktec/mongo`.
+
+The schema decorators wrap Typegoose, `class-validator`, `class-transformer`, and Swagger metadata so one schema class can be reused by mapped DTOs where appropriate.
+
+```ts
+import { MongoSchema, Prop, Schema } from '@joktec/mongo';
+
+@Schema<User>({ collection: 'users', index: ['username'] })
+export class User extends MongoSchema {
+  @Prop({ required: true, unique: true })
+  username!: string;
+
+  @Prop({ type: () => [String], default: [] })
+  profileBadgeIds?: string[];
+}
+```
+
+When storing raw snapshots, maps, or subdocuments, avoid relying on global `id` to `_id` conversion. The repository/helper layer should only apply API-facing id aliasing where it is safe for query semantics.
+
+## Plugins
+
+`@joktec/mongo` includes package-level mongoose plugins:
+
+- paranoid plugin: applies soft-delete filtering and handles aggregate first-stage constraints such as `$geoNear`.
+- strict reference plugin: validates referenced documents for save/update/delete flows and resolves referenced models through the active connection.
+- transform plugin: centralizes shared document transformation behavior without breaking Mongo update operators.
+
+Plugins should be treated as framework behavior, not app business logic. App-specific validation belongs in app services, repositories, or schema decorators.
+
+## Debug Output
+
+`mongoDebug(collection, method, ...args)` renders common Mongoose debug callbacks as copyable Mongo shell commands:
+
+```ts
+mongoDebug('users', 'find', { username: 'ada' }, null, { limit: 5, sort: { createdAt: -1 } });
+// db.users.find({ username: 'ada' }).sort({ createdAt: -1 }).limit(5)
+```
+
+The renderer supports common Mongo shell values such as `ObjectId(...)`, `ISODate(...)`, regular expressions, arrays, maps, buffers, projections, sort, skip, limit, and `maxTimeMS`.
+
+## Error Contract
+
+`MongoCatch` and Mongo exception helpers normalize common Mongoose/MongoDB failures such as validation errors, cast errors, duplicate keys, server selection failures, timeouts, transaction conflicts, and strict reference violations.
+
+Application code should branch on stable framework-level error messages/codes rather than raw driver messages.
 
 ## Repository Layout
 

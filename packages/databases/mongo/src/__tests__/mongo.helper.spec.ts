@@ -36,6 +36,26 @@ describe('MongoHelper class', () => {
       });
     });
 
+    it('should only alias root id to _id and preserve nested snapshot id fields', () => {
+      const condition: ICondition<any> = {
+        id: '507f1f77bcf86cd799439011',
+        snapshot: {
+          id: 'raw-id',
+          author: {
+            id: 'author-id',
+          },
+        },
+      };
+
+      const result = MongoHelper.flatten(condition);
+
+      expect(result).toEqual({
+        _id: ObjectId.create('507f1f77bcf86cd799439011'),
+        'snapshot.id': 'raw-id',
+        'snapshot.author.id': 'author-id',
+      });
+    });
+
     it('should flattening an object with null values', () => {
       const condition: ICondition<any> = {
         name: null,
@@ -84,9 +104,41 @@ describe('MongoHelper class', () => {
       const condition = {
         status: 'activated',
         $text: { $search: 'Tìm đồ' },
-        parentId: ObjectId.create('656c096ad77a68cf9c495e28'),
+        parentId: '656c096ad77a68cf9c495e28',
       };
       expect(result).toEqual(condition);
+    });
+
+    it('should cast configured ObjectId paths without casting arbitrary 24-char strings', () => {
+      const result = MongoHelper.parseFilter(
+        {
+          _id: { $in: ['507f1f77bcf86cd799439011'] },
+          parentId: '656c096ad77a68cf9c495e28',
+          externalId: '656c096ad77a68cf9c495e29',
+        },
+        true,
+        { objectIdPaths: ['parentId'] },
+      );
+
+      expect(result).toEqual({
+        _id: { $in: [ObjectId.create('507f1f77bcf86cd799439011')] },
+        parentId: ObjectId.create('656c096ad77a68cf9c495e28'),
+        externalId: '656c096ad77a68cf9c495e29',
+      });
+    });
+
+    it('should escape regex helper operators by default', () => {
+      const result = MongoHelper.parseFilter({
+        name: { $like: 'a.b*' },
+        code: { $begin: 'x+y' },
+        suffix: { $end: '(z)' },
+      });
+
+      expect(result).toEqual({
+        name: { $regex: /a\.b\*/i },
+        code: { $regex: /^x\+y/i },
+        suffix: { $regex: /\(z\)$/i },
+      });
     });
 
     it('should handle nested objects', () => {

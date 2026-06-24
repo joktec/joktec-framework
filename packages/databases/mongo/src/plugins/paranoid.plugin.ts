@@ -1,14 +1,8 @@
 import { Clazz } from '@joktec/core';
 import { toArray, toBool } from '@joktec/utils';
-import { isEmpty, isObject, isString } from 'lodash';
+import { isEmpty } from 'lodash';
 import { QueryOptions, Schema } from 'mongoose';
-import {
-  IMongoFacetPipeline,
-  IMongoLookupPipeline,
-  IMongoMergePipeline,
-  IMongoPipeline,
-  IMongoUnionWithPipeline,
-} from '../models';
+import { IMongoPipeline } from '../models';
 
 export interface ParanoidOptions {
   deletedAt?: { name?: string; type?: Clazz };
@@ -20,62 +14,55 @@ export interface ParanoidQueryOptions<T = any> extends QueryOptions<T> {
   force?: boolean;
 }
 
-function injectFilter(filter: Record<string, any>, key: string, paranoid: boolean = true) {
+/**
+ * Adds the soft-delete condition to a query filter unless the caller opts out.
+ */
+export function injectFilter(filter: Record<string, any>, key: string, paranoid: boolean = true) {
   if (!paranoid) return filter;
+  if (Object.prototype.hasOwnProperty.call(filter, key)) return filter;
   return Object.assign(filter, { [key]: null });
 }
 
-function injectMatchPipeline(pipelines: IMongoPipeline[], key: string, paranoid: boolean = true): IMongoPipeline[] {
-  const newPipelines: IMongoPipeline[] = [];
+/**
+ * Injects soft-delete filters into aggregate pipelines without breaking first-stage-only operators.
+ */
+export function injectMatchPipeline(
+  pipelines: IMongoPipeline[],
+  key: string,
+  paranoid: boolean = true,
+): IMongoPipeline[] {
+  const newPipelines: IMongoPipeline[] = toArray(pipelines);
+  if (!paranoid) return newPipelines;
+
   for (const pipeline of toArray(pipelines)) {
     if ('$match' in pipeline) {
       injectFilter(pipeline.$match, key, paranoid);
     }
-
-    if ('$lookup' in pipeline) {
-      const subPipelines = injectMatchPipeline(pipeline.$lookup.pipeline, key, paranoid);
-      if (subPipelines.length) {
-        pipeline.$lookup.pipeline = subPipelines.map(subPipeline => subPipeline as IMongoLookupPipeline);
-      }
-    }
-
-    if ('$unionWith' in pipeline) {
-      const unionWith = isString(pipeline.$unionWith) ? { coll: pipeline.$unionWith } : pipeline.$unionWith;
-      const subPipelines = injectMatchPipeline(unionWith.pipeline, key, paranoid);
-      if (subPipelines.length) {
-        unionWith.pipeline = subPipelines.map(subPipeline => subPipeline as IMongoUnionWithPipeline);
-        pipeline.$unionWith = unionWith;
-      }
-    }
-
-    if ('$facet' in pipeline) {
-      const fields = Object.keys(pipeline.$facet);
-      for (const field of fields) {
-        const subPipelines = injectMatchPipeline(pipeline.$facet[field], key, paranoid);
-        if (subPipelines.length) {
-          pipeline.$facet[field] = subPipelines.map(subPipeline => subPipeline as IMongoFacetPipeline);
-        }
-      }
-    }
-
-    if ('$merge' in pipeline && isObject(pipeline['$merge'].whenMatched)) {
-      const subPipelines = injectMatchPipeline(pipeline['$merge'].whenMatched, key, paranoid);
-      if (subPipelines.length) {
-        pipeline['$merge'].whenMatched = subPipelines.map(subPipeline => subPipeline as IMongoMergePipeline);
-      }
-    }
-
-    newPipelines.push(pipeline);
   }
 
   const match = injectFilter({}, key, paranoid);
-  if (!newPipelines.some(p => '$match' in p) && !isEmpty(match)) {
-    newPipelines.unshift({ $match: match });
+  if (newPipelines.some(p => '$match' in p) || isEmpty(match)) {
+    return newPipelines;
   }
 
+  const first = newPipelines[0];
+  if (first && '$geoNear' in first) {
+    first.$geoNear.query = injectFilter(Object.assign({}, first.$geoNear.query), key, paranoid);
+    return newPipelines;
+  }
+
+  if (first && ('$search' in first || '$searchMeta' in first || '$vectorSearch' in first)) {
+    newPipelines.splice(1, 0, { $match: match });
+    return newPipelines;
+  }
+
+  newPipelines.unshift({ $match: match });
   return newPipelines;
 }
 
+/**
+ * Mongoose plugin that implements deletedAt-based soft delete for queries and aggregates.
+ */
 export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
   const schemaAny = schema as any;
   const deletedAtKey = opts?.deletedAt?.name || 'deletedAt';
@@ -105,10 +92,11 @@ export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
     ],
     function () {
       const options = this.getOptions();
+      const paranoid = toBool(options?.paranoid, true);
 
       // Intercept filter
       const filter = this.getFilter();
-      injectFilter(filter, deletedAtKey, options?.paranoid);
+      injectFilter(filter, deletedAtKey, paranoid);
       this.setQuery(filter);
     },
   );

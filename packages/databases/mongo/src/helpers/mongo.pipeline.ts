@@ -7,6 +7,9 @@ import { MongoSchema } from '../models';
 import { MongoHelper } from './mongo.helper';
 import { QueryHelper } from './mongo.method';
 
+/**
+ * Builds Mongo aggregation pipeline stages from the same request shapes used by repositories.
+ */
 export class MongoPipeline {
   static match(condition: ICondition<any>): PipelineStage.Match['$match'] {
     return MongoHelper.parseFilter(condition);
@@ -26,10 +29,7 @@ export class MongoPipeline {
         query: {
           [path]: {
             $nearSphere: {
-              $geometry: {
-                type: 'Point',
-                coordinates: [lng, lat],
-              },
+              $geometry: { type: 'Point', coordinates: [lng, lat] },
               $maxDistance: toInt(distance, 1000),
             },
           },
@@ -55,12 +55,7 @@ export class MongoPipeline {
       const { ref, foreignField, localField, justOne } = options;
 
       const refCollection = getModelWithString(ref).collection.collectionName;
-      const lookup: PipelineStage.Lookup['$lookup'] = {
-        from: refCollection,
-        localField: localField,
-        foreignField: foreignField,
-        as: path,
-      };
+      const lookup: PipelineStage.Lookup['$lookup'] = { from: refCollection, localField, foreignField, as: path };
 
       const subPipelines: Exclude<PipelineStage, PipelineStage.Merge | PipelineStage.Out>[] = [];
       if (!isEmpty(populate.match)) subPipelines.push({ $match: populate.match });

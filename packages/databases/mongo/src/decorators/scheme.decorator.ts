@@ -5,7 +5,7 @@ import { Func, ICustomOptions, IndexOptions } from '@typegoose/typegoose/lib/typ
 import { snakeCase, union } from 'lodash';
 import { IndexDirection, SchemaOptions } from 'mongoose';
 import { buildIndex, buildPlugin, buildQueryMethod } from '../helpers';
-import { ParanoidOptions } from '../plugins';
+import { ParanoidOptions, TransformOptions } from '../plugins';
 
 export interface IPlugin<TFunc extends Func = any, TParams = Parameters<TFunc>[1]> {
   mongoosePlugin: TFunc;
@@ -28,6 +28,7 @@ export interface ISchemaOptions {
   customOptions?: ICustomOptions;
   // Plugins
   paranoid?: boolean | ParanoidOptions;
+  transform?: TransformOptions;
   plugins?: IPlugin[];
   // Index
   index?: string | string[];
@@ -38,6 +39,9 @@ export interface ISchemaOptions {
   customIndexes?: IIndexOptions[];
 }
 
+/**
+ * Schema-first wrapper around Typegoose model options, plugins, and index decorators.
+ */
 export const Schema = (options: ISchemaOptions = {}): ClassDecorator => {
   return (target: any) => {
     const className = target.name;
@@ -54,7 +58,7 @@ export const Schema = (options: ISchemaOptions = {}): ClassDecorator => {
         toJSON: { virtuals: true },
         ...options?.schemaOptions,
       },
-      customOptions: { allowMixed: Severity.ALLOW, ...options?.customOptions },
+      customOptions: { allowMixed: Severity.WARN, ...options?.customOptions },
     };
 
     const decorators = union(

@@ -2,11 +2,68 @@ import { Dictionary, ICondition, IPopulate, IPopulateOption, ISort } from '@jokt
 import { toArray } from '@joktec/utils';
 import { Ref } from '@typegoose/typegoose';
 import { isArray, isBuffer, isDate, isEmpty, isNil, isNumber, isObject, isRegExp, isString, omit, pick } from 'lodash';
-import { PopulateOptions, RefType } from 'mongoose';
+import { PopulateOptions, RefType, Schema } from 'mongoose';
 import { IMongoRequest, MongoSchema, ObjectId } from '../models';
 
+export interface MongoFilterParseOptions {
+  schema?: Schema;
+  objectIdPaths?: string[] | Set<string>;
+  legacyObjectIdCasting?: boolean;
+  legacyRegexMode?: boolean;
+}
+
+/**
+ * Translates framework request contracts into Mongoose query/filter fragments.
+ */
 export class MongoHelper {
-  static flatten(obj: Dictionary, omitKeys?: string[]): Dictionary {
+  private static escapeRegex(value: unknown): string {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  private static normalizePath(path: string): string {
+    return path === 'id' ? '_id' : path.replace(/\.id$/g, '._id');
+  }
+
+  private static getObjectIdPaths(options?: MongoFilterParseOptions): Set<string> {
+    const objectIdPaths = new Set<string>(['_id']);
+    const configuredPaths = options?.objectIdPaths
+      ? options.objectIdPaths instanceof Set
+        ? Array.from(options.objectIdPaths)
+        : options.objectIdPaths
+      : [];
+
+    configuredPaths.forEach(path => objectIdPaths.add(this.normalizePath(path)));
+
+    if (options?.schema) {
+      options.schema.eachPath((path: string, schemaType: any) => {
+        const instance = schemaType.instance || schemaType.caster?.instance;
+        if (instance === 'ObjectId') objectIdPaths.add(this.normalizePath(path));
+      });
+    }
+
+    return objectIdPaths;
+  }
+
+  private static shouldCastObjectId(path: string, value: unknown, options?: MongoFilterParseOptions): boolean {
+    if (value instanceof ObjectId) return false;
+    if (!isString(value) || !ObjectId.isValid(value)) return false;
+    if (options?.legacyObjectIdCasting) return true;
+
+    const normalizedPath = this.normalizePath(path);
+    return this.getObjectIdPaths(options).has(normalizedPath);
+  }
+
+  private static castObjectIdValue(path: string, value: unknown, options?: MongoFilterParseOptions): unknown {
+    if (value instanceof ObjectId) return value;
+    if (this.shouldCastObjectId(path, value, options)) return ObjectId.create(String(value));
+    if (isArray(value)) return value.map(item => this.castObjectIdValue(path, item, options));
+    return value;
+  }
+
+  /**
+   * Flattens nested filter objects while preserving root Mongo operators such as $or and $and.
+   */
+  static flatten(obj: Dictionary, omitKeys?: string[], options?: MongoFilterParseOptions): Dictionary {
     const result: Dictionary = {};
 
     function convert(obj: object) {
@@ -26,7 +83,7 @@ export class MongoHelper {
         return;
       }
 
-      if (isString(value) && ObjectId.isValid(value)) {
+      if (MongoHelper.shouldCastObjectId(prefix, value, options)) {
         result[prefix] = ObjectId.create(value);
         return;
       }
@@ -34,7 +91,7 @@ export class MongoHelper {
       if (isArray(value)) {
         result[prefix] = value.map(v => {
           if (v instanceof ObjectId) return v;
-          if (isString(v) && ObjectId.isValid(v)) return ObjectId.create(v);
+          if (MongoHelper.shouldCastObjectId(prefix, v, options)) return ObjectId.create(v);
           return v;
         });
         return;
@@ -55,7 +112,7 @@ export class MongoHelper {
       }
 
       Object.keys(value).forEach(key => {
-        if (key === 'id') {
+        if (!prefix && key === 'id') {
           value['_id'] = value['id'];
           delete value['id'];
           key = '_id';
@@ -100,8 +157,15 @@ export class MongoHelper {
     }, {});
   }
 
-  static parseFilter(condition: ICondition<any>, flat: boolean = true): ICondition<any> {
-    const flatObj = flat ? this.flatten(condition) : condition;
+  /**
+   * Converts framework comparison operators into Mongo-compatible filter syntax.
+   */
+  static parseFilter(
+    condition: ICondition<any>,
+    flat: boolean = true,
+    options?: MongoFilterParseOptions,
+  ): ICondition<any> {
+    const flatObj = flat ? this.flatten(condition, undefined, options) : condition;
     const keys = Object.keys(flatObj);
     for (const key of keys) {
       if (isNil(flatObj[key])) {
@@ -113,7 +177,7 @@ export class MongoHelper {
         continue;
       }
 
-      if (isString(flatObj[key]) && ObjectId.isValid(flatObj[key])) {
+      if (this.shouldCastObjectId(key, flatObj[key], options)) {
         flatObj[key] = ObjectId.create(flatObj[key]);
         continue;
       }
@@ -123,15 +187,24 @@ export class MongoHelper {
       }
 
       if (flatObj[key].hasOwnProperty('$like')) {
-        flatObj[key]['$regex'] = new RegExp(flatObj[key]['$like'], 'i');
+        const pattern = options?.legacyRegexMode
+          ? String(flatObj[key]['$like'])
+          : this.escapeRegex(flatObj[key]['$like']);
+        flatObj[key]['$regex'] = new RegExp(pattern, 'i');
         delete flatObj[key]['$like'];
         continue;
       } else if (flatObj[key].hasOwnProperty('$begin')) {
-        flatObj[key]['$regex'] = new RegExp(`^${flatObj[key]['$begin']}`, 'i');
+        const pattern = options?.legacyRegexMode
+          ? String(flatObj[key]['$begin'])
+          : this.escapeRegex(flatObj[key]['$begin']);
+        flatObj[key]['$regex'] = new RegExp(`^${pattern}`, 'i');
         delete flatObj[key]['$begin'];
         continue;
       } else if (flatObj[key].hasOwnProperty('$end')) {
-        flatObj[key]['$regex'] = new RegExp(`${flatObj[key]['$end']}$`, 'i');
+        const pattern = options?.legacyRegexMode
+          ? String(flatObj[key]['$end'])
+          : this.escapeRegex(flatObj[key]['$end']);
+        flatObj[key]['$regex'] = new RegExp(`${pattern}$`, 'i');
         delete flatObj[key]['$end'];
         continue;
       } else if (flatObj[key].hasOwnProperty('$nil')) {
@@ -142,12 +215,22 @@ export class MongoHelper {
         continue;
       }
 
-      flatObj[key] = this.parseFilter(flatObj[key], false);
+      if (Object.keys(flatObj[key]).some(operator => String(operator).startsWith('$'))) {
+        for (const operator of Object.keys(flatObj[key])) {
+          flatObj[key][operator] = this.castObjectIdValue(key, flatObj[key][operator], options);
+        }
+        continue;
+      }
+
+      flatObj[key] = this.parseFilter(flatObj[key], false, options);
     }
 
     return flatObj;
   }
 
+  /**
+   * Converts populate configuration into Mongoose populate options.
+   */
   static parsePopulate<T extends MongoSchema>(populate: IPopulate<T> = {}): PopulateOptions[] {
     if (isNil(populate) || isEmpty(populate)) return [];
     return Object.entries(populate).map(([path, populate]) => {
@@ -163,16 +246,23 @@ export class MongoHelper {
     });
   }
 
+  /**
+   * Normalizes id-like values and object conditions into a Mongo filter.
+   */
   static parseSimpleCondition<T extends MongoSchema, ID extends RefType = string>(
     cond: ID | ObjectId | Ref<T, ID> | ICondition<T>,
   ): ICondition<T> {
     const condition: ICondition<T> = {};
     switch (true) {
-      case ObjectId.isValid(String(cond)):
+      case cond instanceof ObjectId:
+      case isString(cond) && ObjectId.isValid(String(cond)):
+        Object.assign(condition, { _id: ObjectId.create(String(cond)) });
+        break;
+
       case isString(cond):
       case isNumber(cond):
       case isBuffer(cond):
-        Object.assign(condition, { _id: ObjectId.create(String(cond)) });
+        Object.assign(condition, { _id: cond });
         break;
 
       case isObject(cond):

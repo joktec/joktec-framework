@@ -72,9 +72,9 @@ export function StringProps(opts: IPropOptions, swagger: ApiPropertyOptions): Pr
   if (opts.isPhone) {
     const defMsg = '$property is an invalid phone number format';
     const phoneOption: any = isArray(opts.isPhone)
-      ? { message: opts.isEmail[1] || defMsg }
-      : isObject(opts.isEmail)
-        ? opts.isEmail
+      ? { message: opts.isPhone[1] || defMsg }
+      : isObject(opts.isPhone)
+        ? opts.isPhone
         : {};
     const strictMode = toBool(phoneOption.strictMode, true);
     decorators.push(

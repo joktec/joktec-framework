@@ -56,8 +56,12 @@ const isObjectIdType = (designType: any): boolean => {
   return designType === ObjectId || designType === ObjectId.prototype.constructor;
 };
 
+/**
+ * Combines Typegoose, class-validator, class-transformer, and Swagger metadata for schema properties.
+ */
 export const Prop = <T = any>(opts: IPropOptions<T> = {}, kind?: PropType): PropertyDecorator => {
   return (target: object, propertyKey: string | symbol) => {
+    opts = { ...opts, swagger: opts.swagger ? { ...opts.swagger } : undefined };
     let designType = Reflect.getMetadata('design:type', target, propertyKey);
 
     ['unique', 'index', 'text'].map(key => unset(opts, key));

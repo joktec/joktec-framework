@@ -25,7 +25,9 @@ export type MongoClientSession = ClientSession;
 export interface MongoClient extends Client<MongoConfig, Connection> {
   isConnected(conId?: string): boolean;
 
-  getModel<T extends MongoSchema>(schemaClass: typeof MongoSchema): MongoType<T>;
+  getModel<T extends MongoSchema>(schemaClass: typeof MongoSchema, conId?: string): MongoType<T>;
+
+  getModelByName<T extends MongoSchema>(modelName: string, conId?: string): MongoType<T>;
 
   startTransaction(options?: MongoSessionOptions, conId?: string): Promise<MongoClientSession>;
 }

@@ -14,11 +14,17 @@ export interface QueryHelper<T> {
   restore: types.AsQueryMethod<typeof restore<T>>;
 }
 
+/**
+ * Adds text search behavior to Mongoose query helpers.
+ */
 function search<T>(this: types.QueryHelperThis<any, QueryHelper<T>>, keyword?: string) {
   if (!keyword) return this;
   return this.find({ $text: { $search: keyword } });
 }
 
+/**
+ * Adds geo-near filtering from the shared near request contract.
+ */
 function center<T>(this: types.QueryHelperThis<any, QueryHelper<T>>, near?: INear) {
   if (isNil(near) || isEmpty(near)) return this;
   const qb = this.find();
@@ -39,6 +45,9 @@ function center<T>(this: types.QueryHelperThis<any, QueryHelper<T>>, near?: INea
   return qb;
 }
 
+/**
+ * Soft deletes one document when paranoid support exists, otherwise performs a hard delete.
+ */
 function destroyOne<T>(
   this: types.QueryHelperThis<any, QueryHelper<T>>,
   filter?: ICondition<T>,
@@ -88,6 +97,9 @@ function restore<T>(
   return this.findOneAndUpdate(filter, { $set: bodyUpdate }, { ...RESTORE_OPTIONS, ...options });
 }
 
+/**
+ * Registers all custom query helpers on the Typegoose schema.
+ */
 export function buildQueryMethod(): ClassDecorator[] {
   const QueryMethods = [search, center, destroyOne, destroyMany, restore];
   return QueryMethods.map(method => queryMethod(method));

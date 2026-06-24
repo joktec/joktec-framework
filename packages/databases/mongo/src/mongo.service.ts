@@ -1,5 +1,5 @@
 import { AbstractClientService, Clazz, DEFAULT_CON_ID, Inject, Injectable, Retry } from '@joktec/core';
-import { getModelForClass, getModelWithString } from '@typegoose/typegoose';
+import { getModelForClass } from '@typegoose/typegoose';
 import mongoose, { Connection as Mongoose } from 'mongoose';
 import { mongoDebug, QueryHelper } from './helpers';
 import { MongoSchema } from './models';
@@ -9,6 +9,9 @@ import { MODEL_REGISTRY_KEY } from './mongo.constant';
 
 const RETRY_OPTS = 'mongo.retry';
 
+/**
+ * Owns MongoDB connection lifecycle and connection-scoped Typegoose model registration.
+ */
 @Injectable()
 export class MongoService extends AbstractClientService<MongoConfig, Mongoose> implements MongoClient {
   constructor(@Inject(MODEL_REGISTRY_KEY) private modelRegistry: MongoModelRegistry) {
@@ -41,29 +44,33 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
       });
     }
 
-    const client = mongoose.createConnection(uri, connectOptions);
     const maskedUri = uri.replace(/:([^:@]+)@/, ':****@');
+    const client = mongoose.createConnection(uri, connectOptions);
+
+    client.on('error', err => {
+      this.logService.error(err, '`%s` MongoDB connection error', config.conId);
+    });
+    client.on('disconnected', () => {
+      this.logService.error('`%s` MongoDB connection disconnected', config.conId);
+    });
+
+    const connectedClient = await client.asPromise();
     this.logService.info('`%s` Connection to MongoDB established %s', config.conId, maskedUri);
-
-    client.on('open', () => this.start(client, config.conId));
-    client.on('error', async err => {
-      this.logService.error(err, '`%s` Error when connecting to MongoDB. Reconnecting...', config.conId);
-      await this.clientInit(config, false);
-    });
-    client.on('disconnected', async () => {
-      this.logService.error('`%s` MongoDB connection disconnected. Reconnecting...', config.conId);
-      await this.clientInit(config, false);
-    });
-
-    return client;
+    return connectedClient;
   }
 
+  /**
+   * Builds the final MongoDB URI from either a raw URI or host/port/srv config.
+   */
   private buildUri(config: MongoConfig): string {
     if (config.uri) return config.uri;
     if (config.srvMode) return `mongodb+srv://${config.host}/${config.database}`;
     return `mongodb://${config.host}:${config.port}/${config.database}`;
   }
 
+  /**
+   * Runs post-connect checks and registers every schema configured for the connection id.
+   */
   async start(client: Mongoose, conId: string = DEFAULT_CON_ID): Promise<void> {
     if (client.readyState !== 1) return;
 
@@ -90,6 +97,9 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     return serverInfo.version;
   }
 
+  /**
+   * Registers a Typegoose class against the current Mongoose connection.
+   */
   public async registerModel(schemaClass: typeof MongoSchema, conId: string = DEFAULT_CON_ID) {
     const config = this.getConfig(conId);
     const opts = { existingConnection: this.getClient(conId) };
@@ -116,6 +126,9 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     return this.getClient(conId).readyState === 1;
   }
 
+  /**
+   * Starts an optional transaction session on the requested Mongo connection.
+   */
   public async startTransaction(
     options: MongoSessionOptions = {},
     conId: string = DEFAULT_CON_ID,
@@ -125,7 +138,14 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     return session;
   }
 
-  public getModel<T extends MongoSchema>(schemaClass: Clazz): MongoType<T> {
-    return getModelWithString(schemaClass.name);
+  /**
+   * Resolves a registered model from the same connection id used by the repository.
+   */
+  public getModel<T extends MongoSchema>(schemaClass: Clazz, conId: string = DEFAULT_CON_ID): MongoType<T> {
+    return this.getModelByName<T>(schemaClass.name, conId);
+  }
+
+  public getModelByName<T extends MongoSchema>(modelName: string, conId: string = DEFAULT_CON_ID): MongoType<T> {
+    return this.getClient(conId).model(modelName) as MongoType<T>;
   }
 }

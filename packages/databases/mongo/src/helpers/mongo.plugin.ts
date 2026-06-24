@@ -4,6 +4,9 @@ import { get } from 'lodash';
 import { ISchemaOptions } from '../decorators';
 import { ParanoidOptions, ParanoidPlugin, StrictReferencePlugin, TransformPlugin } from '../plugins';
 
+/**
+ * Assembles schema-level Mongoose plugins from the framework Schema decorator options.
+ */
 export function buildPlugin(options: ISchemaOptions): ClassDecorator[] {
   const plugins = toArray(options.plugins).map(p => plugin(p.mongoosePlugin, p.options));
 
@@ -21,6 +24,6 @@ export function buildPlugin(options: ISchemaOptions): ClassDecorator[] {
     plugins.push(plugin(ParanoidPlugin, paranoidOpts));
   }
 
-  plugins.push(plugin(TransformPlugin));
+  plugins.push(plugin(TransformPlugin, options.transform));
   return plugins;
 }

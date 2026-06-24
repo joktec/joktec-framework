@@ -12,7 +12,7 @@ import {
 } from '@joktec/core';
 import { plainToInstance, toArray, toInt } from '@joktec/utils';
 import { Ref } from '@typegoose/typegoose';
-import { chunk, isArray, isEmpty, isNil, omit, pick } from 'lodash';
+import { chunk, isArray, isBuffer, isDate, isEmpty, isNil, isPlainObject, omit, pick } from 'lodash';
 import { Aggregate, RefType } from 'mongoose';
 import { MongoHelper, MongoPipeline, UPDATE_OPTIONS, UPSERT_OPTIONS } from './helpers';
 import {
@@ -30,6 +30,10 @@ import { IMongoRepository, MongoType } from './mongo.client';
 import { MongoCatch } from './mongo.exception';
 import { MongoService } from './mongo.service';
 
+/**
+ * Base repository for Mongo-backed services. It centralizes query parsing,
+ * pagination, soft delete helpers, and response transformation for app repos.
+ */
 @Injectable()
 export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = string>
   implements IMongoRepository<T, ID>, OnModuleInit
@@ -49,16 +53,43 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   }
 
   protected get model(): MongoType<T> {
-    return this.mongoService.getModel(this.schema);
+    return this.mongoService.getModel<T>(this.schema, this.conId);
   }
 
-  protected transform(docs: any | any[]): T | T[] {
+  /**
+   * Converts ObjectId and hydrated mongoose values into DTO-friendly plain values.
+   */
+  private normalizeDocumentValue(value: any): any {
+    if (isNil(value)) return value;
+    if (value instanceof ObjectId || value?._bsontype === 'ObjectId') return String(value);
+    if (isDate(value) || isBuffer(value) || value instanceof RegExp) return value;
+    if (isArray(value)) return value.map(item => this.normalizeDocumentValue(item));
+    if (typeof value?.toObject === 'function') return this.normalizeDocumentValue(value.toObject({ virtuals: true }));
+
+    if (isPlainObject(value)) {
+      return Object.entries(value).reduce((acc, [key, item]) => {
+        acc[key] = this.normalizeDocumentValue(item);
+        return acc;
+      }, {});
+    }
+
+    return value;
+  }
+
+  /**
+   * Converts raw Mongo documents into the schema class used by the app layer.
+   */
+  protected transform(docs: any | any[], options: { normalize?: boolean } = { normalize: true }): T | T[] {
     if (isNil(docs)) return null;
     if (isArray(docs) && !docs.length) return [];
-    const transformDocs = plainToInstance(this.schema, toArray(docs), { ignoreDecorators: true });
+    const sourceDocs = options.normalize ? toArray(docs).map(doc => this.normalizeDocumentValue(doc)) : toArray(docs);
+    const transformDocs = plainToInstance(this.schema, sourceDocs, { ignoreDecorators: true });
     return (isArray(docs) ? transformDocs : transformDocs[0]) as any;
   }
 
+  /**
+   * Builds the canonical find query used by read operations.
+   */
   public qb(query?: IMongoRequest<T>, options: IMongoOptions<T> = {}) {
     const qb = this.model.find<T>();
     qb.setOptions({ ...options });
@@ -66,7 +97,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
 
     if (query?.near) qb.center(query.near);
     if (query?.keyword) qb.search(query.keyword);
-    qb.where(Object.assign({}, query?.condition || {}));
+    if (query?.condition) qb.where(MongoHelper.parseFilter(query.condition, true, { schema: this.model.schema }));
     if (query?.select) qb.select(query.select as any);
     if (query?.sort) qb.sort(MongoHelper.parseSort(query.sort));
     if (offset !== undefined) qb.skip(offset);
@@ -76,6 +107,9 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     return qb.lean();
   }
 
+  /**
+   * Creates a lean mongoose cursor for streaming large result sets.
+   */
   public cursor(query: IMongoRequest<T>, options: IMongoOptions<T> = {}) {
     const qb = this.model.find<T>();
     qb.setOptions({ ...options });
@@ -83,7 +117,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
 
     if (query?.near) qb.center(query.near);
     if (query?.keyword) qb.search(query.keyword);
-    if (query?.condition) qb.where(MongoHelper.parseFilter(query.condition));
+    if (query?.condition) qb.where(MongoHelper.parseFilter(query.condition, true, { schema: this.model.schema }));
     if (query?.select) qb.select(MongoHelper.parseProjection(query.select));
     if (query?.sort) qb.sort(MongoHelper.parseSort(query.sort));
     if (offset !== undefined) qb.skip(offset);
@@ -93,6 +127,9 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     return qb.lean().cursor();
   }
 
+  /**
+   * Builds an aggregation pipeline from the shared request contract.
+   */
   public pipeline<U = T>(query?: IMongoRequest<T>, options?: IMongoAggregateOptions<U>): Aggregate<Array<U>> {
     const aggregations = this.model.aggregate();
     const { limit, offset } = MongoHelper.parsePagination(query);
@@ -129,6 +166,9 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     return { items, total };
   }
 
+  /**
+   * Executes keyset pagination with Mongo-specific cursor conditions.
+   */
   private async paginateByCursor(
     query: IMongoRequest<T>,
     options: IMongoOptions<T> = {},
@@ -162,6 +202,9 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     return { items, total, hasNextPage, nextCursor };
   }
 
+  /**
+   * Merges cursor comparison clauses with caller-provided filters without losing either condition.
+   */
   private mergeCursorCondition(
     condition: ICondition<T>,
     keys: string[],
@@ -196,7 +239,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   async count(query: IMongoRequest<T>, options: IMongoOptions<T> = {}): Promise<number> {
     const processQuery = omit(query, ['select', 'page', 'limit', 'offset', 'sort']);
     const qb = this.qb(processQuery, options);
-    return query.near ? qb.estimatedDocumentCount() : qb.countDocuments();
+    return qb.countDocuments();
   }
 
   @MongoCatch
@@ -213,7 +256,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
 
   @MongoCatch
   async create(body: IMongoUpdate<T>, options: IMongoOptions<T> = {}): Promise<T> {
-    const transformBody: T = this.transform(body) as T;
+    const transformBody: T = this.transform(body, { normalize: false }) as T;
     if (options.session) {
       const docs = await this.model.create([transformBody], options);
       if (docs?.length) return this.findOne(docs[0]?._id as ID, {}, options);
@@ -229,17 +272,18 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     options: IMongoOptions<T> = {},
   ): Promise<T> {
     const condition: ICondition<T> = MongoHelper.parseSimpleCondition(cond);
-    const transformBody: T = this.transform(body) as T;
+    const transformBody: T = this.transform(body, { normalize: false }) as T;
     const _options = Object.assign({}, UPDATE_OPTIONS, options);
     const doc = await this.qb({ condition }, _options).findOneAndUpdate(transformBody).exec();
     return this.transform(doc) as T;
   }
 
+  @MongoCatch
   async updateMany(condition: ICondition<T>, body: IMongoUpdate<T>, options: IMongoOptions<T> = {}): Promise<T[]> {
-    const transformBody: T = this.transform(body) as T;
+    const transformBody: T = this.transform(body, { normalize: false }) as T;
     const _options = Object.assign({}, UPDATE_OPTIONS, options);
     await (this.qb({ condition }, _options) as any).updateMany(transformBody).exec();
-    return this.find({ condition });
+    return this.find({ condition }, options);
   }
 
   @MongoCatch
@@ -251,7 +295,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
 
   @MongoCatch
   async deleteMany(cond: ICondition<T>, options: IMongoOptions<T> = {}): Promise<T[]> {
-    const docs = await this.qb({ condition: cond }).exec();
+    const docs = await this.qb({ condition: cond }, options).exec();
     await this.model.destroyMany(cond, options).exec();
     return this.transform(docs) as T[];
   }
@@ -266,7 +310,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   @MongoCatch
   async upsert(body: IMongoUpdate<T>, onConflicts?: KeyOf<T>[], options: IMongoOptions<T> = {}): Promise<T> {
     const fields = onConflicts?.length ? onConflicts : ['_id'];
-    const transformBody: T = this.transform(body) as T;
+    const transformBody: T = this.transform(body, { normalize: false }) as T;
     const condition: ICondition<T> = pick(body, fields) as ICondition<T>;
     const _options = Object.assign({}, UPSERT_OPTIONS, options);
     const doc = await this.qb({ condition }, _options).findOneAndUpdate(transformBody).exec();
@@ -276,7 +320,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
   @MongoCatch
   async bulkUpsert(docs: IMongoUpdate<T>[], onConflicts?: KeyOf<T>[], options: IMongoBulkOptions = {}): Promise<T[]> {
     const fields = onConflicts?.length ? onConflicts : ['_id'];
-    const transformBody: T[] = this.transform(docs) as T[];
+    const transformBody: T[] = this.transform(docs, { normalize: false }) as T[];
 
     const chunkSize = toInt(options?.chunkSize, 1000);
     const chunkItems = chunk(transformBody, chunkSize);
@@ -293,10 +337,13 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
         });
         return { updateOne: { filter: pick(doc, fields), update: updateDoc, upsert: true } };
       });
-      const result = await this.model.bulkWrite(bulkDocs as any, options as any);
-      const newIds = [...Object.values(result.upsertedIds), ...Object.values(result.insertedIds)];
-      const newItems = await this.find({ condition: { _id: { $in: newIds } } as any });
-      results.push(newItems);
+      await this.model.bulkWrite(bulkDocs as any, options as any);
+
+      const filters = chunkItem.map((doc: T) => pick(doc, fields)).filter(filter => !isEmpty(filter));
+      if (filters.length) {
+        const items = await this.find({ condition: { $or: filters } as ICondition<T> }, options as IMongoOptions<T>);
+        results.push(items);
+      }
     }
 
     return results.flat();

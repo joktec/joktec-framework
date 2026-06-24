@@ -1,11 +1,20 @@
 import { toArray } from '@joktec/utils';
-import dot from 'dot-object';
 import { get } from 'lodash';
 import { PipelineStage, PopulateOptions, Schema } from 'mongoose';
 import { MongoHelper } from '../helpers';
 
 type IPopulateOptions = string | PopulateOptions;
 
+export interface TransformOptions {
+  stripSavePaths?: string[];
+  preserveSavePaths?: string[];
+}
+
+const DEFAULT_STRIP_SAVE_PATHS = ['_id', '__v', 'createdAt', 'updatedAt', '__t'];
+
+/**
+ * Merges virtual populate match conditions into caller-provided populate options.
+ */
 function combinePopulateMatch(
   populates: IPopulateOptions | IPopulateOptions[],
   virtualMatch: object,
@@ -19,20 +28,17 @@ function combinePopulateMatch(
   });
 }
 
-function cleanUpDocument(doc: any, paths: string[]) {
-  const dotDoc = dot.dot(doc);
-  for (const key in dotDoc) {
-    if (!paths.includes(key)) {
-      delete doc[key];
-    }
-  }
-}
-
-export const TransformPlugin = (schema: Schema) => {
+/**
+ * Normalizes filters, updates, populate options, and lookup stages before Mongoose executes them.
+ */
+export const TransformPlugin = (schema: Schema, opts: TransformOptions = {}) => {
   const schemaAny = schema as any;
+  const stripSavePaths = (opts.stripSavePaths || DEFAULT_STRIP_SAVE_PATHS).filter(
+    path => !toArray(opts.preserveSavePaths).includes(path),
+  );
 
   schemaAny.pre('save', function () {
-    ['_id', '__v', 'createdAt', 'updatedAt', '__t'].map(path => {
+    stripSavePaths.map(path => {
       if (this[path]) delete this[path];
     });
   });
@@ -62,7 +68,7 @@ export const TransformPlugin = (schema: Schema) => {
 
       // Intercept filter
       if (this.getFilter()) {
-        const newFilter = MongoHelper.parseFilter(this.getFilter());
+        const newFilter = MongoHelper.parseFilter(this.getFilter(), true, { schema: this.model.schema });
         this.setQuery(newFilter);
       }
 
@@ -88,7 +94,9 @@ export const TransformPlugin = (schema: Schema) => {
   );
 
   schemaAny.pre('aggregate', function () {
-    const version = this.options?.version || '5.0.0';
+    const version = this.options?.version;
+    if (!version) return;
+
     const mongoVersion = version.split('.').map(Number);
 
     const pipelines: PipelineStage[] = [];

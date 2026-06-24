@@ -7,6 +7,9 @@ import { Prop } from '../decorators';
 import { QueryHelper } from '../helpers';
 import { ParanoidQueryOptions } from '../plugins';
 
+/**
+ * Base class for Typegoose schemas with shared timestamps and soft-delete query helpers.
+ */
 export class MongoSchema extends TimeStamps implements Omit<Base<string>, 'id'> {
   @ApiProperty()
   @Field(() => String, { nullable: true })

@@ -12,6 +12,9 @@ import { MongoService } from './mongo.service';
   exports: [MongoService],
 })
 export class MongoModule {
+  /**
+   * Registers schema classes by connection id for lazy model binding inside MongoService.
+   */
   static forRoot(...opts: MongoModuleOptions[]): DynamicModule {
     const providers: MongoModelRegistry = toArray(opts).reduce((curr: object, acc: MongoModuleOptions) => {
       curr[acc.conId || DEFAULT_CON_ID] = toArray(acc.models);
