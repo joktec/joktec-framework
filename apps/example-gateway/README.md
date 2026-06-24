@@ -16,6 +16,7 @@ Implemented example areas include:
 - Notification and inquiry workflows.
 - Search, filtering, sorting, relation population, and mixed pagination patterns.
 - Operational log browsing through `data-logs`, backed by the Mongo collection written by `pino-mongodb`.
+- Profile badge catalog management through `profile-badges`, backed by MySQL and assigned to Mongo user profiles.
 
 ## Technical Purpose
 
@@ -27,6 +28,8 @@ This app exists to keep JokTec framework packages exercised in a near-real proje
 - Adapter and integration packages for cache, mail, storage, Firebase, and HTTP utilities.
 
 `articles` and `comments` intentionally use offset pagination to mimic mobile load-more flows. Most other modules keep the default page pagination behavior.
+
+`profile-badges` intentionally uses both database packages in one flow: MySQL stores catalog-style badge definitions, while Mongo stores the user's assigned badge ids. This keeps the example realistic without turning the app into a real customer product.
 
 ## Common Commands
 

@@ -1,5 +1,5 @@
-import { Product } from './product.entity';
+import { ProfileBadge } from './profile-badge.entity';
 
-export const ENTITIES = [Product];
+export const ENTITIES = [ProfileBadge];
 
-export * from './product.entity';
+export * from './profile-badge.entity';

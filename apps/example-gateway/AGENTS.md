@@ -14,11 +14,12 @@ This app is the public HTTP gateway reference for a fictional social-network pro
 
 - HTTP controllers live in `src/modules/*/*.controller.ts`.
 - Services usually extend `BaseService` from `@joktec/core`.
-- Most repositories extend `MongoRepo`; `ProductRepo` extends `MysqlRepo`.
+- Most repositories extend `MongoRepo`; `ProfileBadgeRepo` extends `MysqlRepo`.
 - Shared app guards, filters, interceptors, decorators, and response types live under `src/common`.
 - Broker consumer examples are in `src/modules/articles/article.handler.ts`.
 - `articles` and `comments` model mobile load-more APIs with offset pagination.
 - `dataLogs` exposes read-only pino Mongo logs with cursor pagination.
+- `profileBadges` models a cross-store social feature: MySQL owns the badge catalog and Mongo user profiles store assigned badge ids.
 
 ## Package Composition
 
@@ -35,6 +36,7 @@ This app is the public HTTP gateway reference for a fictional social-network pro
 
 ```bash
 rg -n "BaseController|BaseService|MongoRepo|MysqlRepo" apps/example-gateway/src
+rg -n "ProfileBadge|profile-badges|profileBadgeIds" apps/example-gateway/src
 rg -n "KafkaConsume|RabbitConsume|RedcastConsume|SqsConsume" apps/example-gateway/src
 rg -n "GatewayModule|BullModule|RepositoryModule" apps/example-gateway/src/app.module.ts
 ```

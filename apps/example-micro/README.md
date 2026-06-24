@@ -15,6 +15,7 @@ Implemented example areas include:
 - Notification processing and centralized outbound integration setup.
 - OTP, user, asset, and article worker examples.
 - Broker send/receive examples for Kafka, RabbitMQ, SQS, Redis transport, and Redcast.
+- Database schema ownership for the example stack, including Mongo schema indexing and MySQL entity synchronization.
 
 A typical modeled flow is: the gateway receives a public API request, emits a message, and the microservice performs the private task such as sending mail, processing notifications, updating derived counters, or running scheduled maintenance.
 
@@ -24,8 +25,10 @@ This app exists to validate JokTec packages in worker-style runtime conditions:
 
 - `@joktec/core` microservice bootstrap, client controllers, transport proxies, config, logging, and shared base abstractions.
 - `@joktec/cron` for scheduled jobs.
-- `@joktec/mongo` for repository examples.
+- `@joktec/mongo` and `@joktec/mysql` for repository and schema/entity registration examples.
 - `@joktec/notifier`, mail/storage/Firebase integrations, and broker packages in background workflows.
+
+The microservice mirrors the example social-network data model used by the gateway and owns automatic database schema/index setup in local development. For the badge example, it registers the MySQL `ProfileBadge` entity while Mongo user profiles keep assigned `profileBadgeIds`.
 
 ## Common Commands
 

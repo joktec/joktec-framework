@@ -14,8 +14,8 @@ import { InquiryModule } from './inquiries';
 import { NotificationModule } from './notifications';
 import { OtpModule } from './otpLogs';
 import { PostModule } from './posts';
-import { ProductModule } from './products';
 import { ProfileModule } from './profile';
+import { ProfileBadgeModule } from './profileBadges';
 import { ReportModule } from './reports';
 import { SessionModule } from './sessions';
 import { SettingModule } from './settings';
@@ -41,12 +41,12 @@ import { UserModule } from './users';
     OtpModule,
     PostModule,
     ProfileModule,
+    ProfileBadgeModule,
     ReportModule,
     SessionModule,
     SettingModule,
     TagModule,
     UserModule,
-    ProductModule,
     BullModule.registerQueue({ name: 'apify_queue' }),
   ],
 })

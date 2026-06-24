@@ -34,7 +34,7 @@ describe('consumer smoke scenario', () => {
   });
 
   it('should return a gateway pagination response shape', async () => {
-    const response = await requestJson(gateway.baseUrl, '/products?limit=1');
+    const response = await requestJson(gateway.baseUrl, '/profile-badges?limit=1');
     const data = unwrapData(response);
 
     expect(data).toEqual(

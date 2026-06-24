@@ -1,10 +1,10 @@
 import { Injectable } from '@joktec/core';
 import { MysqlRepo, MysqlService } from '@joktec/mysql';
-import { Product } from '../../models/entities';
+import { ProfileBadge } from '../../models/entities';
 
 @Injectable()
-export class ProductRepo extends MysqlRepo<Product, string> {
+export class ProfileBadgeRepo extends MysqlRepo<ProfileBadge, string> {
   constructor(protected mysqlService: MysqlService) {
-    super(mysqlService, Product);
+    super(mysqlService, ProfileBadge);
   }
 }

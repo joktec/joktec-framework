@@ -15,7 +15,7 @@ import { InquiryRepo } from './common/inquiry.repo';
 import { NotificationRepo } from './common/notification.repo';
 import { OtpRepo } from './common/otp.repo';
 import { PostRepo } from './common/post.repo';
-import { ProductRepo } from './common/product.repo';
+import { ProfileBadgeRepo } from './common/profile-badge.repo';
 import { ReportRepo } from './common/report.repo';
 import { SessionRepo } from './common/session.repo';
 import { SettingRepo } from './common/setting.repo';
@@ -46,7 +46,7 @@ export const Repositories = [
   TagRepo,
   UserRepo,
 
-  ProductRepo,
+  ProfileBadgeRepo,
 ];
 
 export * from './repository.module';
@@ -68,9 +68,9 @@ export * from './common/data-log.repo';
 export * from './common/notification.repo';
 export * from './common/otp.repo';
 export * from './common/post.repo';
+export * from './common/profile-badge.repo';
 export * from './common/report.repo';
 export * from './common/session.repo';
 export * from './common/setting.repo';
 export * from './common/tag.repo';
 export * from './common/user.repo';
-export * from './common/product.repo';

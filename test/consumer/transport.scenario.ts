@@ -1,3 +1,8 @@
+jest.mock('ioredis', () => {
+  const actual = jest.requireActual('ioredis');
+  return actual.default || actual;
+});
+
 import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import { ManagedApp, microRuntimeDependencies, preflightDependencies, startApp, stopApp } from './helpers';

@@ -1,10 +1,12 @@
-import Redis from 'ioredis';
+import type { Redis as RedisClient } from 'ioredis';
 import { consumerPrefix, preflightDependencies, redisDependency } from './helpers';
 
+const Redis = jest.requireActual('ioredis').default || jest.requireActual('ioredis').Redis || jest.requireActual('ioredis');
+
 describe('consumer broker scenario', () => {
-  let publisher: Redis;
-  let subscriber: Redis;
-  let consumer: Redis;
+  let publisher: RedisClient;
+  let subscriber: RedisClient;
+  let consumer: RedisClient;
 
   beforeAll(async () => {
     await preflightDependencies([redisDependency]);

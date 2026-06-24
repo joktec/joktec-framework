@@ -20,7 +20,7 @@ import { Artist } from './artist.schema';
   collection: 'users',
   textSearch: 'nickname,email,profile.displayName,profile.fullName',
   unique: ['email'],
-  index: ['artistIds'],
+  index: ['artistIds', 'profileBadgeIds'],
   paranoid: true,
 })
 export class User extends BaseSchema {
@@ -80,6 +80,9 @@ export class User extends BaseSchema {
 
   @Prop({ type: [ObjectId], ref: () => Artist, required: true, default: [] })
   artistIds?: Ref<Artist, string>[];
+
+  @Prop({ type: [String], required: true, default: [] })
+  profileBadgeIds?: string[];
 
   // Virtual
   @Prop({ type: [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds', example: [] })
