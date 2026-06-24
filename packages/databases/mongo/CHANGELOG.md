@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.28...@joktec/mongo@0.2.29) (2026-06-24)
+
+### Features
+
+* **core:** support cursor pagination contracts
+* **mongo:** harden repository and plugin contracts
+
+### Refactoring
+
+* upgrade package
+
+### Maintenance
+
+* update docs
+* upgrade package low-risk
+
+
 ## [0.2.28](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.27...@joktec/mongo@0.2.28) (2026-02-11)
 
 **Note:** Version bump only for package @joktec/mongo

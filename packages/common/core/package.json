@@ -1,7 +1,7 @@
 {
   "name": "@joktec/core",
   "description": "JokTec - Core library",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -11,7 +11,10 @@
   "main": "dist/index",
   "types": "dist/index",
   "typings": "dist/index.d.ts",
-  "files": ["dist", "templates"],
+  "files": [
+    "dist",
+    "templates"
+  ],
   "bin": {
     "client-generator": "bin/client-generator.sh",
     "publish-docker": "bin/publish-docker.sh",
@@ -21,7 +24,12 @@
     "access": "public",
     "provenance": false
   },
-  "keywords": ["nestjs", "restful", "graphql", "core"],
+  "keywords": [
+    "nestjs",
+    "restful",
+    "graphql",
+    "core"
+  ],
   "scripts": {
     "clean": "rimraf -rf dist",
     "purge": "rimraf -rf dist node_modules",
@@ -45,7 +53,7 @@
     "@bull-board/api": "^8.0.1",
     "@bull-board/express": "^8.0.1",
     "@bull-board/ui": "^8.0.1",
-    "@joktec/utils": "0.1.3",
+    "@joktec/utils": "0.1.4",
     "@nestjs/bullmq": "^11.0.4",
     "@nestjs/common": "^11.1.27",
     "@nestjs/config": "^4.0.4",
@@ -110,7 +118,10 @@
     "@types/useragent": "^2.3.4"
   },
   "lint-staged": {
-    "*.ts": ["prettier --write --ignore-path ./.prettierignore", "eslint --fix"]
+    "*.ts": [
+      "prettier --write --ignore-path ./.prettierignore",
+      "eslint --fix"
+    ]
   },
   "config": {
     "commitizen": {
@@ -129,7 +140,11 @@
       "^uuid$": "<rootDir>/../../utils/src/__mocks__/uuid.ts"
     },
     "coverageDirectory": "<rootDir>/../coverage/",
-    "collectCoverageFrom": ["**/*.{ts,js}", "!**/index.ts", "!**/*.{d,enum}.ts"]
+    "collectCoverageFrom": [
+      "**/*.{ts,js}",
+      "!**/index.ts",
+      "!**/*.{d,enum}.ts"
+    ]
   },
   "compodoc": {
     "name": "JokTec - Core library",

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/utils@0.1.3...@joktec/utils@0.1.4) (2026-06-24)
+
+### Features
+
+* **core:** support cursor pagination contracts
+* **utils:** support uuidv7 generation
+
+### Maintenance
+
+* update docs
+* upgrade package low-risk
+
+
 ## 0.1.3 (2025-07-01)
 
 **Note:** Version bump only for package @joktec/utils

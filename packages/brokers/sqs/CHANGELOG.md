@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.15](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/sqs@0.1.14...@joktec/sqs@0.1.15) (2026-06-24)
+
+### Refactoring
+
+* upgrade package
+
+### Maintenance
+
+* update docs
+* upgrade package low-risk
+
+
 ## [0.1.14](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/sqs@0.1.13...@joktec/sqs@0.1.14) (2025-10-31)
 
 **Note:** Version bump only for package @joktec/sqs
