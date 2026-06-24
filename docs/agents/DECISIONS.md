@@ -15,6 +15,8 @@ Baseline: current stable implementation.
 - Keep cursor pagination storage execution inside database repositories.
 - Keep database-specific repositories inside database packages.
 - Keep app-specific repository queries inside apps.
+- Use schema-first database wrappers for Mongo/Typegoose and MySQL/TypeORM when models are intended to be reused as DTO sources.
+- Keep realistic example cross-store behavior in apps: relational packages can own catalog-like data while Mongo packages own social/profile state.
 - Use decorators and loaders for broker ergonomics.
 - Bull root configuration and Bull Board setup belong to `BullModule`; gateway runtime remains responsible for HTTP bootstrap.
 - Use `cz-git`, commitlint, and Lerna conventional commits as the release-note pipeline for package changelogs.

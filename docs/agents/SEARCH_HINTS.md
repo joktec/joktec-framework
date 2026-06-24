@@ -39,6 +39,9 @@ rg -n "MongoRepo|MysqlRepo|IBaseRepository" apps packages
 rg -n "MongoModule.forRoot|MysqlModule.forRoot" apps packages
 rg -n "CursorPagination|cursorKey|paginateByCursor|paginationMode" packages apps
 rg -n "PagePaginationResponse|OffsetPaginationResponse|CursorPaginationResponse" packages/common/core/src
+rg -n "mongoDebug|legacyObjectIdCasting|legacyRegexMode|StrictReferencePlugin|ParanoidPlugin" packages/databases/mongo/src
+rg -n "PrimaryColumn|uuidv7|MysqlFinder|DialectCapabilities|assertFirstClassDialect" packages/databases/mysql/src
+rg -n "ProfileBadge|profile-badges|profileBadgeIds" apps test
 ```
 
 ## Gateway API

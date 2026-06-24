@@ -88,9 +88,11 @@ Package-family agent guides:
 
 `packages/databases/mongo`
 - Mongoose/Typegoose config, service, decorators, repository, helpers, plugins, and cursor pagination implementation.
+- Local agent guide: `packages/databases/mongo/AGENTS.md`.
 
 `packages/databases/mysql`
 - TypeORM config, service, repository, naming strategy, helpers, and cursor pagination implementation.
+- Local agent guide: `packages/databases/mysql/AGENTS.md`.
 
 `packages/databases/arango`, `bigquery`, `elastic`
 - Client packages for additional data systems.

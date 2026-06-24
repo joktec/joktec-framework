@@ -55,6 +55,10 @@ Brokers wrap messaging clients and decorator-driven producer/consumer registrati
 
 Database packages own client connections and repository abstractions. App repositories extend database repositories and add app-specific queries. Mongo and MySQL repositories implement storage-specific cursor pagination through keyset conditions while keeping the shared request and response contract in `@joktec/core`.
 
+`@joktec/mongo` is the schema-first Mongo layer. It wraps Mongoose/Typegoose schemas, multi-connection model registration, Mongo repositories, query helpers, debug rendering, exception mapping, and plugins for paranoid soft delete, strict reference checks, and transformation.
+
+`@joktec/mysql` is the schema-first relational layer. It wraps TypeORM entities, connection lifecycle, MySQL/MariaDB/Postgres dialect capabilities, repository query building, normalized driver exceptions, and decorators that combine TypeORM column metadata with validation, transform, and Swagger metadata.
+
 Apps compose packages, define schemas/entities, repositories, controllers, services, guards, interceptors, and feature modules.
 
 ## Communication Patterns
@@ -70,6 +74,10 @@ Microservice controllers use `EventPattern` and `MessagePattern` handlers. Broke
 `BaseController` exposes a `paginationMode` option for Swagger and response DTO selection. The mode defaults to `page`. `offset` and `cursor` select one representative OpenAPI response shape. A custom `customDto.paginationDto` still overrides the generated shape.
 
 Cursor pagination is backed by opaque base64url cursor tokens that store ordered key values. Mongo defaults to `_id` and appends `_id` as a tie-breaker for custom keys. MySQL defaults to `createdAt` plus primary key columns and validates cursor keys against TypeORM metadata.
+
+## Example Cross-Store Pattern
+
+The example applications model a fictional social-network feature named `profile-badges`. The badge catalog is a relational entity backed by MySQL, while user badge assignment is stored on Mongo user profiles through `profileBadgeIds`. This keeps SQL catalog-style data and Mongo social profile state separate while exercising both database packages in one realistic consumer flow.
 
 ## Technical Debt Boundary
 

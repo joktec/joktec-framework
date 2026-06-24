@@ -69,7 +69,7 @@ The gateway app implements feature controllers under:
 - `notifications`
 - `otpLogs`
 - `posts`
-- `products`
+- `profile-badges`
 - `profile`
 - `reports`
 - `sessions`
@@ -78,6 +78,8 @@ The gateway app implements feature controllers under:
 - `users`
 
 Many controllers extend `BaseController` and add custom routes.
+
+`profile-badges` uses the base CRUD contract for the MySQL-backed badge catalog and adds `PATCH /profile-badges/:id/users` to assign a badge id to a Mongo user profile.
 
 ## Micro Implemented Message Areas
 

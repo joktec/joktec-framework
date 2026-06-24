@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-24 - Database Package Hardening and Example Consumer Sync
+
+- Recorded Mongo hardening for multi-connection model resolution, safer query parsing, debug rendering, plugin behavior, ObjectId normalization, and expanded package tests.
+- Recorded MySQL hardening for schema-first column decorators, uuidv7 primary keys, first-class relational dialects, query safety, normalized driver errors, and deprecated legacy finder usage.
+- Documented focused package-level agent guides for `@joktec/mongo` and `@joktec/mysql`.
+- Recorded the example social-network `profile-badges` flow that uses MySQL for badge catalog data and Mongo user profiles for assigned badge ids.
+
 ## 2026-06-24 - Package Testing Coverage and Consumer Harness Sync
 
 - Recorded package-level Jest coverage as an implemented framework verification surface across common, adapters, brokers, databases, integrations, and tools.
