@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-25 - HTTP Proxy Agent Constructor Compatibility
+
+- Recorded `@joktec/http` proxy agent construction fix for current `http-proxy-agent` and `https-proxy-agent` constructor contracts.
+- Clarified that `HttpService.buildAgent(proxy, opts)` builds agents from a normalized proxy `URL` plus Node `AgentOptions`, keeping proxy endpoint/auth data separate from socket tuning options.
+
 ## 2026-06-25 - Mongo Schema-First Wrapper Contract Sync
 
 - Recorded `@joktec/mongo` schema-first wrapper behavior for `@Schema`, `@Prop`, `RefId`, `PopulatedRef`, and wrapper-owned `ObjectId`.

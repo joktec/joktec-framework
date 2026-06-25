@@ -22,6 +22,7 @@ Tools expose reusable utility services:
 - Modules are global Nest modules.
 - Services own native client creation and operational methods.
 - HTTP exposes request/upload helpers, proxy agent exports, retry config, and metrics.
+- HTTP proxy agents are built from a normalized proxy `URL` plus Node `AgentOptions`; keep proxy endpoint/auth fields separate from keep-alive, timeout, and socket tuning options.
 
 ## Verification
 

@@ -1,3 +1,6 @@
 export class HttpProxyAgent {
-  constructor(public readonly options?: unknown) {}
+  constructor(
+    public readonly url?: unknown,
+    public readonly options?: unknown,
+  ) {}
 }

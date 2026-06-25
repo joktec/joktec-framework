@@ -80,12 +80,15 @@ http:
     keepAlive: true
 ```
 
+`HttpService.buildAgent(proxy, opts)` builds proxy agents from a normalized proxy `URL` plus Node `AgentOptions`. The `protocol` value may be provided as `http` or `http:`. Advanced callers that need custom agent options should pass them through the second argument instead of shaping the proxy object like an agent constructor argument.
+
 ## Guidelines
 
 - Prefer `baseURL` in config and relative URLs in app services.
 - Use `serializer: true` for bracket-style array query serialization.
 - Keep third-party API response mapping in the consuming app.
 - Avoid enabling `curlirize` when logs could expose tokens or sensitive payloads.
+- Keep proxy protocol, host, port, and auth in `HttpProxyConfig`; keep keep-alive, timeout, and socket tuning in proxy config or explicit agent options.
 - Package tests mock Axios and proxy agents; use consumer scenarios for live endpoint checks.
 
 ## Development

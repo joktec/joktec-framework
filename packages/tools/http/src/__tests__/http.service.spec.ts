@@ -1,5 +1,7 @@
 import { describe, expect, it, jest } from '@jest/globals';
 import { HttpMethod } from '@joktec/utils';
+import { HttpProxyAgent } from 'http-proxy-agent';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 import { HttpConfig } from '../http.config';
 import { HttpService } from '../http.service';
 
@@ -85,6 +87,19 @@ describe('HttpService', () => {
     expect(config.proxy).toBeUndefined();
     expect(config.httpAgent).toBeDefined();
     expect(config.httpsAgent).toBeDefined();
+    expect(config.httpAgent).toBeInstanceOf(HttpProxyAgent);
+    expect(config.httpsAgent).toBeInstanceOf(HttpsProxyAgent);
+    const httpAgent = config.httpAgent as unknown as Record<string, unknown>;
+    expect(httpAgent.url).toMatchObject({
+      protocol: 'http:',
+      hostname: '127.0.0.1',
+      port: '8080',
+      username: 'proxy-user',
+      password: 'proxy-pass',
+    });
+    expect(httpAgent.options).toMatchObject({
+      keepAlive: true,
+    });
   });
 
   it('should delegate request to the selected axios client', async () => {

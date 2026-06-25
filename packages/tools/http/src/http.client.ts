@@ -24,11 +24,11 @@ export interface HttpClient extends Client<HttpConfig, AxiosInstance> {
   /**
    * Builds an HTTP agent with custom configuration, including proxy settings.
    *
-   * @param opt - The options for configuring the agent, combining both standard AgentOptions
-   *              and proxy settings defined in HttpProxyConfig.
+   * @param proxy - Proxy host, port, protocol, and optional authentication.
+   * @param opts - Optional standard Node agent options merged with proxy defaults.
    * @returns An instance of HttpAgent to be used for HTTP requests.
    */
-  buildAgent(opt: AgentOptions & HttpProxyConfig): HttpAgent;
+  buildAgent(proxy: HttpProxyConfig, opts?: AgentOptions): HttpAgent;
 
   /**
    * Sends an HTTP request using the provided configuration.

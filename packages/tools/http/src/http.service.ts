@@ -15,6 +15,8 @@ import { HttpConfig, HttpProxyConfig } from './http.config';
 import { HttpMetricDecorator } from './http.metric';
 import { HttpAgent, HttpFormRequest, HttpRequest, HttpResponse, HttpSerializer } from './models';
 
+type ProxyAgentConstructor<T> = new (proxy: URL, opts?: AgentOptions) => T;
+
 @Injectable()
 export class HttpService extends AbstractClientService<HttpConfig, AxiosInstance> implements HttpClient {
   constructor() {
@@ -48,7 +50,7 @@ export class HttpService extends AbstractClientService<HttpConfig, AxiosInstance
     });
   }
 
-  async stop(client: AxiosInstance, conId: string = DEFAULT_CON_ID): Promise<void> {
+  async stop(client: AxiosInstance, _conId: string = DEFAULT_CON_ID): Promise<void> {
     // Implement
   }
 
@@ -74,7 +76,8 @@ export class HttpService extends AbstractClientService<HttpConfig, AxiosInstance
 
   public buildAgent(proxy: HttpProxyConfig, opts?: AgentOptions): HttpAgent {
     const { protocol, host, port, auth } = proxy;
-    const url = new URL(`${protocol}://${host}:${port}`);
+    const proxyProtocol = (protocol || 'http').replace(/:$/, '');
+    const url = new URL(`${proxyProtocol}://${host}:${port}`);
     if (auth?.username && auth?.password) {
       url.username = auth.username;
       url.password = auth.password;
@@ -82,16 +85,14 @@ export class HttpService extends AbstractClientService<HttpConfig, AxiosInstance
 
     const { keepAlive = true, timeout, maxSockets } = proxy;
     const options = Object.assign({ keepAlive, timeout, maxSockets }, opts);
-    const proxyOptions = {
-      ...options,
-      protocol: url.protocol,
-      host: url.hostname,
-      port: url.port,
-      auth: url.username ? `${decodeURIComponent(url.username)}:${decodeURIComponent(url.password)}` : undefined,
-    };
+    const HttpProxyAgentCtor = HttpProxyAgent as unknown as ProxyAgentConstructor<InstanceType<typeof HttpProxyAgent>>;
+    const HttpsProxyAgentCtor = HttpsProxyAgent as unknown as ProxyAgentConstructor<
+      InstanceType<typeof HttpsProxyAgent>
+    >;
+
     return {
-      httpAgent: new HttpProxyAgent(proxyOptions),
-      httpsAgent: new HttpsProxyAgent(url, options),
+      httpAgent: new HttpProxyAgentCtor(url, options),
+      httpsAgent: new HttpsProxyAgentCtor(url, options),
     };
   }
 
