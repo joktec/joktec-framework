@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.30](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.29...@joktec/mongo@0.2.30) (2026-06-25)
+
+### Features
+
+* **mongo:** enhance schema and prop decorators
+
+
 ## [0.2.29](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.28...@joktec/mongo@0.2.29) (2026-06-24)
 
 ### Features
