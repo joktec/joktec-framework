@@ -2,65 +2,54 @@ import { toArray } from '@joktec/utils';
 import { index } from '@typegoose/typegoose';
 import { IndexOptions } from '@typegoose/typegoose/lib/types';
 import { get } from 'lodash';
-import mongoose from 'mongoose';
-import { IIndexOptions, ISchemaOptions } from '../decorators';
+import mongoose, { IndexDirection } from 'mongoose';
+import { IIndexOptions, IMongoCollectionSchemaOptions } from '../decorators';
 
-function injectParanoid(indexOption: IIndexOptions, paranoidKey: string = 'deletedAt') {
-  if (!(paranoidKey in indexOption.fields)) {
-    indexOption.fields[paranoidKey] = 1;
-  }
+function withParanoidIndex(indexOption: IIndexOptions, paranoidKey?: string): IIndexOptions {
+  const fields = { ...indexOption.fields };
+  if (paranoidKey && !(paranoidKey in fields)) fields[paranoidKey] = 1;
+  return { fields, options: indexOption.options ? { ...indexOption.options } : undefined };
 }
 
-export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
+function splitIndexFields(key: string, direction: IndexDirection = 1): mongoose.IndexDefinition {
+  return key.split(',').reduce<mongoose.IndexDefinition>((obj, field) => {
+    obj[field] = direction;
+    return obj;
+  }, {});
+}
+
+export function buildIndex(options: IMongoCollectionSchemaOptions): ClassDecorator[] {
   const deletedAt: string = get(options, 'paranoid.deletedAt.name', 'deletedAt');
   const injectIndex: boolean = get(options, 'paranoid.injectIndex', false);
-  const paranoid: string = options?.paranoid && injectIndex ? deletedAt : null;
+  const paranoid: string | undefined = options?.paranoid && injectIndex ? deletedAt : undefined;
 
   const indexes: IIndexOptions[] = [];
 
   if (options?.index) {
     toArray(options.index).map(key => {
-      const fields: mongoose.IndexDefinition = key.split(',').reduce((obj, curr) => {
-        obj[curr] = 1;
-        return obj;
-      }, {});
-
-      const idx: IIndexOptions = { fields, options: { background: true } };
-      if (paranoid) injectParanoid(idx, paranoid);
-      indexes.push(idx);
+      indexes.push(withParanoidIndex({ fields: splitIndexFields(key), options: { background: true } }, paranoid));
     });
   }
 
   if (options?.unique) {
     toArray(options.unique).map(key => {
       const opts: IndexOptions = { unique: true, background: true, sparse: true };
-      const fields: mongoose.IndexDefinition = {};
-      key.split(',').map(field => {
-        fields[field] = 1;
-      });
-
-      const idx: IIndexOptions = { fields, options: opts };
-      if (paranoid) injectParanoid(idx, paranoid);
-      indexes.push(idx);
+      indexes.push(withParanoidIndex({ fields: splitIndexFields(key), options: opts }, paranoid));
     });
   }
 
   if (options?.textSearch) {
-    const fields: mongoose.IndexDefinition = options.textSearch.split(',').reduce((obj, path) => {
-      obj[path] = 'text';
-      return obj;
-    }, {});
-
-    const idx: IIndexOptions = { fields, options: { background: true } };
-    if (paranoid) injectParanoid(idx, paranoid);
-    indexes.push(idx);
+    indexes.push(
+      withParanoidIndex(
+        { fields: splitIndexFields(options.textSearch, 'text'), options: { background: true } },
+        paranoid,
+      ),
+    );
   }
 
   if (options?.geoSearch) {
     const fields: mongoose.IndexDefinition = { [options.geoSearch]: '2dsphere' };
-    const idx: IIndexOptions = { fields, options: { background: true } };
-    if (paranoid) injectParanoid(idx, paranoid);
-    indexes.push(idx);
+    indexes.push(withParanoidIndex({ fields, options: { background: true } }, paranoid));
   }
 
   if (options?.ttl) {
@@ -71,9 +60,7 @@ export function buildIndex(options: ISchemaOptions): ClassDecorator[] {
   }
 
   toArray(options?.customIndexes).map(idx => {
-    idx.options = { background: true, ...idx.options };
-    if (paranoid) injectParanoid(idx, paranoid);
-    indexes.push(idx);
+    indexes.push(withParanoidIndex({ fields: idx.fields, options: { background: true, ...idx.options } }, paranoid));
   });
 
   return indexes.map(idx => index(idx.fields, idx.options));

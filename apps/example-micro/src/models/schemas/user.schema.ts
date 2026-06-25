@@ -1,5 +1,5 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { IsCdnUrl } from '../../utils';
 import { BaseSchema } from '../common';
@@ -40,7 +40,13 @@ export class User extends BaseSchema {
   @IsCdnUrl()
   avatar?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized user avatar URL',
+  })
   get thumbnail(): string {
     if (!this.avatar) return '';
     const { cdnUrl, resizeUrl } = appConfig.misc;
@@ -79,12 +85,12 @@ export class User extends BaseSchema {
   registeredAt?: Date;
 
   @Prop({ type: [ObjectId], ref: () => Artist, required: true, default: [] })
-  artistIds?: Ref<Artist, string>[];
+  artistIds?: RefId<Artist>[];
 
   @Prop({ type: [String], required: true, default: [] })
   profileBadgeIds?: string[];
 
   // Virtual
-  @Prop({ type: [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds', example: [] })
-  artists?: Ref<Artist>[];
+  @Prop({ type: () => [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds' })
+  artists?: PopulatedRef<Artist>[];
 }

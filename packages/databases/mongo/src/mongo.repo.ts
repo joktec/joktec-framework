@@ -1,4 +1,5 @@
 import {
+  Clazz,
   ConfigService,
   CursorPagination,
   DEFAULT_CON_ID,
@@ -80,10 +81,21 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
    * Converts raw Mongo documents into the schema class used by the app layer.
    */
   protected transform(docs: any | any[], options: { normalize?: boolean } = { normalize: true }): T | T[] {
+    return this.transformAs(this.schema as unknown as Clazz<T>, docs, options);
+  }
+
+  /**
+   * Converts raw Mongo documents into an explicit schema class for custom aggregate projections.
+   */
+  protected transformAs<U>(
+    schema: Clazz<U>,
+    docs: any | any[],
+    options: { normalize?: boolean } = { normalize: true },
+  ): U | U[] {
     if (isNil(docs)) return null;
     if (isArray(docs) && !docs.length) return [];
     const sourceDocs = options.normalize ? toArray(docs).map(doc => this.normalizeDocumentValue(doc)) : toArray(docs);
-    const transformDocs = plainToInstance(this.schema, sourceDocs, { ignoreDecorators: true });
+    const transformDocs = plainToInstance(schema, sourceDocs, { ignoreDecorators: true });
     return (isArray(docs) ? transformDocs : transformDocs[0]) as any;
   }
 
@@ -104,7 +116,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     if (limit !== undefined) qb.limit(limit);
     if (query?.populate) qb.populate(MongoHelper.parsePopulate(query.populate));
 
-    return qb.lean();
+    return qb.lean({ virtuals: true });
   }
 
   /**
@@ -124,7 +136,7 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     if (limit !== undefined) qb.limit(limit);
     if (query?.populate) qb.populate(MongoHelper.parsePopulate(query.populate));
 
-    return qb.lean().cursor();
+    return qb.lean({ virtuals: true }).cursor();
   }
 
   /**

@@ -2,7 +2,7 @@ import { ApiPropertyOptions } from '@joktec/core';
 import { IsNumber, Max, Min } from '@joktec/utils';
 import { PropOptionsForNumber } from '@typegoose/typegoose/lib/types';
 import { isArray, isNil, isNumber } from 'lodash';
-import { IPropOptions } from '../prop.decorator';
+import { IPropOptions } from './prop.types';
 
 export interface NumberPropOptions extends PropOptionsForNumber {
   unsigned?: boolean | [boolean, string] | readonly [boolean, string];

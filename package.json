@@ -26,7 +26,7 @@
     "test:e2e": "lerna run test:e2e",
     "test:consumer": "yarn test:consumer:smoke && yarn test:consumer:db && yarn test:consumer:transport && yarn test:consumer:broker",
     "test:consumer:smoke": "yarn build --scope @joktec/micro && yarn build --scope @joktec/gateway && jest --config ./test/consumer/jest.consumer.config.js --runInBand ./test/consumer/smoke.scenario.ts",
-    "test:consumer:db": "yarn build --scope @joktec/gateway && jest --config ./test/consumer/jest.consumer.config.js --runInBand ./test/consumer/db.scenario.ts",
+    "test:consumer:db": "yarn build --scope @joktec/mysql && yarn build --scope @joktec/mongo && yarn build --scope @joktec/micro && yarn build --scope @joktec/gateway && jest --config ./test/consumer/jest.consumer.config.js --runInBand ./test/consumer/db.scenario.ts",
     "test:consumer:transport": "yarn build --scope @joktec/micro && jest --config ./test/consumer/jest.consumer.config.js --runInBand ./test/consumer/transport.scenario.ts",
     "test:consumer:broker": "jest --config ./test/consumer/jest.consumer.config.js --runInBand ./test/consumer/broker.scenario.ts",
     "format": "lerna run format",

@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { IsUrl } from '@joktec/utils';
 import { IsCdnUrl } from '../../utils';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
@@ -52,15 +52,15 @@ export class Post extends BaseSchema {
   status!: PostStatus;
 
   @Prop({ type: [ObjectId], ref: () => User, required: true, default: [] })
-  targetUserIds?: Ref<User, string>[];
+  targetUserIds?: RefId<User>[];
 
   @Prop({ type: [ObjectId], ref: () => User, required: true, default: [] })
-  hiddenUserIds?: Ref<User, string>[];
+  hiddenUserIds?: RefId<User>[];
 
   // Virtual
-  @Prop({ type: [User], ref: () => User, foreignField: '_id', localField: 'targetUserIds' })
-  targetUsers?: Ref<User>[];
+  @Prop({ type: () => [User], ref: () => User, foreignField: '_id', localField: 'targetUserIds' })
+  targetUsers?: PopulatedRef<User>[];
 
-  @Prop({ type: [User], ref: () => User, foreignField: '_id', localField: 'hiddenUserIds' })
-  hiddenUsers?: Ref<User>[];
+  @Prop({ type: () => [User], ref: () => User, foreignField: '_id', localField: 'hiddenUserIds' })
+  hiddenUsers?: PopulatedRef<User>[];
 }

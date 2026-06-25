@@ -1,4 +1,4 @@
-import { ObjectId, Prop, PropType, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { EXAMPLE_MONGO_ID } from '../../app.constant';
 import { BaseSchema } from '../common';
 import { EmotionStatus, EmotionType } from '../constants';
@@ -18,30 +18,30 @@ export class Emotion extends BaseSchema {
   target!: string;
 
   @Prop({ type: ObjectId, refPath: 'target', example: EXAMPLE_MONGO_ID })
-  targetId?: Ref<Article | Comment, string>;
+  targetId?: RefId<Article | Comment>;
 
   @Prop({})
   deepLink?: string;
 
-  @Prop({ type: Object, default: () => Object.create(null) }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: () => Object.create(null) })
   payload?: Record<string, any>;
 
   @Prop({ required: true, default: () => new Date() })
   actionAt!: Date;
 
   @Prop({ type: ObjectId, ref: () => User, required: true })
-  authorId!: Ref<User, string>;
+  authorId!: RefId<User>;
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: Article, ref: () => Article, foreignField: '_id', localField: 'targetId', justOne: true, example: {} })
-  article?: Ref<Article>;
+  @Prop({ ref: () => Article, foreignField: '_id', localField: 'targetId' })
+  article?: PopulatedRef<Article>;
 
-  @Prop({ type: Comment, ref: () => Comment, foreignField: '_id', localField: 'targetId', justOne: true, example: {} })
-  comment?: Ref<Comment>;
+  @Prop({ ref: () => Comment, foreignField: '_id', localField: 'targetId' })
+  comment?: PopulatedRef<Comment>;
 
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'targetId', justOne: true, example: {} })
-  user?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'targetId' })
+  user?: PopulatedRef<User>;
 }

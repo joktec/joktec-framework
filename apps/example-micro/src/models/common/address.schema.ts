@@ -1,8 +1,7 @@
-import { ApiPropertyOptional } from '@joktec/core';
 import { Prop, Schema } from '@joktec/mongo';
-import { Expose, isNotEmpty } from '@joktec/utils';
+import { isNotEmpty } from '@joktec/utils';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class Address {
   @Prop({ default: null, example: '123 Nam Kỳ Khởi Nghĩa' })
   addressLine1?: string;
@@ -28,8 +27,14 @@ export class Address {
   @Prop({ default: null, example: 'Việt Nam' })
   country?: string;
 
-  @Expose({ toPlainOnly: true })
-  @ApiPropertyOptional({ example: '123 Nam Kỳ Khởi Nghĩa, Phường 7, Quận 3, Hồ Chí Minh' })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Full address',
+    example: '123 Nam Kỳ Khởi Nghĩa, Phường 7, Quận 3, Hồ Chí Minh',
+  })
   get fullAddress(): string {
     return [
       this.addressLine1,

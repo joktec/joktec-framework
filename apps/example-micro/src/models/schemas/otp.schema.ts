@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import dayjs from 'dayjs';
 import { DEFAULT_LOCALE, LOCALE } from '../../app.constant';
 import { BaseSchema } from '../common';
@@ -38,9 +38,9 @@ export class Otp extends BaseSchema {
   retry!: number;
 
   @Prop({ type: ObjectId, ref: () => User })
-  authorId?: Ref<User, string>;
+  authorId?: RefId<User>;
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 }

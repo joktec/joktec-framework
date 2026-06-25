@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@joktec/mongo';
 import { IsCdnUrl } from '../../utils';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class ArticleElementMatrix {
   @Prop({ required: true, default: 0 })
   scale!: number;
@@ -10,7 +10,7 @@ export class ArticleElementMatrix {
   rotate!: number;
 }
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class ArticleElementText {
   @Prop({ required: true, default: '' })
   fontFamily!: string;
@@ -34,7 +34,7 @@ export class ArticleElementText {
   lineHeight!: number;
 }
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class ArticleElement {
   @Prop({ required: true, default: 0 })
   type: number;

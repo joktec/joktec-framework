@@ -2,7 +2,7 @@ import { ApiPropertyOptions } from '@joktec/core';
 import { IsDate, MaxDate, MinDate, Type, ValidationOptions } from '@joktec/utils';
 import { PropOptionsForString } from '@typegoose/typegoose/lib/types';
 import { isArray, isNil } from 'lodash';
-import { IPropOptions } from '../prop.decorator';
+import { IPropOptions } from './prop.types';
 
 export interface DatePropOptions extends PropOptionsForString {
   minDate?: Date | (() => Date) | readonly [Date | (() => Date), string];

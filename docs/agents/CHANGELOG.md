@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-25 - Mongo Schema-First Wrapper Contract Sync
+
+- Recorded `@joktec/mongo` schema-first wrapper behavior for `@Schema`, `@Prop`, `RefId`, `PopulatedRef`, and wrapper-owned `ObjectId`.
+- Documented Mongo schema modes for collection, embedded value objects, and embedded subdocuments with `_id` and timestamps.
+- Recorded `@Prop` inference for virtual populate fields from `ref`, `localField`, and `foreignField`, including populate-one fallback to `ref`, automatic `justOne`, compact Swagger examples, virtual getter metadata, and raw map fields.
+- Clarified Mongo response normalization expectations: repository reads should return schema class instances with string-safe ObjectId/BSON values, while raw Mongoose documents remain available through native model access.
+
 ## 2026-06-25 - MySQL Schema-First Wrapper Contract Sync
 
 - Recorded `@joktec/mysql` schema-first wrapper behavior for `@Tables`, `@Column`, `@PrimaryColumn`, `@PrimaryGeneratedColumn`, and `@TimestampColumn`.

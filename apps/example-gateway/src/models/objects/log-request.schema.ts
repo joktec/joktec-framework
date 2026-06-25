@@ -1,6 +1,6 @@
-import { Prop, PropType, Schema } from '@joktec/mongo';
+import { Prop, Schema } from '@joktec/mongo';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class LogRequest {
   @Prop({ required: true, example: '00000000-0000-0000-0000-000000000000' })
   id!: string;
@@ -11,16 +11,16 @@ export class LogRequest {
   @Prop({ required: true, example: '/users' })
   url!: string;
 
-  @Prop({ type: Object }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object })
   query?: Record<string, any>;
 
-  @Prop({ type: Object }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object })
   params?: Record<string, any>;
 
-  @Prop({ type: Object }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object })
   body?: Record<string, any>;
 
-  @Prop({ type: Object }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object })
   headers?: Record<string, any>;
 
   @Prop({ required: true, example: '::ffff:10.0.75.217' })

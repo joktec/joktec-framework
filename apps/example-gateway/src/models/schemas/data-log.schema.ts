@@ -1,4 +1,4 @@
-import { Prop, PropType, Schema } from '@joktec/mongo';
+import { Prop, Schema } from '@joktec/mongo';
 import { BaseSchema } from '../common';
 import { DataLogLevel } from '../constants';
 import { DataLogRequest } from '../objects';
@@ -41,9 +41,9 @@ export class DataLog extends BaseSchema {
   @Prop({ type: DataLogRequest, example: () => new DataLogRequest() })
   req?: DataLogRequest;
 
-  @Prop({ type: Object, example: {} }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, example: {} })
   args?: Record<string, any>;
 
-  @Prop({ type: Object, example: {} }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, example: {} })
   err?: Record<string, any>;
 }

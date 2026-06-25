@@ -47,7 +47,13 @@ export class CreatorInsight extends BaseEntity {
   @Column({ type: 'boolean', default: true })
   active?: boolean;
 
-  @Column({ virtual: true, optional: true, comment: 'Total value across creator insight metrics', example: 120 })
+  @Column({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    comment: 'Total value across creator insight metrics',
+    example: 120,
+  })
   get totalMetricValue(): number {
     return (this.metrics || []).reduce((total, metric) => total + metric.value, 0);
   }

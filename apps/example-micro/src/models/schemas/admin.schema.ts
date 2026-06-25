@@ -1,5 +1,5 @@
 import { Prop, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { IsCdnUrl } from '../../utils';
 import { BaseSchema } from '../common';
@@ -21,7 +21,13 @@ export class Admin extends BaseSchema {
   @IsCdnUrl()
   avatar?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized admin avatar URL',
+  })
   get thumbnail(): string {
     if (!this.avatar) return '';
     const { cdnUrl, resizeUrl } = appConfig.misc;

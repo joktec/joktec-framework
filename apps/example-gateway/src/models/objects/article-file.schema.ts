@@ -1,12 +1,12 @@
 import { Prop, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { IsCdnUrl } from '../../utils';
 import { BaseSubSchema } from '../common';
 import { ArticleFileStatus, ArticleFileType } from '../constants';
 import { ArticleElement } from './article-element.schema';
 
-@Schema({ schemaOptions: { _id: true, timestamps: true } })
+@Schema({ kind: 'subdocument' })
 export class ArticleFile extends BaseSubSchema {
   @Prop({})
   caption?: string;
@@ -26,7 +26,13 @@ export class ArticleFile extends BaseSubSchema {
   @IsCdnUrl()
   originalUrl?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized thumbnail URL',
+  })
   get thumbnail(): string {
     const { cdnUrl, resizeUrl } = appConfig.misc;
     const url = this.type === ArticleFileType.IMAGE ? this.url : this.preview;
@@ -34,7 +40,13 @@ export class ArticleFile extends BaseSubSchema {
     return `${resizeUrl}/width=300,quality=100/${fullUrl}`;
   }
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized preview thumbnail URL',
+  })
   get previewThumbnail(): string {
     if (!this.preview) return undefined;
     const { cdnUrl, resizeUrl } = appConfig.misc;

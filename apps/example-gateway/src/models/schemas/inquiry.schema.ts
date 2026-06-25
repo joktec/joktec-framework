@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { BaseSchema } from '../common';
 import { InquiryStatus } from '../constants';
 import { Setting } from './setting.schema';
@@ -7,7 +7,7 @@ import { User } from './user.schema';
 @Schema({ collection: 'inquiries', index: 'authorId', paranoid: true })
 export class Inquiry extends BaseSchema {
   @Prop({ type: [ObjectId], ref: () => Setting, required: true, minSize: 1 })
-  reasonIds!: Ref<Setting, string>[];
+  reasonIds!: RefId<Setting>[];
 
   @Prop({ default: null })
   reasonText?: string;
@@ -22,12 +22,12 @@ export class Inquiry extends BaseSchema {
   status!: InquiryStatus;
 
   @Prop({ type: ObjectId, ref: () => User, required: true })
-  authorId!: Ref<User, string>;
+  authorId!: RefId<User>;
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: [Setting], ref: () => Setting, foreignField: '_id', localField: 'reasonIds', example: [] })
-  reason?: Ref<Setting>[];
+  @Prop({ type: () => [Setting], ref: () => Setting, foreignField: '_id', localField: 'reasonIds' })
+  reason?: PopulatedRef<Setting>[];
 }

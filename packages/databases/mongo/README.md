@@ -26,6 +26,11 @@ yarn add @joktec/mongo
 - decorators and helpers:
   - `@Schema`
   - `@Prop`
+  - `IMongoSchemaOptions`
+  - `IMongoPropOptions`
+  - `RefId`
+  - `PopulatedRef`
+  - `ObjectId`
   - `MongoHelper`
   - `MongoPipeline`
   - Mongo plugins
@@ -192,7 +197,7 @@ The schema decorators wrap Typegoose, `class-validator`, `class-transformer`, an
 ```ts
 import { MongoSchema, Prop, Schema } from '@joktec/mongo';
 
-@Schema<User>({ collection: 'users', index: ['username'] })
+@Schema({ collection: 'users', index: ['username'] })
 export class User extends MongoSchema {
   @Prop({ required: true, unique: true })
   username!: string;
@@ -202,7 +207,94 @@ export class User extends MongoSchema {
 }
 ```
 
+Use `Schema({ kind: 'embedded' })` for value objects. Embedded schemas default to `_id: false` and `timestamps: false`, and they do not register collection-level plugins or indexes:
+
+```ts
+@Schema({ kind: 'embedded' })
+export class Preference {
+  @Prop({ required: true })
+  theme!: string;
+}
+```
+
+Use `Schema({ kind: 'subdocument' })` when the nested document still needs its own `_id` and timestamps but should not become a top-level collection:
+
+```ts
+@Schema({ kind: 'subdocument' })
+export class ArticleFile extends MongoSchema {
+  @Prop({ required: true })
+  url!: string;
+}
+```
+
+`Prop` supports explicit modes for common schema-first cases:
+
+- omit `kind` or use `kind: 'normal'` for persisted scalar, enum, object, array, ObjectId, and stored reference id fields.
+- use `kind: 'map'` for raw maps/snapshots instead of passing `PropType.MAP` at the call site.
+- use `kind: 'virtual', mode: 'getter'` for TypeScript computed getters.
+- use virtual populate options such as `ref`, `localField`, and `foreignField` for Mongoose virtual populate fields; the wrapper infers `kind: 'virtual'` and `mode: 'populate'`.
+
+Swagger, transform, and validation metadata are inferred from `type`, `required`, `nullable`, `comment`, `example`, `enum`, `deprecated`, `immutable`, `nested`, and array shape. Use `swagger` only as an override when the inferred metadata is not enough.
+
 When storing raw snapshots, maps, or subdocuments, avoid relying on global `id` to `_id` conversion. The repository/helper layer should only apply API-facing id aliasing where it is safe for query semantics.
+
+### References, Populate, And Virtual Fields
+
+Use explicit reference helper types to separate stored ids from populated instances:
+
+```ts
+import { MongoSchema, ObjectId, PopulatedRef, Prop, RefId, Schema } from '@joktec/mongo';
+import { Artist } from './artist.schema';
+import { User } from './user.schema';
+
+@Schema({ collection: 'articles' })
+export class Article extends MongoSchema {
+  @Prop({ type: ObjectId, ref: () => User })
+  authorId?: RefId<User>;
+
+  @Prop({ type: [ObjectId], ref: () => Artist })
+  artistIds?: RefId<Artist>[];
+
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
+
+  @Prop({ type: () => [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds' })
+  artists?: PopulatedRef<Artist>[];
+
+  @Prop({ kind: 'virtual', mode: 'getter', comment: 'Public thumbnail URL', optional: true })
+  get thumbnail(): string | undefined {
+    return undefined;
+  }
+
+  @Prop({ kind: 'map', type: Object, default: null })
+  snapshot?: Record<string, unknown>;
+}
+```
+
+Guidelines:
+
+- Use `RefId<T>` for persisted reference id fields such as `authorId` or `artistIds`; pass the raw id type only when it is not the default string id.
+- Use `PopulatedRef<T>` and `PopulatedRef<T>[]` for virtual populate outputs when application code expects direct property access on populated instances.
+- Keep lazy resolver syntax in `@Prop({ type: () => User })` or `@Prop({ type: () => [User] })` when the wrapper cannot infer the class from `ref`.
+- Populate-one fields can omit `type` when `ref` points at the same class; populate arrays must still provide `type: () => [Target]` because runtime reflection cannot see the array element type.
+- Use `@Prop({ kind: 'virtual', mode: 'getter' })` for computed getters that need `@Expose` and Swagger metadata but must not become persisted Mongoose paths.
+- Use virtual populate declarations with `ref`, `localField`, and `foreignField`; the wrapper infers populate mode, auto-sets `justOne: true` for non-array populated fields, and uses `{}` or `[]` as compact Swagger examples when no example is provided.
+- Use `@Prop({ kind: 'map' })` for snapshot-style maps and raw objects that must keep their original `id`/shape.
+- Repository reads normalize ObjectId/BSON values and transform populated objects into schema class instances. Code that needs raw Mongoose documents should use `MongoService.getModel(...)` or Typegoose/Mongoose APIs directly.
+
+### Migration Notes
+
+Recent schema-first changes affect how applications should model references and virtual getters:
+
+- Replace populated virtual fields typed as Typegoose `Ref<T>` with `PopulatedRef<T>` when the field is returned through `MongoRepo` and should be used like a class instance.
+- Keep stored id fields as `RefId<T, RawId>` instead of changing them to populated instance types.
+- Prefer lazy `type` resolvers for relation fields to avoid circular imports.
+- Replace standalone `@Expose()` and `@ApiProperty(...)` on computed getters with `@Prop({ kind: 'virtual', mode: 'getter', comment, hidden, optional, expose, swagger })` when the wrapper can express the same metadata.
+- Replace `@Schema({ schemaOptions: { _id: false, timestamps: false } })` on value objects with `@Schema({ kind: 'embedded' })` where the defaults match.
+- Replace `@Schema({ schemaOptions: { _id: true, timestamps: true } })` on embedded documents with `@Schema({ kind: 'subdocument' })` where the defaults match.
+- Prefer `@Prop({ kind: 'map', type: Object })` over `@Prop({ type: Object }, PropType.MAP)` in new schemas.
+- Simplify populate-one declarations from `@Prop({ kind: 'virtual', mode: 'populate', type: () => User, ref: () => User, justOne: true, ... })` to `@Prop({ ref: () => User, foreignField, localField })` when the inferred defaults are enough.
+- Re-test populate and deep populate paths after migration. Consumer JSON should expose string ids, not serialized BSON or Buffer shapes.
 
 ## Plugins
 

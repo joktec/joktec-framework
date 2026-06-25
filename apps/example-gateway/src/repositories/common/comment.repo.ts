@@ -1,6 +1,6 @@
 import { Injectable } from '@joktec/core';
 import { IMongoPipeline, IMongoRequest, MongoRepo, MongoService, ObjectId } from '@joktec/mongo';
-import { plainToInstance, toInt } from '@joktec/utils';
+import { toInt } from '@joktec/utils';
 import { Comment } from '../../models/schemas';
 
 @Injectable()
@@ -41,6 +41,6 @@ export class CommentRepo extends MongoRepo<Comment, string> {
     const version = await this.mongoService.getVersion();
     const result = await this.model.aggregate(aggregations, { version }).exec();
     const { items = [], total = 0 } = result[0];
-    return { items: plainToInstance(Comment, items as any[]), total: toInt(total) };
+    return { items: this.transform(items as any[]) as Comment[], total: toInt(total) };
   }
 }

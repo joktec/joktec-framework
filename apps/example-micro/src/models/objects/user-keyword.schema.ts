@@ -2,7 +2,7 @@ import { Prop, Schema } from '@joktec/mongo';
 import { BaseSubSchema } from '../common';
 import { ArticleType } from '../constants';
 
-@Schema({ schemaOptions: { _id: true, timestamps: true } })
+@Schema({ kind: 'subdocument' })
 export class UserKeyword extends BaseSubSchema {
   @Prop({ required: true, trim: true })
   value!: string;

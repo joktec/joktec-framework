@@ -2,7 +2,7 @@ import { Prop, Schema } from '@joktec/mongo';
 import { Address } from '../common';
 import { UserAddressType } from '../constants';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserAddress extends Address {
   @Prop({ required: true, enum: UserAddressType, default: UserAddressType.HOME, example: UserAddressType.HOME })
   type!: UserAddressType;

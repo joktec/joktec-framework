@@ -2,7 +2,7 @@ import { Prop, Schema } from '@joktec/mongo';
 import { IsCdnUrl } from '../../utils';
 import { AuthProviderType } from '../constants';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserProvider {
   @Prop({ required: true, enum: AuthProviderType })
   type!: AuthProviderType;

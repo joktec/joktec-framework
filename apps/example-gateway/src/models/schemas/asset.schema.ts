@@ -1,5 +1,5 @@
-import { ObjectId, Prop, PropType, Ref, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { linkTransform } from '@joktec/utils';
 import { isEmpty } from 'lodash';
 import { appConfig } from '../../app.config';
 import { EXAMPLE_MONGO_ID } from '../../app.constant';
@@ -20,7 +20,13 @@ export class Asset extends BaseSchema {
   @IsCdnUrl()
   key!: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized asset thumbnail URL',
+  })
   get thumbnail(): string {
     if (!this.key) return '';
     const { cdnUrl, resizeUrl } = appConfig.misc;
@@ -34,7 +40,7 @@ export class Asset extends BaseSchema {
   @Prop({ trim: true, immutable: true, example: 'image/png' })
   mimeType!: string;
 
-  @Prop({ type: [String], default: [] }, PropType.ARRAY)
+  @Prop({ type: [String], default: [] })
   tags?: string[];
 
   @Prop({ default: 0, unsigned: true, example: 999 })
@@ -50,9 +56,9 @@ export class Asset extends BaseSchema {
   status!: AssetStatus;
 
   @Prop({ type: ObjectId, ref: () => User, default: null, example: EXAMPLE_MONGO_ID })
-  authorId?: Ref<User, string>;
+  authorId?: RefId<User>;
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 }

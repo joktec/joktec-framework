@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@joktec/mongo';
 import { UserBizStatus, UserBizType } from '../constants';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserBusiness {
   @Prop({ required: true, enum: UserBizType, default: UserBizType.DEFAULT })
   type!: UserBizType;

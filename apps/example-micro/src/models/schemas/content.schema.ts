@@ -1,5 +1,5 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { IsCdnUrl } from '../../utils';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
@@ -33,7 +33,13 @@ export class Content extends BaseSchema {
   @IsCdnUrl()
   image?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized content image URL',
+  })
   get thumbnail(): string {
     if (!this.image) return undefined;
     const { cdnUrl, resizeUrl } = appConfig.misc;
@@ -45,22 +51,21 @@ export class Content extends BaseSchema {
   seq?: number;
 
   @Prop({ type: ObjectId, ref: () => Content, default: null })
-  parentId?: Ref<Content, string>;
+  parentId?: RefId<Content>;
 
   @Prop({ required: true, enum: AppContentStatus, default: AppContentStatus.ACTIVATED })
   status!: AppContentStatus;
 
   // Virtual
-  @Prop({ type: Content, ref: () => Content, foreignField: '_id', localField: 'parentId', justOne: true, example: {} })
-  parent?: Ref<Content>;
+  @Prop({ ref: () => Content, foreignField: '_id', localField: 'parentId' })
+  parent?: PopulatedRef<Content>;
 
   @Prop({
-    type: [Content],
+    type: () => [Content],
     ref: () => Content,
     foreignField: 'parentId',
     localField: '_id',
     options: { sort: { seq: 1 } },
-    example: [],
   })
-  children?: Ref<Content>[];
+  children?: PopulatedRef<Content>[];
 }

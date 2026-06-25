@@ -1,6 +1,6 @@
 import { Injectable, IPaginationResponse } from '@joktec/core';
 import { IMongoPipeline, IMongoRequest, MongoHelper, MongoRepo, MongoService, ObjectId } from '@joktec/mongo';
-import { plainToInstance, toInt } from '@joktec/utils';
+import { toInt } from '@joktec/utils';
 import { EmotionStatus, EmotionType } from '../../models/constants';
 import { Article, Emotion, User } from '../../models/schemas';
 
@@ -51,7 +51,7 @@ export class EmotionRepo extends MongoRepo<Emotion, string> {
     const version = await this.mongoService.getVersion();
     const result = await this.model.aggregate(aggregations, { version }).exec();
     const { items = [], total = 0 } = result[0];
-    return { items: plainToInstance(Article, items as any[]), total: toInt(total) };
+    return { items: this.transformAs(Article, items as any[]) as Article[], total: toInt(total) };
   }
 
   async getLikedUsers(
@@ -91,6 +91,6 @@ export class EmotionRepo extends MongoRepo<Emotion, string> {
     const version = await this.mongoService.getVersion();
     const result = await this.model.aggregate(aggregations, { version }).exec();
     const { items = [], total = 0 } = result[0];
-    return { items: plainToInstance(User, items as any[]), total: toInt(total) };
+    return { items: this.transformAs(User, items as any[]) as User[], total: toInt(total) };
   }
 }

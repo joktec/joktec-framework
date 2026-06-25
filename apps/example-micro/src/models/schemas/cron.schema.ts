@@ -1,5 +1,5 @@
 import { CrontabStatus, CrontabType, ICrontabModel } from '@joktec/cron';
-import { Prop, PropType, Ref, Schema } from '@joktec/mongo';
+import { Prop, PopulatedRef, Schema } from '@joktec/mongo';
 import { IsTimeZone, Type } from '@joktec/utils';
 import { pick } from 'lodash';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
@@ -44,7 +44,7 @@ export class CronSchema extends BaseSchema implements ICrontabModel {
   @IsTimeZone()
   timezone?: string;
 
-  @Prop({ type: Object, default: null, comment: 'Parameters as a JSON object' }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: null, comment: 'Parameters as a JSON object' })
   parameters?: Record<string, any>;
 
   @Prop({ default: null, comment: 'Last execution date and time of the cron job' })
@@ -57,32 +57,26 @@ export class CronSchema extends BaseSchema implements ICrontabModel {
   status!: CrontabStatus;
 
   // Virtual
-  @Prop(
-    {
-      type: CronHistory,
-      ref: () => CronHistory,
-      foreignField: 'cronRefId',
-      localField: '_id',
-      options: { sort: { createdAt: -1 } },
-    },
-    PropType.ARRAY,
-  )
+  @Prop({
+    type: () => [CronHistory],
+    ref: () => CronHistory,
+    foreignField: 'cronRefId',
+    localField: '_id',
+    options: { sort: { createdAt: -1 } },
+  })
   @Type(() => CronHistory)
-  histories?: Ref<CronHistory>[];
+  histories?: PopulatedRef<CronHistory>[];
 
-  @Prop(
-    {
-      type: CronHistory,
-      ref: () => CronHistory,
-      foreignField: 'cronRefId',
-      localField: '_id',
-      options: { sort: { createdAt: -1 } },
-      limit: 5,
-    },
-    PropType.ARRAY,
-  )
+  @Prop({
+    type: () => [CronHistory],
+    ref: () => CronHistory,
+    foreignField: 'cronRefId',
+    localField: '_id',
+    options: { sort: { createdAt: -1 } },
+    limit: 5,
+  })
   @Type(() => CronHistory)
-  lastHistories?: Ref<CronHistory>[];
+  lastHistories?: PopulatedRef<CronHistory>[];
 
   get id(): string {
     return this._id?.toString();

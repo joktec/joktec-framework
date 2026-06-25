@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { EXAMPLE_MONGO_ID } from '../../app.constant';
 import { BaseSchema } from '../common';
 import { BlockStatus } from '../constants';
@@ -12,10 +12,10 @@ export class Block extends BaseSchema {
   target!: string;
 
   @Prop({ type: ObjectId, refPath: 'target', required: true, example: EXAMPLE_MONGO_ID })
-  targetId!: Ref<Article | User, string>;
+  targetId!: RefId<Article | User>;
 
   @Prop({ type: [ObjectId], ref: () => Setting, required: true, uniqItems: true, default: [] })
-  reasonIds!: Ref<Setting, string>[];
+  reasonIds!: RefId<Setting>[];
 
   @Prop({ default: null })
   reasonText?: string;
@@ -27,18 +27,18 @@ export class Block extends BaseSchema {
   status!: BlockStatus;
 
   @Prop({ type: ObjectId, ref: () => User, required: true })
-  authorId!: Ref<User, string>;
+  authorId!: RefId<User>;
 
   // Virtual
-  @Prop({ type: Article, ref: () => Article, foreignField: '_id', localField: 'targetId', justOne: true, example: {} })
-  article?: Ref<Article>;
+  @Prop({ ref: () => Article, foreignField: '_id', localField: 'targetId' })
+  article?: PopulatedRef<Article>;
 
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'targetId', justOne: true, example: {} })
-  user?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'targetId' })
+  user?: PopulatedRef<User>;
 
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: [Setting], ref: () => Setting, foreignField: '_id', localField: 'reasonIds', example: [] })
-  reasons?: Ref<Setting>[];
+  @Prop({ type: () => [Setting], ref: () => Setting, foreignField: '_id', localField: 'reasonIds' })
+  reasons?: PopulatedRef<Setting>[];
 }

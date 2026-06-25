@@ -6,7 +6,7 @@ export enum CoordinateType {
 
 export type Coordinates = [number, number];
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class LocationSchema {
   @Prop({ example: 'Full address get from google map' })
   title?: string;

@@ -1,9 +1,7 @@
-import { ApiPropertyOptional } from '@joktec/core';
 import { Prop, Schema } from '@joktec/mongo';
-import { Expose } from '@joktec/utils';
 import { sum } from 'lodash';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserWallet {
   @Prop({ required: true, default: 0 })
   charge!: number;
@@ -17,8 +15,14 @@ export class UserWallet {
   @Prop({ required: true, default: 0 })
   event!: number;
 
-  @Expose({ toPlainOnly: true })
-  @ApiPropertyOptional({ example: 9999 })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Available wallet balance',
+    example: 9999,
+  })
   public get balance(): number {
     return sum([this.charge, this.revenue, this.bonus, this.event]);
   }

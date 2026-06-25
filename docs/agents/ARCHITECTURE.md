@@ -55,7 +55,7 @@ Brokers wrap messaging clients and decorator-driven producer/consumer registrati
 
 Database packages own client connections and repository abstractions. App repositories extend database repositories and add app-specific queries. Mongo and MySQL repositories implement storage-specific cursor pagination through keyset conditions while keeping the shared request and response contract in `@joktec/core`.
 
-`@joktec/mongo` is the schema-first Mongo layer. It wraps Mongoose/Typegoose schemas, multi-connection model registration, Mongo repositories, query helpers, debug rendering, exception mapping, and plugins for paranoid soft delete, strict reference checks, and transformation.
+`@joktec/mongo` is the schema-first Mongo layer. It wraps Mongoose/Typegoose schemas, `Schema`/`Prop` metadata inference, multi-connection model registration, Mongo repositories, query helpers, debug rendering, exception mapping, and plugins for paranoid soft delete, strict reference checks, and transformation.
 
 `@joktec/mysql` is the schema-first relational layer. It wraps TypeORM entities, connection lifecycle, MySQL/MariaDB/Postgres dialect capabilities, repository query building, normalized driver exceptions, and decorators that combine TypeORM column metadata with validation, transform, and Swagger metadata.
 
@@ -69,6 +69,7 @@ Schema-first database wrappers follow this rule most strongly:
 
 - entity/schema classes should be reusable as DTO metadata sources when practical
 - wrapper decorators should infer validation, transform, and Swagger metadata from one declaration
+- wrapper decorators may infer common modes when source metadata is explicit, such as Mongo virtual populate from `ref`, `localField`, and `foreignField`
 - package-specific semantics should use shared names where possible, such as `immutable` for API read-only metadata across Mongo and MySQL
 - storage write behavior remains storage-specific, such as TypeORM `update: false` for relational columns
 - rare native features should remain available through raw TypeORM or Mongoose/Typegoose instead of forcing the wrapper to model every edge case

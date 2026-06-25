@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from '@jest/globals';
 import { ICondition } from '@joktec/core';
+import { Prop } from '../decorators';
 import { IMongoOptions, IMongoRequest, IMongoUpdate, MongoSchema, ObjectId } from '../models';
 import { MongoRepo } from '../mongo.repo';
 import { MongoService } from '../mongo.service';
@@ -7,7 +8,41 @@ import { MongoService } from '../mongo.service';
 class ContractSchema extends MongoSchema {
   title!: string;
   authorId?: string;
-  author?: { _id?: string; name?: string };
+
+  @Prop({ type: () => ContractAuthor, nested: true } as any)
+  author?: any;
+
+  @Prop({ type: () => [ContractArtist], nested: true } as any)
+  artists?: any[];
+}
+
+class ContractAuthor {
+  _id?: string;
+  name?: string;
+
+  get label(): string {
+    return `author:${this.name}`;
+  }
+}
+
+class ContractCategory {
+  _id?: string;
+  name?: string;
+}
+
+class ContractArtist {
+  _id?: string;
+  name?: string;
+
+  @Prop({ type: () => ContractAuthor, nested: true } as any)
+  author?: ContractAuthor;
+
+  @Prop({ type: () => [ContractCategory], nested: true } as any)
+  categories?: ContractCategory[];
+
+  get label(): string {
+    return `artist:${this.name}`;
+  }
 }
 
 class ContractRepo extends MongoRepo<ContractSchema> {
@@ -29,6 +64,10 @@ class ContractRepo extends MongoRepo<ContractSchema> {
 
   exposeTransform(docs: any | any[], options?: { normalize?: boolean }) {
     return this.transform(docs, options);
+  }
+
+  exposeTransformAs<U>(schema: new (...args: any[]) => U, docs: any | any[], options?: { normalize?: boolean }) {
+    return this.transformAs(schema, docs, options);
   }
 
   qb(query?: IMongoRequest<ContractSchema>, options: IMongoOptions<ContractSchema> = {}): any {
@@ -122,12 +161,66 @@ describe('MongoRepo contracts', () => {
     );
   });
 
+  it('should return nested class instances for populated one and array objects', () => {
+    const repo = new ContractRepo({ getModel: jest.fn() } as unknown as MongoService);
+    const result = repo.exposeTransform({
+      _id: ObjectId.create('656c096ad77a68cf9c495e28'),
+      title: 'article',
+      author: {
+        _id: ObjectId.create('656c096ad77a68cf9c495e29'),
+        name: 'Author',
+      },
+      artists: [
+        {
+          _id: ObjectId.create('656c096ad77a68cf9c495e30'),
+          name: 'Artist',
+          author: {
+            _id: ObjectId.create('656c096ad77a68cf9c495e31'),
+            name: 'Nested Author',
+          },
+          categories: [
+            {
+              _id: ObjectId.create('656c096ad77a68cf9c495e32'),
+              name: 'Category',
+            },
+          ],
+        },
+      ],
+    }) as ContractSchema;
+
+    expect(result).toBeInstanceOf(ContractSchema);
+    expect(result.author).toBeInstanceOf(ContractAuthor);
+    expect(result.author.label).toBe('author:Author');
+    expect(result.artists[0]).toBeInstanceOf(ContractArtist);
+    expect(result.artists[0].label).toBe('artist:Artist');
+    expect(result.artists[0].author).toBeInstanceOf(ContractAuthor);
+    expect(result.artists[0].categories[0]).toBeInstanceOf(ContractCategory);
+    expect(result.artists[0]._id).toBe('656c096ad77a68cf9c495e30');
+  });
+
+  it('should transform custom aggregate projections through an explicit schema', () => {
+    const repo = new ContractRepo({ getModel: jest.fn() } as unknown as MongoService);
+    const result = repo.exposeTransformAs(ContractArtist, {
+      _id: ObjectId.create('656c096ad77a68cf9c495e30'),
+      name: 'Artist',
+      author: {
+        _id: ObjectId.create('656c096ad77a68cf9c495e31'),
+        name: 'Nested Author',
+      },
+    }) as ContractArtist;
+
+    expect(result).toBeInstanceOf(ContractArtist);
+    expect(result.author).toBeInstanceOf(ContractAuthor);
+    expect(result._id).toBe('656c096ad77a68cf9c495e30');
+  });
+
   it('should preserve ObjectId values when transforming write payloads', () => {
     const repo = new ContractRepo({ getModel: jest.fn() } as unknown as MongoService);
     const id = ObjectId.create('656c096ad77a68cf9c495e28');
 
-    const result = repo.exposeTransform({ snapshot: { id } }, { normalize: false }) as any;
+    const result = repo.exposeTransform({ authorId: id, snapshot: { id } }, { normalize: false }) as any;
 
+    expect(result.authorId).toBeInstanceOf(ObjectId);
     expect(result.snapshot.id).toBeInstanceOf(ObjectId);
     expect(String(result.snapshot.id)).toBe(String(id));
   });

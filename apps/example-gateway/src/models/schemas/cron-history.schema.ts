@@ -1,12 +1,12 @@
 import { CrontabHistoryStatus, CrontabHistoryType, ICrontabHistoryModel } from '@joktec/cron';
-import { ObjectId, Prop, PropType, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { BaseSchema } from '../common';
 import { CronSchema } from './cron.schema';
 
 @Schema({ collection: 'cron_histories', index: ['cronId'], paranoid: true })
 export class CronHistory extends BaseSchema implements ICrontabHistoryModel {
   @Prop({ type: ObjectId, ref: () => CronSchema, required: true, comment: 'Reference ID to the cron job' })
-  cronRefId!: Ref<CronSchema, string>;
+  cronRefId!: RefId<CronSchema>;
 
   @Prop({
     required: true,
@@ -16,7 +16,7 @@ export class CronHistory extends BaseSchema implements ICrontabHistoryModel {
   })
   type!: CrontabHistoryType;
 
-  @Prop({ type: Object, default: null, comment: 'Snapshot data at the time of execution' }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: null, comment: 'Snapshot data at the time of execution' })
   snapshot?: Record<string, any>;
 
   @Prop({ required: true, comment: 'Execution start time' })
@@ -36,22 +36,20 @@ export class CronHistory extends BaseSchema implements ICrontabHistoryModel {
   })
   status!: CrontabHistoryStatus;
 
-  @Prop({ type: Object, default: null, comment: 'Result data of the cron execution' }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: null, comment: 'Result data of the cron execution' })
   res?: Record<string, any>;
 
-  @Prop({ type: Object, default: null, comment: 'Error details if the cron execution failed' }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: null, comment: 'Error details if the cron execution failed' })
   error?: Record<string, any>;
 
   // Virtual
   @Prop({
-    type: CronSchema,
     ref: () => CronSchema,
     foreignField: '_id',
     localField: 'cronRefId',
-    justOne: true,
     comment: 'Reference to the related cron job',
   })
-  cron?: Ref<CronSchema>;
+  cron?: PopulatedRef<CronSchema>;
 
   get id(): string {
     return this._id?.toString();

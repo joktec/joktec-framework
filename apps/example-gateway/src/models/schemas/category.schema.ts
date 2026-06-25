@@ -1,5 +1,5 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { IsCdnUrl } from '../../utils';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
@@ -27,7 +27,13 @@ export class Category extends BaseSchema {
   @IsCdnUrl()
   image?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized category image URL',
+  })
   get thumbnail(): string {
     if (!this.image) return '';
     const { cdnUrl, resizeUrl } = appConfig.misc;
@@ -39,32 +45,24 @@ export class Category extends BaseSchema {
   seq?: number;
 
   @Prop({ type: ObjectId, ref: () => Category, default: null })
-  parentId?: Ref<Category, string>;
+  parentId?: RefId<Category>;
 
   @Prop({ required: true, enum: CategoryStatus, example: CategoryStatus.ACTIVATED })
   status!: CategoryStatus;
 
   // Virtual
-  @Prop({
-    type: Category,
-    ref: () => Category,
-    foreignField: '_id',
-    localField: 'parentId',
-    justOne: true,
-    example: {},
-  })
-  parent?: Ref<Category>;
+  @Prop({ ref: () => Category, foreignField: '_id', localField: 'parentId' })
+  parent?: PopulatedRef<Category>;
 
   @Prop({
-    type: [Category],
+    type: () => [Category],
     ref: () => Category,
     foreignField: 'parentId',
     localField: '_id',
     options: { sort: { seq: 1 } },
-    example: [],
   })
-  children?: Ref<Category>[];
+  children?: PopulatedRef<Category>[];
 
-  @Prop({ type: [Artist], ref: () => Artist, foreignField: 'categoryIds', localField: '_id', example: {} })
-  artists?: Ref<Artist>[];
+  @Prop({ type: () => [Artist], ref: () => Artist, foreignField: 'categoryIds', localField: '_id' })
+  artists?: PopulatedRef<Artist>[];
 }

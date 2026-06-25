@@ -16,7 +16,7 @@ import {
 import { PropOptionsForString } from '@typegoose/typegoose/lib/types';
 import { isArray, isNil, isNumber, isObject } from 'lodash';
 import { IsEmailOptions } from 'validator/lib/isEmail';
-import { IPropOptions } from '../prop.decorator';
+import { IPropOptions } from './prop.types';
 
 export interface StringPropOptions extends PropOptionsForString {
   isString?: boolean | [boolean, string] | { message?: string };

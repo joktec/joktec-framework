@@ -235,19 +235,19 @@ describe('MongoHelper class', () => {
           path: 'author',
           model: 'User',
           select: 'name',
-          options: { lean: true },
+          options: { lean: { virtuals: true } },
           populate: [
             {
               path: 'comments',
               model: 'Comment',
               select: 'text',
-              options: { lean: true },
+              options: { lean: { virtuals: true } },
               populate: [
                 {
                   path: 'user',
                   model: 'User',
                   select: 'email',
-                  options: { lean: true },
+                  options: { lean: { virtuals: true } },
                 },
               ],
             },

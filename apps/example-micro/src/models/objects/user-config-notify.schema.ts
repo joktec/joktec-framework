@@ -1,7 +1,7 @@
 import { Prop, Schema } from '@joktec/mongo';
 import { UserConfigNotifyType } from '../constants';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserConfigNotify {
   static init(): UserConfigNotify[] {
     return Object.values(UserConfigNotifyType).map(value => {

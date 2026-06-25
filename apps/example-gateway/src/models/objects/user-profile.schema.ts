@@ -2,7 +2,7 @@ import { Prop, Schema } from '@joktec/mongo';
 import { IsCdnUrl } from '../../utils';
 import { UserGender } from '../constants';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class UserProfile {
   @Prop({ default: null })
   displayName?: string;

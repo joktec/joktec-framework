@@ -1,6 +1,5 @@
-import { ApiPropertyOptional } from '@joktec/core';
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
-import { Expose, plainToInstance } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { plainToInstance } from '@joktec/utils';
 import { EXAMPLE_MONGO_ID } from '../../app.constant';
 import { BaseSchema } from '../common';
 import { ArticleResource, ArticleStatus, ArticleType } from '../constants';
@@ -53,35 +52,42 @@ export class Article extends BaseSchema {
   resourceId?: string;
 
   @Prop({ type: ObjectId, ref: () => User, default: null, example: EXAMPLE_MONGO_ID })
-  authorId?: Ref<User, string>;
+  authorId?: RefId<User>;
 
   @Prop({ type: ObjectId, ref: () => Article, default: null })
-  parentId?: Ref<Article, string>;
+  parentId?: RefId<Article>;
 
   @Prop({ type: [ObjectId], ref: () => Artist, required: true, default: [], example: [EXAMPLE_MONGO_ID] })
-  artistIds?: Ref<Artist, string>[];
+  artistIds?: RefId<Artist>[];
 
   @Prop({ type: [ObjectId], ref: () => Tag, required: true, default: [], example: [EXAMPLE_MONGO_ID] })
-  tagIds?: Ref<Tag, string>[];
+  tagIds?: RefId<Tag>[];
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds', example: {} })
-  artists?: Ref<Artist>[];
+  @Prop({ type: () => [Artist], ref: () => Artist, foreignField: '_id', localField: 'artistIds' })
+  artists?: PopulatedRef<Artist>[];
 
-  @Prop({ type: [Tag], ref: () => Tag, foreignField: '_id', localField: 'tagIds', example: [] })
-  tags?: Ref<Tag>[];
+  @Prop({ type: () => [Tag], ref: () => Tag, foreignField: '_id', localField: 'tagIds' })
+  tags?: PopulatedRef<Tag>[];
 
-  @Prop({ type: Article, ref: () => Article, foreignField: '_id', localField: 'parentId', justOne: true, example: {} })
-  parent?: Ref<Article>;
+  @Prop({ ref: () => Article, foreignField: '_id', localField: 'parentId' })
+  parent?: PopulatedRef<Article>;
 
-  @Prop({ type: [Article], ref: () => Article, foreignField: 'parentId', localField: '_id', example: [] })
-  children?: Ref<Article>[];
+  @Prop({ type: () => [Article], ref: () => Article, foreignField: 'parentId', localField: '_id' })
+  children?: PopulatedRef<Article>[];
 
-  @Expose({ toPlainOnly: true })
-  @ApiPropertyOptional({ example: ['tag1', 'tag2'] })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Article hashtag titles resolved from populated tags',
+    example: ['tag1', 'tag2'],
+    swagger: { isArray: true },
+  })
   public get hashtags(): string[] {
     return plainToInstance(Tag, this.tags || []).map((tag: Tag) => tag.title);
   }

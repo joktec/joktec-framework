@@ -1,4 +1,4 @@
-import { Prop, PropType, Schema } from '@joktec/mongo';
+import { Prop, Schema } from '@joktec/mongo';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
 import { SettingStatus, SettingType } from '../constants';
 
@@ -19,7 +19,7 @@ export class Setting extends BaseSchema {
   @I18nTransform()
   description?: I18nText;
 
-  @Prop({ type: Object, default: null }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: null })
   value?: Record<string, any>;
 
   @Prop({ required: true, enum: SettingType, default: SettingType.DEFAULT })

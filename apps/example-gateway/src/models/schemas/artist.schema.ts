@@ -1,6 +1,5 @@
-import { ApiPropertyOptional } from '@joktec/core';
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
-import { Expose, linkTransform } from '@joktec/utils';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
+import { linkTransform } from '@joktec/utils';
 import { appConfig } from '../../app.config';
 import { EXAMPLE_MONGO_ID } from '../../app.constant';
 import { IsCdnUrl } from '../../utils';
@@ -25,7 +24,13 @@ export class Artist extends BaseSchema {
   @IsCdnUrl()
   avatar?: string;
 
-  @Expose({ toPlainOnly: true })
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Resized artist avatar URL',
+  })
   get thumbnail(): string {
     const { cdnUrl, resizeUrl } = appConfig.misc;
     const fullUrl = linkTransform(this.avatar, cdnUrl, 'absolute');
@@ -39,16 +44,21 @@ export class Artist extends BaseSchema {
   hiddenText?: string;
 
   @Prop({ type: [ObjectId], ref: () => Category, required: true, default: [], example: [EXAMPLE_MONGO_ID] })
-  categoryIds?: Ref<Category, string>[];
+  categoryIds?: RefId<Category>[];
 
-  @Expose({ toPlainOnly: true })
-  @ApiPropertyOptional()
+  @Prop({
+    kind: 'virtual',
+    mode: 'getter',
+    optional: true,
+    expose: { toPlainOnly: true },
+    comment: 'Selection state for client-side lists',
+  })
   isSelected?: boolean;
 
   // Virtual
-  @Prop({ type: [Category], ref: () => Category, foreignField: '_id', localField: 'categoryIds', example: [] })
-  categories?: Ref<Category>[];
+  @Prop({ type: () => [Category], ref: () => Category, foreignField: '_id', localField: 'categoryIds' })
+  categories?: PopulatedRef<Category>[];
 
-  @Prop({ type: [Article], ref: () => Article, foreignField: 'artistIds', localField: '_id', example: [] })
-  articles?: Ref<Article>[];
+  @Prop({ type: () => [Article], ref: () => Article, foreignField: 'artistIds', localField: '_id' })
+  articles?: PopulatedRef<Article>[];
 }

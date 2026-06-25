@@ -1,7 +1,7 @@
 import { ApiPropertyOptions } from '@joktec/core';
 import { IsEnum } from '@joktec/utils';
 import { PropOptionsForString } from '@typegoose/typegoose/lib/types';
-import { IPropOptions } from '../prop.decorator';
+import { IPropOptions } from './prop.types';
 
 export interface EnumPropOptions extends PropOptionsForString {}
 

@@ -1,6 +1,6 @@
 import { Prop, Schema } from '@joktec/mongo';
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class SessionDevice {
   @Prop({})
   deviceId?: string;

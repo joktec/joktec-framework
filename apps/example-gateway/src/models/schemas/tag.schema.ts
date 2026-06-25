@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
 import { TagStatus } from '../constants';
 import { User } from './user.schema';
@@ -21,25 +21,18 @@ export class Tag extends BaseSchema {
   status!: TagStatus;
 
   @Prop({ type: ObjectId, ref: () => User })
-  authorId?: Ref<User, string>;
+  authorId?: RefId<User>;
 
   @Prop({ type: ObjectId, ref: () => Tag, default: null })
-  parentId?: Ref<Tag, string>;
+  parentId?: RefId<Tag>;
 
   // Virtual
-  @Prop({
-    type: User,
-    ref: () => User,
-    foreignField: '_id',
-    localField: 'authorId',
-    justOne: true,
-    example: {},
-  })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: Tag, ref: () => Tag, foreignField: '_id', localField: 'parentId', justOne: true, example: {} })
-  parent?: Ref<Tag>;
+  @Prop({ ref: () => Tag, foreignField: '_id', localField: 'parentId' })
+  parent?: PopulatedRef<Tag>;
 
-  @Prop({ type: [Tag], ref: () => Tag, foreignField: 'parentId', localField: '_id', example: [] })
-  children?: Ref<Tag>[];
+  @Prop({ type: () => [Tag], ref: () => Tag, foreignField: 'parentId', localField: '_id' })
+  children?: PopulatedRef<Tag>[];
 }

@@ -10,7 +10,7 @@ export enum I18nGroup {
   TRANSLATE = 'translate',
 }
 
-@Schema({ schemaOptions: { _id: false, timestamps: false } })
+@Schema({ kind: 'embedded' })
 export class I18nText {
   constructor(props?: Partial<I18nText>) {
     Object.assign(props);

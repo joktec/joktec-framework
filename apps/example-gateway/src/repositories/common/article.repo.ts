@@ -1,6 +1,6 @@
 import { Injectable, IPaginationResponse } from '@joktec/core';
 import { IMongoPipeline, IMongoRequest, MongoHelper, MongoRepo, MongoService, ObjectId } from '@joktec/mongo';
-import { plainToInstance, toInt } from '@joktec/utils';
+import { toInt } from '@joktec/utils';
 import { EmotionType } from '../../models/constants';
 import { Article, User } from '../../models/schemas';
 
@@ -73,6 +73,6 @@ export class ArticleRepo extends MongoRepo<Article, string> {
     const version = await this.mongoService.getVersion();
     const result = await this.model.aggregate(pipeline, { version }).exec();
     const { items = [], total = 0 } = result[0];
-    return { items: plainToInstance(Article, items as any[]), total: toInt(total) };
+    return { items: this.transform(items as any[]) as Article[], total: toInt(total) };
   }
 }

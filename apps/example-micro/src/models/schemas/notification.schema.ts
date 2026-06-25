@@ -1,4 +1,4 @@
-import { ObjectId, Prop, PropType, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, Schema } from '@joktec/mongo';
 import { BaseSchema, I18nText, I18nTransform } from '../common';
 import { NotificationStatus, NotificationType } from '../constants';
 import { User } from './user.schema';
@@ -32,13 +32,13 @@ export class Notification extends BaseSchema {
   topics?: string[];
 
   @Prop({ type: [ObjectId], ref: () => User, default: [], uniqItems: true })
-  userIds?: Ref<User, string>[];
+  userIds?: RefId<User>[];
 
-  @Prop({ type: Object, default: Object.create(null) }, PropType.MAP)
+  @Prop({ kind: 'map', type: Object, default: Object.create(null) })
   payload?: Record<string, any>;
 
   @Prop({ type: [ObjectId], ref: () => User, default: [], uniqItems: true })
-  readById?: Ref<User, string>[];
+  readById?: RefId<User>[];
 
   @Prop({ default: null })
   sentAt?: Date;
@@ -46,6 +46,6 @@ export class Notification extends BaseSchema {
   @Prop({ required: true, enum: NotificationStatus, default: NotificationStatus.UNPUBLISHED })
   status!: NotificationStatus;
 
-  @Prop({ type: [Object], default: [], exclude: true }, PropType.MAP)
+  @Prop({ kind: 'map', type: [Object], default: [], exclude: true })
   results!: Record<string, any>[];
 }

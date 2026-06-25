@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { DEFAULT_LOCALE, EXAMPLE_MONGO_ID } from '../../app.constant';
 import { BaseSchema } from '../common';
 import { SessionStatus } from '../constants';
@@ -60,12 +60,12 @@ export class Session extends BaseSchema {
   userType!: string;
 
   @Prop({ type: ObjectId, refPath: 'userType', example: EXAMPLE_MONGO_ID })
-  userRefId?: Ref<Admin | User, string>;
+  userRefId?: RefId<Admin | User>;
 
   // Virtual
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'userRefId', justOne: true, example: {} })
-  user?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'userRefId' })
+  user?: PopulatedRef<User>;
 
-  @Prop({ type: Admin, ref: () => Admin, foreignField: '_id', localField: 'userRefId', justOne: true, example: {} })
-  admin?: Ref<Admin>;
+  @Prop({ ref: () => Admin, foreignField: '_id', localField: 'userRefId' })
+  admin?: PopulatedRef<Admin>;
 }

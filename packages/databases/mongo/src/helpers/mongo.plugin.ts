@@ -1,13 +1,13 @@
 import { toArray } from '@joktec/utils';
 import { plugin } from '@typegoose/typegoose';
 import { get } from 'lodash';
-import { ISchemaOptions } from '../decorators';
+import { IMongoCollectionSchemaOptions } from '../decorators';
 import { ParanoidOptions, ParanoidPlugin, StrictReferencePlugin, TransformPlugin } from '../plugins';
 
 /**
  * Assembles schema-level Mongoose plugins from the framework Schema decorator options.
  */
-export function buildPlugin(options: ISchemaOptions): ClassDecorator[] {
+export function buildPlugin(options: IMongoCollectionSchemaOptions): ClassDecorator[] {
   const plugins = toArray(options.plugins).map(p => plugin(p.mongoosePlugin, p.options));
 
   const deletedAt: string = get(options, 'paranoid.deletedAt.name', 'deletedAt');

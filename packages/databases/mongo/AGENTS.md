@@ -22,6 +22,13 @@ This package is the MongoDB/Mongoose/Typegoose database layer for JokTec. Treat 
 - Keep page, offset, and cursor response behavior aligned with the shared pagination contracts.
 - Keep decorators schema-first and reusable by DTO mapped types, but avoid mutating caller-provided option objects.
 - Keep query parsing predictable. Avoid broad magic casting that can change user data semantics.
+- Use `RefId<T, RawId>` for stored reference id fields and `PopulatedRef<T>` for populated virtual fields. Do not use Typegoose `Ref<T>` for populated virtuals when application code expects direct property access on the populated instance.
+
+## Wrapper Philosophy
+
+`@joktec/mongo` is a schema-first wrapper, not a replacement for Mongoose or Typegoose. The wrapper should make high-frequency schema work compact by combining Typegoose metadata, class-validator, class-transformer, Swagger, repository response normalization, and plugin hooks in one declaration.
+
+Prefer wrapper options when they express a normal JokTec schema contract. Use native Mongoose/Typegoose APIs through `MongoService.getModel(...)`, raw Typegoose decorators, or Mongoose plugins when the project needs behavior that is too rare or too specific for the wrapper.
 
 ## Runtime Rules
 
@@ -31,7 +38,13 @@ This package is the MongoDB/Mongoose/Typegoose database layer for JokTec. Treat 
 - Cursor pagination defaults to `_id`; custom cursor keys append `_id` as a tie-breaker.
 - `MongoHelper` should cast ObjectId values only for `_id`, schema ObjectId paths, or explicitly configured ObjectId paths.
 - `$like`, `$begin`, and `$end` escape regex input by default. Raw regex behavior must be explicit.
-- Read responses should normalize ObjectId values into DTO-friendly string values, including populated/nested values.
+- Repository read responses use lean query results and then transform them into schema class instances. ObjectId values should be normalized into DTO-friendly strings, including populated and deep-populated values.
+- Use `@Schema({ kind: 'embedded' })` for value objects without `_id` or timestamps.
+- Use `@Schema({ kind: 'subdocument' })` for embedded documents that still need their own `_id` and timestamps.
+- Use explicit lazy `type` resolvers for arrays and nested classes. Populate-one fields can infer `type` from `ref`; populate arrays still need `type: () => [Target]`.
+- Virtual computed getters should use `@Prop({ kind: 'virtual', mode: 'getter', ... })` to apply expose and Swagger metadata without registering a persisted Mongoose path.
+- Virtual populate fields are inferred from `ref`, `localField`, and `foreignField`. Use `@Prop({ ref: () => Target, foreignField: '_id', localField: 'targetId' })` for populate-one fields and add `type: () => [Target]` for populate arrays.
+- Use `@Prop({ kind: 'map', type: Object, ... })` for raw snapshot/map payloads that must preserve their shape.
 
 ## Plugin Notes
 

@@ -1,4 +1,4 @@
-import { ObjectId, Prop, Ref, Schema } from '@joktec/mongo';
+import { ObjectId, Prop, RefId, PopulatedRef, Schema } from '@joktec/mongo';
 import { BaseSchema } from '../common';
 import { CommentStatus } from '../constants';
 import { Article } from './article.schema';
@@ -19,31 +19,30 @@ export class Comment extends BaseSchema {
   status!: CommentStatus;
 
   @Prop({ type: ObjectId, ref: () => Article, required: true })
-  articleId!: Ref<Article, string>;
+  articleId!: RefId<Article>;
 
   @Prop({ type: ObjectId, ref: () => User, required: true })
-  authorId!: Ref<User, string>;
+  authorId!: RefId<User>;
 
   @Prop({ type: ObjectId, ref: () => Comment, default: null })
-  parentId?: Ref<Comment, string>;
+  parentId?: RefId<Comment>;
 
   // Virtual
-  @Prop({ type: Article, ref: () => Article, foreignField: '_id', localField: 'articleId', justOne: true, example: {} })
-  article?: Ref<Article>;
+  @Prop({ ref: () => Article, foreignField: '_id', localField: 'articleId' })
+  article?: PopulatedRef<Article>;
 
-  @Prop({ type: User, ref: () => User, foreignField: '_id', localField: 'authorId', justOne: true, example: {} })
-  author?: Ref<User>;
+  @Prop({ ref: () => User, foreignField: '_id', localField: 'authorId' })
+  author?: PopulatedRef<User>;
 
-  @Prop({ type: Comment, ref: () => Comment, foreignField: '_id', localField: 'parentId', justOne: true, example: {} })
-  parent?: Ref<Comment>;
+  @Prop({ ref: () => Comment, foreignField: '_id', localField: 'parentId' })
+  parent?: PopulatedRef<Comment>;
 
   @Prop({
-    type: [Comment],
+    type: () => [Comment],
     ref: () => Comment,
     foreignField: 'parentId',
     localField: '_id',
     options: { sort: { seq: 1, createdAt: 1 } },
-    example: [],
   })
-  children?: Ref<Comment>[];
+  children?: PopulatedRef<Comment>[];
 }
