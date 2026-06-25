@@ -498,6 +498,54 @@ describe('MySQL column decorators', () => {
     expect(getSwaggerMetadata(ArticleRelationFixture.prototype, 'authorId').readOnly).toEqual(true);
   });
 
+  it('keeps relation Swagger metadata lazy to avoid circular import timing issues', () => {
+    let LazyUserRelationFixture: any;
+
+    class ArticleRelationFixture {
+      @Column({
+        kind: 'relation',
+        relation: 'many-to-one',
+        type: () => LazyUserRelationFixture,
+        inverseSide: user => user.articles,
+        nullable: true,
+      })
+      author?: any;
+
+      @Column({
+        kind: 'relation',
+        relation: 'one-to-many',
+        type: () => LazyUserRelationFixture,
+        inverseSide: user => user.article,
+        nullable: true,
+      })
+      reviewers?: any[];
+    }
+
+    class UserRelationFixture {
+      article?: ArticleRelationFixture;
+      articles?: ArticleRelationFixture[];
+    }
+
+    LazyUserRelationFixture = UserRelationFixture;
+
+    const authorSwagger = getSwaggerMetadata(ArticleRelationFixture.prototype, 'author');
+    const reviewersSwagger = getSwaggerMetadata(ArticleRelationFixture.prototype, 'reviewers');
+
+    expect(authorSwagger.type.name).toEqual('type');
+    expect(authorSwagger.type()).toBe(UserRelationFixture);
+    expect(reviewersSwagger.type.name).toEqual('type');
+    expect(reviewersSwagger.type()).toBe(UserRelationFixture);
+    expect(reviewersSwagger.isArray).toEqual(true);
+
+    const fixture = plainToInstance(ArticleRelationFixture, {
+      author: {},
+      reviewers: [{}, {}],
+    });
+
+    expect(fixture.author).toBeInstanceOf(UserRelationFixture);
+    expect(fixture.reviewers[0]).toBeInstanceOf(UserRelationFixture);
+  });
+
   it('wraps TypeORM table metadata for entity modes, inheritance, and checks', () => {
     @Tables<any>({
       name: 'table_entity_fixture',

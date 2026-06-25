@@ -205,21 +205,21 @@ function buildRelationMetadataDecorators(
   designType: Constructor<any>,
 ): PropertyDecorator[] {
   const decorators: PropertyDecorator[] = [...(options.decorators || [])];
-  const target = typeof options.type === 'function' ? options.type() : undefined;
+  const targetResolver = typeof options.type === 'function' ? (options.type as () => Constructor<any>) : undefined;
   const isArray =
     designType === Array || ('relation' in options && ['one-to-many', 'many-to-many'].includes(options.relation));
   const required = resolveRequired(options).required;
 
-  if (target)
+  if (targetResolver)
     decorators.push(
-      Type(() => target as any),
+      Type(() => targetResolver()),
       ValidateNested({ each: isArray }),
     );
   if (options.hidden) return [...decorators, Exclude({ toPlainOnly: true }), ApiHideProperty()];
 
   decorators.push(options.groups?.length ? Expose({ groups: options.groups }) : Expose());
   const swaggerOptions: ApiPropertyOptions = {
-    type: target || designType,
+    type: targetResolver || designType,
     isArray,
     required,
     nullable: options.nullable === true,

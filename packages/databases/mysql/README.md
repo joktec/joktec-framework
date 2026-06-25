@@ -316,6 +316,8 @@ class ArticleEntity extends MysqlModel {
 }
 ```
 
+Relation wrappers keep the Swagger type as the same lazy resolver passed to `type`. Do not add `swagger: { type: () => Entity }` for normal relations; reserve `swagger` for genuine OpenAPI shape overrides. This keeps circular or two-way entity relations compact and avoids eager schema evaluation.
+
 `index` and `check` can be declared on normal, version, relation, and relation-id columns when the constraint belongs to one property. Use `@Tables({ checks: [...] })` for composite table checks.
 
 `@Tables` supports common class-level TypeORM metadata:

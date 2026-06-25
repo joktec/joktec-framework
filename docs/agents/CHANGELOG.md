@@ -17,6 +17,7 @@
 - Recorded `@joktec/mysql` schema-first wrapper behavior for `@Tables`, `@Column`, `@PrimaryColumn`, `@PrimaryGeneratedColumn`, and `@TimestampColumn`.
 - Documented MySQL `Column({ kind })` modes for normal, version, view, virtual getter, SQL virtual, relation, relation-id, and tree fields.
 - Recorded `immutable` as the MySQL API read-only hint, with Swagger `readOnly` inferred from `immutable`, selected system-managed column kinds, and TypeORM `update: false`.
+- Recorded lazy Swagger metadata for MySQL relation wrappers so two-way relations do not require redundant consumer `swagger.type` overrides.
 - Clarified the framework wrapper philosophy: wrappers standardize lifecycle, schema metadata, validation, transform, Swagger, and repository contracts while preserving native-library escape hatches.
 
 ## 2026-06-24 - Database Package Hardening and Example Consumer Sync

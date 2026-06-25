@@ -33,6 +33,7 @@ Preferred wrapper behavior:
 - Keep `@Column` as the main property-level entrypoint for persisted columns, relation metadata, relation ids, view columns, version columns, SQL virtual columns, and TypeScript getter virtuals.
 - Keep `@PrimaryColumn` / `@PrimaryGeneratedColumn` and `@TimestampColumn` separate because primary keys and business timestamps are high-frequency, semantically special fields.
 - Infer validation, transform, and Swagger metadata from wrapper options whenever possible. Use `swagger` only as an override.
+- Keep relation Swagger metadata lazy so normal two-way or circular entity relations do not require consumer-level `swagger.type` overrides.
 - Use `immutable` as the cross-package API read-only hint. `update: false` remains the TypeORM write behavior and is also treated as Swagger read-only when `immutable` is not set.
 - Default read-only metadata for fields that are naturally system-managed or computed, including primary keys, timestamps, version columns, view columns, virtual columns, relation ids, and tree level columns.
 - Do not wrap rare TypeORM features unless they remove meaningful duplication. Raw TypeORM remains available for advanced cases that are intentionally outside the wrapper surface.
