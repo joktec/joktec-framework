@@ -7,6 +7,8 @@ import { CategoryRepo } from './common/category.repo';
 import { CommentRepo } from './common/comment.repo';
 import { ConnectionRepo } from './common/connection.repo';
 import { ContentRepo } from './common/content.repo';
+import { CreatorInsightRepo } from './common/creator-insight.repo';
+import { CreatorMilestoneRepo } from './common/creator-milestone.repo';
 import { CronHistoryRepo } from './common/cron-history.repo';
 import { CronRepo } from './common/cron.repo';
 import { DataLogRepo } from './common/data-log.repo';
@@ -32,6 +34,8 @@ export const Repositories = [
   CommentRepo,
   ConnectionRepo,
   ContentRepo,
+  CreatorInsightRepo,
+  CreatorMilestoneRepo,
   CronRepo,
   CronHistoryRepo,
   EmotionRepo,
@@ -60,6 +64,8 @@ export * from './common/category.repo';
 export * from './common/comment.repo';
 export * from './common/connection.repo';
 export * from './common/content.repo';
+export * from './common/creator-insight.repo';
+export * from './common/creator-milestone.repo';
 export * from './common/cron.repo';
 export * from './common/cron-history.repo';
 export * from './common/emotion.repo';

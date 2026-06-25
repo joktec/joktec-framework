@@ -16,7 +16,7 @@ import { chunk, isArray, isNil, isObject, omit } from 'lodash';
 import { DeepPartial, EntityManager, FindManyOptions, Repository } from 'typeorm';
 import { SelectQueryBuilder } from 'typeorm/query-builder/SelectQueryBuilder';
 import { UpsertOptions } from 'typeorm/repository/UpsertOptions';
-import { MysqlFinder, MysqlHelper } from './helpers';
+import { MysqlHelper } from './helpers';
 import { IMysqlOption, IMysqlRequest, IMysqlResponse, MysqlId, MysqlModel } from './models';
 import { IMysqlRepository } from './mysql.client';
 import { Dialect } from './mysql.config';
@@ -94,25 +94,6 @@ export abstract class MysqlRepo<T extends MysqlModel, ID extends MysqlId = Mysql
       else qb.setLock(opts.lock.mode, undefined, opts.lock.tables).setOnLocked(opts.lock.onLocked);
     }
     return qb;
-  }
-
-  /**
-   * @deprecated Use qb(), find(), count(), or paginate() instead. MysqlFinder uses TypeORM FindOptions and does not
-   * provide the same metadata-aware query safety guarantees as MysqlHelper.
-   */
-  public finder(query: IMysqlRequest<T> = {}, opts: IMysqlOption<T> = {}): FindManyOptions<T> {
-    const options: FindManyOptions<T> = MysqlFinder.parseFilter(query);
-    const { limit, offset } = MysqlFinder.parsePagination(query);
-
-    // if (query?.near) qb.center(query.near); // TODO: Handle
-    // if (query?.keyword) qb.search(query.keyword); // TODO: Handle
-    if (query.select) options.select = MysqlFinder.parseProjection(query.select);
-    if (query.sort) options.order = MysqlFinder.parseOrder(query.sort);
-    if (offset !== undefined) options.skip = offset;
-    if (limit !== undefined) options.take = limit;
-    if (query.populate) options.relations = MysqlFinder.parseRelations(query.populate);
-
-    return { ...opts, ...options };
   }
 
   private whereById(pkValue: ID): FindManyOptions<T>['where'] {

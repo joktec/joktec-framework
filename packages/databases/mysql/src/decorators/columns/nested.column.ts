@@ -1,11 +1,11 @@
 import { Constructor } from '@joktec/core';
 import { Type, ValidateNested } from '@joktec/utils';
-import { IMysqlColumnOptions } from './column.type';
-import { resolveNestedType } from './column.util';
+import { IMysqlColumnBuildOptions } from './column.type';
+import { isArrayColumn, resolveNestedType, shouldValidateNested } from './column.util';
 
-export function NestedColumn(options: IMysqlColumnOptions, designType: Constructor<any>): PropertyDecorator[] {
-  if (!options.nested) return [];
+export function NestedColumn(options: IMysqlColumnBuildOptions, designType: Constructor<any>): PropertyDecorator[] {
+  if (!shouldValidateNested(options, designType)) return [];
 
   const nestedType = resolveNestedType(options.nested, designType);
-  return [ValidateNested({ each: designType === Array }), Type(() => nestedType)];
+  return [ValidateNested({ each: isArrayColumn(options, designType) }), Type(() => nestedType)];
 }

@@ -28,7 +28,7 @@ This app exists to validate JokTec packages in worker-style runtime conditions:
 - `@joktec/mongo` and `@joktec/mysql` for repository and schema/entity registration examples.
 - `@joktec/notifier`, mail/storage/Firebase integrations, and broker packages in background workflows.
 
-The microservice mirrors the example social-network data model used by the gateway and owns automatic database schema/index setup in local development. For the badge example, it registers the MySQL `ProfileBadge` entity while Mongo user profiles keep assigned `profileBadgeIds`.
+The microservice mirrors the example social-network data model used by the gateway and owns automatic database schema/index setup in local development. For the badge and creator analytics examples, it registers the MySQL `ProfileBadge`, `CreatorInsight`, and `CreatorMilestone` entities while Mongo user profiles keep assigned `profileBadgeIds`.
 
 ## Common Commands
 

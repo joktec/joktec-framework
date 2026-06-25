@@ -30,8 +30,9 @@ yarn add @joktec/mysql
   - `@Tables`
   - `@Column`
   - `@PrimaryColumn`
+  - `@PrimaryGeneratedColumn`
+  - `@TimestampColumn`
   - `MysqlHelper`
-  - `MysqlFinder`
   - `MysqlNamingStrategy`
 - selected TypeORM exports.
 
@@ -192,6 +193,14 @@ Keep entity definitions in the consuming app or package. Keep app-specific query
 
 `@joktec/mysql` exposes schema-first decorators that wrap TypeORM metadata together with Swagger, `class-validator`, and `class-transformer` metadata. Use them when an entity should be reused as the source class for mapped DTOs.
 
+The wrapper philosophy is pragmatic:
+
+- use `@Column` as the main property-level wrapper for common TypeORM column, relation, relation-id, version, view, and virtual metadata
+- keep `@PrimaryColumn` / `@PrimaryGeneratedColumn` and `@TimestampColumn` separate because primary keys and timestamps have strong business semantics
+- infer validation, transform, and Swagger metadata from one source of truth whenever possible
+- keep raw TypeORM available for rare advanced cases instead of wrapping every decorator
+- use `immutable` as the API read-only hint, while `update: false` remains the TypeORM write behavior
+
 ```ts
 import { Column, MysqlModel, PrimaryColumn, Tables } from '@joktec/mysql';
 
@@ -211,9 +220,161 @@ export class ProfileBadge extends MysqlModel {
 }
 ```
 
-`@Column` accepts normal TypeORM column options and adds optional schema metadata such as `hidden`, `groups`, `example`, `deprecated`, `swagger`, `decorators`, `required`, `isEmail`, `isPhone`, `isHexColor`, `isUrl`, `minlength`, `maxlength`, `min`, and `max`.
+`@Column` accepts normal TypeORM column options and adds optional schema metadata such as `hidden`, `optional`, `expose`, `nested`, `each`, `example`, `deprecated`, `immutable`, `swagger`, `decorators`, `required`, `isEmail`, `isPhone`, `isHexColor`, `isUrl`, `isInt`, `isUUID`, `isObject`, `minlength`, `maxlength`, `min`, `max`, `index`, and `check`.
 
 `@PrimaryColumn` supports TypeORM generated strategies (`increment`, `uuid`, `rowid`, `identity`) and JokTec-managed `uuidv7`. `uuidv7` is stored as a 36-character varchar and generated before insert when the entity does not already have an id.
+
+`@TimestampColumn('create' | 'update' | 'delete')` wraps TypeORM create/update/delete timestamp columns and adds the shared validation, transform, Swagger, and GraphQL metadata used by the column wrapper.
+
+### Read-Only and Immutable Metadata
+
+`immutable` controls generated Swagger `readOnly` metadata. It is intentionally named to match the Mongo schema wrapper terminology.
+
+TypeORM `update: false` still controls ORM write behavior. When `immutable` is not set, `update: false` is also treated as Swagger `readOnly`.
+
+Priority:
+
+1. `swagger.readOnly` is the final override
+2. `immutable` controls API read-only metadata
+3. `update: false` falls back to API read-only metadata
+
+Examples:
+
+```ts
+class AuditEntity extends MysqlModel {
+  @Column({ type: 'varchar', length: 36, update: false })
+  createdBy?: string;
+
+  @Column({ type: 'varchar', length: 36, immutable: true })
+  updatedBy?: string;
+
+  @Column({ type: 'varchar', update: false, immutable: false })
+  serviceInsertOnlyButClientWritable?: string;
+}
+```
+
+The wrapper defaults read-only Swagger metadata for naturally system-managed or computed fields:
+
+- `@PrimaryColumn(...)` and `@PrimaryGeneratedColumn(...)`
+- `@TimestampColumn('create' | 'update' | 'delete')`
+- `@Column({ kind: 'version' })`
+- `@Column({ kind: 'view' })`
+- `@Column({ kind: 'virtual' })` getter fields
+- `@Column({ kind: 'virtual', mode: 'sql' })`
+- `@Column({ kind: 'relation-id' })`
+- `@Column({ kind: 'tree', tree: 'level' })`
+
+Special TypeORM column modes are exposed through `@Column({ kind })` instead of standalone wrapper names:
+
+```ts
+class ProfileStats {
+  @Column({ kind: 'version' })
+  version?: number;
+
+  @Column({ kind: 'view', name: 'display_name' })
+  displayName?: string;
+
+  @Column('int', {
+    kind: 'virtual',
+    mode: 'sql',
+    query: alias => `SELECT COUNT(*) FROM follows WHERE follows.profile_id = ${alias}.id`,
+  })
+  followerCount?: number;
+
+  @Column({ kind: 'virtual', comment: 'Display label' })
+  get label(): string {
+    return `${this.displayName}`;
+  }
+}
+```
+
+`kind: 'virtual'` defaults to metadata-only TypeScript getters. Use `mode: 'sql'` for TypeORM SQL-calculated virtual columns that require a `query(alias)` option.
+
+Relations and relation ids can also be expressed through `@Column`:
+
+```ts
+class ArticleEntity extends MysqlModel {
+  @Column('uuid', { nullable: true, index: 'IDX_article_author_id', isUUID: true })
+  authorId?: string;
+
+  @Column({
+    kind: 'relation',
+    relation: 'many-to-one',
+    type: () => UserEntity,
+    inverseSide: user => user.articles,
+    joinColumn: { name: 'author_id' },
+    nullable: true,
+  })
+  author?: UserEntity;
+
+  @Column({
+    kind: 'relation-id',
+    relationId: (article: ArticleEntity) => article.author,
+    nullable: true,
+  })
+  resolvedAuthorId?: string;
+}
+```
+
+`index` and `check` can be declared on normal, version, relation, and relation-id columns when the constraint belongs to one property. Use `@Tables({ checks: [...] })` for composite table checks.
+
+`@Tables` supports common class-level TypeORM metadata:
+
+```ts
+@Tables({ name: 'profiles', checks: [{ name: 'CHK_score', expression: 'score >= 0' }] })
+export class ProfileEntity extends MysqlModel {}
+
+@Tables({ kind: 'view', name: 'active_profiles', expression: 'SELECT * FROM profiles WHERE deleted_at IS NULL' })
+export class ActiveProfileView {}
+
+@Tables({ inheritance: { column: { name: 'kind', type: 'varchar' } } })
+export class BaseContent extends MysqlModel {}
+
+@Tables({ kind: 'child', discriminatorValue: 'article' })
+export class ArticleContent extends BaseContent {}
+
+@Tables({ tree: 'closure-table' })
+export class CategoryEntity extends MysqlModel {}
+```
+
+JSON-like columns can model raw records or nested classes:
+
+```ts
+class Preference {
+  @Column({ required: true })
+  theme!: string;
+
+  @Column({ default: true })
+  publicProfile?: boolean;
+}
+
+class InsightMetric {
+  @Column({ required: true })
+  key!: string;
+
+  @Column('int', { required: true })
+  value!: number;
+}
+
+@Tables<CreatorInsight>({ name: 'creator_insights' })
+export class CreatorInsight extends MysqlModel {
+  @PrimaryColumn('uuidv7')
+  id?: string;
+
+  @Column('jsonb', { nullable: true })
+  preference?: Preference;
+
+  @Column('jsonb', { nullable: true, nested: InsightMetric, each: true })
+  metrics?: InsightMetric[];
+
+  @Column({ kind: 'virtual', comment: 'Computed score label', optional: true })
+  get scoreLabel(): string {
+    return 'standard';
+  }
+}
+```
+
+`@joktec/mysql` intentionally does not support Mongo ObjectId columns or TypeORM MongoDB connections. Use `@joktec/mongo` for Mongo schemas and ObjectId references.
 
 Guidelines:
 
@@ -223,6 +384,55 @@ Guidelines:
 - For UUID-heavy cursor pagination, prefer a composite cursor such as `createdAt + id`, or a monotonic indexed cursor column.
 - Add indexes that match common filters and cursor sort order. A cursor using `createdAt + id` should have a matching composite index where possible.
 - `@Tables` provides common TypeORM entity/index wiring, but database-specific search/index behavior should still be verified per dialect.
+
+### Migration Notes
+
+Recent schema-first decorator changes affect applications that still use raw TypeORM, Swagger, `class-validator`, and `class-transformer` decorators together on each entity property.
+
+When migrating an entity:
+
+- Migrate one property at a time and replace the whole property decorator stack when the wrapper option can express the same behavior.
+- Replace `@PrimaryGeneratedColumn()` with `@PrimaryColumn('increment')`.
+- Replace `@PrimaryGeneratedColumn('uuid')` with `@PrimaryColumn('uuid')`, or `@PrimaryColumn('uuidv7')` when the app wants framework-generated time-ordered UUIDs.
+- Replace raw TypeORM `@CreateDateColumn`, `@UpdateDateColumn`, and `@DeleteDateColumn` with `@TimestampColumn('create' | 'update' | 'delete')` when the shared metadata wrapper is desired.
+- Replace raw TypeORM `@VersionColumn`, `@VirtualColumn`, and `@ViewColumn` with `@Column({ kind: 'version' })`, `@Column({ kind: 'virtual', mode: 'sql', query })`, or `@Column({ kind: 'view' })`.
+- Replace relation decorator stacks such as `@ManyToOne` + `@JoinColumn` + Swagger metadata with `@Column({ kind: 'relation', ... })` when the wrapper can express the same relationship.
+- Replace TypeORM `@RelationId` with `@Column({ kind: 'relation-id', relationId })` for relation id properties.
+- Replace duplicate validation decorators such as `@IsNotEmpty`, `@IsOptional`, `@IsEmail`, `@IsInt`, `@IsUUID`, `@IsObject`, `@MinLength`, `@MaxLength`, `@Min`, and `@Max` with `@Column` options where possible.
+- Replace simple `@Expose`, grouped expose, hidden fields, and Swagger property metadata with `hidden`, `groups`, `expose`, `example`, `comment`, `deprecated`, and `swagger` options where possible.
+- Replace repeated `swagger: { readOnly: true }` with `immutable: true` when the API contract is read-only. Use `update: false` when TypeORM should skip updates after insert.
+- Keep custom validators or transforms in `decorators: [...]` when there is no wrapper option.
+- Do not migrate Mongo/ObjectId-style columns into this package.
+
+Common mappings:
+
+| Legacy decorators | Schema-first wrapper |
+| --- | --- |
+| `@PrimaryGeneratedColumn()` | `@PrimaryColumn('increment')` |
+| `@PrimaryGeneratedColumn('uuid')` | `@PrimaryColumn('uuid')` |
+| app-generated ordered UUID id | `@PrimaryColumn('uuidv7')` |
+| TypeORM `@CreateDateColumn(...)` | `@TimestampColumn('create', ...)` |
+| TypeORM `@UpdateDateColumn(...)` | `@TimestampColumn('update', ...)` |
+| TypeORM `@DeleteDateColumn(...)` | `@TimestampColumn('delete', ...)` |
+| TypeORM `@VersionColumn(...)` | `@Column({ kind: 'version', ... })` |
+| TypeORM `@VirtualColumn(...)` | `@Column({ kind: 'virtual', mode: 'sql', query, ... })` |
+| TypeORM `@ViewColumn(...)` | `@Column({ kind: 'view', ... })` |
+| `@Column(...)` | `@Column(...)` from `@joktec/mysql` |
+| `@Index(...)` on one property | `@Column({ index: true | 'IDX_name' | { name, options } })` |
+| `@Check(...)` on one property | `@Column({ check: 'sql expression' | { name, expression } })` |
+| `@ManyToOne(...)` + `@JoinColumn(...)` | `@Column({ kind: 'relation', relation: 'many-to-one', joinColumn, ... })` |
+| `@OneToMany(...)` | `@Column({ kind: 'relation', relation: 'one-to-many', ... })` |
+| `@RelationId(...)` | `@Column({ kind: 'relation-id', relationId })` |
+| `@IsInt()` | `@Column({ isInt: true })` or an integer column type |
+| `@IsUUID()` | `@Column({ isUUID: true })` |
+| `@IsObject()` | `@Column({ isObject: true })` or a JSON column |
+| `@Type(() => Number)` | inferred by numeric design type or pass through `decorators` for custom cases |
+| `@ValidateNested()` + `@Type(() => Preference)` | `@Column('jsonb', { nested: Preference })` |
+| `@ValidateNested({ each: true })` + `@Type(() => Preference)` | `@Column('jsonb', { nested: Preference, each: true })` |
+| `@Expose()` + `@ApiProperty(...)` on a getter | `@Column({ kind: 'virtual', ... })` |
+| Swagger `readOnly: true` | `@Column({ immutable: true })` or `update: false` when ORM updates must also be blocked |
+
+Raw TypeORM decorators remain available for advanced cases that are intentionally outside the wrapper surface, including listeners, non-primary `@Generated`, `@ForeignKey`, and Postgres `@Exclusion`.
 
 ## Error Contract
 

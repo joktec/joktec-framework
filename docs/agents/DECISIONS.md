@@ -16,6 +16,7 @@ Baseline: current stable implementation.
 - Keep database-specific repositories inside database packages.
 - Keep app-specific repository queries inside apps.
 - Use schema-first database wrappers for Mongo/Typegoose and MySQL/TypeORM when models are intended to be reused as DTO sources.
+- Keep package wrappers pragmatic: standardize repeated framework contracts and metadata while preserving native-library escape hatches for advanced cases.
 - Keep realistic example cross-store behavior in apps: relational packages can own catalog-like data while Mongo packages own social/profile state.
 - Use decorators and loaders for broker ergonomics.
 - Bull root configuration and Bull Board setup belong to `BullModule`; gateway runtime remains responsible for HTTP bootstrap.
@@ -29,3 +30,4 @@ Baseline: current stable implementation.
 - `docs/agents/decisions/0003-generated-crud-contracts.md`
 - `docs/agents/decisions/0004-release-changelog-document-sync-policy.md`
 - `docs/agents/decisions/0005-pagination-contracts-and-cursor-keyset.md`
+- `docs/agents/decisions/0006-pragmatic-package-wrapper-philosophy.md`

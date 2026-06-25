@@ -25,5 +25,6 @@ describe('Mysql dialect support', () => {
     expect(() => assertFirstClassDialect(Dialect.MYSQL)).not.toThrow();
     expect(() => assertFirstClassDialect(Dialect.MARIADB)).not.toThrow();
     expect(() => assertFirstClassDialect(Dialect.POSTGRES)).not.toThrow();
+    expect(() => assertFirstClassDialect('mongodb' as Dialect)).toThrow('MYSQL_UNSUPPORTED_DIALECT');
   });
 });

@@ -17,6 +17,7 @@ Implemented example areas include:
 - Search, filtering, sorting, relation population, and mixed pagination patterns.
 - Operational log browsing through `data-logs`, backed by the Mongo collection written by `pino-mongodb`.
 - Profile badge catalog management through `profile-badges`, backed by MySQL and assigned to Mongo user profiles.
+- Creator analytics examples through `creator-insights` and `creator-milestones`, backed by MySQL entities with JSON columns, relations, checks, indexes, version columns, and computed virtual fields.
 
 ## Technical Purpose
 
@@ -30,6 +31,8 @@ This app exists to keep JokTec framework packages exercised in a near-real proje
 `articles` and `comments` intentionally use offset pagination to mimic mobile load-more flows. Most other modules keep the default page pagination behavior.
 
 `profile-badges` intentionally uses both database packages in one flow: MySQL stores catalog-style badge definitions, while Mongo stores the user's assigned badge ids. This keeps the example realistic without turning the app into a real customer product.
+
+`creator-milestones` intentionally models a relational child table of `creator-insights`. It demonstrates the JokTec MySQL super decorators for relation columns, relation-id columns, property/table indexes, table checks, optimistic versioning, and virtual getter metadata.
 
 ## Common Commands
 

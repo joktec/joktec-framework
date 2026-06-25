@@ -8,6 +8,8 @@ import { CategoryModule } from './categories';
 import { CommentModule } from './comments';
 import { ConnectionModule } from './connections';
 import { ContentModule } from './contents';
+import { CreatorInsightModule } from './creatorInsights';
+import { CreatorMilestoneModule } from './creatorMilestones';
 import { DataLogModule } from './dataLogs';
 import { EmotionModule } from './emotions';
 import { InquiryModule } from './inquiries';
@@ -34,6 +36,8 @@ import { UserModule } from './users';
     CommentModule,
     ConnectionModule,
     ContentModule,
+    CreatorInsightModule,
+    CreatorMilestoneModule,
     DataLogModule,
     EmotionModule,
     InquiryModule,

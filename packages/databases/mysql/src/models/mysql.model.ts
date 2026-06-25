@@ -1,5 +1,4 @@
-import { ApiProperty, Field } from '@joktec/core';
-import { CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from 'typeorm';
+import { TimestampColumn } from '../decorators/timestamp.decorator';
 
 export interface IMysqlModel {
   createdAt?: Date;
@@ -11,18 +10,12 @@ export interface IMysqlModel {
  * Base relational entity fields shared by repositories and pagination contracts.
  */
 export class MysqlModel implements IMysqlModel {
-  @CreateDateColumn()
-  @ApiProperty({ type: Date })
-  @Field(() => Date, { nullable: true })
+  @TimestampColumn('create')
   createdAt?: Date;
 
-  @UpdateDateColumn()
-  @ApiProperty({ type: Date })
-  @Field(() => Date, { nullable: true })
+  @TimestampColumn('update')
   updatedAt?: Date;
 
-  @DeleteDateColumn()
-  @ApiProperty({ type: Date })
-  @Field(() => Date, { nullable: true })
+  @TimestampColumn('delete')
   deletedAt?: Date;
 }

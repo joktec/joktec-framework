@@ -2,12 +2,13 @@ import { Constructor } from '@joktec/core';
 import { IsNotEmpty, IsOptional } from '@joktec/utils';
 import { ArrayColumn } from './array.column';
 import { BoolColumn } from './bool.column';
-import { IMysqlColumnOptions } from './column.type';
-import { resolveRequired } from './column.util';
+import { IMysqlColumnBuildOptions } from './column.type';
+import { isArrayColumn, resolveRequired } from './column.util';
 import { DateColumn } from './date.column';
 import { EnumColumn } from './enum.column';
 import { NestedColumn } from './nested.column';
 import { NumberColumn } from './number.column';
+import { ObjectColumn } from './object.column';
 import { StringColumn } from './string.column';
 import { TransformColumn } from './transform.column';
 
@@ -15,7 +16,7 @@ import { TransformColumn } from './transform.column';
  * Builds validation decorators inferred from the TypeScript design type and column options.
  */
 export function buildValidationDecorators(
-  options: IMysqlColumnOptions,
+  options: IMysqlColumnBuildOptions,
   designType: Constructor<any>,
 ): PropertyDecorator[] {
   const decorators: PropertyDecorator[] = [...(options.decorators || [])];
@@ -28,8 +29,8 @@ export function buildValidationDecorators(
   if (designType === Number) decorators.push(...NumberColumn(options));
   if (designType === Boolean) decorators.push(...BoolColumn());
   if (designType === Date) decorators.push(...DateColumn());
-  if (designType === Array) decorators.push(...ArrayColumn());
-
+  if (isArrayColumn(options, designType)) decorators.push(...ArrayColumn(options));
+  decorators.push(...ObjectColumn(options, designType));
   decorators.push(...EnumColumn(options));
   decorators.push(...NestedColumn(options, designType));
 
@@ -39,7 +40,10 @@ export function buildValidationDecorators(
 /**
  * Builds every non-TypeORM property decorator applied by the public Column wrappers.
  */
-export function buildColumnDecorators(options: IMysqlColumnOptions, designType: Constructor<any>): PropertyDecorator[] {
+export function buildColumnDecorators(
+  options: IMysqlColumnBuildOptions,
+  designType: Constructor<any>,
+): PropertyDecorator[] {
   const { required } = resolveRequired(options);
   return [...buildValidationDecorators(options, designType), ...TransformColumn(options, designType, required)];
 }

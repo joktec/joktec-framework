@@ -61,6 +61,18 @@ Database packages own client connections and repository abstractions. App reposi
 
 Apps compose packages, define schemas/entities, repositories, controllers, services, guards, interceptors, and feature modules.
 
+## Wrapper Philosophy
+
+JokTec packages wrap proven libraries to standardize framework conventions, not to hide the underlying ecosystem completely. Wrappers should reduce repeated setup, decorator stacks, lifecycle code, config parsing, query safety checks, and response contracts while preserving escape hatches to the native library when a project needs advanced behavior.
+
+Schema-first database wrappers follow this rule most strongly:
+
+- entity/schema classes should be reusable as DTO metadata sources when practical
+- wrapper decorators should infer validation, transform, and Swagger metadata from one declaration
+- package-specific semantics should use shared names where possible, such as `immutable` for API read-only metadata across Mongo and MySQL
+- storage write behavior remains storage-specific, such as TypeORM `update: false` for relational columns
+- rare native features should remain available through raw TypeORM or Mongoose/Typegoose instead of forcing the wrapper to model every edge case
+
 ## Communication Patterns
 
 Gateway controllers call services and repositories directly for HTTP behavior. Gateway services also emit microservice events through injected `ClientProxy` instances.
