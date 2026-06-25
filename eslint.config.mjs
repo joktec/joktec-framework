@@ -3,7 +3,7 @@ import js from '@eslint/js';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
-import importPlugin from 'eslint-plugin-import';
+import importXPlugin from 'eslint-plugin-import-x';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 const compat = new FlatCompat({
@@ -14,7 +14,17 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/*.spec.ts', '**/dist/**', '**/node_modules/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/*.d.ts',
+      '**/*.js',
+      '**/*.generated.ts',
+      '**/__tests__/**',
+      '**/*.spec.ts',
+      '**/*.test.ts',
+    ],
   },
   ...compat.extends(
     'eslint:recommended',
@@ -39,7 +49,7 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       'unused-imports': unusedImports,
-      import: importPlugin,
+      'import-x': importXPlugin,
     },
     rules: {
       '@typescript-eslint/interface-name-prefix': 'off',
@@ -80,7 +90,7 @@ export default [
         },
       ],
       'object-curly-spacing': ['error', 'always'],
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           'newlines-between': 'never',
