@@ -17,7 +17,7 @@ Endpoint visibility and behavior are controlled through `IControllerProps`: `hid
 
 Create uses `BaseValidationPipe()`. Update uses `BaseValidationPipe({ skipMissingProperties: true })`.
 
-`IControllerProps.paginationMode` controls the generated pagination response shape for Swagger. Supported modes are `page`, `offset`, and `cursor`; the default is `page`. If `customDto.paginationDto` is provided, that custom DTO remains the response contract for the generated list/search endpoints.
+`IControllerProps.paginate.mode` controls the generated pagination response shape for Swagger. Supported modes are `page`, `offset`, and `cursor`; the default is `page`. If `customDto.paginationDto` is provided, that custom DTO remains the response contract for the generated list/search endpoints.
 
 Swagger intentionally exposes one representative pagination shape per controller. It does not use `oneOf` for page/offset/cursor responses.
 

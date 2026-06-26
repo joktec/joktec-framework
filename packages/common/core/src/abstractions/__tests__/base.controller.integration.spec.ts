@@ -61,11 +61,10 @@ describe('BaseController integration', () => {
     await moduleRef.close();
   });
 
-  it('should expose cursor pagination metadata when paginationMode is cursor', () => {
+  it('should expose cursor pagination metadata when paginate mode is cursor', () => {
     const Controller = BaseController<TestArticle, string>({
       dto: TestArticle,
-      paginationMode: 'cursor',
-      paginate: { search: true },
+      paginate: { search: true, mode: 'cursor' },
     });
 
     const responseType = getSwaggerResponseType(Controller, 'paginate');
@@ -77,8 +76,8 @@ describe('BaseController integration', () => {
     expect(getSwaggerResponseType(Controller, 'search')).toBe(responseType);
   });
 
-  it('should expose offset pagination metadata when paginationMode is offset', () => {
-    const Controller = BaseController<TestArticle, string>({ dto: TestArticle, paginationMode: 'offset' });
+  it('should expose offset pagination metadata when paginate mode is offset', () => {
+    const Controller = BaseController<TestArticle, string>({ dto: TestArticle, paginate: { mode: 'offset' } });
     const responseType = getSwaggerResponseType(Controller, 'paginate');
 
     expect(getSwaggerQueryNames(Controller, 'paginate')).toEqual(

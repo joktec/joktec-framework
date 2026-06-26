@@ -6,7 +6,7 @@ import { MethodNotAllowedException } from '../../exceptions';
 import { ApiSchemaDecorator, IApiFilterQueryOptions } from './swagger.interface';
 
 export const ApiFilterQuery = (opts: IApiFilterQueryOptions): MethodDecorator => {
-  const { textSearch = true, paginationMode = 'page', geoSearch = false, relation = false } = opts;
+  const { textSearch = true, mode, paginationMode = mode || 'page', geoSearch = false, relation = false } = opts;
   const decorators: MethodDecorator[] = [
     ApiSelect('select'),
     textSearch && ApiTextSearch('keyword'),

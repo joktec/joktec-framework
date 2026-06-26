@@ -33,7 +33,7 @@ import { ArticlePaginationDto, UserLiked, UserLikedPaginationDto } from './model
 const props: IControllerProps<Article> = {
   dto: Article,
   customDto: { paginationDto: ArticlePaginationDto },
-  paginationMode: 'offset',
+  paginate: { mode: 'offset' },
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
   create: { disable: true },

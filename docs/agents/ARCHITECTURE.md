@@ -69,6 +69,7 @@ Schema-first database wrappers follow this rule most strongly:
 
 - entity/schema classes should be reusable as DTO metadata sources when practical
 - wrapper decorators should infer validation, transform, and Swagger metadata from one declaration
+- wrapper decorators should infer enum persistence, validation, and Swagger metadata from `enum` options when the native package supports it
 - wrapper decorators may infer common modes when source metadata is explicit, such as Mongo virtual populate from `ref`, `localField`, and `foreignField`
 - package-specific semantics should use shared names where possible, such as `immutable` for API read-only metadata across Mongo and MySQL
 - storage write behavior remains storage-specific, such as TypeORM `update: false` for relational columns
@@ -84,7 +85,7 @@ Microservice controllers use `EventPattern` and `MessagePattern` handlers. Broke
 
 `IBaseRequest` accepts page, offset, and cursor query fields. Runtime precedence is cursor first, then offset, then page. If none is provided, `BaseService` defaults to page pagination.
 
-`BaseController` exposes a `paginationMode` option for Swagger and response DTO selection. The mode defaults to `page`. `offset` and `cursor` select one representative OpenAPI response shape. A custom `customDto.paginationDto` still overrides the generated shape.
+`BaseController` reads `paginate.mode` for Swagger and response DTO selection. The mode defaults to `page`. `offset` and `cursor` select one representative OpenAPI response shape. A custom `customDto.paginationDto` still overrides the generated shape.
 
 Cursor pagination is backed by opaque base64url cursor tokens that store ordered key values. Mongo defaults to `_id` and appends `_id` as a tie-breaker for custom keys. MySQL defaults to `createdAt` plus primary key columns and validates cursor keys against TypeORM metadata.
 

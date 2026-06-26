@@ -37,7 +37,7 @@ rg -n "ConsumerLoader|Producer|Publisher" packages/brokers
 ```bash
 rg -n "MongoRepo|MysqlRepo|IBaseRepository" apps packages
 rg -n "MongoModule.forRoot|MysqlModule.forRoot" apps packages
-rg -n "CursorPagination|cursorKey|paginateByCursor|paginationMode" packages apps
+rg -n "CursorPagination|cursorKey|paginateByCursor|paginate\\.mode|mode: 'cursor'" packages apps
 rg -n "PagePaginationResponse|OffsetPaginationResponse|CursorPaginationResponse" packages/common/core/src
 rg -n "mongoDebug|legacyObjectIdCasting|legacyRegexMode|StrictReferencePlugin|ParanoidPlugin|RefId|PopulatedRef|kind: 'embedded'|kind: 'subdocument'|schema.options|prop.builder" packages/databases/mongo/src apps
 rg -n "PrimaryColumn|TimestampColumn|uuidv7|VirtualColumn|MysqlFinder|DialectCapabilities|assertFirstClassDialect" packages/databases/mysql/src apps

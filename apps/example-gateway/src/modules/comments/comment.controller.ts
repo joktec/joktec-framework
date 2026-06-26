@@ -17,7 +17,7 @@ import { CommentCreateDto, CommentPaginationDto, CommentUpdateDto } from './mode
 const props: IControllerProps<Comment> = {
   dto: Comment,
   customDto: { createDto: CommentCreateDto, updatedDto: CommentUpdateDto, paginationDto: CommentPaginationDto },
-  paginationMode: 'offset',
+  paginate: { mode: 'offset' },
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
 };

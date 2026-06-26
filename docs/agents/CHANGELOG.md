@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-26 - Wrapper Enum Inference and Controller Pagination Contract Sync
+
+- Recorded `@joktec/mongo` `@Prop({ enum })` and `@joktec/mysql` `@Column({ enum })` as schema-first wrapper inputs that infer enum type, validation, and Swagger metadata unless explicitly overridden.
+- Recorded `BaseController` pagination response selection as `IControllerProps.paginate.mode`, replacing the previous top-level controller pagination selector.
+
 ## 2026-06-25 - HTTP Proxy Agent Constructor Compatibility
 
 - Recorded `@joktec/http` proxy agent construction fix for current `http-proxy-agent` and `https-proxy-agent` constructor contracts.
@@ -37,7 +42,7 @@
 ## 2026-06-23 - Pagination Contract and Cursor Runtime Sync
 
 - Documented shared page, offset, and cursor pagination contracts in `@joktec/core`.
-- Recorded `BaseController.paginationMode` as the Swagger response-shape selector with custom DTO override behavior.
+- Recorded `BaseController` pagination response-shape selection with custom DTO override behavior.
 - Recorded runtime pagination precedence: cursor, then offset, then page.
 - Documented Mongo and MySQL cursor pagination as database-level keyset implementations.
 - Clarified gateway/micro database ownership in runtime docs.

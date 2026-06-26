@@ -5,7 +5,7 @@ import { DataLogService } from './data-log.service';
 
 const props: IControllerProps<DataLog> = {
   dto: DataLog,
-  paginationMode: 'cursor',
+  paginate: { mode: 'cursor' },
   guards: [AuthGuard, RoleGuard],
   useBearer: true,
   create: { disable: true },

@@ -28,7 +28,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - Gateway runtime remains in `GatewayFactory` and `GatewayModule`.
 - Micro runtime remains in `MicroFactory` and `MicroModule`.
 - Bull root configuration and Bull Board bootstrap live under `src/modules/bull`.
-- `BaseController.paginationMode` controls Swagger response shape; runtime selection remains request-driven.
+- `BaseController` reads `paginate.mode` for Swagger response shape; runtime selection remains request-driven.
 - Global middleware, interceptors, filters, and metrics must stay config-aware.
 
 ## Verification

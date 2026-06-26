@@ -19,6 +19,7 @@ For schema-first database packages:
 - wrapper decorators should reduce duplicated metadata stacks
 - entity/schema classes may act as DTO metadata sources when practical
 - wrappers may infer common modes from explicit metadata when doing so reduces repeated boilerplate without hiding runtime behavior
+- wrappers may infer enum persistence, validation, and Swagger metadata from explicit `enum` options
 - common semantic names should align across packages, such as `immutable` for API read-only metadata
 - storage-specific controls remain available, such as TypeORM `update: false`
 - rare native features should remain available through raw TypeORM or Mongoose/Typegoose APIs

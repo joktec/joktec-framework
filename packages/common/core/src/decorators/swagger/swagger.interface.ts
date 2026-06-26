@@ -3,6 +3,7 @@ import { Constructor, PaginationMode, Wrapper } from '../../models';
 export interface IApiFilterQueryOptions {
   textSearch?: boolean;
   geoSearch?: boolean;
+  mode?: PaginationMode;
   paginationMode?: PaginationMode;
   relation?: boolean;
 }

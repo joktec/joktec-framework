@@ -86,7 +86,7 @@ import { ArticleService } from './article.service';
 
 const props: IControllerProps<Article> = {
   dto: Article,
-  paginationMode: 'offset',
+  paginate: { mode: 'offset' },
   useBearer: true,
   create: { disable: true },
 };
@@ -99,7 +99,7 @@ export class ArticleController extends BaseController<Article, string>(props) {
 }
 ```
 
-`customDto.paginationDto` has priority over `paginationMode` when a controller needs a custom Swagger response DTO.
+Pagination response selection belongs to `paginate.mode`. `customDto.paginationDto` has priority over `paginate.mode` when a controller needs a custom Swagger response DTO.
 
 ## Pagination Contract
 
@@ -152,7 +152,7 @@ Cursor response:
 }
 ```
 
-`BaseController.paginationMode` controls the representative Swagger response shape. It does not force runtime clients to use only that mode.
+`BaseController` reads `paginate.mode` to select the representative Swagger response shape. It does not force runtime clients to use only that mode.
 
 ## Cursor Pagination Utility
 

@@ -14,7 +14,6 @@ jspm_packages/
 lerna/
 .lock-wscript
 .npmrc
-.npmignore
 .npm/
 
 # Logs
@@ -41,8 +40,30 @@ compodoc/
 .DS_Store
 Thumbs.db
 Desktop.ini
+temp/
 
 # Misc
 *.bak
 *.bk
 *.tgz
+.output.txt
+
+# Agents
+.agents/
+.claude/
+.cursor/
+.roo-cline/
+.openinterpreter/
+.aider/
+.codex/
+.gpt-pilot/
+.windsurf/
+.copilot/
+.mcp/
+
+cursor_mcp.json
+mcp-settings.json
+*agent*.log
+*ai-agent*.json
+.env.agent
+.agents/**/.env

@@ -18,7 +18,7 @@ Use `@joktec/core` as the owner of pagination contracts:
 - offset response: `prevOffset`, `currOffset`, `nextOffset`, `lastOffset`
 - cursor response: `hasNextPage`, `nextCursor`
 
-`BaseController.paginationMode` selects one representative Swagger response shape per controller. The default is `page`. `customDto.paginationDto` remains the highest-priority override.
+`BaseController` reads `IControllerProps.paginate.mode` to select one representative Swagger response shape per controller. The default is `page`. `customDto.paginationDto` remains the highest-priority override.
 
 Runtime request precedence is cursor first, then offset, then page. Cursor mode is selected when `cursor` or `cursorKey` is present.
 

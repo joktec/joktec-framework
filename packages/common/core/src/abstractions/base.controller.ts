@@ -72,6 +72,14 @@ export interface IEndpointProps {
   decorators?: MethodDecorator[];
 }
 
+type IControllerFilterQueryOptions = Omit<IApiFilterQueryOptions, 'mode' | 'paginationMode'>;
+
+export type IControllerPaginateProps = IEndpointProps &
+  IControllerFilterQueryOptions & {
+    search?: boolean;
+    mode?: PaginationMode;
+  };
+
 export interface IControllerProps<T extends Entity> extends IEndpointProps {
   dto: Constructor<T>;
   dtoName?: string;
@@ -81,9 +89,8 @@ export interface IControllerProps<T extends Entity> extends IEndpointProps {
     updatedDto?: Constructor<DeepPartial<T>> | Clazz;
     paginationDto?: Constructor<IPaginationResponse<T>>;
   };
-  paginationMode?: PaginationMode;
   tag?: string;
-  paginate?: IEndpointProps & { search?: boolean } & IApiFilterQueryOptions;
+  paginate?: IControllerPaginateProps;
   detail?: IEndpointProps;
   create?: IEndpointProps;
   update?: IEndpointProps;
@@ -111,7 +118,7 @@ export const BaseController = <T extends Entity, ID>(props: IControllerProps<T>)
   @ApiSchema({ name: `${nameSingular}QueryDto` })
   class QueryDto extends queryDto {}
 
-  const paginationMode = props.paginationMode || 'page';
+  const paginationMode = props.paginate?.mode || 'page';
   const createDefaultPaginationDto = (mode: PaginationMode): Constructor<IPaginationResponse<T>> => {
     if (mode === 'offset') {
       @ApiSchema({ name: `${nameSingular}Pagination` })
