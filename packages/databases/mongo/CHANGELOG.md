@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.32](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.31...@joktec/mongo@0.2.32) (2026-06-26)
+
+### Bug Fixes
+
+* **mongo:** align connection params and index sync docs
+
+
 ## [0.2.31](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.30...@joktec/mongo@0.2.31) (2026-06-26)
 
 ### Features
