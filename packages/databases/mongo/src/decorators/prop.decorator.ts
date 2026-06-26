@@ -2,6 +2,7 @@ import {
   applyPropDecorators,
   buildPropContext,
   clonePropOptions,
+  normalizeEnumTypeOption,
   type IMongoPropOptions,
   type MongoFieldDecorator,
   resolvePropTypeInfo,
@@ -13,6 +14,7 @@ import {
 export const Prop = <T = any>(opts: IMongoPropOptions<T> = {}): MongoFieldDecorator => {
   return (target: object, propertyKey: string | symbol) => {
     const options = clonePropOptions(opts);
+    normalizeEnumTypeOption(options);
     const reflectedType =
       Reflect.getMetadata('design:returntype', target, propertyKey) ||
       Reflect.getMetadata('design:type', target, propertyKey);

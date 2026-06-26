@@ -4,6 +4,11 @@ import { MongoPropRuntimeOptions, PropTypeInfo } from './prop.types';
 
 const KNOWN_TYPE_CONSTRUCTORS = new Set<any>([String, Number, Boolean, Date, Object, Array, ObjectId]);
 
+export function normalizeEnumTypeOption(opts: MongoPropRuntimeOptions): void {
+  if (!opts.enum || opts.type) return;
+  opts.type = hasNumericEnumValue(opts.enum) ? Number : String;
+}
+
 export function resolvePropTypeInfo(opts: MongoPropRuntimeOptions, designType: any): PropTypeInfo {
   const hasExplicitType = !isUndefined(opts.type);
   const resolvedType = hasExplicitType ? resolveTypeFactory(opts.type) : resolveFallbackType(opts, designType);
@@ -14,15 +19,44 @@ export function resolvePropTypeInfo(opts: MongoPropRuntimeOptions, designType: a
 
   return {
     designType: hasRuntimeType ? itemType : designType,
-    swaggerType: isObjectId ? String : itemType,
+    swaggerType: resolveSwaggerType(opts, itemType, isObjectId, hasExplicitType),
     transformType: () => {
-      const targetType = hasExplicitType ? resolveTransformType(opts.type) : itemType;
+      const targetType = hasExplicitType
+        ? resolveTransformType(opts.type)
+        : isVirtualPopulate(opts) && opts.ref
+          ? resolveTypeFactory(opts.ref)
+          : itemType;
       return isObjectIdType(targetType) ? String : targetType;
     },
     isArray: isArrayType,
     isObjectId,
     hasExplicitType: hasRuntimeType,
   };
+}
+
+function resolveSwaggerType(
+  opts: MongoPropRuntimeOptions,
+  itemType: any,
+  isObjectId: boolean,
+  hasExplicitType: boolean,
+): any {
+  if (isObjectId) return String;
+  if (hasExplicitType && isLazyTypeFactory(opts.type))
+    return () => normalizeSwaggerType(resolveTransformType(opts.type));
+  if (!hasExplicitType && isVirtualPopulate(opts) && opts.ref && isLazyTypeFactory(opts.ref)) {
+    return () => normalizeSwaggerType(resolveTypeFactory(opts.ref));
+  }
+  return itemType;
+}
+
+function normalizeSwaggerType(type: any): any {
+  return isObjectIdType(type) ? String : type;
+}
+
+function hasNumericEnumValue(enumLike: any): boolean {
+  const source = typeof enumLike === 'function' ? enumLike() : enumLike;
+  const values = isArray(source) ? source : Object.values(source || {});
+  return values.some(value => typeof value === 'number');
 }
 
 function resolveFallbackType(opts: MongoPropRuntimeOptions, designType: any): any {
@@ -39,10 +73,14 @@ function isClassConstructor(type: any): boolean {
   return typeof type === 'function' && /^class\s/.test(Function.prototype.toString.call(type));
 }
 
+function isLazyTypeFactory(type: any): boolean {
+  return typeof type === 'function' && !KNOWN_TYPE_CONSTRUCTORS.has(type) && !isClassConstructor(type);
+}
+
 function resolveTypeFactory(type: any): any {
   if (isArray(type)) return type;
   if (typeof type !== 'function') return type;
-  if (KNOWN_TYPE_CONSTRUCTORS.has(type) || isClassConstructor(type)) return type;
+  if (!isLazyTypeFactory(type)) return type;
 
   try {
     return type();

@@ -1,11 +1,16 @@
 import { describe, expect, it } from '@jest/globals';
 import { IsString, plainToInstance, validateSync } from '@joktec/utils';
+import { DECORATORS } from '@nestjs/swagger';
 import { getModelForClass } from '@typegoose/typegoose';
 import { buildIndex } from '../helpers';
 import { IMongoPropOptions, IPropOptions, Prop, Schema } from '../decorators';
 import { StringProps } from '../decorators/props';
 import { PROP_DESIGN_TYPE_KEY } from '../mongo.constant';
 import { ObjectId, PopulatedRef } from '../models';
+
+const getSwaggerMetadata = (target: object, property: string): Record<string, any> => {
+  return Reflect.getMetadata(DECORATORS.API_MODEL_PROPERTIES, target, property);
+};
 
 describe('Mongo decorators', () => {
   it('should build collection schema defaults without mutating caller options', () => {
@@ -61,6 +66,38 @@ describe('Mongo decorators', () => {
 
     expect(() => StringProps(opts, { isArray: false })).not.toThrow();
     expect(opts.validate).toEqual(expect.any(Function));
+  });
+
+  it('should default enum props to a concrete mongoose type unless explicitly overridden', () => {
+    enum ArticleStatus {
+      Draft = 'draft',
+      Published = 'published',
+    }
+
+    class EnumPropFixture {
+      @Prop({ enum: ArticleStatus })
+      status?: ArticleStatus;
+
+      @Prop({ type: String, enum: ArticleStatus })
+      storedAsString?: ArticleStatus;
+    }
+
+    const model = getModelForClass(EnumPropFixture);
+    const statusPath = model.schema.path('status') as any;
+    const storedAsStringPath = model.schema.path('storedAsString') as any;
+
+    expect(statusPath.instance).toEqual('String');
+    expect(storedAsStringPath.instance).toEqual('String');
+    expect(getSwaggerMetadata(EnumPropFixture.prototype, 'status').enum).toEqual(Object.values(ArticleStatus));
+
+    const invalid = new EnumPropFixture();
+    invalid.status = 'archived' as ArticleStatus;
+    expect(validateSync(invalid).map(error => error.property)).toContain('status');
+
+    const valid = new EnumPropFixture();
+    valid.status = ArticleStatus.Draft;
+    valid.storedAsString = ArticleStatus.Published;
+    expect(validateSync(valid)).toHaveLength(0);
   });
 
   it('should resolve class factories for nested object and array props', () => {
@@ -251,5 +288,53 @@ describe('Mongo decorators', () => {
     expect(Reflect.getMetadata(PROP_DESIGN_TYPE_KEY, ArticleVirtualFixture.prototype, 'authors')).toBe(
       AuthorVirtualFixture,
     );
+  });
+
+  it('should keep virtual populate Swagger and transform metadata lazy', () => {
+    let LazyAuthorFixture: any;
+
+    class ArticleCircularVirtualFixture {
+      @Prop({
+        ref: () => LazyAuthorFixture,
+        localField: 'authorId',
+        foreignField: '_id',
+      } as IMongoPropOptions)
+      author?: PopulatedRef<any>;
+
+      @Prop({
+        type: () => [LazyAuthorFixture],
+        ref: () => LazyAuthorFixture,
+        localField: 'authorIds',
+        foreignField: '_id',
+      } as IMongoPropOptions)
+      authors?: PopulatedRef<any>[];
+    }
+
+    class AuthorCircularVirtualFixture {
+      name!: string;
+
+      get displayName(): string {
+        return `author:${this.name}`;
+      }
+    }
+
+    LazyAuthorFixture = AuthorCircularVirtualFixture;
+
+    const authorSwagger = getSwaggerMetadata(ArticleCircularVirtualFixture.prototype, 'author');
+    const authorsSwagger = getSwaggerMetadata(ArticleCircularVirtualFixture.prototype, 'authors');
+
+    expect(authorSwagger.type()).toBe(AuthorCircularVirtualFixture);
+    expect(authorsSwagger.type()).toBe(AuthorCircularVirtualFixture);
+    expect(authorsSwagger.isArray).toEqual(true);
+
+    const fixture = plainToInstance(ArticleCircularVirtualFixture, {
+      author: { name: 'one' },
+      authors: [{ name: 'many' }],
+    });
+
+    expect(fixture.author).toBeInstanceOf(AuthorCircularVirtualFixture);
+    expect(fixture.authors?.[0]).toBeInstanceOf(AuthorCircularVirtualFixture);
+    expect(fixture.author?.displayName).toEqual('author:one');
+    expect(fixture.authors?.[0]?.displayName).toEqual('author:many');
   });
 });
