@@ -6,28 +6,17 @@ import {
   RegisterQueueOptions,
 } from '@nestjs/bullmq';
 import { DynamicModule, Module } from '@nestjs/common';
-import { merge, omit } from 'lodash';
 import { ConfigModule, ConfigService } from '../config';
 import { BullBoardBootstrap } from './bull-board.bootstrap';
-import { BullBoardConfig, BullConfig } from './bull.config';
-import { BULL_FINAL_CONFIG, BullModuleOptions } from './bull.provider';
+import { BULL_FINAL_CONFIG, BullModuleOptions, createBullFinalConfig, setBullModuleOptions } from './bull.provider';
 
 @Module({})
 export class BullModule {
-  private static createFinalConfig(configService: ConfigService, bullOpts: BullModuleOptions = {}): BullModuleOptions {
-    const bullCfg = configService.parseOrThrow(BullConfig, 'bull');
-    const connection = omit(bullCfg, ['board']);
-    const { board: boardOpts, ...rootOpts } = bullOpts;
-
-    const boardSource = boardOpts === undefined ? bullCfg.board : merge({}, bullCfg.board, boardOpts);
-    const finalConfig = merge({}, { connection }, rootOpts) as BullModuleOptions;
-    if (boardSource) finalConfig.board = new BullBoardConfig(boardSource);
-    return finalConfig;
-  }
-
   static forRoot(bullOpts?: BullModuleOptions): DynamicModule {
+    setBullModuleOptions(bullOpts);
+
     const bullRootFactory = (configService: ConfigService): BullRootModuleOptions => {
-      const { board: _board, ...bullRootOptions } = BullModule.createFinalConfig(configService, bullOpts);
+      const { board: _board, ...bullRootOptions } = createBullFinalConfig(configService, bullOpts);
       return bullRootOptions as BullRootModuleOptions;
     };
 
@@ -44,7 +33,7 @@ export class BullModule {
           provide: BULL_FINAL_CONFIG,
           inject: [ConfigService],
           useFactory: (configService: ConfigService): BullModuleOptions =>
-            BullModule.createFinalConfig(configService, bullOpts),
+            createBullFinalConfig(configService, bullOpts),
         },
       ],
       exports: [NestBullModule],

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-06-26 - BullMQ Config Precedence and Bull Board Routing
+
+- Recorded BullMQ config precedence as `default < BullModule.forRoot(...) < config.yml` and clarified that Bull Board static route exclusion uses the same final config.
+
 ## 2026-06-26 - Mongo Connection Params and Index Sync Diagnostics
 
 - Recorded `@joktec/mongo` connection option precedence where query-style `params` override duplicate keys from `options`.

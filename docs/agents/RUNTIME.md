@@ -27,7 +27,7 @@ Process signal, uncaught exception, and unhandled rejection handlers are registe
 - applies CSRF, CORS, and Helmet when configured
 - listens on `gateway.port`
 
-Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and `bull.board.enable` is true.
+Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and the final Bull Board config has `board.enable` set.
 
 Gateway examples keep database auto schema/index behavior disabled so the gateway can run as the HTTP-facing process without owning database mutation concerns.
 
@@ -71,7 +71,9 @@ Lifecycle:
 
 ## Queues and Workers
 
-`BullModule.forRoot` configures `@nestjs/bullmq` from `bull` config. `BullModule.registerQueue` delegates to Nest BullMQ.
+`BullModule.forRoot` configures `@nestjs/bullmq` from framework defaults, module options, and external config. Final precedence is `default < BullModule.forRoot(...) < config.yml`, so an app can keep Redis connection values in `bull` config while setting Bull Board options such as `board.enable` and `board.queues` in the module call. `BullModule.registerQueue` delegates to Nest BullMQ.
+
+Gateway static asset exclusions use the same final Bull config, so the Bull Board route is not swallowed by static serving when board options come from `BullModule.forRoot(...)`.
 
 `packages/common/cron` provides:
 
@@ -106,4 +108,4 @@ Loaders resolve decorated service instances through Nest `ModuleRef` after modul
 - External clients require valid config sections.
 - Multiple connections use `conId`.
 - Gateway and micro modes are selected by config presence.
-- Bull queues need `BullModule.forRoot(...)` before queue registration when the app expects configured Redis connection options to be used.
+- Bull queues need `BullModule.forRoot(...)` before queue registration when the app expects configured Redis connection options or Bull Board options to be used.

@@ -22,12 +22,6 @@ bull:
   port: 6379
   password: root
   db: 0
-  board:
-    enable: true
-    path: bulls
-    username: admin
-    password: admin
-    queues: [ apify_queue ]
 
 log:
   level: info

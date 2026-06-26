@@ -2,7 +2,7 @@ import { createBullBoard } from '@bull-board/api';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { joinUrl, toArray } from '@joktec/utils';
-import { Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { Queue } from 'bullmq';
 import basicAuth from 'express-basic-auth';
@@ -11,7 +11,7 @@ import { LogService } from '../logger';
 import { BULL_FINAL_CONFIG, BullModuleOptions } from './bull.provider';
 
 @Injectable()
-export class BullBoardBootstrap implements OnApplicationBootstrap {
+export class BullBoardBootstrap implements OnModuleInit {
   constructor(
     @Inject(BULL_FINAL_CONFIG) private readonly finalConfig: BullModuleOptions,
     private readonly configService: ConfigService,
@@ -19,7 +19,7 @@ export class BullBoardBootstrap implements OnApplicationBootstrap {
     private readonly httpAdapterHost: HttpAdapterHost,
   ) {}
 
-  onApplicationBootstrap() {
+  onModuleInit() {
     const board = this.finalConfig?.board;
     if (!board?.enable) return;
 

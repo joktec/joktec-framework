@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { toRoute } from '@joktec/utils';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
 import { GatewayConfig } from '../../infras';
-import { BullConfig } from '../bull';
+import { createBullFinalConfig } from '../bull';
 import { ConfigModule, ConfigService } from '../config';
 
 export function initServerStatic(configService: ConfigService): ServeStaticModuleOptions[] {
@@ -15,7 +15,7 @@ export function initServerStatic(configService: ConfigService): ServeStaticModul
   const { swagger } = gatewayConfig;
   if (swagger?.enable) excludePath.push(swagger.path);
 
-  const bull = configService.parse(BullConfig, 'bull');
+  const bull = createBullFinalConfig(configService);
   if (bull?.board?.enable) excludePath.push(bull?.board?.path);
 
   return [{ rootPath: resolve(staticPath), exclude: excludePath.map(toRoute) }];
