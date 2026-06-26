@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.34](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.33...@joktec/mongo@0.2.34) (2026-06-26)
+
+### Bug Fixes
+
+* **mongo:** handle native object ids and aggregate pipelines
+
+
 ## [0.2.33](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.32...@joktec/mongo@0.2.33) (2026-06-26)
 
 **Note:** Version bump only for package @joktec/mongo
