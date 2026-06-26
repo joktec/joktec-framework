@@ -178,6 +178,40 @@ describe('MySQL column decorators', () => {
     expect(validateSync(valid)).toHaveLength(0);
   });
 
+  it('defaults enum columns to database enum type unless explicitly overridden', () => {
+    enum ArticleStatus {
+      Draft = 'draft',
+      Published = 'published',
+    }
+
+    class EnumFixture {
+      @Column({ enum: ArticleStatus })
+      status?: ArticleStatus;
+
+      @Column({ type: 'varchar', enum: ArticleStatus })
+      storedAsVarchar?: ArticleStatus;
+    }
+
+    const metadata = getMetadataArgsStorage().columns.filter(item => item.target === EnumFixture);
+    const status = metadata.find(item => item.propertyName === 'status');
+    const storedAsVarchar = metadata.find(item => item.propertyName === 'storedAsVarchar');
+
+    expect(status.options.type).toEqual('enum');
+    expect(status.options.enum).toEqual(ArticleStatus);
+    expect(storedAsVarchar.options.type).toEqual('varchar');
+    expect(storedAsVarchar.options.enum).toEqual(ArticleStatus);
+    expect(getSwaggerMetadata(EnumFixture.prototype, 'status').enum).toEqual(Object.values(ArticleStatus));
+
+    const invalid = new EnumFixture();
+    invalid.status = 'archived' as ArticleStatus;
+    expect(validateSync(invalid).map(error => error.property)).toContain('status');
+
+    const valid = new EnumFixture();
+    valid.status = ArticleStatus.Draft;
+    valid.storedAsVarchar = ArticleStatus.Published;
+    expect(validateSync(valid)).toHaveLength(0);
+  });
+
   it('validates simple-array elements with each semantics', () => {
     class ArrayFixture {
       @Column('simple-array')

@@ -41,6 +41,7 @@ import {
   buildVersionColumnDecorators,
   buildVirtualColumnDecorators,
   cloneColumnOptions,
+  normalizeNormalColumnOptions,
   parseColumnArgs,
   resolveRequired,
   toTypeormOptions,
@@ -100,12 +101,13 @@ function buildMysqlColumnDecorators(
   }
   if (kind === 'tree') return buildTreeColumnDecorators(options as IMysqlTreeColumnOptions, designType);
 
-  const typeormOptions = toTypeormOptions(options);
+  const normalOptions = normalizeNormalColumnOptions(type, options as IMysqlColumnBuildOptions);
+  const typeormOptions = toTypeormOptions(normalOptions);
   const typeormDecorator = type ? (TypeormColumn as any)(type, typeormOptions) : TypeormColumn(typeormOptions);
   return [
     typeormDecorator,
-    ...buildColumnExtraDecorators(options as IMysqlColumnDatabaseOptions),
-    ...buildColumnDecorators(options as IMysqlColumnBuildOptions, designType),
+    ...buildColumnExtraDecorators(normalOptions as IMysqlColumnDatabaseOptions),
+    ...buildColumnDecorators(normalOptions, designType),
   ];
 }
 

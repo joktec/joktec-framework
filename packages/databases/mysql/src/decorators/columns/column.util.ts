@@ -68,6 +68,14 @@ export const toTypeormOptions = <T extends Record<string, any>>(options: T): Col
   return typeormOptions as ColumnOptions;
 };
 
+export const normalizeNormalColumnOptions = (
+  type: ColumnType | undefined,
+  options: IMysqlColumnBuildOptions,
+): IMysqlColumnBuildOptions => {
+  if (!options.enum || type || options.type || options.columnType) return options;
+  return { ...options, type: 'enum' };
+};
+
 export const parseColumnArgs = (args: ColumnDecoratorArgs): { type?: ColumnType; options: IMysqlColumnOptions } => {
   if (args.length === 0) return { options: {} };
   const [first, second] = args;
