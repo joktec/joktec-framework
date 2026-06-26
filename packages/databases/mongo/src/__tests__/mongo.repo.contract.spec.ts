@@ -1,5 +1,6 @@
 import { describe, expect, it, jest } from '@jest/globals';
 import { ICondition } from '@joktec/core';
+import mongoose from 'mongoose';
 import { Prop } from '../decorators';
 import { IMongoOptions, IMongoRequest, IMongoUpdate, MongoSchema, ObjectId } from '../models';
 import { MongoRepo } from '../mongo.repo';
@@ -133,6 +134,21 @@ describe('MongoRepo contracts', () => {
 
     expect(repo.qbMock).toHaveBeenCalledWith({ condition }, options);
     expect(destroyMany).toHaveBeenCalledWith(condition, options);
+  });
+
+  it('should find the inserted document after create when mongoose returns a native ObjectId', async () => {
+    const nativeId = new mongoose.Types.ObjectId('656c096ad77a68cf9c495e28');
+    const create = (jest.fn() as any).mockResolvedValue({ _id: nativeId, title: 'created' });
+    const exec = (jest.fn() as any).mockResolvedValue({ _id: nativeId, title: 'created' });
+    const findOne = jest.fn().mockReturnValue({ exec });
+    const repo = new ContractRepo({ getModel: jest.fn().mockReturnValue({ create }) } as unknown as MongoService);
+    repo.qbMock.mockReturnValue({ findOne });
+
+    await expect(repo.create({ title: 'created' })).resolves.toEqual(
+      expect.objectContaining({ _id: String(nativeId), title: 'created' }),
+    );
+
+    expect(repo.qbMock).toHaveBeenCalledWith({ condition: { _id: ObjectId.create('656c096ad77a68cf9c495e28') } }, {});
   });
 
   it('should normalize ObjectId values in transformed output documents', () => {

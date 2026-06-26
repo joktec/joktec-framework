@@ -3,7 +3,7 @@ import { toArray } from '@joktec/utils';
 import { Ref } from '@typegoose/typegoose';
 import { isArray, isBuffer, isDate, isEmpty, isNil, isNumber, isObject, isRegExp, isString, omit, pick } from 'lodash';
 import { PopulateOptions, RefType, Schema } from 'mongoose';
-import { IMongoRequest, MongoSchema, ObjectId } from '../models';
+import { IMongoRequest, MongoSchema, ObjectId, ObjectIdInput } from '../models';
 
 export interface MongoFilterParseOptions {
   schema?: Schema;
@@ -45,8 +45,8 @@ export class MongoHelper {
   }
 
   private static shouldCastObjectId(path: string, value: unknown, options?: MongoFilterParseOptions): boolean {
-    if (value instanceof ObjectId) return false;
-    if (!isString(value) || !ObjectId.isValid(value)) return false;
+    if (ObjectId.isObjectId(value)) return false;
+    if (!isString(value) || !ObjectId.valid(value)) return false;
     if (options?.legacyObjectIdCasting) return true;
 
     const normalizedPath = this.normalizePath(path);
@@ -54,7 +54,7 @@ export class MongoHelper {
   }
 
   private static castObjectIdValue(path: string, value: unknown, options?: MongoFilterParseOptions): unknown {
-    if (value instanceof ObjectId) return value;
+    if (ObjectId.isObjectId(value)) return ObjectId.create(value);
     if (this.shouldCastObjectId(path, value, options)) return ObjectId.create(String(value));
     if (isArray(value)) return value.map(item => this.castObjectIdValue(path, item, options));
     return value;
@@ -78,8 +78,8 @@ export class MongoHelper {
     }
 
     function recurse(value: any, prefix = '') {
-      if (value instanceof ObjectId) {
-        result[prefix] = value;
+      if (ObjectId.isObjectId(value)) {
+        result[prefix] = ObjectId.create(value);
         return;
       }
 
@@ -90,7 +90,7 @@ export class MongoHelper {
 
       if (isArray(value)) {
         result[prefix] = value.map(v => {
-          if (v instanceof ObjectId) return v;
+          if (ObjectId.isObjectId(v)) return ObjectId.create(v);
           if (MongoHelper.shouldCastObjectId(prefix, v, options)) return ObjectId.create(v);
           return v;
         });
@@ -173,7 +173,8 @@ export class MongoHelper {
         continue;
       }
 
-      if (flatObj[key] instanceof ObjectId) {
+      if (ObjectId.isObjectId(flatObj[key])) {
+        flatObj[key] = ObjectId.create(flatObj[key]);
         continue;
       }
 
@@ -254,9 +255,9 @@ export class MongoHelper {
   ): ICondition<T> {
     const condition: ICondition<T> = {};
     switch (true) {
-      case cond instanceof ObjectId:
-      case isString(cond) && ObjectId.isValid(String(cond)):
-        Object.assign(condition, { _id: ObjectId.create(String(cond)) });
+      case ObjectId.isObjectId(cond):
+      case isString(cond) && ObjectId.valid(cond):
+        Object.assign(condition, { _id: ObjectId.create(cond as ObjectIdInput) });
         break;
 
       case isString(cond):

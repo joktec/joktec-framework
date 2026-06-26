@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-06-26 - Mongo Runtime Regression Hotfix
+
+- Recorded `@joktec/mongo` repository hotfix for native Mongoose/BSON ObjectId conditions and paranoid aggregate pipeline preservation.
+
 ## 2026-06-26 - BullMQ Config Precedence and Bull Board Routing
 
 - Recorded BullMQ config precedence as `default < BullModule.forRoot(...) < config.yml` and clarified that Bull Board static route exclusion uses the same final config.

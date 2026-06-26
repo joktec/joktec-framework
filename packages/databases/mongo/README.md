@@ -159,6 +159,7 @@ Query parsing is intentionally conservative:
 
 - `id` is treated as an API alias for root `_id` in query conditions.
 - ObjectId casting is schema-aware and limited to `_id`, schema ObjectId paths, or explicitly configured ObjectId paths.
+- Repository id conditions accept string ids, JokTec `ObjectId`, and native Mongoose/BSON ObjectId values. Native ObjectId values are normalized before simple conditions are converted to `_id` filters.
 - String fields that happen to contain 24 hex characters are not cast to ObjectId unless the schema path requires it.
 - `$like`, `$begin`, and `$end` escape regex input by default to avoid accidental raw regex behavior.
 - Legacy casting and regex behavior are available only through explicit parser options for migration compatibility.
@@ -313,7 +314,7 @@ Recent schema-first changes affect how applications should model references and 
 
 `@joktec/mongo` includes package-level mongoose plugins:
 
-- paranoid plugin: applies soft-delete filtering and handles aggregate first-stage constraints such as `$geoNear`.
+- paranoid plugin: applies soft-delete filtering, handles aggregate first-stage constraints such as `$geoNear`, and preserves aggregate pipeline contents when injecting soft-delete filters.
 - strict reference plugin: validates referenced documents for save/update/delete flows and resolves referenced models through the active connection.
 - transform plugin: centralizes shared document transformation behavior without breaking Mongo update operators.
 

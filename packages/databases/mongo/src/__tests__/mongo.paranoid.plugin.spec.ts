@@ -56,4 +56,27 @@ describe('ParanoidPlugin helpers', () => {
       },
     ]);
   });
+
+  it('should return a new pipeline array without mutating the original input', () => {
+    const pipelines: IMongoPipeline[] = [{ $group: { _id: '$status', total: { $sum: 1 } } }];
+
+    const result = injectMatchPipeline(pipelines, 'deletedAt');
+
+    expect(result).not.toBe(pipelines);
+    expect(pipelines).toEqual([{ $group: { _id: '$status', total: { $sum: 1 } } }]);
+    expect(result).toEqual([{ $match: { deletedAt: null } }, { $group: { _id: '$status', total: { $sum: 1 } } }]);
+  });
+
+  it('should not empty aggregate pipelines when replacing mongoose pipeline contents', () => {
+    const mongoosePipeline: IMongoPipeline[] = [{ $group: { _id: '$status', total: { $sum: 1 } } }];
+    const injected = injectMatchPipeline(mongoosePipeline, 'deletedAt');
+
+    while (mongoosePipeline.length) mongoosePipeline.shift();
+    while (injected.length) mongoosePipeline.push(injected.shift());
+
+    expect(mongoosePipeline).toEqual([
+      { $match: { deletedAt: null } },
+      { $group: { _id: '$status', total: { $sum: 1 } } },
+    ]);
+  });
 });

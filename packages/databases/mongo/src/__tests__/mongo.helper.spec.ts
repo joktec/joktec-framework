@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 import { MongoHelper } from '../helpers';
 import { ICondition } from '@joktec/core';
+import mongoose from 'mongoose';
 import { ObjectId } from '../models';
 
 describe('MongoHelper class', () => {
@@ -262,6 +263,16 @@ describe('MongoHelper class', () => {
     it('should return empty array when populate object is empty', () => {
       const result = MongoHelper.parsePopulate();
       expect(result).toEqual([]);
+    });
+  });
+
+  describe('parseSimpleCondition function', () => {
+    it('should parse native mongoose object ids as _id conditions', () => {
+      const id = new mongoose.Types.ObjectId('656c096ad77a68cf9c495e28');
+
+      expect(MongoHelper.parseSimpleCondition(id)).toEqual({
+        _id: ObjectId.create('656c096ad77a68cf9c495e28'),
+      });
     });
   });
 });

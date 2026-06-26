@@ -37,6 +37,7 @@ Prefer wrapper options when they express a normal JokTec schema contract. Use na
 - `MongoModule.forRoot(...)` registers app schema classes; apps own the schema list.
 - `autoIndex` uses `diffIndexes()` before `syncIndexes({ continueOnError: true })` and logs sync failures with connection/schema context. Keep `autoIndex` enabled only in a single schema/index owner process when multiple services share the same database.
 - `MongoRepo.qb()` is the canonical read path for standard repository methods.
+- Repository id conditions must accept strings, JokTec `ObjectId`, and native Mongoose/BSON ObjectId values without falling through to generic object filters.
 - Cursor pagination defaults to `_id`; custom cursor keys append `_id` as a tie-breaker.
 - `MongoHelper` should cast ObjectId values only for `_id`, schema ObjectId paths, or explicitly configured ObjectId paths.
 - `$like`, `$begin`, and `$end` escape regex input by default. Raw regex behavior must be explicit.
@@ -51,6 +52,7 @@ Prefer wrapper options when they express a normal JokTec schema contract. Use na
 ## Plugin Notes
 
 - Paranoid soft delete must respect aggregate first-stage constraints such as `$geoNear`.
+- Paranoid aggregate handling must preserve the caller pipeline and never share the same array reference when replacing Mongoose aggregate stages.
 - Strict reference checks must be connection-aware and should validate save/update/delete paths without assuming the default mongoose registry.
 - Transform hooks should preserve Mongo update operators and avoid breaking snapshot-style Map or subdocument payloads.
 

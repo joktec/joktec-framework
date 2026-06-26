@@ -31,10 +31,16 @@ export function injectMatchPipeline(
   key: string,
   paranoid: boolean = true,
 ): IMongoPipeline[] {
-  const newPipelines: IMongoPipeline[] = toArray(pipelines);
+  const newPipelines: IMongoPipeline[] = toArray(pipelines).map(pipeline => {
+    if ('$match' in pipeline) return { ...pipeline, $match: { ...pipeline.$match } };
+    if ('$geoNear' in pipeline) {
+      return { ...pipeline, $geoNear: { ...pipeline.$geoNear, query: { ...pipeline.$geoNear.query } } };
+    }
+    return { ...pipeline };
+  });
   if (!paranoid) return newPipelines;
 
-  for (const pipeline of toArray(pipelines)) {
+  for (const pipeline of newPipelines) {
     if ('$match' in pipeline) {
       injectFilter(pipeline.$match, key, paranoid);
     }
@@ -105,8 +111,7 @@ export const ParanoidPlugin = (schema: Schema, opts?: ParanoidOptions) => {
   schemaAny.pre('aggregate', function () {
     const options = this.options as ParanoidQueryOptions;
     const paranoid = toBool(options?.paranoid, true);
-    const pipelines: IMongoPipeline[] = injectMatchPipeline(this.pipeline(), deletedAtKey, paranoid);
-    while (this.pipeline().length) this.pipeline().shift();
-    while (pipelines.length) this.pipeline().push(pipelines.shift());
+    const pipelines: IMongoPipeline[] = injectMatchPipeline([...this.pipeline()], deletedAtKey, paranoid);
+    this.pipeline().splice(0, this.pipeline().length, ...pipelines);
   });
 };

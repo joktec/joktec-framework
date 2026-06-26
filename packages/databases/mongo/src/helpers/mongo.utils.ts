@@ -1,10 +1,6 @@
 import { isPlainObject } from 'lodash';
 import { ObjectId } from '../models';
 
-const isObjectIdLike = (value: unknown): boolean => {
-  return value instanceof ObjectId || (value as any)?._bsontype === 'ObjectId';
-};
-
 const quoteString = (value: string): string => {
   return `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 };
@@ -12,7 +8,7 @@ const quoteString = (value: string): string => {
 const renderShellValue = (value: unknown): string => {
   if (value === null) return 'null';
   if (value === undefined) return 'undefined';
-  if (isObjectIdLike(value)) return `ObjectId('${String(value)}')`;
+  if (ObjectId.isObjectId(value)) return `ObjectId('${String(value)}')`;
   if (value instanceof Date) return `ISODate('${value.toISOString()}')`;
   if (value instanceof RegExp) return value.toString();
   if (typeof value === 'string') return quoteString(value);
