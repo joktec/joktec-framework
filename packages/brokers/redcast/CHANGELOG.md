@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.18](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/redcast@0.1.17...@joktec/redcast@0.1.18) (2026-06-26)
+
+**Note:** Version bump only for package @joktec/redcast
+
+
+
+
+
 ## [0.1.17](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/redcast@0.1.16...@joktec/redcast@0.1.17) (2026-06-26)
 
 **Note:** Version bump only for package @joktec/redcast

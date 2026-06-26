@@ -1,7 +1,7 @@
 {
   "name": "@joktec/rabbit",
   "description": "JokTec - RabbitMQ Service",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -36,7 +36,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.13",
+    "@joktec/core": "0.2.14",
     "@joktec/utils": "0.1.4",
     "amqp-connection-manager": "^5.0.0",
     "amqplib": "^2.0.1",

@@ -1,7 +1,7 @@
 {
   "name": "@joktec/sqs",
   "description": "JokTec - Amazon SQS client wrapper for sending and receiving messages",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@aws-sdk/client-sns": "^3.1075.0",
     "@aws-sdk/client-sqs": "^3.1075.0",
-    "@joktec/core": "0.2.13",
+    "@joktec/core": "0.2.14",
     "@joktec/utils": "0.1.4",
     "lodash": "^4.18.1"
   },
