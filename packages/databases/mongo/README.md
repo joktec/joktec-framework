@@ -118,7 +118,20 @@ mongo:
 
 `uri` can be used instead of host/port fields when an application needs a complete MongoDB connection string.
 
-For multi-process deployments, prefer enabling `autoIndex` in one owner process and disabling it in request-facing processes.
+Connection options are merged as base defaults, then `options`, then query-style `params`. When the same key appears in both `params` and `options`, the value from `params` wins:
+
+```yaml
+mongo:
+  params: authSource=app_db&replicaSet=rs0&directConnection=true&connectTimeoutMS=20000
+  options:
+    authSource: admin
+    connectTimeoutMS: 30000
+    serverSelectionTimeoutMS: 5000
+```
+
+In this example, the final connection options use `authSource=app_db` and `connectTimeoutMS=20000`, while keeping `serverSelectionTimeoutMS=5000`.
+
+For multi-process deployments, prefer enabling `autoIndex` in one owner process and disabling it in request-facing processes. When `autoIndex` is enabled, `MongoService` checks index drift with `diffIndexes()` and runs `syncIndexes({ continueOnError: true })` only when Mongo reports indexes to create or drop. Sync errors are caught and logged with connection/schema context so bootstrap diagnostics identify the affected schema.
 
 ## Query Contract
 

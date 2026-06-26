@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-26 - Mongo Connection Params and Index Sync Diagnostics
+
+- Recorded `@joktec/mongo` connection option precedence where query-style `params` override duplicate keys from `options`.
+- Recorded Mongo auto-index diagnostics around `diffIndexes()` / `syncIndexes()` failures and noted distributed index-sync coordination as technical debt for multi-service deployments.
+
 ## 2026-06-26 - Wrapper Enum Inference and Controller Pagination Contract Sync
 
 - Recorded `@joktec/mongo` `@Prop({ enum })` and `@joktec/mysql` `@Column({ enum })` as schema-first wrapper inputs that infer enum type, validation, and Swagger metadata unless explicitly overridden.

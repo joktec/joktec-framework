@@ -5,6 +5,7 @@ This task note records incomplete work outside the stable baseline. It is not im
 ## Observed Incomplete Work
 
 - HTTP package dependencies for cookie jar support were added in unfinished work, but no stable implementation uses them.
+- Mongo index synchronization has no distributed lock yet. If multiple services or restarted clusters enable `autoIndex` against the same database, concurrent `diffIndexes()` / `syncIndexes()` flows can race and abort index builds. Current guidance is to enable `autoIndex` in exactly one schema/index owner process and keep it disabled in request-facing clusters.
 
 ## Status
 

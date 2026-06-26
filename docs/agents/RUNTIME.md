@@ -46,6 +46,14 @@ Transport models include TCP, gRPC, RMQ, Redis, MQTT, NATS, and Kafka.
 
 Micro examples own database auto index/sync behavior and can expose HTTP only when `micro.httpEnable` is enabled. This keeps schema/index initialization in one runtime process while the gateway remains focused on request handling.
 
+## Mongo Runtime
+
+Mongo connection options are merged as framework defaults, then `config.options`, then query-style `config.params`. Duplicate connection keys in `params` override `options`, so deployment-specific connection-string parameters can take final precedence.
+
+When Mongo `autoIndex` is enabled, `MongoService` registers Typegoose models, checks index drift with `diffIndexes()`, and calls `syncIndexes({ continueOnError: true })` only when Mongo reports indexes to create or drop. Sync errors are caught and logged with connection/schema context.
+
+Only one owner process should enable Mongo `autoIndex` for a shared database. Request-facing clusters should keep it disabled.
+
 ## Client Lifecycle
 
 Most clients extend `AbstractClientService`.

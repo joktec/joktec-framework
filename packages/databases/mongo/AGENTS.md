@@ -33,7 +33,9 @@ Prefer wrapper options when they express a normal JokTec schema contract. Use na
 ## Runtime Rules
 
 - `MongoService` owns connection startup, readiness, shutdown, and registered model lookup.
+- Mongo connection options merge base defaults first, `config.options` second, and query-style `config.params` last. Duplicate keys in `params` override `options`.
 - `MongoModule.forRoot(...)` registers app schema classes; apps own the schema list.
+- `autoIndex` uses `diffIndexes()` before `syncIndexes({ continueOnError: true })` and logs sync failures with connection/schema context. Keep `autoIndex` enabled only in a single schema/index owner process when multiple services share the same database.
 - `MongoRepo.qb()` is the canonical read path for standard repository methods.
 - Cursor pagination defaults to `_id`; custom cursor keys append `_id` as a tie-breaker.
 - `MongoHelper` should cast ObjectId values only for `_id`, schema ObjectId paths, or explicitly configured ObjectId paths.

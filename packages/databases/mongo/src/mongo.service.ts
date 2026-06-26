@@ -20,12 +20,8 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
 
   @Retry(RETRY_OPTS)
   protected async init(config: MongoConfig): Promise<Mongoose> {
-    let uri = this.buildUri(config);
-
-    if (config.params) {
-      const separator = uri.includes('?') ? '&' : '?';
-      uri += `${separator}${config.params}`;
-    }
+    const uri = this.buildUri(config);
+    const paramsOptions = this.parseParams(config.params);
 
     const connectOptions: mongoose.ConnectOptions = {
       user: config.username,
@@ -33,6 +29,7 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
       dbName: config.database,
       autoIndex: false,
       ...config.options,
+      ...paramsOptions,
     };
 
     mongoose.set('strictQuery', config.strictQuery);
@@ -66,6 +63,14 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     if (config.uri) return config.uri;
     if (config.srvMode) return `mongodb+srv://${config.host}/${config.database}`;
     return `mongodb://${config.host}:${config.port}/${config.database}`;
+  }
+
+  private parseParams(params?: string): mongoose.ConnectOptions {
+    if (!params) return {};
+    return Array.from(new URLSearchParams(params).entries()).reduce<Record<string, string>>((opts, [key, value]) => {
+      opts[key] = value;
+      return opts;
+    }, {}) as mongoose.ConnectOptions;
   }
 
   /**
@@ -108,10 +113,14 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     if (config.debug) this.logService.info('`%s` Schema `%s` registered', conId, schemaClass.name);
 
     if (config.autoIndex) {
-      const diffIndexes = await model.diffIndexes();
-      if (diffIndexes.toCreate.length || diffIndexes.toDrop.length) {
-        await model.syncIndexes({ continueOnError: true });
-        if (config.debug) this.logService.info('`%s` Schema `%s` sync indexes', conId, model.modelName);
+      try {
+        const diffIndexes = await model.diffIndexes();
+        if (diffIndexes.toCreate.length || diffIndexes.toDrop.length) {
+          await model.syncIndexes({ continueOnError: true });
+          if (config.debug) this.logService.info('`%s` Schema `%s` sync indexes', conId, model.modelName);
+        }
+      } catch (indexError) {
+        this.logService.error(indexError, '`%s` Schema `%s` sync failed', conId, schemaClass.name);
       }
     }
   }

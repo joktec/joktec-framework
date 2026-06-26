@@ -24,6 +24,7 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 - Client lifecycle abstraction for external systems.
 - Mongo and MySQL repository implementations with page/offset pagination and cursor-based keyset pagination.
 - Mongo hardening for multi-connection model resolution, safer query parsing, plugin behavior, shell-friendly debug output, schema-first `Schema`/`Prop` wrappers, embedded/subdocument modes, enum type inference, `RefId`/`PopulatedRef` reference contracts, virtual getter/populate metadata, raw map fields, and ObjectId normalization on read responses.
+- Mongo config merges query-style `params` after `options`, and Mongo auto-index startup logs sync failures with connection/schema context while retaining the existing `diffIndexes()` then `syncIndexes()` behavior.
 - MySQL hardening for TypeORM connection lifecycle, schema-first `Tables`/`Column` wrappers, enum type inference, timestamp wrappers, nested JSON/class validation, relation/relation-id metadata, view/version/virtual column modes, immutable/read-only Swagger inference, uuidv7 primary keys, dialect capabilities, strict query parsing, ObjectId rejection, and normalized driver errors.
 - HTTP proxy agent construction supports the current proxy-agent constructor shape by building agents from a normalized proxy URL plus Node agent options.
 - Broker packages for Kafka, RabbitMQ, Redcast, and SQS.
