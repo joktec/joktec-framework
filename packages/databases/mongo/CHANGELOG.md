@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.31](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.30...@joktec/mongo@0.2.31) (2026-06-26)
+
+### Features
+
+* **mongo:** infer enum prop metadata
+
+
 ## [0.2.30](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.29...@joktec/mongo@0.2.30) (2026-06-25)
 
 ### Features

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.13](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/core@0.2.12...@joktec/core@0.2.13) (2026-06-26)
+
+### Refactoring
+
+* **core:** move pagination mode into paginate options
+
+
 ## [0.2.12](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/core@0.2.11...@joktec/core@0.2.12) (2026-06-24)
 
 ### Features
