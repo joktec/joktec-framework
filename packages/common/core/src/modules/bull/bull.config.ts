@@ -5,10 +5,10 @@ export class BullBoardConfig {
   @IsBoolean()
   enable?: boolean = true;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  queues: string[];
+  queues?: string[];
 
   @IsOptional()
   @IsString()
@@ -24,7 +24,7 @@ export class BullBoardConfig {
 
   constructor(props?: Partial<BullBoardConfig>) {
     Object.assign(this, { ...props, queues: toArray<string>(props?.queues, { split: ',' }) });
-    if (!this.path.startsWith('/')) this.path = `/${this.path}`;
+    if (this.path && !this.path.startsWith('/')) this.path = `/${this.path}`;
   }
 }
 
@@ -50,12 +50,18 @@ export class BullConfig {
   db?: number;
 
   @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  queues?: string[];
+
+  @IsOptional()
   @IsTypes([BullBoardConfig])
   board?: BullBoardConfig;
 
   constructor(props: BullConfig) {
     Object.assign(this, {
       ...props,
+      queues: toArray<string>(props?.queues, { split: ',' }),
       board: props?.board ? new BullBoardConfig(props.board) : null,
     });
   }

@@ -9,6 +9,7 @@ import helmet from 'helmet';
 import { ApplicationMiddlewareFactory, resolveMiddleware } from '../../base';
 import { SwaggerConfig, SwaggerSecurity } from '../../decorators';
 import { ConfigService, LogService } from '../../modules';
+import { BullBoardBootstrap } from '../../modules/bull/bull-board.bootstrap';
 import { GatewayConfig } from './gateway.config';
 
 export class GatewayFactory {
@@ -48,9 +49,19 @@ export class GatewayFactory {
         const swaggerUrl = joinUrl(baseUrl, { paths: [contextPath, swagger.path] });
         logService.info(`📗 Access API Document at %s`, swaggerUrl);
       }
+
+      GatewayFactory.logBullBoardUrl(app);
     });
 
     if (middlewares.afterInit) await middlewares.afterInit(app);
+  }
+
+  private static logBullBoardUrl(app: NestExpressApplication): void {
+    try {
+      app.get(BullBoardBootstrap, { strict: false }).logDashboardUrl();
+    } catch {
+      // BullModule is optional for gateway applications.
+    }
   }
 
   private static setupSwagger(app: NestExpressApplication): boolean {

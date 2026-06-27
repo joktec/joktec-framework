@@ -36,7 +36,7 @@ export class BullModule {
             createBullFinalConfig(configService, bullOpts),
         },
       ],
-      exports: [NestBullModule],
+      exports: [NestBullModule, BULL_FINAL_CONFIG],
     };
   }
 

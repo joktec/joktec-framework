@@ -12,6 +12,8 @@ import { BULL_FINAL_CONFIG, BullModuleOptions } from './bull.provider';
 
 @Injectable()
 export class BullBoardBootstrap implements OnModuleInit {
+  private dashboardUrl?: string;
+
   constructor(
     @Inject(BULL_FINAL_CONFIG) private readonly finalConfig: BullModuleOptions,
     private readonly configService: ConfigService,
@@ -34,11 +36,12 @@ export class BullBoardBootstrap implements OnModuleInit {
     const contextPath = this.configService.get<string>('gateway.contextPath', '');
     const boardPath = joinUrl('', { paths: [contextPath, board.path] }) || board.path;
     const connection = this.finalConfig.connection;
+    const queues = toArray(board.queues?.length ? board.queues : this.finalConfig.queues);
 
     const serverAdapter = new ExpressAdapter();
     serverAdapter.setBasePath(boardPath);
     createBullBoard({
-      queues: toArray(board.queues).map(queue => new BullMQAdapter(new Queue(queue, { connection }))),
+      queues: queues.map(queue => new BullMQAdapter(new Queue(queue, { connection }))),
       serverAdapter,
     });
 
@@ -49,7 +52,11 @@ export class BullBoardBootstrap implements OnModuleInit {
     app.use(boardPath, ...middlewares);
 
     const baseUrl = gatewayPort ? `http://localhost:${gatewayPort}` : '';
-    const bullUrl = joinUrl(baseUrl, { paths: [boardPath] });
-    this.logService.info(`🎯 Access bull dashboard at %s. Make sure Redis is running by default`, bullUrl);
+    this.dashboardUrl = joinUrl(baseUrl, { paths: [boardPath] });
+  }
+
+  logDashboardUrl(): void {
+    if (!this.dashboardUrl) return;
+    this.logService.info(`🎯 Access bull dashboard at %s. Make sure Redis is running by default`, this.dashboardUrl);
   }
 }
