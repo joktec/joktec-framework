@@ -101,6 +101,31 @@ export class ArticleController extends BaseController<Article, string>(props) {
 
 Pagination response selection belongs to `paginate.mode`. `customDto.paginationDto` has priority over `paginate.mode` when a controller needs a custom Swagger response DTO.
 
+## Gateway Request Interceptor
+
+`ExpressInterceptor` is the default HTTP request/response boundary for gateway apps. It enriches each request with locale, timezone, user agent, and GeoIP metadata, then normalizes query/search payloads before controllers receive them.
+
+Query strings are cast into practical runtime values:
+
+- `"true"` / `"false"` become booleans.
+- `"null"` becomes `null`.
+- `"undefined"` is removed from normalized objects.
+- numeric strings become numbers.
+- JSON object/array strings are parsed.
+- date strings are cast only when the operator/path is date-like, such as `condition[createdAt][$lte]`.
+
+`GET` and `POST` search endpoints ending in `/search` also normalize request bodies, but the default body policy only casts date-like strings because JSON bodies already preserve numbers, booleans, and nulls.
+
+```ts
+class AppExpressInterceptor extends ExpressInterceptor {
+  protected resolverTimezone(req: ExpressRequest): string {
+    return req.headers['x-timezone']?.toString() || super.resolverTimezone(req);
+  }
+}
+```
+
+For advanced projects, override `resolverRequestCastOptions()` to tune query or search-body casting. Prefer overriding `resolverLanguage`, `resolverTimezone`, `resolverQuery`, `resolverSearchBody`, or `transformResponse` before replacing the full interceptor flow.
+
 ## Pagination Contract
 
 `IBaseRequest` supports three pagination styles:

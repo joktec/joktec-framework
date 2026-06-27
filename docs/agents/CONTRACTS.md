@@ -21,6 +21,22 @@ Create uses `BaseValidationPipe()`. Update uses `BaseValidationPipe({ skipMissin
 
 Swagger intentionally exposes one representative pagination shape per controller. It does not use `oneOf` for page/offset/cursor responses.
 
+## Gateway Request Normalization Contract
+
+Gateway controllers receive the normalized request shape produced by `ExpressInterceptor`.
+
+For query strings:
+
+- primitive string values are cast to booleans, numbers, `null`, or omitted `undefined` when safe
+- JSON object/array strings are parsed
+- date strings are cast only for date-like fields or comparison operators such as `$eq`, `$gt`, `$gte`, `$lt`, and `$lte`
+- `condition` and `sort` default to empty objects
+- `limit`, `offset`, `page`, and `language` are normalized for base controller consumers
+
+For `GET` and `POST` routes ending in `/search`, request bodies are normalized with a narrower policy that only promotes date-like strings. Create/update bodies are not globally recast by the interceptor.
+
+Applications should customize request behavior by overriding resolver methods on `ExpressInterceptor`, especially `resolverLanguage`, `resolverTimezone`, `resolverQuery`, `resolverSearchBody`, and `transformResponse`. `resolverRequestCastOptions` is the lower-level extension point for changing cast policy.
+
 ## Pagination Request and Response Contracts
 
 `IBaseRequest` supports shared query fields:

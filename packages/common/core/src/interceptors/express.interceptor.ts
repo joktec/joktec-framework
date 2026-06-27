@@ -1,4 +1,4 @@
-import { instanceToPlain, nullKeysToObject, toInt } from '@joktec/utils';
+import { instanceToPlain, toInt } from '@joktec/utils';
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { lookup } from 'geoip-lite';
 import { head, isEmpty, uniq } from 'lodash';
@@ -7,11 +7,23 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import useragent from 'useragent';
 import { ExpressRequest, ExpressResponse, GeoIp, IBaseRequest, IResponseDto, UserAgent } from '../models';
-
-export type ExpressResponseType<T> = string | T | IResponseDto<T>;
+import {
+  DEFAULT_REQUEST_CAST_OPTIONS,
+  castRequestValue,
+  shouldResolveSearchBody,
+  type ExpressRequestCastOptions,
+} from './express/request-cast';
+import type { ExpressResponseType } from './express/express.type';
 
 @Injectable()
 export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressResponseType<T>> {
+  /**
+   * Main Nest interceptor entrypoint.
+   *
+   * The interceptor snapshots the original request, enriches request metadata,
+   * finalizes query/search-body shapes, then wraps successful responses into the
+   * default JokTec response envelope.
+   */
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest<ExpressRequest<T>>();
     const res = context.switchToHttp().getResponse<ExpressResponse<T>>();
@@ -26,7 +38,10 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
   }
 
   /**
-   * Backup request information for later use
+   * Snapshot original request inputs before interceptor normalization.
+   *
+   * `res.locals` keeps raw query/body/params available for downstream code that
+   * needs to compare the original HTTP payload with the normalized request.
    */
   protected backupQuery(req: ExpressRequest, res: ExpressResponse) {
     res.locals.query = req.query;
@@ -35,18 +50,36 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
   }
 
   /**
-   * Inject headers and custom attributes
+   * Enrich and finalize the Express request object.
+   *
+   * This method intentionally owns the Express 5 `req.query` replacement via
+   * `Object.defineProperty`. Express 5 exposes `req.query` as a getter, so
+   * assigning onto a single returned object is not stable across later reads.
+   *
+   * Override this only when an application needs to add request-scoped fields
+   * around the full core flow. Prefer overriding `resolverLanguage`,
+   * `resolverTimezone`, `resolverQuery` or `resolverSearchBody` for normal app
+   * customization.
    */
   protected injectRequest(req: ExpressRequest) {
     req.locale = this.resolverLanguage(req);
     req.timezone = this.resolverTimezone(req);
     req.userAgent = this.resolverUserAgent(req);
     req.geoIp = this.resolverGeoIP(req);
+    if (shouldResolveSearchBody(req, this.resolverRequestCastOptions(req))) {
+      req.body = this.resolverSearchBody(req);
+    }
 
-    const overrideQuery = Object.assign(req.query, this.resolverQuery(req));
+    const overrideQuery = Object.assign(req.query || {}, this.resolverQuery(req));
     Object.defineProperty(req, 'query', { value: overrideQuery, writable: false });
   }
 
+  /**
+   * Resolve the request locale from the `Accept-Language` header.
+   *
+   * Applications that use i18n modules can override this method to add their
+   * own fallback while preserving the base header parser through `super`.
+   */
   protected resolverLanguage(req: ExpressRequest): string {
     if (!req.headers['accept-language']) return null;
     const acceptLanguage: string = req.headers['accept-language'] as string;
@@ -71,27 +104,50 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
     return head(uniq(languages));
   }
 
+  /**
+   * Resolve the request timezone from the `Accept-Timezone` header.
+   *
+   * Defaults to `UTC` so downstream services always receive a stable timezone
+   * value even when the client omits the header.
+   */
   protected resolverTimezone(req: ExpressRequest): string {
     return !req.headers['accept-timezone'] ? 'UTC' : (req.headers['accept-timezone'] as string);
   }
 
+  /**
+   * Parse the `User-Agent` header into the shared `UserAgent` model.
+   */
   protected resolverUserAgent(req: ExpressRequest): UserAgent {
     if (!req.headers['user-agent']) return null;
     return useragent.parse(req.headers['user-agent']);
   }
 
+  /**
+   * Resolve client IP and GeoIP metadata for request-level observability.
+   */
   protected resolverGeoIP(req: ExpressRequest): GeoIp {
     const ipAddress = requestIp.getClientIp(req);
     return { ipAddress, ...lookup(ipAddress) };
   }
 
   /**
-   * Transform and normalize query parameters
+   * Resolve the normalized query contract consumed by controllers and services.
+   *
+   * The default implementation casts query-string primitives, resolves
+   * page/offset pagination defaults, and guarantees `condition`, `sort`,
+   * `limit`, `offset`, and `language` fields exist in the query object.
+   *
+   * This is the main extension point for application-level query defaults such
+   * as default sort, default language, or app-specific condition enrichment.
    */
   protected resolverQuery(req: ExpressRequest): IBaseRequest<any> {
-    const rawPage = req.query?.page;
-    const rawLimit = req.query?.limit;
-    const rawOffset = req.query?.offset;
+    const castedQuery = castRequestValue(req.query || {}, this.resolverRequestCastOptions(req).query, {
+      mode: 'query',
+      path: [],
+    });
+    const rawPage = castedQuery?.page;
+    const rawLimit = castedQuery?.limit;
+    const rawOffset = castedQuery?.offset;
 
     const page = toInt(rawPage);
     const limit = toInt(rawLimit, 20);
@@ -112,12 +168,12 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
     }
 
     const query: IBaseRequest<any> = {
-      ...req.query,
-      condition: nullKeysToObject(req.query?.condition || {}),
-      sort: req.query?.sort || {},
+      ...castedQuery,
+      condition: castedQuery?.condition || {},
+      sort: castedQuery?.sort || {},
       limit,
       offset: resolvedOffset,
-      language: req.query?.language || req.locale || '*',
+      language: castedQuery?.language || req.locale || '*',
     };
 
     if (resolvedPage !== undefined) query.page = resolvedPage;
@@ -127,7 +183,34 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
   }
 
   /**
-   * Transform response data into a standard format
+   * Resolve the normalized body for `GET/POST /resource/search` requests.
+   *
+   * JSON bodies already keep numbers, booleans and nulls in their real shape,
+   * so the default search body policy only fixes date strings.
+   *
+   * Override this when an application has a different search-body contract.
+   * Create/update request bodies are intentionally not handled here.
+   */
+  protected resolverSearchBody(req: ExpressRequest): any {
+    return castRequestValue(req.body, this.resolverRequestCastOptions(req).searchBody, { mode: 'body', path: [] });
+  }
+
+  /**
+   * Override this single policy method for advanced request casting needs.
+   *
+   * Normal projects should prefer overriding resolver methods such as
+   * `resolverQuery`, `resolverSearchBody`, `resolverLanguage` or
+   * `resolverTimezone` instead of changing low-level casting behavior.
+   */
+  protected resolverRequestCastOptions(_req: ExpressRequest): ExpressRequestCastOptions {
+    return DEFAULT_REQUEST_CAST_OPTIONS;
+  }
+
+  /**
+   * Transform successful handler output into the default JokTec response shape.
+   *
+   * Applications usually override this to apply i18n messages, transformer
+   * groups, field masking, or custom response envelopes.
    */
   protected transformResponse(data: T): ExpressResponseType<T> {
     if (typeof data === 'object') {
@@ -143,7 +226,10 @@ export class ExpressInterceptor<T = any> implements NestInterceptor<T, ExpressRe
   }
 
   /**
-   * Handle errors and format them if necessary
+   * Forward errors into Nest's exception pipeline.
+   *
+   * Keep this method small unless an app must map external error shapes before
+   * they reach global exception filters.
    */
   protected handleError(err: any): Observable<any> {
     return throwError(() => err);

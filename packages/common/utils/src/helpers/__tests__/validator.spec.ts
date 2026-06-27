@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 import { IsString, validateSync } from 'class-validator';
 import { Is2DIntArray, IsTypes } from '../../validators';
-import { isClass } from '../validator';
+import { isClass, isDateStringCastable, isJsonObjectString } from '../validator';
 
 class MyClass {
   private constructor() {}
@@ -23,6 +23,28 @@ describe('isClass function', () => {
     const myFunction = function abc() {};
     const result = isClass(myFunction);
     expect(result).toEqual(false);
+  });
+});
+
+describe('request casting validator helpers', () => {
+  it('should detect JSON object and array strings only', () => {
+    expect(isJsonObjectString('{"active":true}')).toEqual(true);
+    expect(isJsonObjectString('[1,2,3]')).toEqual(true);
+    expect(isJsonObjectString('"plain string"')).toEqual(false);
+    expect(isJsonObjectString('plain string')).toEqual(false);
+    expect(isJsonObjectString('{broken')).toEqual(false);
+  });
+
+  it('should detect castable date strings by operator or date-like field', () => {
+    expect(isDateStringCastable('2026-06-26T00:00:00.000Z', 'operator-and-date-key', { key: '$lte' })).toEqual(true);
+    expect(
+      isDateStringCastable('2026-06-26T00:00:00.000Z', 'operator-and-date-key', { path: ['condition', 'createdAt'] }),
+    ).toEqual(true);
+    expect(
+      isDateStringCastable('2026-06-26T00:00:00.000Z', 'operator-only', { path: ['condition', 'createdAt'] }),
+    ).toEqual(false);
+    expect(isDateStringCastable('2026-06-26', false, { key: '$lte' })).toEqual(false);
+    expect(isDateStringCastable('not-a-date', true)).toEqual(false);
   });
 });
 

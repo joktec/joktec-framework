@@ -31,6 +31,24 @@ Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is 
 
 Gateway examples keep database auto schema/index behavior disabled so the gateway can run as the HTTP-facing process without owning database mutation concerns.
 
+## Gateway Request Normalization
+
+`ExpressInterceptor` owns the shared HTTP request boundary for gateway apps.
+
+During interception it:
+
+- snapshots raw `query`, `body`, and `params` into `res.locals`
+- resolves locale, timezone, user agent, and GeoIP metadata
+- casts query-string primitives before controllers read `req.query`
+- normalizes `GET` and `POST` search bodies for routes ending in `/search`
+- wraps successful handler output in the standard JokTec response envelope
+
+Query casting handles booleans, numbers, `null`, `undefined`, JSON object/array strings, and date strings. Date casting is intentionally guarded by operator/path context so arbitrary string ids, slugs, and codes are not promoted to `Date`.
+
+Search-body casting is narrower than query casting. JSON request bodies already preserve booleans, numbers, and nulls, so the default search-body policy only casts date-like strings.
+
+Express 5 exposes `req.query` as a getter. The core interceptor replaces it with a normalized value using `Object.defineProperty` after resolving the query contract.
+
 ## Microservice Runtime
 
 `MicroFactory`:

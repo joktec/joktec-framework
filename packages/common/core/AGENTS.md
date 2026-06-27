@@ -8,6 +8,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - `src/infras/application.ts`: bootstrap entry.
 - `src/infras/gateway/*`: HTTP gateway runtime.
 - `src/infras/micro/*`: microservice runtime.
+- `src/interceptors/*`: HTTP request enrichment, query/search-body normalization, and response envelope behavior.
 - `src/abstractions/*`: base services/controllers/resolvers and client factories.
 - `src/models/paginations/*`: page, offset, and cursor pagination contracts.
 - `src/client/abstract-client.service.ts`: external client lifecycle.
@@ -29,6 +30,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - Micro runtime remains in `MicroFactory` and `MicroModule`.
 - Bull root configuration and Bull Board bootstrap live under `src/modules/bull`.
 - `BaseController` reads `paginate.mode` for Swagger response shape; runtime selection remains request-driven.
+- `ExpressInterceptor` owns request metadata enrichment, Express 5 query replacement, query primitive casting, and search-body date casting.
 - Global middleware, interceptors, filters, and metrics must stay config-aware.
 
 ## Verification

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-27 - Gateway Request Normalization Sync
+
+- Recorded `ExpressInterceptor` request normalization for query primitive casting, guarded date casting, search-body date casting, and Express 5 `req.query` replacement.
+- Clarified that gateway apps should override focused resolver methods for language, timezone, query, search-body, response, or cast-policy customization.
+
 ## 2026-06-26 - Mongo Runtime Regression Hotfix
 
 - Recorded `@joktec/mongo` repository hotfix for native Mongoose/BSON ObjectId conditions and paranoid aggregate pipeline preservation.

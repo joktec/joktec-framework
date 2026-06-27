@@ -18,6 +18,7 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 
 - Gateway bootstrap with Swagger, static assets, security middleware, and metrics.
 - BullMQ root configuration and Bull Board support through `BullModule`.
+- Gateway `ExpressInterceptor` enriches request metadata and normalizes query/search request values before controllers handle them.
 - Microservice bootstrap with configurable Nest transports.
 - Shared config, logging, metrics, exceptions, validation, and base CRUD abstractions.
 - Standard page, offset, and cursor pagination contracts in `@joktec/core`.
