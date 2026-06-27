@@ -31,7 +31,7 @@
     "@joktec/http": "^0.2.17",
     "@joktec/kafka": "^0.2.14",
     "@joktec/mailer": "^0.2.14",
-    "@joktec/mongo": "^0.2.33",
+    "@joktec/mongo": "^0.2.34",
     "@joktec/mysql": "^0.2.18",
     "@joktec/notifier": "^0.2.14",
     "@joktec/rabbit": "^0.2.14",
