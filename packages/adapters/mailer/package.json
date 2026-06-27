@@ -1,7 +1,7 @@
 {
   "name": "@joktec/mailer",
   "description": "JokTec - Mailer Service",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -39,8 +39,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.14",
-    "@joktec/utils": "0.1.4",
+    "@joktec/core": "0.2.15",
+    "@joktec/utils": "0.1.5",
     "ejs": "^6.0.1",
     "handlebars": "^4.7.9",
     "lodash": "^4.18.1",

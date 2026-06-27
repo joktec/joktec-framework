@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/kafka@0.2.14...@joktec/kafka@0.2.15) (2026-06-27)
+
+**Note:** Version bump only for package @joktec/kafka
+
+
+
+
+
 ## [0.2.14](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/kafka@0.2.13...@joktec/kafka@0.2.14) (2026-06-26)
 
 **Note:** Version bump only for package @joktec/kafka

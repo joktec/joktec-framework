@@ -1,7 +1,7 @@
 {
   "name": "@joktec/notifier",
   "description": "JokTec - Notification Service",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -37,8 +37,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.14",
-    "@joktec/utils": "0.1.4",
+    "@joktec/core": "0.2.15",
+    "@joktec/utils": "0.1.5",
     "lodash": "^4.18.1",
     "node-pushnotifications": "^6.0.0",
     "web-push": "^3.6.7"

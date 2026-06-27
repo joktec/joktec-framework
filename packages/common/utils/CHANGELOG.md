@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/utils@0.1.4...@joktec/utils@0.1.5) (2026-06-27)
+
+### Features
+
+* **core:** normalize gateway request casting
+
+
 ## [0.1.4](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/utils@0.1.3...@joktec/utils@0.1.4) (2026-06-24)
 
 ### Features

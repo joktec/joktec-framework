@@ -1,7 +1,7 @@
 {
   "name": "@joktec/http",
   "description": "JokTec - Http Client Service",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "private": false,
   "license": "MIT",
   "author": "JokTec",
@@ -36,8 +36,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@joktec/core": "0.2.14",
-    "@joktec/utils": "0.1.4",
+    "@joktec/core": "0.2.15",
+    "@joktec/utils": "0.1.5",
     "axios": "^1.18.1",
     "axios-cookiejar-support": "7.0.0",
     "axios-curlirize": "~2.0.0",
