@@ -50,18 +50,10 @@ export class GatewayFactory {
         logService.info(`📗 Access API Document at %s`, swaggerUrl);
       }
 
-      GatewayFactory.logBullBoardUrl(app);
+      BullBoardBootstrap.logDashboardUrls(logService);
     });
 
     if (middlewares.afterInit) await middlewares.afterInit(app);
-  }
-
-  private static logBullBoardUrl(app: NestExpressApplication): void {
-    try {
-      app.get(BullBoardBootstrap, { strict: false }).logDashboardUrl();
-    } catch {
-      // BullModule is optional for gateway applications.
-    }
   }
 
   private static setupSwagger(app: NestExpressApplication): boolean {

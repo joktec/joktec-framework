@@ -27,7 +27,7 @@ Process signal, uncaught exception, and unhandled rejection handlers are registe
 - applies CSRF, CORS, and Helmet when configured
 - listens on `gateway.port`
 
-Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and the final Bull Board config has `board.enable` set.
+Bull Board is mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and the final Bull Board config has `board.enable` set. Gateway startup logs Bull Board dashboard URLs after the HTTP listener is ready; apps that do not import BullModule do not need a BullBoard provider.
 
 Gateway examples keep database auto schema/index behavior disabled so the gateway can run as the HTTP-facing process without owning database mutation concerns.
 
@@ -92,6 +92,8 @@ Lifecycle:
 `BullModule.forRoot` configures `@nestjs/bullmq` from framework defaults, module options, and external config. Final precedence is `default < BullModule.forRoot(...) < config.yml`, so an app can keep Redis connection values in `bull` config while setting Bull Board options such as `board.enable` and `board.queues` in the module call. `BullModule.registerQueue` delegates to Nest BullMQ.
 
 Gateway static asset exclusions use the same final Bull config, so the Bull Board route is not swallowed by static serving when board options come from `BullModule.forRoot(...)`.
+
+Bull Board dashboard logging is registry-based. Enabled BullBoard bootstraps register their dashboard URLs, and `GatewayFactory` logs the registered URLs after app listen instead of resolving `BullBoardBootstrap` as a required provider.
 
 `packages/common/cron` provides:
 

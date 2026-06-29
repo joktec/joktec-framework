@@ -229,6 +229,40 @@ describe('Mongo decorators', () => {
     expect(validateSync(valid)).toHaveLength(0);
   });
 
+  it('should support explicit mixed payloads without turning arrays into mongoose maps', () => {
+    class MixedPayloadFixture {
+      @Prop({ kind: 'mixed', type: [Object], default: [] })
+      targets?: Record<string, any>[];
+
+      @Prop({ kind: 'mixed', type: Object, default: () => ({}) })
+      snapshot?: Record<string, any>;
+
+      @Prop({ kind: 'map', type: Object, default: () => ({}) })
+      metadata?: Record<string, any>;
+    }
+
+    const model = getModelForClass(MixedPayloadFixture);
+    const targetsPath = model.schema.path('targets') as any;
+    const metadataPath = model.schema.path('metadata') as any;
+
+    expect(targetsPath.instance).toBe('Array');
+    expect(targetsPath.$isMongooseArray).toBe(true);
+    expect(metadataPath.instance).toBe('Map');
+
+    const fixture = new model({
+      targets: [{ target: 'url', constraint: { operator: 'matches', value: 'example.com/*' } }],
+      snapshot: { raw: { id: 'snapshot-id' } },
+      metadata: { provider: { id: 'metadata-id' } },
+    });
+
+    expect(fixture.targets?.[0]).toEqual({
+      target: 'url',
+      constraint: { operator: 'matches', value: 'example.com/*' },
+    });
+    expect(fixture.snapshot).toEqual({ raw: { id: 'snapshot-id' } });
+    expect(fixture.metadata?.get('provider')).toEqual({ id: 'metadata-id' });
+  });
+
   it('should expose virtual getters without registering a persisted mongoose path', () => {
     class VirtualPropFixture {
       requests = [{ pc: 2 }, { pc: 3 }];

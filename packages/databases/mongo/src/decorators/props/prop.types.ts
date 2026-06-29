@@ -76,6 +76,17 @@ export type IMongoMapPropOptions<T = any> = MapPropOptions &
     kind: 'map';
   };
 
+export type IMongoMixedPropOptions<T = any> = BasePropOptions &
+  IMongoPropCommonOptions<T> & {
+    /**
+     * Explicit raw Mixed payload mode.
+     *
+     * Use this for flexible objects or arrays of flexible objects such as upstream API snapshots.
+     * This is intentionally separate from `kind: 'map'`, which creates a Mongoose Map.
+     */
+    kind: 'mixed';
+  };
+
 export type IMongoVirtualGetterPropOptions<T = any> = IMongoPropCommonOptions<T> & {
   /** Virtual property mode. */
   kind?: 'virtual';
@@ -111,6 +122,7 @@ export type IMongoVirtualPopulatePropOptions<T = any> = VirtualOptions &
 export type IMongoPropOptions<T = any> =
   | IMongoNormalPropOptions<T>
   | IMongoMapPropOptions<T>
+  | IMongoMixedPropOptions<T>
   | IMongoVirtualGetterPropOptions<T>
   | IMongoVirtualPopulatePropOptions<T>;
 
@@ -119,13 +131,13 @@ export type IPropOptions<T = any> = IMongoPropOptions<T>;
 
 export type MongoPropRuntimeOptions<T = any> = TypegooseProp &
   IMongoPropCommonOptions<T> & {
-    kind?: 'normal' | 'map' | 'virtual';
+    kind?: 'normal' | 'map' | 'mixed' | 'virtual';
     mode?: 'getter' | 'populate';
     virtual?: boolean;
   };
 
 export type MongoFieldDecorator = PropertyDecorator & MethodDecorator;
-export type MongoPropKind = 'normal' | 'map' | 'virtual';
+export type MongoPropKind = 'normal' | 'map' | 'mixed' | 'virtual';
 export type MongoVirtualMode = 'getter' | 'populate';
 
 export interface PropTypeInfo {

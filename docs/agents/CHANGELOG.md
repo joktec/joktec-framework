@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-29 - Mongo Mixed Prop and BullBoard Optional Logging Sync
+
+- Recorded `@joktec/mongo` `@Prop({ kind: 'mixed' })` for explicit raw Mixed object and raw object-array payloads, keeping `kind: 'map'` reserved for Mongoose Map-shaped key/value objects.
+- Recorded BullBoard dashboard URL logging as optional and listener-ready: enabled BullBoard bootstraps register URLs, and gateway startup logs them after app listen without requiring BullModule in apps that do not use BullMQ.
+
 ## 2026-06-27 - Gateway Request Normalization Sync
 
 - Recorded `ExpressInterceptor` request normalization for query primitive casting, guarded date casting, search-body date casting, and Express 5 `req.query` replacement.

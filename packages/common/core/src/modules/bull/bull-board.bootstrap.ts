@@ -12,6 +12,8 @@ import { BULL_FINAL_CONFIG, BullModuleOptions } from './bull.provider';
 
 @Injectable()
 export class BullBoardBootstrap implements OnModuleInit {
+  private static readonly dashboardUrls = new Set<string>();
+
   private dashboardUrl?: string;
 
   constructor(
@@ -53,10 +55,12 @@ export class BullBoardBootstrap implements OnModuleInit {
 
     const baseUrl = gatewayPort ? `http://localhost:${gatewayPort}` : '';
     this.dashboardUrl = joinUrl(baseUrl, { paths: [boardPath] });
+    BullBoardBootstrap.dashboardUrls.add(this.dashboardUrl);
   }
 
-  logDashboardUrl(): void {
-    if (!this.dashboardUrl) return;
-    this.logService.info(`🎯 Access bull dashboard at %s. Make sure Redis is running by default`, this.dashboardUrl);
+  static logDashboardUrls(logService: LogService): void {
+    for (const url of BullBoardBootstrap.dashboardUrls) {
+      logService.info(`🎯 Access bull dashboard at %s. Make sure Redis is running by default`, url);
+    }
   }
 }

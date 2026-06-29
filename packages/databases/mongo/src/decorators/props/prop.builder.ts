@@ -90,8 +90,11 @@ function applyPersistedOrPopulateDecorators(
   const decorators = createBaseDecorators(context);
   const swaggerOptions = buildSwaggerOptions(options, typeInfo);
 
-  if (typegooseKind === PropType.MAP) {
+  if (propKind === 'mixed' || typegooseKind === PropType.MAP) {
     options.allowMixed = Severity.ALLOW;
+  }
+
+  if (typegooseKind === PropType.MAP) {
     if (!options.type) options.type = Object;
   }
 
@@ -272,6 +275,7 @@ function hasVirtualPopulateFields(opts: MongoPropRuntimeOptions): boolean {
 
 function getPropKind(opts: MongoPropRuntimeOptions): MongoPropKind {
   if (opts.kind === 'map') return 'map';
+  if (opts.kind === 'mixed') return 'mixed';
   if (opts.kind === 'virtual' || opts.virtual || hasVirtualPopulateFields(opts)) return 'virtual';
   return 'normal';
 }

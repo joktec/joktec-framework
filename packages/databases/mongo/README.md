@@ -245,6 +245,7 @@ export class ArticleFile extends MongoSchema {
 
 - omit `kind` or use `kind: 'normal'` for persisted scalar, enum, object, array, ObjectId, and stored reference id fields.
 - use `kind: 'map'` for raw maps/snapshots instead of passing `PropType.MAP` at the call site.
+- use `kind: 'mixed'` for explicit raw Mixed payloads, including arrays of flexible provider objects.
 - use `kind: 'virtual', mode: 'getter'` for TypeScript computed getters.
 - use virtual populate options such as `ref`, `localField`, and `foreignField` for Mongoose virtual populate fields; the wrapper infers `kind: 'virtual'` and `mode: 'populate'`.
 
@@ -282,6 +283,9 @@ export class Article extends MongoSchema {
 
   @Prop({ kind: 'map', type: Object, default: null })
   snapshot?: Record<string, unknown>;
+
+  @Prop({ kind: 'mixed', type: [Object], default: [] })
+  providerActions?: Record<string, unknown>[];
 }
 ```
 
@@ -293,7 +297,8 @@ Guidelines:
 - Populate-one fields can omit `type` when `ref` points at the same class; populate arrays must still provide `type: () => [Target]` because runtime reflection cannot see the array element type.
 - Use `@Prop({ kind: 'virtual', mode: 'getter' })` for computed getters that need `@Expose` and Swagger metadata but must not become persisted Mongoose paths.
 - Use virtual populate declarations with `ref`, `localField`, and `foreignField`; the wrapper infers populate mode, auto-sets `justOne: true` for non-array populated fields, and uses `{}` or `[]` as compact Swagger examples when no example is provided.
-- Use `@Prop({ kind: 'map' })` for snapshot-style maps and raw objects that must keep their original `id`/shape.
+- Use `@Prop({ kind: 'map' })` only for Mongoose Map-shaped key/value objects. Do not use it for arrays.
+- Use `@Prop({ kind: 'mixed', type: Object })` or `@Prop({ kind: 'mixed', type: [Object] })` when the field intentionally stores flexible raw payloads and should suppress Typegoose Mixed warnings.
 - Repository reads normalize ObjectId/BSON values and transform populated objects into schema class instances. Code that needs raw Mongoose documents should use `MongoService.getModel(...)` or Typegoose/Mongoose APIs directly.
 
 ### Migration Notes
@@ -307,6 +312,7 @@ Recent schema-first changes affect how applications should model references and 
 - Replace `@Schema({ schemaOptions: { _id: false, timestamps: false } })` on value objects with `@Schema({ kind: 'embedded' })` where the defaults match.
 - Replace `@Schema({ schemaOptions: { _id: true, timestamps: true } })` on embedded documents with `@Schema({ kind: 'subdocument' })` where the defaults match.
 - Prefer `@Prop({ kind: 'map', type: Object })` over `@Prop({ type: Object }, PropType.MAP)` in new schemas.
+- Use `@Prop({ kind: 'mixed', type: [Object] })` for arrays of raw provider objects such as upstream actions, targets, or certificate snapshots; `kind: 'map'` creates a Mongoose Map and is not valid for array payloads.
 - Simplify populate-one declarations from `@Prop({ kind: 'virtual', mode: 'populate', type: () => User, ref: () => User, justOne: true, ... })` to `@Prop({ ref: () => User, foreignField, localField })` when the inferred defaults are enough.
 - Re-test populate and deep populate paths after migration. Consumer JSON should expose string ids, not serialized BSON or Buffer shapes.
 

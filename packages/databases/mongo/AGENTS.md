@@ -47,7 +47,8 @@ Prefer wrapper options when they express a normal JokTec schema contract. Use na
 - Use explicit lazy `type` resolvers for arrays and nested classes. Populate-one fields can infer `type` from `ref`; populate arrays still need `type: () => [Target]`.
 - Virtual computed getters should use `@Prop({ kind: 'virtual', mode: 'getter', ... })` to apply expose and Swagger metadata without registering a persisted Mongoose path.
 - Virtual populate fields are inferred from `ref`, `localField`, and `foreignField`. Use `@Prop({ ref: () => Target, foreignField: '_id', localField: 'targetId' })` for populate-one fields and add `type: () => [Target]` for populate arrays.
-- Use `@Prop({ kind: 'map', type: Object, ... })` for raw snapshot/map payloads that must preserve their shape.
+- Use `@Prop({ kind: 'map', type: Object, ... })` only for Mongoose Map-shaped key/value objects.
+- Use `@Prop({ kind: 'mixed', type: Object | [Object], ... })` for explicit raw Mixed payloads such as flexible provider snapshots or arrays of raw upstream actions/targets. Do not use `kind: 'map'` for array payloads.
 
 ## Plugin Notes
 
