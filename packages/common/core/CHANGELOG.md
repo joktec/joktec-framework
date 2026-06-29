@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/core@0.2.15...@joktec/core@0.2.16) (2026-06-29)
+
+### Bug Fixes
+
+* **repo:** support mongo mixed props and optional bullboard logging
+
+
 ## [0.2.15](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/core@0.2.14...@joktec/core@0.2.15) (2026-06-27)
 
 ### Features
