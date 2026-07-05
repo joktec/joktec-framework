@@ -70,6 +70,12 @@ export class MysqlHelper {
     }
 
     const column = MysqlHelper.column(qb, key, context);
+    if (value === undefined) return;
+    if (value === null) {
+      qb.andWhere(`${column} IS NULL`);
+      return;
+    }
+
     if (value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date)) {
       for (const [op, val] of Object.entries(value)) {
         MysqlHelper.applyOperator(qb, column, key, op, val, context);
@@ -94,6 +100,10 @@ export class MysqlHelper {
     const param = MysqlHelper.nextParam(key, context);
     switch (op) {
       case '$eq':
+        if (val === null) {
+          qb.andWhere(`${column} IS NULL`);
+          return;
+        }
         qb.andWhere(`${column} = :${param}`, { [param]: val });
         return;
       case '$gt':
@@ -109,6 +119,10 @@ export class MysqlHelper {
         qb.andWhere(`${column} <= :${param}`, { [param]: val });
         return;
       case '$ne':
+        if (val === null) {
+          qb.andWhere(`${column} IS NOT NULL`);
+          return;
+        }
         qb.andWhere(`${column} != :${param}`, { [param]: val });
         return;
       case '$in':
@@ -144,6 +158,10 @@ export class MysqlHelper {
         qb.andWhere(`${column} = ''`);
         return;
       case '$not':
+        if (val === null) {
+          qb.andWhere(`${column} IS NOT NULL`);
+          return;
+        }
         qb.andWhere(`${column} != :${param}`, { [param]: val });
         return;
       case '$all':

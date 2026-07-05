@@ -8,6 +8,7 @@ const metadata = {
     { propertyName: 'id', propertyPath: 'id' },
     { propertyName: 'title', propertyPath: 'title' },
     { propertyName: 'createdAt', propertyPath: 'createdAt' },
+    { propertyName: 'parentId', propertyPath: 'parentId' },
   ],
   relations: [{ propertyName: 'author', propertyPath: 'author' }],
 } as any;
@@ -44,6 +45,26 @@ describe('MysqlHelper query safety', () => {
     expect(() =>
       MysqlHelper.applyCondition(qb, { title: { $size: 2 } } as any, { metadata, dialect: Dialect.MYSQL }),
     ).toThrow('MYSQL_OPERATOR_UNSUPPORTED_BY_DIALECT');
+  });
+
+  it('should translate null equality into SQL null predicates', () => {
+    const qb = createQueryBuilder();
+
+    MysqlHelper.applyCondition(
+      qb,
+      {
+        parentId: null,
+        title: { $eq: null },
+        createdAt: { $ne: null },
+        id: { $not: null },
+      } as any,
+      { metadata, dialect: Dialect.MYSQL },
+    );
+
+    expect(qb.andWhere).toHaveBeenCalledWith('TestMysqlEntity.parentId IS NULL');
+    expect(qb.andWhere).toHaveBeenCalledWith('TestMysqlEntity.title IS NULL');
+    expect(qb.andWhere).toHaveBeenCalledWith('TestMysqlEntity.createdAt IS NOT NULL');
+    expect(qb.andWhere).toHaveBeenCalledWith('TestMysqlEntity.id IS NOT NULL');
   });
 
   it('should choose postgres case-insensitive like operator and escape wildcard input', () => {
