@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.22](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mysql@0.2.21...@joktec/mysql@0.2.22) (2026-07-05)
+
+### Bug Fixes
+
+* **mysql:** fix parse operator null value
+
+
 ## [0.2.21](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mysql@0.2.20...@joktec/mysql@0.2.21) (2026-07-05)
 
 ### Bug Fixes
