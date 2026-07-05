@@ -61315,6 +61315,12 @@
         "db": {
           "type": "number"
         },
+        "queues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "board": {
           "$ref": "#/definitions/BullBoardConfig"
         }
@@ -61345,10 +61351,7 @@
         "password": {
           "type": "string"
         }
-      },
-      "required": [
-        "queues"
-      ]
+      }
     },
     "JwtConfig": {
       "type": "object",

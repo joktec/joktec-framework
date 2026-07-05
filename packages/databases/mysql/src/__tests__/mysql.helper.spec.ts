@@ -59,15 +59,27 @@ describe('MysqlHelper query safety', () => {
     });
   });
 
-  it('should reject empty or non-array values for list operators', () => {
+  it('should skip empty array values for list operators', () => {
     const qb = createQueryBuilder();
 
     expect(() =>
-      MysqlHelper.applyCondition(qb, { title: { $in: [] } } as any, { metadata, dialect: Dialect.MYSQL }),
-    ).toThrow('MYSQL_INVALID_OPERATOR_VALUE');
+      MysqlHelper.applyCondition(qb, { title: { $in: [] }, createdAt: { $nin: [] }, id: { $all: [] } } as any, {
+        metadata,
+        dialect: Dialect.MYSQL,
+      }),
+    ).not.toThrow();
+    expect(qb.andWhere).not.toHaveBeenCalled();
+  });
+
+  it('should reject non-array values for list operators', () => {
+    const qb = createQueryBuilder();
 
     expect(() =>
       MysqlHelper.applyCondition(qb, { title: { $nin: 'draft' } } as any, { metadata, dialect: Dialect.MYSQL }),
+    ).toThrow('MYSQL_INVALID_OPERATOR_VALUE');
+
+    expect(() =>
+      MysqlHelper.applyCondition(qb, { title: { $all: 'draft' } } as any, { metadata, dialect: Dialect.POSTGRES }),
     ).toThrow('MYSQL_INVALID_OPERATOR_VALUE');
   });
 

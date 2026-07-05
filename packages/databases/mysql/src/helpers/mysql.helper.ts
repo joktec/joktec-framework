@@ -90,6 +90,7 @@ export class MysqlHelper {
     context: MysqlConditionContext,
   ): void {
     const capabilities = getMysqlDialectCapabilities(context.dialect);
+    if (MysqlHelper.isEmptyArrayOperatorValue(op, val)) return;
     const param = MysqlHelper.nextParam(key, context);
     switch (op) {
       case '$eq':
@@ -111,11 +112,11 @@ export class MysqlHelper {
         qb.andWhere(`${column} != :${param}`, { [param]: val });
         return;
       case '$in':
-        MysqlHelper.assertNonEmptyArray(op, key, val);
+        MysqlHelper.assertArrayOperatorValue(op, key, val);
         qb.andWhere(`${column} IN (:...${param})`, { [param]: val });
         return;
       case '$nin':
-        MysqlHelper.assertNonEmptyArray(op, key, val);
+        MysqlHelper.assertArrayOperatorValue(op, key, val);
         qb.andWhere(`${column} NOT IN (:...${param})`, { [param]: val });
         return;
       case '$like':
@@ -150,8 +151,10 @@ export class MysqlHelper {
         if (!capabilities.arrayOperators) {
           throw new MysqlException('MYSQL_OPERATOR_UNSUPPORTED_BY_DIALECT', { op, dialect: capabilities.dialect });
         }
-        if (op === '$all') qb.andWhere(`${column} @> ARRAY[:...${param}]`, { [param]: val });
-        else qb.andWhere(`array_length(${column}, 1) = :${param}`, { [param]: val });
+        if (op === '$all') {
+          MysqlHelper.assertArrayOperatorValue(op, key, val);
+          qb.andWhere(`${column} @> ARRAY[:...${param}]`, { [param]: val });
+        } else qb.andWhere(`array_length(${column}, 1) = :${param}`, { [param]: val });
         return;
       default:
         throw new MysqlException('MYSQL_OPERATOR_UNSUPPORTED', { op, key });
@@ -227,9 +230,13 @@ export class MysqlHelper {
     return param;
   }
 
-  private static assertNonEmptyArray(op: string, key: string, val: unknown): void {
-    if (!Array.isArray(val) || val.length === 0) {
-      throw new MysqlException('MYSQL_INVALID_OPERATOR_VALUE', { op, key, expected: 'non-empty array' });
+  private static isEmptyArrayOperatorValue(op: string, val: unknown): boolean {
+    return (op === '$in' || op === '$nin' || op === '$all') && Array.isArray(val) && val.length === 0;
+  }
+
+  private static assertArrayOperatorValue(op: string, key: string, val: unknown): void {
+    if (!Array.isArray(val)) {
+      throw new MysqlException('MYSQL_INVALID_OPERATOR_VALUE', { op, key, expected: 'array' });
     }
   }
 }
