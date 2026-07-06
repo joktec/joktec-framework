@@ -21,6 +21,21 @@ Create uses `BaseValidationPipe()`. Update uses `BaseValidationPipe({ skipMissin
 
 Swagger intentionally exposes one representative pagination shape per controller. It does not use `oneOf` for page/offset/cursor responses.
 
+## REST Sub-Resource Contract Pattern
+
+`SubController` creates nested REST endpoints for parent-child resources:
+
+- `GET /`: paginate/list children scoped to parent
+- `POST /search`: search children scoped to parent when `paginate.search` enabled
+- `GET /:childId`: child detail scoped to parent
+- `POST /`: create child under parent
+- `PUT /:childId`: update child under parent
+- `DELETE /:childId`: delete child under parent
+
+Default parent param is `id`; default child param is `childId`. Apps may override param names and parsers through `ISubControllerProps`.
+
+`SubController` delegates to `IBaseSubService`. It does not decide whether data is embedded, subdocument, or relation-backed; that rule belongs to the app service/repository implementation.
+
 ## Gateway Request Normalization Contract
 
 Gateway controllers receive the normalized request shape produced by `ExpressInterceptor`.
@@ -65,6 +80,18 @@ Pagination responses share `items` and `total`, then add mode-specific metadata:
 - `{ cmd: "Entity.delete" }`
 
 Transport defaults to TCP unless set in `IMicroControllerProps`.
+
+`SubClientController` creates nested message handlers:
+
+- `{ cmd: "Parent.Child.paginate" }`
+- `{ cmd: "Parent.Child.detail" }`
+- `{ cmd: "Parent.Child.create" }`
+- `{ cmd: "Parent.Child.update" }`
+- `{ cmd: "Parent.Child.delete" }`
+
+Nested payloads use `{ parentId, req }`, `{ parentId, childId, req }`, `{ parentId, dto }`, `{ parentId, childId, dto }`, and `{ parentId, childId }`.
+
+`ClientController` and `SubClientController` support current `dto` payloads and legacy `entity` payloads for create/update. Validation is applied to the selected payload object, not to both fields independently.
 
 ## Gateway Implemented API Areas
 

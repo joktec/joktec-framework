@@ -9,7 +9,7 @@ This package is the framework hub. Changes here have broad blast radius.
 - `src/infras/gateway/*`: HTTP gateway runtime.
 - `src/infras/micro/*`: microservice runtime.
 - `src/interceptors/*`: HTTP request enrichment, query/search-body normalization, and response envelope behavior.
-- `src/abstractions/*`: base services/controllers/resolvers and client factories.
+- `src/abstractions/*`: base/sub services/controllers/resolvers, client/sub-client factories, and shared command/param helpers.
 - `src/models/paginations/*`: page, offset, and cursor pagination contracts.
 - `src/client/abstract-client.service.ts`: external client lifecycle.
 - `src/modules/*`: config, logger, metrics, JWT, Bull, static assets.
@@ -30,6 +30,8 @@ This package is the framework hub. Changes here have broad blast radius.
 - Micro runtime remains in `MicroFactory` and `MicroModule`.
 - Bull root configuration and Bull Board bootstrap live under `src/modules/bull`.
 - `BaseController` reads `paginate.mode` for Swagger response shape; runtime selection remains request-driven.
+- `SubController` and `SubClientController` delegate to `IBaseSubService`; app services own embedded/subdocument/relation mutation behavior.
+- `ClientController` and `SubClientController` validate selected create/update payloads from current `dto` or legacy `entity` message bodies.
 - `ExpressInterceptor` owns request metadata enrichment, Express 5 query replacement, query primitive casting, and search-body date casting.
 - Global middleware, interceptors, filters, and metrics must stay config-aware.
 

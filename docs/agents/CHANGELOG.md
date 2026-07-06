@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-06 - Core Sub-Resource Controller Contract Sync
+
+- Recorded `@joktec/core` `SubController`, `SubClientController`, and `SubClientService` nested CRUD abstractions over `IBaseSubService`.
+- Documented nested private command contract `Parent.Child.action` and selected-payload validation for current `{ dto }` and legacy `{ entity }` create/update messages.
+- Recorded example consumer coverage for nested `Article.Comment.*` Redis transport commands with local `dispatch_db` seed data.
+
 ## 2026-06-29 - Mongo Mixed Prop and BullBoard Optional Logging Sync
 
 - Recorded `@joktec/mongo` `@Prop({ kind: 'mixed' })` for explicit raw Mixed object and raw object-array payloads, keeping `kind: 'map'` reserved for Mongoose Map-shaped key/value objects.

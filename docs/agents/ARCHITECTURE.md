@@ -40,9 +40,12 @@ Most concrete packages depend only on `@joktec/core` and `@joktec/utils`. `@jokt
 - `ClientConfig`: base config with `conId`, `inherit`, `initTimeout`, `retry`, and `debug`.
 - `BaseService`: generic CRUD service over `IBaseRepository`.
 - `BaseController`: generated REST CRUD controller factory.
+- `SubController`: generated nested REST CRUD controller factory over `IBaseSubService`.
 - Pagination contracts: page, offset, and cursor response factories plus cursor token utilities under `packages/common/core/src/models/paginations`.
 - `ClientController`: generated microservice message-pattern CRUD controller factory.
 - `ClientService`: generated client-side microservice proxy service.
+- `SubClientController`: generated nested microservice message-pattern CRUD controller factory.
+- `SubClientService`: generated client-side nested microservice proxy service.
 - `TransportProxyFactory`: creates Nest `ClientProxy` instances from named transport config.
 
 ## Module Boundaries
@@ -80,6 +83,10 @@ Schema-first database wrappers follow this rule most strongly:
 Gateway controllers call services and repositories directly for HTTP behavior. Gateway services also emit microservice events through injected `ClientProxy` instances.
 
 Microservice controllers use `EventPattern` and `MessagePattern` handlers. Broker packages additionally provide decorators such as `KafkaSend`, `RabbitSend`, `RedcastSend`, and `SqsSend`.
+
+Public nested resources use `SubController` for route and parameter binding only. Embedded, subdocument, and relation mutation rules stay in app-layer services implementing `IBaseSubService`.
+
+Private nested resources use `SubClientController` and `SubClientService` over the same sub-resource service contract. Nested command names use `Parent.Child.action`, such as `Article.Comment.create`.
 
 ## Pagination Architecture
 

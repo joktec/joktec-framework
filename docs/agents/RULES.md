@@ -17,7 +17,7 @@ The current stable code is authoritative. Documentation must follow implemented 
 
 - TypeScript and NestJS patterns are standard.
 - Use existing module/service/config naming conventions.
-- Use `BaseService`, `BaseController`, `ClientController`, and `AbstractClientService` where the existing package pattern applies.
+- Use `BaseService`, `BaseController`, `SubController`, `ClientController`, `SubClientController`, and `AbstractClientService` where the existing package pattern applies.
 - Keep config classes validated with decorators from `@joktec/utils`.
 - Keep package exports routed through `src/index.ts`.
 

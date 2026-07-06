@@ -49,6 +49,7 @@ Package-family agent guides:
 
 `packages/common/core`
 - Framework core: bootstrap, abstractions, config, logger, metrics, exceptions, transports, Bull, JWT, static assets.
+- Abstractions grouped under `src/abstractions/base`, `src/abstractions/sub`, `src/abstractions/client`, `src/abstractions/sub-client`, and `src/abstractions/shared`; old top-level files remain compatibility re-export barrels.
 - Pagination contracts and cursor helpers: `src/models/paginations/*`.
 - Local agent guide: `packages/common/core/AGENTS.md`.
 
@@ -108,3 +109,5 @@ Package-family agent guides:
 Package-level tests live near package source under `src/__tests__/`. Local SDK mocks live under `src/__mocks__/` and are wired through each package Jest `moduleNameMapper` when a dependency needs CommonJS-safe or network-free behavior.
 
 Consumer integration scenarios live under `test/consumer/` and are intentionally separate from package unit/integration tests. They preflight required TCP dependencies, may start `apps/example-gateway` and `apps/example-micro`, and should be run selectively with the root `test:consumer:*` scripts.
+
+The transport consumer scenario seeds local `dispatch_db` data and exercises generated nested `Article.Comment.*` Redis commands through `example-micro`.

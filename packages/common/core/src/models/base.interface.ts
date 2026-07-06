@@ -27,6 +27,22 @@ export interface IBaseController<T, ID> {
   delete(id: ID): Promise<T>;
 }
 
+export interface IBaseSubController<TParent, TChild, ParentID, ChildID, REQ> {
+  configService?: ConfigService;
+
+  logService?: LogService;
+
+  paginate(parentId: ParentID, query: REQ): Promise<IPaginationResponse<TChild>>;
+
+  detail(parentId: ParentID, childId: ChildID, query: REQ): Promise<TChild>;
+
+  create(parentId: ParentID, entity: DeepPartial<TChild>): Promise<TParent | TChild>;
+
+  update(parentId: ParentID, childId: ChildID, entity: DeepPartial<TChild>): Promise<TParent | TChild>;
+
+  delete(parentId: ParentID, childId: ChildID): Promise<TParent | TChild | null>;
+}
+
 export interface IBaseService<T, ID, REQ> {
   configService?: ConfigService;
 
@@ -45,6 +61,22 @@ export interface IBaseService<T, ID, REQ> {
   delete(id: ID): Promise<T>;
 
   restore(id: ID): Promise<T>;
+}
+
+export interface IBaseSubService<TParent, TChild, ParentID, ChildID, REQ> {
+  configService?: ConfigService;
+
+  logService?: LogService;
+
+  paginate(parentId: ParentID, req: REQ): Promise<IPaginationResponse<TChild>>;
+
+  findById(parentId: ParentID, childId: ChildID, req?: REQ): Promise<TChild>;
+
+  create(parentId: ParentID, entity: DeepPartial<TChild>): Promise<TParent | TChild>;
+
+  update(parentId: ParentID, childId: ChildID, entity: DeepPartial<TChild>): Promise<TParent | TChild>;
+
+  delete(parentId: ParentID, childId: ChildID): Promise<TParent | TChild | null>;
 }
 
 export interface IBaseRepository<T extends Entity, ID> {

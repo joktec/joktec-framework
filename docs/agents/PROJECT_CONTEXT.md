@@ -20,7 +20,7 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 - BullMQ root configuration and Bull Board support through `BullModule`.
 - Gateway `ExpressInterceptor` enriches request metadata and normalizes query/search request values before controllers handle them.
 - Microservice bootstrap with configurable Nest transports.
-- Shared config, logging, metrics, exceptions, validation, and base CRUD abstractions.
+- Shared config, logging, metrics, exceptions, validation, base CRUD abstractions, nested sub-resource abstractions, and microservice CRUD proxy abstractions.
 - Standard page, offset, and cursor pagination contracts in `@joktec/core`.
 - Client lifecycle abstraction for external systems.
 - Mongo and MySQL repository implementations with page/offset pagination and cursor-based keyset pagination.
@@ -32,7 +32,7 @@ JokTec is a reusable microservices framework implemented as a Yarn workspace mon
 - Adapter packages for cache, mailer, notifier, and storage.
 - Cron and job worker abstractions.
 - Package-level Jest coverage for core framework primitives, utilities, cron, adapters, brokers, databases, integrations, and tools.
-- Consumer integration harness under `test/consumer/` for example-gateway/example-micro smoke, database, Redis transport, and broker scenarios.
+- Consumer integration harness under `test/consumer/` for example-gateway/example-micro smoke, database, Redis transport, nested sub-resource transport, and broker scenarios.
 - Example application modules using repositories, controllers, services, guards, interceptors, i18n, and message events.
 - Example social-network badge flow through `profile-badges`, where MySQL stores the badge catalog and Mongo user profiles store assigned badge ids.
 

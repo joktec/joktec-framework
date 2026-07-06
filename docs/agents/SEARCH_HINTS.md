@@ -7,7 +7,7 @@ Use `rg` first.
 ```bash
 rg -n "class Application|GatewayFactory|MicroFactory" packages/common/core/src
 rg -n "AbstractClientService|ClientConfig" packages/common/core/src packages
-rg -n "BaseController|ClientController|BaseService" packages/common/core/src
+rg -n "BaseController|SubController|ClientController|SubClientController|BaseService|IBaseSubService" packages/common/core/src
 ```
 
 ## Package Boundaries
@@ -51,6 +51,7 @@ rg -n "ProfileBadge|profile-badges|profileBadgeIds" apps test
 ```bash
 rg -n "@Controller|@Get|@Post|@Put|@Patch|@Delete" apps/example-gateway/src/modules
 rg -n "BaseController<" apps/example-gateway/src/modules
+rg -n "SubController<|SubClientController<|IBaseSubService|Article.Comment" apps packages test
 ```
 
 ## Config

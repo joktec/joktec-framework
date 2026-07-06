@@ -24,17 +24,21 @@ yarn add @joktec/core
   - `BullModule`
   - `StaticModule`
 - base abstractions:
-  - `BaseService`
-  - `BaseController`
-  - `BaseResolver`
-  - `ClientController`
-  - `ClientService`
-  - `AbstractClientService`
+- `BaseService`
+- `BaseController`
+- `SubController`
+- `BaseResolver`
+- `ClientController`
+- `ClientService`
+- `SubClientController`
+- `SubClientService`
+- `AbstractClientService`
 - shared contracts:
-  - `IBaseRequest`
-  - `IBaseRepository`
-  - `IBaseService`
-  - `IPaginationResponse`
+- `IBaseRequest`
+- `IBaseRepository`
+- `IBaseService`
+- `IBaseSubService`
+- `IPaginationResponse`
   - `PaginationMode`
 - pagination DTO factories:
   - `PagePaginationResponse`
@@ -100,6 +104,36 @@ export class ArticleController extends BaseController<Article, string>(props) {
 ```
 
 Pagination response selection belongs to `paginate.mode`. `customDto.paginationDto` has priority over `paginate.mode` when a controller needs a custom Swagger response DTO.
+
+## Sub-Resource Controller Usage
+
+`SubController` creates nested REST CRUD endpoints such as `/articles/:articleId/comments`. It delegates to `IBaseSubService`; the service decides whether the child data is embedded, subdocument-backed, or relation-backed.
+
+```ts
+import { Controller, ISubControllerProps, SubController } from '@joktec/core';
+
+const props: ISubControllerProps<Article, Comment> = {
+  parentDto: Article,
+  dto: Comment,
+  parentParam: { name: 'articleId' },
+  childParam: { name: 'commentId' },
+  paginate: { mode: 'offset', search: true },
+  customDto: { createDto: ArticleCommentCreateDto, updatedDto: ArticleCommentUpdateDto },
+};
+
+@Controller('articles/:articleId/comments')
+export class ArticleCommentController extends SubController<Article, Comment, string, string>(props) {
+  constructor(protected articleCommentService: ArticleCommentService) {
+    super(articleCommentService);
+  }
+}
+```
+
+## Microservice CRUD Usage
+
+`ClientController` and `ClientService` provide generated private transport CRUD for top-level resources. `SubClientController` and `SubClientService` do the same for nested resources with `Parent.Child.action` command names such as `Article.Comment.create`.
+
+Create/update message handlers accept current `{ dto }` payloads and legacy `{ entity }` payloads. Validation is applied to the selected payload object before service delegation.
 
 ## Gateway Request Interceptor
 

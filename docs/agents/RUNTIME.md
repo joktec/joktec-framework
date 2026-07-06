@@ -64,6 +64,10 @@ Transport models include TCP, gRPC, RMQ, Redis, MQTT, NATS, and Kafka.
 
 Micro examples own database auto index/sync behavior and can expose HTTP only when `micro.httpEnable` is enabled. This keeps schema/index initialization in one runtime process while the gateway remains focused on request handling.
 
+Generated private CRUD handlers use `ClientController` for top-level resources and `SubClientController` for nested resources. Nested message patterns use `Parent.Child.action` command names and delegate to `IBaseSubService`.
+
+For create/update message payloads, generated client controllers accept current `{ dto }` payloads and legacy `{ entity }` payloads. Runtime validation applies to the selected payload object before service delegation.
+
 ## Mongo Runtime
 
 Mongo connection options are merged as framework defaults, then `config.options`, then query-style `config.params`. Duplicate connection keys in `params` override `options`, so deployment-specific connection-string parameters can take final precedence.

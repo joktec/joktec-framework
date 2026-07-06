@@ -17,8 +17,11 @@ Baseline: current stable implementation.
 - JobWorker: Repository-backed batch worker abstraction.
 - Bull Board: Queue dashboard mounted by `BullBoardBootstrap` when `BullModule.forRoot(...)` is imported and `bull.board.enable` is configured.
 - BaseController: Factory that creates standard REST CRUD endpoints.
+- SubController: Factory that creates parent-child REST CRUD endpoints and delegates to `IBaseSubService`.
 - ClientController: Factory that creates standard microservice CRUD message handlers.
+- SubClientController: Factory that creates parent-child microservice CRUD message handlers with `Parent.Child.action` commands.
 - BaseService: Generic service implementing CRUD methods over a repository.
+- IBaseSubService: Service contract for scoped child-resource list/detail/create/update/delete operations.
 - AbstractClientService: Lifecycle base for external clients.
 - Page Pagination: Pagination mode using `page` and `limit`, returning page metadata.
 - Offset Pagination: Pagination mode using `offset` and `limit`, returning offset metadata.
