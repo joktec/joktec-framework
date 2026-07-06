@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.37](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.36...@joktec/mongo@0.2.37) (2026-07-06)
+
+**Note:** Version bump only for package @joktec/mongo
+
+
+
+
+
 ## [0.2.36](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.35...@joktec/mongo@0.2.36) (2026-06-29)
 
 ### Bug Fixes

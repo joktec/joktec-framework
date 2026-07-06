@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/elastic@0.2.19...@joktec/elastic@0.2.20) (2026-07-06)
+
+**Note:** Version bump only for package @joktec/elastic
+
+
+
+
+
 ## [0.2.19](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/elastic@0.2.18...@joktec/elastic@0.2.19) (2026-06-29)
 
 **Note:** Version bump only for package @joktec/elastic
