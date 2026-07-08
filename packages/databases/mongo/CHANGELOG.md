@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.38](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.37...@joktec/mongo@0.2.38) (2026-07-08)
+
+### Features
+
+* **mongo:** support mongo stream
+
+
 ## [0.2.37](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/mongo@0.2.36...@joktec/mongo@0.2.37) (2026-07-06)
 
 **Note:** Version bump only for package @joktec/mongo
