@@ -22,7 +22,10 @@ yarn add @joktec/mongo
 - model contracts:
   - `MongoSchema`
   - `IMongoRequest`
-  - `IMongoPaginationResponse`
+- `IMongoPaginationResponse`
+- `MongoCoverage`
+- `MongoChangeStream`
+- `MongoStreamOptions`
 - decorators and helpers:
   - `@Schema`
   - `@Prop`
@@ -132,6 +135,36 @@ mongo:
 In this example, the final connection options use `authSource=app_db` and `connectTimeoutMS=20000`, while keeping `serverSelectionTimeoutMS=5000`.
 
 For multi-process deployments, prefer enabling `autoIndex` in one owner process and disabling it in request-facing processes. When `autoIndex` is enabled, `MongoService` checks index drift with `diffIndexes()` and runs `syncIndexes({ continueOnError: true })` only when Mongo reports indexes to create or drop. Sync errors are caught and logged with connection/schema context so bootstrap diagnostics identify the affected schema.
+
+## Coverage and Change Streams
+
+`MongoService.getCoverage(conId?)` reports runtime capability for a Mongo connection:
+
+- MongoDB server version.
+- Mongoose package version.
+- Typegoose package version.
+- topology: `standalone`, `replica-set`, `sharded`, or `unknown`.
+- `canUseSession`.
+- `canUseTransaction`.
+- `canUseStream`.
+- `reasons` when a capability is unavailable.
+
+`MongoService.startTransaction(...)`, `MongoService.watch(...)`, and `MongoRepo.watch(...)` use coverage checks before opening driver sessions or MongoDB Change Streams. Unsupported topology fails immediately with framework errors such as `MONGO_TRANSACTION_NOT_SUPPORTED` or `MONGO_STREAM_NOT_SUPPORTED`.
+
+Use `watch(...)` for realtime MongoDB Change Streams:
+
+```ts
+const coverage = await mongoService.getCoverage();
+
+if (coverage.canUseStream) {
+  const stream = await articleRepo.watch([{ $match: { operationType: 'insert' } }]);
+  stream.on('change', change => {
+    // handle insert/update/delete events
+  });
+}
+```
+
+Change Streams require MongoDB replica set or sharded topology. For standalone local MongoDB, use a polling fallback in the application layer. Query cursors remain separate: `MongoRepo.cursor(...)` iterates large query result sets and is not realtime listening.
 
 ## Query Contract
 

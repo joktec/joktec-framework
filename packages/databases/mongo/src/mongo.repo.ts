@@ -27,7 +27,13 @@ import {
   MongoSchema,
   ObjectId,
 } from './models';
-import { IMongoRepository, MongoType } from './mongo.client';
+import {
+  IMongoRepository,
+  MongoChangeStream,
+  MongoStreamOptions,
+  MongoStreamPipeline,
+  MongoType,
+} from './mongo.client';
 import { MongoCatch } from './mongo.exception';
 import { MongoService } from './mongo.service';
 
@@ -137,6 +143,18 @@ export abstract class MongoRepo<T extends MongoSchema, ID extends RefType = stri
     if (query?.populate) qb.populate(MongoHelper.parsePopulate(query.populate));
 
     return qb.lean({ virtuals: true }).cursor();
+  }
+
+  /**
+   * Opens a MongoDB change stream for this repository model.
+   */
+  @MongoCatch
+  public async watch<TResult extends Record<string, any> = Record<string, any>>(
+    pipeline: MongoStreamPipeline = [],
+    options: MongoStreamOptions = {},
+  ): Promise<MongoChangeStream<TResult>> {
+    await this.mongoService.assertCoverage('stream', this.conId);
+    return this.model.watch<TResult>(pipeline, options);
   }
 
   /**

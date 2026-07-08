@@ -23,6 +23,7 @@ rg --files apps packages | rg 'AGENTS.md$'
 ```bash
 rg -n "forRoot|registerQueue|connectMicroservice|EventPattern|MessagePattern" apps packages
 rg -n "Crontab|JobWorker|Processor|Queue" apps packages
+rg -n "getCoverage|assertCoverage|MongoRepo\\.watch|ChangeStream|canUseStream" packages/databases/mongo apps
 rg -n "ExpressInterceptor|resolverQuery|resolverSearchBody|resolverRequestCastOptions|castRequestValue" packages/common/core/src apps
 ```
 

@@ -1,4 +1,5 @@
-import { Controller, ISubControllerProps, SubController } from '@joktec/core';
+import { Controller, ISubControllerProps, MessageEvent, Param, Sse, SubController } from '@joktec/core';
+import { Observable } from 'rxjs';
 import { AuthGuard, RoleGuard } from '../../common';
 import { Article, Comment } from '../../models/schemas';
 import { ArticleCommentService } from './article-comment.service';
@@ -24,5 +25,10 @@ const props: ISubControllerProps<Article, Comment> = {
 export class ArticleCommentController extends SubController<Article, Comment, string, string>(props) {
   constructor(protected articleCommentService: ArticleCommentService) {
     super(articleCommentService);
+  }
+
+  @Sse('events/new')
+  listenNewComments(@Param('articleId') articleId: string): Observable<MessageEvent> {
+    return this.articleCommentService.listenNewComments(articleId);
   }
 }

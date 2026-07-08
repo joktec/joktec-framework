@@ -157,6 +157,8 @@ Mongo and MySQL repositories implement this shape with database-specific query p
 
 Mongo cursor pagination defaults to `_id` and adds `_id` as a tie-breaker when a custom `cursorKey` is used.
 
+Mongo repository stream contract uses `MongoRepo.watch(pipeline?, options?)` for model-level MongoDB Change Streams. This is realtime database listening and is separate from `MongoRepo.cursor(...)`, which iterates large query results. Stream availability is checked through `MongoService.getCoverage(...)` and `MongoService.assertCoverage('stream', conId)`.
+
 MySQL cursor pagination defaults to `createdAt` plus primary key columns and validates cursor keys against TypeORM column metadata.
 
 ## Client Contract
@@ -167,6 +169,8 @@ MySQL cursor pagination defaults to `createdAt` plus primary key columns and val
 - `getClient(conId)`
 
 `AbstractClientService` adds lifecycle semantics but concrete packages own provider-specific methods.
+
+`MongoClient` additionally exposes `getCoverage(...)`, `assertCoverage(...)`, `startTransaction(...)`, and database-level `watch(...)`. Transaction and stream methods fail fast when coverage reports unsupported topology.
 
 ## Config Contract
 

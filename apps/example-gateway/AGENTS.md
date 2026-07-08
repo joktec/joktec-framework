@@ -18,6 +18,7 @@ This app is the public HTTP gateway reference for a fictional social-network pro
 - Shared app guards, filters, interceptors, decorators, and response types live under `src/common`.
 - Broker consumer examples are in `src/modules/articles/article.handler.ts`.
 - `articles` and `comments` model mobile load-more APIs with offset pagination.
+- `articles/:articleId/comments/events/new` demonstrates SSE comment notifications with Mongo Change Streams when available and a 10-second polling fallback otherwise.
 - `dataLogs` exposes read-only pino Mongo logs with cursor pagination.
 - `profileBadges` models a cross-store social feature: MySQL owns the badge catalog and Mongo user profiles store assigned badge ids.
 

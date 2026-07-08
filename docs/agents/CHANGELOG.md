@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-09 - Mongo Coverage and Change Stream Sync
+
+- Recorded `@joktec/mongo` coverage reporting through `MongoService.getCoverage(...)` for MongoDB, Mongoose, Typegoose, topology, sessions, transactions, and Change Streams.
+- Documented fail-fast coverage checks for `startTransaction(...)`, `MongoService.watch(...)`, and `MongoRepo.watch(...)`.
+- Recorded `example-gateway` SSE comment notification demo with Mongo Change Streams and 10-second polling fallback.
+
 ## 2026-07-06 - Core Sub-Resource Controller Contract Sync
 
 - Recorded `@joktec/core` `SubController`, `SubClientController`, and `SubClientService` nested CRUD abstractions over `IBaseSubService`.

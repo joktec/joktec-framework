@@ -15,6 +15,7 @@ Implemented example areas include:
 - Media-oriented examples through assets, storage, Firebase, and article file metadata.
 - Notification and inquiry workflows.
 - Search, filtering, sorting, relation population, and mixed pagination patterns.
+- SSE comment notification demo at `GET /articles/:articleId/comments/events/new`, using Mongo Change Streams when supported and polling fallback on standalone MongoDB.
 - Operational log browsing through `data-logs`, backed by the Mongo collection written by `pino-mongodb`.
 - Profile badge catalog management through `profile-badges`, backed by MySQL and assigned to Mongo user profiles.
 - Creator analytics examples through `creator-insights` and `creator-milestones`, backed by MySQL entities with JSON columns, relations, checks, indexes, version columns, and computed virtual fields.

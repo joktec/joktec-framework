@@ -76,6 +76,8 @@ When Mongo `autoIndex` is enabled, `MongoService` registers Typegoose models, ch
 
 Only one owner process should enable Mongo `autoIndex` for a shared database. Request-facing clusters should keep it disabled.
 
+Mongo runtime capability is exposed through `MongoService.getCoverage(...)`. Coverage reports MongoDB, Mongoose, Typegoose, topology, sessions, transactions, and change-stream support. `startTransaction(...)`, `MongoService.watch(...)`, and `MongoRepo.watch(...)` fail fast when the connection topology cannot support the requested feature. MongoDB Change Streams require replica-set or sharded topology; standalone deployments need app-level polling fallback.
+
 ## Client Lifecycle
 
 Most clients extend `AbstractClientService`.

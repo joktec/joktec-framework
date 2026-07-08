@@ -1,19 +1,36 @@
+import { createRequire } from 'module';
 import { AbstractClientService, Clazz, DEFAULT_CON_ID, Inject, Injectable, Retry } from '@joktec/core';
 import { getModelForClass } from '@typegoose/typegoose';
 import mongoose, { Connection as Mongoose } from 'mongoose';
 import { mongoDebug, QueryHelper } from './helpers';
 import { MongoSchema } from './models';
-import { MongoClient, MongoClientSession, MongoModelRegistry, MongoSessionOptions, MongoType } from './mongo.client';
+import {
+  MongoChangeStream,
+  MongoClient,
+  MongoClientSession,
+  MongoCoverage,
+  MongoCoverageFeature,
+  MongoCoverageOptions,
+  MongoModelRegistry,
+  MongoSessionOptions,
+  MongoStreamOptions,
+  MongoStreamPipeline,
+  MongoType,
+} from './mongo.client';
 import { MongoConfig } from './mongo.config';
 import { MODEL_REGISTRY_KEY } from './mongo.constant';
+import { MongoException } from './mongo.exception';
 
 const RETRY_OPTS = 'mongo.retry';
+const requireFromMongo = createRequire(__filename);
 
 /**
  * Owns MongoDB connection lifecycle and connection-scoped Typegoose model registration.
  */
 @Injectable()
 export class MongoService extends AbstractClientService<MongoConfig, Mongoose> implements MongoClient {
+  private readonly coverageCache = new Map<string, MongoCoverage>();
+
   constructor(@Inject(MODEL_REGISTRY_KEY) private modelRegistry: MongoModelRegistry) {
     super('mongo', MongoConfig);
   }
@@ -102,6 +119,91 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     return serverInfo.version;
   }
 
+  public async getCoverage(conId: string = DEFAULT_CON_ID, options: MongoCoverageOptions = {}): Promise<MongoCoverage> {
+    if (!options.refresh && this.coverageCache.has(conId)) {
+      return this.coverageCache.get(conId);
+    }
+
+    const client = this.getClient(conId);
+    const [serverInfo, hello] = await Promise.all([client.db.admin().serverInfo(), this.getServerHello(client)]);
+    const mongoVersion = String(serverInfo.version || 'unknown');
+    const versionParts = this.parseVersion(mongoVersion);
+    const topology = this.resolveTopology(hello);
+    const isReplicaSet = topology === 'replica-set';
+    const isSharded = topology === 'sharded';
+    const isStandalone = topology === 'standalone';
+    const clusterCapable = isReplicaSet || isSharded;
+    const canUseSession = clusterCapable;
+    const canUseTransaction = clusterCapable && versionParts.major >= 4;
+    const canUseStream =
+      clusterCapable && (versionParts.major > 3 || (versionParts.major === 3 && versionParts.minor >= 6));
+    const reasons: string[] = [];
+
+    if (!clusterCapable) reasons.push('MongoDB connection is not running as a replica set or sharded cluster');
+    if (!canUseTransaction)
+      reasons.push('MongoDB transactions require a replica set or sharded cluster on MongoDB 4.0+');
+    if (!canUseStream) reasons.push('MongoDB change streams require a replica set or sharded cluster on MongoDB 3.6+');
+
+    const coverage: MongoCoverage = {
+      conId,
+      mongoVersion,
+      mongooseVersion: mongoose.version,
+      typegooseVersion: this.readPackageVersion('@typegoose/typegoose'),
+      topology,
+      setName: hello.setName,
+      hosts: hello.hosts,
+      isStandalone,
+      isReplicaSet,
+      isSharded,
+      canUseSession,
+      canUseTransaction,
+      canUseStream,
+      reasons,
+    };
+
+    this.coverageCache.set(conId, coverage);
+    return coverage;
+  }
+
+  private async getServerHello(client: Mongoose): Promise<Record<string, any>> {
+    try {
+      return await client.db.admin().command({ hello: 1 });
+    } catch {
+      return await client.db.admin().command({ isMaster: 1 });
+    }
+  }
+
+  private resolveTopology(hello: Record<string, any>): MongoCoverage['topology'] {
+    if (hello.msg === 'isdbgrid') return 'sharded';
+    if (hello.setName || hello.isreplicaset || hello.hosts?.length) return 'replica-set';
+    if (hello.isWritablePrimary || hello.ismaster || hello.secondary === false) return 'standalone';
+    return 'unknown';
+  }
+
+  private parseVersion(version: string): { major: number; minor: number } {
+    const [major = 0, minor = 0] = version.split('.').map(part => parseInt(part, 10) || 0);
+    return { major, minor };
+  }
+
+  private readPackageVersion(pkgName: string): string {
+    try {
+      return requireFromMongo(`${pkgName}/package.json`).version || 'unknown';
+    } catch {
+      return 'unknown';
+    }
+  }
+
+  public async assertCoverage(feature: MongoCoverageFeature, conId: string = DEFAULT_CON_ID): Promise<MongoCoverage> {
+    const coverage = await this.getCoverage(conId);
+    const supported = feature === 'transaction' ? coverage.canUseTransaction : coverage.canUseStream;
+
+    if (!supported) {
+      throw new MongoException(`MONGO_${feature.toUpperCase()}_NOT_SUPPORTED`, coverage);
+    }
+
+    return coverage;
+  }
+
   /**
    * Registers a Typegoose class against the current Mongoose connection.
    */
@@ -142,9 +244,19 @@ export class MongoService extends AbstractClientService<MongoConfig, Mongoose> i
     options: MongoSessionOptions = {},
     conId: string = DEFAULT_CON_ID,
   ): Promise<MongoClientSession> {
+    await this.assertCoverage('transaction', conId);
     const session = await this.getClient(conId).startSession(options);
     if (options.autoStart) session.startTransaction();
     return session;
+  }
+
+  public async watch<TResult extends Record<string, any> = Record<string, any>>(
+    pipeline: MongoStreamPipeline = [],
+    options: MongoStreamOptions = {},
+    conId: string = DEFAULT_CON_ID,
+  ): Promise<MongoChangeStream<TResult>> {
+    await this.assertCoverage('stream', conId);
+    return this.getClient(conId).watch<TResult>(pipeline, options);
   }
 
   /**
