@@ -2525,6 +2525,18 @@
     "@types/yargs" "^17.0.33"
     chalk "^4.1.2"
 
+"@joktec/rabbit@0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@joktec/rabbit/-/rabbit-0.2.17.tgz#57bf6371f740f76bad59311e80e445084eb2992b"
+  integrity sha512-S6K/gNq4C33ggI6WOplDz0fZakr5ZN2tS3prf8Hu4Mo2b44vl3NPaQRYwZNXFU4d09xBW8Dk9qicwWphOdk0xA==
+  dependencies:
+    "@joktec/core" "0.2.17"
+    "@joktec/utils" "0.1.5"
+    amqp-connection-manager "^5.0.0"
+    amqplib "^2.0.1"
+    lodash "^4.18.1"
+    object-hash "^3.0.0"
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -5080,6 +5092,11 @@ amqplib@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/amqplib/-/amqplib-2.0.1.tgz#7f14517c1d5f6e8608cf0abf4df817e923eb59b6"
   integrity sha512-a3P2MgfCf9nzVis12VxWEn0dS6hcqve7dlEAhXDtIWR27BlhtMkILOc+H9aeHjDi6i6r94dYKc2Kx2OFe3avvg==
+
+amqplib@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/amqplib/-/amqplib-2.2.0.tgz#9d70d20d4d04306abb22cadf2431259b3b5e68a9"
+  integrity sha512-VifzN9aHs/Q3zTruVHXh2yCisQyXexBN91CQ2E5iSyUKyNjH6ilYhJGte5AXZH/Bj1PaH7SwPhyuSf6Msd2udw==
 
 ansi-align@^3.0.0:
   version "3.0.1"

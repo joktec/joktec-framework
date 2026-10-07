@@ -39,7 +39,7 @@
     "@joktec/core": "0.2.17",
     "@joktec/utils": "0.1.5",
     "amqp-connection-manager": "^5.0.0",
-    "amqplib": "^2.0.1",
+    "amqplib": "^2.2.0",
     "lodash": "^4.18.1",
     "object-hash": "^3.0.0"
   },

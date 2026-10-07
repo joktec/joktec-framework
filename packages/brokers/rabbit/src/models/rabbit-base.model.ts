@@ -1,4 +1,5 @@
-import amqp, { Options } from 'amqplib';
+import type amqp from 'amqplib';
+import type { Options } from 'amqplib';
 
 export interface RabbitBaseOptions {
   channelKey?: string;
