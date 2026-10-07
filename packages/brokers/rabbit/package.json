@@ -44,8 +44,7 @@
     "object-hash": "^3.0.0"
   },
   "devDependencies": {
-    "@types/amqp-connection-manager": "^3.4.5",
-    "@types/amqplib": "^0.10.8"
+    "@types/amqp-connection-manager": "^3.4.5"
   },
   "lint-staged": {
     "*.ts": [

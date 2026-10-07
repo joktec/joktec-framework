@@ -1,6 +1,5 @@
 import { Clazz } from '@joktec/core';
-import { ConsumeMessage } from 'amqplib';
-import { Options } from 'amqplib/properties';
+import type { ConsumeMessage, Options } from 'amqplib';
 
 export type ConsumerInfoType = {
   [key: string]: { serviceClazz: Clazz; serviceName: string; methodName: string }[];

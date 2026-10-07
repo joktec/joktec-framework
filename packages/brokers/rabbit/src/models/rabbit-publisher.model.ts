@@ -1,4 +1,4 @@
-import { Options } from 'amqplib/properties';
+import type { Options } from 'amqplib';
 
 export interface RabbitPublishOptions extends Options.Publish {
   channelKey?: string;
