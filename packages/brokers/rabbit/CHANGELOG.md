@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.19](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/rabbit@0.2.18...@joktec/rabbit@0.2.19) (2026-10-07)
+
+### Maintenance
+
+* **rabbit:** upgrade package amqplib and change import type
+
+
 ## [0.2.18](https://joktec.github.com/joktec/joktec-framework/compare/@joktec/rabbit@0.2.17...@joktec/rabbit@0.2.18) (2026-10-07)
 
 **Note:** Version bump only for package @joktec/rabbit
